@@ -38,6 +38,7 @@ export default {
     loadSpots(val) {
       this.map.clearOverlays();
       if (val == "device") {
+        console.log("device");
         var markers = [];
         http.requestWithToken(
           "/auth_api/device_list",
@@ -75,19 +76,24 @@ export default {
               that.map.addOverlay(label);
             }
             let data = res.data.data;
+            var flag = 1;
             for (let i = 0; i < data.length; ++i) {
               if (data[i].longitude && data[i].latitude) {
                 var point = gps.convert(data[i].latitude, data[i].longitude);
                 point = new BMap.Point(point[1], point[0]);
                 markers.push(point);
                 addText(data[i]["id"], point);
+
                 let center = "";
                 if (data[i].town != null) center = data[i].town + center;
                 if (data[i].city != null) center = data[i].city + center;
                 if (data[i].area != null) center = data[i].area + center;
                 if (data[i].province != null)
                   center = data[i].province + center;
-                if (center) this.map.centerAndZoom(center, 5);
+                if (center && flag){
+                  this.map.centerAndZoom(center, 5)
+                  flag = 0;
+                  };
               }
             }
                 addMarker(point, () => {
@@ -100,6 +106,7 @@ export default {
       }
       if (val != "device") {
          var markers = [];
+         console.log("!device");
         http.requestWithTokenJson(
           "/auth_api/statistics_map/" + val + "_spots",
           "get",
@@ -156,6 +163,7 @@ export default {
             }
                             addMarker(point, () => {
                   if (val == "province") {
+                    console.log("province");
                     this.dialogVisible = true;
                     setTimeout(() => {
                       this.$nextTick(() => {
@@ -169,6 +177,7 @@ export default {
                       });
                     }, 10);
                   } else if (val == "city") {
+                     console.log("city");
                     this.dialogVisible = true;
                     setTimeout(() => {
                       this.$nextTick(() => {
@@ -187,6 +196,7 @@ export default {
                       });
                     }, 10);
                   } else if (val == "area") {
+                    console.log("area");
                     this.dialogVisible = true;
                     setTimeout(() => {
                       this.$nextTick(() => {
