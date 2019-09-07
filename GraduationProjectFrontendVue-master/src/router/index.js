@@ -16,6 +16,9 @@ import DeviceSummary from '@/components/pages/DeviceSummary'
 import MapStatistics from '@/components/pages/MapStatistics'
 import DeviceMessage from '@/components/pages/DeviceMessage'
 import DeviceWanted from '@/components/pages/DeviceWanted'
+import Test from '@/components/pages/Test'
+import DryWatchDataDetail from '@/components/pages/drywatch/DataDetail'
+
 
 Vue.use(Router)
 
@@ -127,6 +130,17 @@ export default new Router({
           name: '时间动态',
           component: MonthSummary
         },
+        {
+          path: 'pages/Test',
+          name: 'Test',
+          component: Test
+        },
+        {
+          path: 'pages/drywatch/detail',
+          name: 'DryWatchDetail',
+          component: DryWatchDataDetail
+        },
+
 
       ]
     },
