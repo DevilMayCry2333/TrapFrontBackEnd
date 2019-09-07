@@ -18,7 +18,9 @@ import DeviceMessage from '@/components/pages/DeviceMessage'
 import DeviceWanted from '@/components/pages/DeviceWanted'
 import Test from '@/components/pages/Test'
 import DryWatchDataDetail from '@/components/pages/drywatch/DataDetail'
-
+import NaturalEnemiesDataDetail from '@/components/pages/naturalEnemies/DataDetail'
+import DeadTreeDataDetail from '@/components/pages/deadTrees/DataDetail'
+import TrackDataDetail from '@/components/pages/track/DataDetail'
 
 Vue.use(Router)
 
@@ -140,6 +142,22 @@ export default new Router({
           name: 'DryWatchDetail',
           component: DryWatchDataDetail
         },
+        {
+          path: 'pages/naturalEnemy/detail',
+          name: 'NaturalEnemiesDataDetail',
+          component: NaturalEnemiesDataDetail
+        },
+        {
+          path: 'pages/deadTrees/detail',
+          name: 'DeadTreesDataDetail',
+          component: DeadTreeDataDetail
+        },
+        {
+          path: 'pages/track/detail',
+          name: 'TrackDataDetail',
+          component: TrackDataDetail
+        },
+
 
 
       ]
