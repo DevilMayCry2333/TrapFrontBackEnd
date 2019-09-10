@@ -21,6 +21,8 @@ import DryWatchDataDetail from '@/components/pages/drywatch/DataDetail'
 import NaturalEnemiesDataDetail from '@/components/pages/naturalEnemies/DataDetail'
 import DeadTreeDataDetail from '@/components/pages/deadTrees/DataDetail'
 import TrackDataDetail from '@/components/pages/track/DataDetail'
+import DryWatchDataSummary from '@/components/pages/drywatch/DataSummary'
+import DryWatchMaintanceData from '@/components/pages/drywatch/DryWatchMaintanceData'
 
 Vue.use(Router)
 
@@ -157,6 +159,18 @@ export default new Router({
           name: 'TrackDataDetail',
           component: TrackDataDetail
         },
+        {
+          path: 'pages/drywatch/datasummary',
+          name: 'DryWatchDataSummary',
+          component: DryWatchDataSummary
+        },
+        {
+          path: 'pages/drywatch/Maintance',
+          name: 'DryWatchMaintanceData',
+          component: DryWatchMaintanceData
+        },
+
+
 
 
 

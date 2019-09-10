@@ -60,17 +60,31 @@ export default {
         loadDevice() {
           console.log(this.role);
           console.log(sessionStorage['username']);
-        http.requestWithToken(
-            "/track/areaDetail",
-            "post",
-            { page: this.QRData.page, limit: 10, username: sessionStorage['username']},
-            res => {
-            this.QRData.list = res.data.Data;
-            this.QRData.total = res.data.total;
+          if(this.role == 3){
+            http.requestWithToken(
+                "/track/areaDetail",
+                "post",
+                { page: this.QRData.page, limit: 10, username: sessionStorage['username']},
+                res => {
+                this.QRData.list = res.data.Data;
+                this.QRData.total = res.data.total;
 
-            },
-            () => {}
-        );
+                },
+                () => {}
+            );
+          }else if(this.role == 4){
+                        http.requestWithToken(
+                "/track/detail",
+                "post",
+                { page: this.QRData.page, limit: 10, username: sessionStorage['username']},
+                res => {
+                this.QRData.list = res.data.Data;
+                this.QRData.total = res.data.total;
+
+                },
+                () => {}
+            );
+          }
         },
     },
     data(){

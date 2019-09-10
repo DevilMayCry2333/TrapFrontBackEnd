@@ -41,6 +41,7 @@
 import http from "../../../utils/http";
 export default {
     mounted(){
+        this.role = this.$store.state.user.role;
         this.loadDevice();
     },
     methods:{
@@ -55,22 +56,37 @@ export default {
       },
 
         loadDevice() {
-          console.log(sessionStorage['username']);
-        http.requestWithToken(
-            "/natural/detail",
-            "post",
-            { page: this.QRData.page, limit: 10, username: sessionStorage['username']},
-            res => {
-            this.QRData.list = res.data.Data;
-            this.QRData.total = res.data.total;
+          if(this.role == 3){
+              console.log(sessionStorage['username']);
+            http.requestWithToken(
+                "/natural/areaDetail",
+                "post",
+                { page: this.QRData.page, limit: 10, username: sessionStorage['username']},
+                res => {
+                this.QRData.list = res.data.Data;
+                this.QRData.total = res.data.total;
 
-            },
-            () => {}
-        );
+                },
+                () => {}
+            );
+          }else if(this.role == 4){
+              http.requestWithToken(
+                "/natural/detail",
+                "post",
+                { page: this.QRData.page, limit: 10, username: sessionStorage['username']},
+                res => {
+                this.QRData.list = res.data.Data;
+                this.QRData.total = res.data.total;
+
+                },
+                () => {}
+            );
+          }
         },
     },
     data(){
         return{
+        role:'',
         QRData: {
             selectedIndex: -1,
             list: [],
