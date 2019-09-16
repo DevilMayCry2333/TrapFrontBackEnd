@@ -24,6 +24,8 @@ import TrackDataDetail from '@/components/pages/track/DataDetail'
 import DryWatchDataSummary from '@/components/pages/drywatch/DataSummary'
 import DryWatchMaintanceData from '@/components/pages/drywatch/DryWatchMaintanceData'
 import DryWatchDeviceMessage from '@/components/pages/drywatch/DryWatchDeviceMessage'
+import DryWatchDeviceWanted from '@/components/pages/drywatch/DryWatchDeviceWanted'
+
 
 Vue.use(Router)
 
@@ -175,6 +177,12 @@ export default new Router({
           name: 'DryWatchDeviceMessage',
           component: DryWatchDeviceMessage
         },
+        {
+          path: 'pages/drywatch/wanted',
+          name: 'DryWatchDeviceWanted',
+          component: DryWatchDeviceWanted
+        },
+
 
 
 

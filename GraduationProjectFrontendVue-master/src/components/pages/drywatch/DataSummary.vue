@@ -61,8 +61,8 @@
             <el-card header="各管理员诱捕情况表" style="padding:5px" v-if="this.$store.state.user.role ==3">
                           <el-table :data="summaryManagerData.list" :row-style="tableRowStyle">
                             <el-table-column label="管理员" prop="name"></el-table-column>
-                            <el-table-column label="诱捕器总数" prop="deviceCount"></el-table-column>
-                            <el-table-column label="总诱虫量" prop="beetleCount"></el-table-column>
+                            <el-table-column label="设备数量" prop="deviceCount"></el-table-column>
+                            <el-table-column label="注射剂总量" prop="injectNum"></el-table-column>
                             <el-table-column label="操作">
                               <template slot-scope="scope">
                                 <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
@@ -299,7 +299,7 @@ export default {
     queryManagerData() {
           this.contentLabelIndex = 2;
           http.requestWithToken(
-            "/auth_api/device_summary/manager",
+            "/dryWatch/Summary/manager",
             "get",
             {
               adcode: this.area,
