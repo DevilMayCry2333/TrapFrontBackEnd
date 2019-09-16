@@ -23,6 +23,7 @@ import DeadTreeDataDetail from '@/components/pages/deadTrees/DataDetail'
 import TrackDataDetail from '@/components/pages/track/DataDetail'
 import DryWatchDataSummary from '@/components/pages/drywatch/DataSummary'
 import DryWatchMaintanceData from '@/components/pages/drywatch/DryWatchMaintanceData'
+import DryWatchDeviceMessage from '@/components/pages/drywatch/DryWatchDeviceMessage'
 
 Vue.use(Router)
 
@@ -169,7 +170,11 @@ export default new Router({
           name: 'DryWatchMaintanceData',
           component: DryWatchMaintanceData
         },
-
+        {
+          path: 'pages/drywatch/message',
+          name: 'DryWatchDeviceMessage',
+          component: DryWatchDeviceMessage
+        },
 
 
 

@@ -225,7 +225,7 @@ export default {
       if(this.maintenanceData.endDate!=null && this.maintenanceData.endDate!=""){
                 this.endDate=this.maintenanceData.endDate;
       }
-      this.loadOtherBeetleType();
+      // this.loadOtherBeetleType();
       http.requestWithToken(
         "/dryWatch/getAreaMaintanceDetail",
         "post",
