@@ -174,7 +174,7 @@ export default {
     },
     querySum(adcode) {
       http.requestWithToken(
-        "/auth_api/device_summary/sum",
+        "/dryWatch/Summary/sum",
         "get",
         {
           adcode: adcode,
@@ -321,7 +321,7 @@ export default {
     queryAreaData() {
       this.contentLabelIndex = 1;
       http.requestWithToken(
-        "/auth_api/device_summary/city",
+        "/dryWatch/Summary/city",
         "get",
         {
           adcode: this.city,
@@ -429,7 +429,7 @@ export default {
     },
     loadArea() {
       http.requestWithToken(
-        "/auth_api/dist/areas",
+        "/DryInject/dist/areas",
         "get",
         { id: this.city },
         res => {
