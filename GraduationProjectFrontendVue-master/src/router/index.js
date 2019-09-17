@@ -25,6 +25,8 @@ import DryWatchDataSummary from '@/components/pages/drywatch/DataSummary'
 import DryWatchMaintanceData from '@/components/pages/drywatch/DryWatchMaintanceData'
 import DryWatchDeviceMessage from '@/components/pages/drywatch/DryWatchDeviceMessage'
 import DryWatchDeviceWanted from '@/components/pages/drywatch/DryWatchDeviceWanted'
+import NaturalEnemiesDataSummary from '@/components/pages/naturalEnemies/DataSummary'
+import NaturalMaintanceData from '@/components/pages/naturalEnemies/NaturalMaintanceData'
 
 
 Vue.use(Router)
@@ -182,6 +184,17 @@ export default new Router({
           name: 'DryWatchDeviceWanted',
           component: DryWatchDeviceWanted
         },
+        {
+          path: 'pages/natural/datasummary',
+          name: 'NaturalEnemiesDataSummary',
+          component: NaturalEnemiesDataSummary
+        },
+        {
+          path: 'pages/natural/maintance',
+          name: 'NaturalMaintanceData',
+          component: NaturalMaintanceData
+        }
+
 
 
 

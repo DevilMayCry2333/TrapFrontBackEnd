@@ -1,7 +1,5 @@
 <template>
   <div>
-
-
     <div>
       <el-select
         placeholder="市"
@@ -37,7 +35,7 @@
               <el-table :data="summaryDeviceData.list" :row-style="tableRowStyle">
                 <el-table-column :label="contentLabelDict[contentLabelIndex]" prop="name"></el-table-column>
                 <el-table-column label="诱捕器总数" prop="deviceCount"></el-table-column>
-                <el-table-column label="总诱虫量" prop="beetleCount"></el-table-column>
+                <el-table-column label="总诱虫量" prop="releaseNum"></el-table-column>
                 <el-table-column label="操作">
                   <template slot-scope="scope">
                     <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
@@ -84,10 +82,11 @@
 
 </template>
 <script>
-import http from "../../utils/http";
+import http from "../../../utils/http";
 import echarts from "echarts";
-import MaintenanceData from "./MaintenanceData.vue";
+import MaintenanceData from "../MaintenanceData.vue";
 export default {
+name:'NaturalEnemiesDataSummary',
   components: {
     "t-maintenance-data": MaintenanceData
   },
@@ -274,7 +273,7 @@ export default {
     queryTownData() {
       this.contentLabelIndex = 2;
       http.requestWithToken(
-        "/auth_api/device_summary/area",
+        "/natural/Summary/area",
         "get",
         {
           adcode: this.area,
@@ -482,7 +481,7 @@ export default {
       sessionStorage.setItem('startDate',this.startDate);
       sessionStorage.setItem('endDate',this.endDate);
 
-this.$router.push({ path: '/pages/device_maintenance.html' });
+this.$router.push({ path: '/pages/natural/maintance' });
 
     }
   },

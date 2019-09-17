@@ -49,7 +49,7 @@
               <el-table :data="summaryWorkerData.list" :row-style="tableRowStyle">
                 <el-table-column label="工人" prop="name"></el-table-column>
                 <el-table-column label="诱捕器总数" prop="deviceCount"></el-table-column>
-                <el-table-column label="总诱虫量" prop="beetleCount"></el-table-column>
+                <el-table-column label="总诱虫量" prop="injectNum"></el-table-column>
                 <el-table-column label="操作">
                   <template slot-scope="scope">
                     <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
@@ -83,7 +83,7 @@
 <script>
 import http from "../../../utils/http";
 import echarts from "echarts";
-import MaintenanceData from ".././MaintenanceData.vue";
+import MaintenanceData from "../MaintenanceData.vue";
 export default {
     name:'DryWatchDataSummary',
     components: {
@@ -150,6 +150,7 @@ export default {
 
     init() {
       let role = this.$store.state.user.role;
+      console.log(this.$store.state.user.role);
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         this.loadCity();
@@ -183,7 +184,9 @@ export default {
                   },
         res => {
           this.totalCount = res.data.data.count;
-          this.totalSum = res.data.data.sum;
+          this.totalSum = res.data.data.InjectNum;
+          console.log(this.totalCount);
+          console.log(res.data.data);
         },
         () => {}
       );
@@ -232,7 +235,7 @@ export default {
     queryWorkerData(adcode) {
       //   this.contentLabelIndex = 3;
       http.requestWithToken(
-        "/auth_api/device_summary/worker",
+        "/dryWatch/Summary/worker",
         "get",
         {
           adcode: adcode,
@@ -243,7 +246,10 @@ export default {
         },
         res => {
           this.summaryWorkerData.list = res.data.data.data;
-
+          
+          console.log("Area");
+          console.log(this.area);
+          console.log(adcode);
           if(this.$store.state.user.role == 4){
 
                 this.querySum(this.manager);
@@ -344,7 +350,7 @@ export default {
     queryCityData() {
       this.contentLabelIndex = 0;
       http.requestWithToken(
-        "/auth_api/device_summary/province",
+        "/dryWatch/Summary/province",
         "get",
         {
           adcode: this.province,
@@ -447,6 +453,7 @@ export default {
         res => {
           // alert()
           this.managers = res.data.data;
+          console.log("manager");
           console.log(this.managers);
         },
         () => {}
