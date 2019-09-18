@@ -49,7 +49,7 @@
               <el-table :data="summaryWorkerData.list" :row-style="tableRowStyle">
                 <el-table-column label="工人" prop="name"></el-table-column>
                 <el-table-column label="诱捕器总数" prop="deviceCount"></el-table-column>
-                <el-table-column label="总诱虫量" prop="beetleCount"></el-table-column>
+                <el-table-column label="总诱虫量" prop="releaseNum"></el-table-column>
                 <el-table-column label="操作">
                   <template slot-scope="scope">
                     <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
@@ -62,7 +62,7 @@
                           <el-table :data="summaryManagerData.list" :row-style="tableRowStyle">
                             <el-table-column label="管理员" prop="name"></el-table-column>
                             <el-table-column label="诱捕器总数" prop="deviceCount"></el-table-column>
-                            <el-table-column label="总诱虫量" prop="beetleCount"></el-table-column>
+                            <el-table-column label="总诱虫量" prop="releaseNum"></el-table-column>
                             <el-table-column label="操作">
                               <template slot-scope="scope">
                                 <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
@@ -174,7 +174,7 @@ name:'NaturalEnemiesDataSummary',
     },
     querySum(adcode) {
       http.requestWithToken(
-        "/auth_api/device_summary/sum",
+        "/natural/Summary/sum",
         "get",
         {
           adcode: adcode,
@@ -299,7 +299,7 @@ name:'NaturalEnemiesDataSummary',
     queryManagerData() {
           this.contentLabelIndex = 2;
           http.requestWithToken(
-            "/auth_api/device_summary/manager",
+            "/natural/Summary/manager",
             "get",
             {
               adcode: this.area,

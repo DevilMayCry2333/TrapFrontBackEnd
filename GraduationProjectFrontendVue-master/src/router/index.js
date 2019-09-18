@@ -27,7 +27,8 @@ import DryWatchDeviceMessage from '@/components/pages/drywatch/DryWatchDeviceMes
 import DryWatchDeviceWanted from '@/components/pages/drywatch/DryWatchDeviceWanted'
 import NaturalEnemiesDataSummary from '@/components/pages/naturalEnemies/DataSummary'
 import NaturalMaintanceData from '@/components/pages/naturalEnemies/NaturalMaintanceData'
-
+import NaturalDeviceMessage from '@/components/pages/naturalEnemies/NaturalDeviceMessage'
+import NaturalDeviceWanted from '@/components/pages/naturalEnemies/NaturalDeviceWanted'
 
 Vue.use(Router)
 
@@ -193,13 +194,17 @@ export default new Router({
           path: 'pages/natural/maintance',
           name: 'NaturalMaintanceData',
           component: NaturalMaintanceData
-        }
-
-
-
-
-
-
+        },
+        {
+          path: 'pages/natural/message',
+          name: 'NaturalDeviceMessage',
+          component: NaturalDeviceMessage
+        },
+        {
+          path: 'pages/natural/wanted',
+          name: 'NaturalDeviceWanted',
+          component: NaturalDeviceWanted
+        },
       ]
     },
 

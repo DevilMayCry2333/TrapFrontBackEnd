@@ -184,7 +184,7 @@ export default {
                   },
         res => {
           this.totalCount = res.data.data.count;
-          this.totalSum = res.data.data.InjectNum;
+          this.totalSum = res.data.data.injectNum;
           console.log(this.totalCount);
           console.log(res.data.data);
         },

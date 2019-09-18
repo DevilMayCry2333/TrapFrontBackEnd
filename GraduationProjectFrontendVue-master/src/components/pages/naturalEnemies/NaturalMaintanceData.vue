@@ -64,7 +64,7 @@
 
         <el-table-column type="selection" width="55" fixed="left"></el-table-column>
         <el-table-column prop="deviceId" label="诱捕器编号"></el-table-column>
-        <el-table-column prop="num" label="松墨天牛总数"></el-table-column>
+        <el-table-column prop="releaseNum" label="松墨天牛总数"></el-table-column>
 
         <el-table-column prop="longitude" label="经度"></el-table-column>
         <el-table-column prop="latitude" label="纬度"></el-table-column>
@@ -227,7 +227,7 @@ export default {
       }
       // this.loadOtherBeetleType();
       http.requestWithToken(
-        "/dryWatch/getAreaMaintanceDetail",
+        "/natural/getAreaMaintanceDetail",
         "post",
         {
           condition: this.searchText,
@@ -286,7 +286,7 @@ export default {
       sessionStorage.setItem('username', data.username);
       sessionStorage.setItem('startDate',this.startDate);
       sessionStorage.setItem('endDate',this.endDate);
-            this.$router.push({ path: '/pages/device_message' });
+            this.$router.push({ path: '/pages/natural/message' });
     },
     handleEditMaintenanceDataSubmit() {
       http.requestWithTokenJson(
