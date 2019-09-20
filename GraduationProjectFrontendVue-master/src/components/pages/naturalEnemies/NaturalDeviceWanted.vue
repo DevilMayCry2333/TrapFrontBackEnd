@@ -339,7 +339,7 @@ export default {
     loadMaintenanceData() {
       this.loadOtherBeetleType();
       http.requestWithToken(
-        "/dryWatch/maintenance1",
+        "/natural/maintenance1",
         "get",
         {
           condition: this.searchText,
@@ -481,7 +481,7 @@ export default {
         data.push(this.maintenanceData.selection[i].id);
       }
       http.requestWithTokenJson(
-        "/dryWatch/maintenance/report",
+        "/natural/maintenance/report",
         "post",
         { list: data },
         res => {

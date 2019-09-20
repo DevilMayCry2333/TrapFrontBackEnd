@@ -232,7 +232,7 @@ name:'NaturalEnemiesDataSummary',
     queryWorkerData(adcode) {
       //   this.contentLabelIndex = 3;
       http.requestWithToken(
-        "/auth_api/device_summary/worker",
+        "/natural/Summary/worker",
         "get",
         {
           adcode: adcode,
@@ -321,7 +321,7 @@ name:'NaturalEnemiesDataSummary',
     queryAreaData() {
       this.contentLabelIndex = 1;
       http.requestWithToken(
-        "/auth_api/device_summary/city",
+        "/natural/Summary/city",
         "get",
         {
           adcode: this.city,
@@ -344,7 +344,7 @@ name:'NaturalEnemiesDataSummary',
     queryCityData() {
       this.contentLabelIndex = 0;
       http.requestWithToken(
-        "/auth_api/device_summary/province",
+        "/natural/Summary/province",
         "get",
         {
           adcode: this.province,
