@@ -155,7 +155,7 @@ export default {
                 },
                 () => {}
             );
-          }else if(this.role == 2){
+          }else if(this.role == 2 || this.role==1){
                 http.requestWithToken(
                 "/track/selectAll",
                 "post",

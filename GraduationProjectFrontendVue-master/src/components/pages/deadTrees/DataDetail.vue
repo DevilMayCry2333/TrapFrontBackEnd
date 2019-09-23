@@ -145,7 +145,7 @@ export default {
                 () => {}
             );
           }else if(this.role == 4){
-                        http.requestWithToken(
+              http.requestWithToken(
                 "/deadTree/detail",
                 "post",
                 { page: this.QRData.page, limit: 10, username: sessionStorage['username']},
@@ -157,6 +157,18 @@ export default {
                 () => {}
             );
 
+          }else if(this.role==2 || this.role==1){
+              http.requestWithToken(
+                "/deadTree/selectAll",
+                "post",
+                { page: this.QRData.page, limit: 10, username: sessionStorage['username'],adcode:this.city},
+                res => {
+                this.QRData.list = res.data.Data;
+                this.QRData.total = res.data.total;
+
+                },
+                () => {}
+            );
           }
         },
     },
