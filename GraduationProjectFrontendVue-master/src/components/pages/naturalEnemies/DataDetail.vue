@@ -97,7 +97,7 @@ export default {
             console.log(this.area);
             console.log(this.city);
               console.log(this.province);
-          if(role==3){
+          // if(role==3){
                         http.requestWithToken(
                 "/natural/searchDetail",
                 "post",
@@ -120,7 +120,7 @@ export default {
                 () => {}
             );
 
-          }
+          // }
 
 
       },
