@@ -39,11 +39,11 @@
         <el-button
           type="primary"
           @click="handleDeleteSome"
-          
+
         >批量删除</el-button>
         <el-button type="primary" @click="exportExcel">导出</el-button>
         <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
-        
+
         <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
         <el-upload  class="upload-demo" ref="upload"
         :action="uploadUrl"
@@ -383,12 +383,12 @@ export default {
     handleMaintenanceDataSelectionChange(val) {
       this.maintenanceData.selection = val;
       //if (this.maintenanceData.multipleSelection[this.maintenanceData.page + ""].length > 0) {
-        
+
       //}
      //alert("change")
      //alert(this.triggeredByPageChange)
       if (!this.triggeredByPageChange && this.maintenanceData.page > -1) {
-        
+
         this.maintenanceData.mulitpleSelection[this.maintenanceData.page + ""] = val;
         setTimeout(()=> {
           //alert(JSON.stringify(this.maintenanceData.mulitpleSelection))
@@ -524,7 +524,7 @@ export default {
                   "&token=" +
                   sessionStorage["token"];
 
-      
+
     },
     exportExcel() {
               this.buttonLoadMaintenanceData();
