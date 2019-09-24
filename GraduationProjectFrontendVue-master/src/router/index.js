@@ -31,6 +31,8 @@ import NaturalDeviceMessage from '@/components/pages/naturalEnemies/NaturalDevic
 import NaturalDeviceWanted from '@/components/pages/naturalEnemies/NaturalDeviceWanted'
 import DryWatchDeviceMap from '@/components/pages/drywatch/DryWatchDeviceMap'
 import NaturalDeviceMap from '@/components/pages/naturalEnemies/NaturalDeviceMap'
+import DeadTreeDeviceMap from '@/components/pages/deadTrees/DeadTreeDeviceMap'
+import TrackDeviceMap from '@/components/pages/track/TrackDeviceMap'
 
 Vue.use(Router)
 
@@ -217,6 +219,17 @@ export default new Router({
           name: 'NaturalDeviceMap',
           component: NaturalDeviceMap
         },
+          {
+              path: 'pages/deadtree/map',
+              name: 'DeadTreeDeviceMap',
+              component: DeadTreeDeviceMap
+          },
+          {
+            path: 'pages/track/map',
+            name: 'TrackDeviceMap',
+            component: TrackDeviceMap
+          },
+
 
 
         
