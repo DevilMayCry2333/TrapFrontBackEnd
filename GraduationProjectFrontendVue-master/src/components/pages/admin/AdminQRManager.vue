@@ -13,6 +13,13 @@
           @click="showAssignQRCodeDialog()"
           v-if="this.$store.state.user.role == 0"
         >分配二维码</el-button>
+
+        <el-button
+          type="primary"
+          @click="showAssignQRCodeManagerDialog()"
+          v-if="this.$store.state.user.role == 4"
+        >分配项目二维码</el-button>
+
         <el-button
           type="primary"
           @click="showQRWorkerDialog()"
@@ -176,24 +183,6 @@
             :value="item.value">
             </el-option>
         </el-select>
-
-
-
-
-        <!-- <el-table :data="AssignQRCodeDialog.workerList">
-          <el-table-column prop="username" label="工人"></el-table-column>
-          <el-table-column label="分配数量">
-            <template slot-scope="scope">
-              <el-input-number
-                size="mini"
-                v-model="AssignQRCodeDialog.numList[scope.$index]"
-                v-bind:value="AssignQRCodeDialog.numList[scope.$index]"
-                :min="0"
-                @change="handleAssiagnQRCodeNumChange(scope.$index)"
-              ></el-input-number>
-            </template>
-          </el-table-column>
-        </el-table> -->
       </div>
       <div slot="footer" class="dialog-footer">
         <el-button @click="AssignQRCodeDialog.visible = false">取 消</el-button>
@@ -202,6 +191,51 @@
         >确 定</el-button>
       </div>
     </el-dialog>
+
+        <el-dialog title="分配项目二维码" :visible.sync="AssignQRCodeManagerDialog.visible" width="60%">
+      <div>当前可分配设备数量:{{AssignQRCodeDialog.availableNum}}</div>
+      <div style="overflow-y: scroll; height: 300px;">
+          <el-tag>起始ID:</el-tag>
+          <el-input @change="managerStartIdChange" v-model="startID" placeholder="请输入内容"></el-input>
+          <el-tag>结束ID:</el-tag>
+          <el-input @change="managerEndIdChange" v-model="endID" placeholder="请输入内容"></el-input>
+           <el-tag>ID数量</el-tag>
+           <el-input :disabled="true" v-model="IDNum" placeholder="请输入内容"></el-input>
+           <br/>
+           <el-button>校验</el-button>
+           <el-tag>应用项目</el-tag>
+          <el-select v-model="applicationValue" placeholder="请选择">
+            <el-option
+            v-for="item in application"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+            </el-option>
+        </el-select>
+        <br/>
+        <el-tag>区域</el-tag>
+        <el-input v-model="IDNum" placeholder="请输入内容"></el-input>
+        <el-tag>前缀</el-tag>
+        <el-input v-model="IDNum" placeholder="请输入内容"></el-input>
+        <el-tag>起始编号</el-tag>
+        <el-input v-model="IDNum" placeholder="请输入内容"></el-input>
+        <el-tag>结束编号</el-tag>
+        <el-input v-model="IDNum" placeholder="请输入内容"></el-input>
+        <el-tag>编号数量</el-tag>
+        <el-input v-model="IDNum" placeholder="请输入内容"></el-input>
+
+      </div>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="AssignQRCodeDialog.visible = false">取 消</el-button>
+        <el-button type="primary" @click.native.prevent="handleAssignQRCodeDataSubmit"
+        :loading="assignQRCode"
+        >确 定</el-button>
+      </div>
+    </el-dialog>
+
+
+
+
   </div>
 </template>
 <script>
@@ -210,6 +244,12 @@ export default {
     name:'AdminQRManager',
   data() {
     return {
+      customRegion:'',
+      prefix:'',
+      serialStart:'',
+      serialEnd:'',
+      serialNum:'', 
+      IDNum:'',
       proxyValue:'',
       cityValue:'',
       areaValue:'',
@@ -224,19 +264,19 @@ export default {
         ],
         application: [
           {
-          value: '选项1',
+          value: '1',
           label: '诱捕器管理'
         }, {
-          value: '选项2',
+          value: '2',
           label: '注干剂监测'
         }, {
-          value: '选项3',
+          value: '3',
           label: '天敌防治'
         }, {
-          value: '选项4',
+          value: '4',
           label: '枯死树采伐'
         }, {
-          value: '选项5',
+          value: '5',
           label: '轨迹追踪'
         }],
 
@@ -278,6 +318,14 @@ export default {
         workerList: [],
         numList: []
       },
+        AssignQRCodeManagerDialog: {
+        totalAvailableCount: 0,
+        availableNum: 0,
+        visible: false,
+        workerList: [],
+        numList: []
+      },
+
       searchText: "",
       QRData: {
         selectedIndex: -1,
@@ -304,6 +352,12 @@ export default {
       );
 
     },
+    managerStartIdChange(){
+      this.IDNum = this.endID - this.startID;
+    },
+    managerEndIdChange(){
+      this.IDNum = this.endID - this.startID;
+    },
     proxyChange(e){
       console.log("proxyChange",e);
       http.requestWithToken(
@@ -317,6 +371,10 @@ export default {
         },
         () => {}
       );
+
+    },
+    showAssignQRCodeManagerDialog(){
+      this.AssignQRCodeManagerDialog.visible = true;
 
     },
     // 下载
@@ -574,37 +632,36 @@ export default {
       }
     },
     handleAssignQRCodeDataSubmit() {
-      let data = [];
-      this.assignQRCode=true;
-      for (let i = 0; i < this.AssignQRCodeDialog.numList.length; ++i) {
-        if (this.AssignQRCodeDialog.numList[i] > 0) {
-          data.push({
-            worker: this.AssignQRCodeDialog.workerList[i].username,
-            num: this.AssignQRCodeDialog.numList[i]
-          });
-        }
-      }
-      console.log(data);
-      http.requestWithTokenJson(
-        "/auth_api/device_relation",
-        "post",
-        data,
+      console.log("确定");
+      console.log(this.startID);
+      console.log(this.endID);
+      console.log(this.proxyValue);
+      console.log(this.cityValue);
+      console.log(this.areaValue);
+      console.log(this.applicationValue);
+        http.requestWithToken(
+        "/newQrCode/assignQRCode",
+        "get",
+        { 
+          proxyCode: this.proxyValue,
+          cityCode: this.cityValue,
+          areaCode: this.areaValue,
+          projectCode: this.applicationValue,
+          startID: this.startID,
+          endID: this.endID
+          },
         res => {
-          if (!res.data.error) {
-            this.assignQRCode=false;
-            this.$message({
-              message: "分配成功",
-              type: "success"
-            });
-            this.AssignQRCodeDialog.visible = false;
-          }
-          this.assignQRCode=false;
+          console.log(res);
+          this.area = res.data.Data;
+
         },
         () => {}
       );
+
     }
   },
   mounted() {
+    console.log(this.$store.state.user.role);
     this.loadDevice();
   }
 };
