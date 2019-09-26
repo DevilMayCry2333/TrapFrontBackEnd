@@ -33,6 +33,7 @@ import DryWatchDeviceMap from '@/components/pages/drywatch/DryWatchDeviceMap'
 import NaturalDeviceMap from '@/components/pages/naturalEnemies/NaturalDeviceMap'
 import DeadTreeDeviceMap from '@/components/pages/deadTrees/DeadTreeDeviceMap'
 import TrackDeviceMap from '@/components/pages/track/TrackDeviceMap'
+import AdminQRManager from '@/components/pages/admin/AdminQRManager'
 
 Vue.use(Router)
 
@@ -229,6 +230,12 @@ export default new Router({
             name: 'TrackDeviceMap',
             component: TrackDeviceMap
           },
+          {
+            path: 'pages/admin/qrmanager',
+            name: 'AdminQRManager',
+            component: AdminQRManager
+          },
+
 
 
 
