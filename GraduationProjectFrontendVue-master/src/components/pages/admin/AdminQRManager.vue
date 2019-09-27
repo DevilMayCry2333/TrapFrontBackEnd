@@ -227,7 +227,7 @@
       </div>
       <div slot="footer" class="dialog-footer">
         <el-button @click="AssignQRCodeDialog.visible = false">取 消</el-button>
-        <el-button type="primary" @click.native.prevent="handleAssignQRCodeDataSubmit"
+        <el-button type="primary" @click.native.prevent="handleAssignQRCodeByManager"
         :loading="assignQRCode"
         >确 定</el-button>
       </div>
@@ -338,9 +338,27 @@ export default {
     };
   },
   methods: {
+    handleAssignQRCodeByManager(){
+      if(this.isPass){
+      console.log(this.startID);
+      console.log(this.endID);
+      console.log(this.IDNum);
+      }else{
+        this.$message.error("请修正后再确定");
+      }
+
+    },
     verfiyNum(){
       if(this.IDNum == this.serialNum){
-        
+        this.isPass = true;
+         this.$message({
+          message: '校验通过!',
+          type: 'success'
+        });
+
+      }else{
+        this.isPass = false;
+        this.$message.error('数量错误');
       }
     },
     serialStartChange(){
