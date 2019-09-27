@@ -226,7 +226,7 @@
 
       </div>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="AssignQRCodeDialog.visible = false">取 消</el-button>
+        <el-button @click="AssignQRCodeManagerDialog.visible = false">取 消</el-button>
         <el-button type="primary" @click.native.prevent="handleAssignQRCodeByManager"
         :loading="assignQRCode"
         >确 定</el-button>
@@ -343,6 +343,14 @@ export default {
       console.log(this.startID);
       console.log(this.endID);
       console.log(this.IDNum);
+      console.log(this.applicationValue);
+      console.log(this.customRegion);
+      console.log(this.prefix);
+      console.log(this.serialStart);
+      console.log(this.serialEnd);
+      console.log(this.serialNum);
+      this.AssignQRCodeManagerDialog.visible = false;
+
       }else{
         this.$message.error("请修正后再确定");
       }
@@ -683,7 +691,7 @@ export default {
         res => {
           console.log(res);
           this.area = res.data.Data;
-
+          this.AssignQRCodeDialog.visible = false;
         },
         () => {}
       );
