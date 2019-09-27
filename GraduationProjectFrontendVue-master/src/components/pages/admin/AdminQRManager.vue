@@ -202,7 +202,7 @@
            <el-tag>ID数量</el-tag>
            <el-input :disabled="true" v-model="IDNum" placeholder="请输入内容"></el-input>
            <br/>
-           <el-button>校验</el-button>
+           <el-button @click="verfiyNum">校验</el-button>
            <el-tag>应用项目</el-tag>
           <el-select v-model="applicationValue" placeholder="请选择">
             <el-option
@@ -214,15 +214,15 @@
         </el-select>
         <br/>
         <el-tag>区域</el-tag>
-        <el-input v-model="IDNum" placeholder="请输入内容"></el-input>
+        <el-input v-model="customRegion" placeholder="请输入内容"></el-input>
         <el-tag>前缀</el-tag>
-        <el-input v-model="IDNum" placeholder="请输入内容"></el-input>
+        <el-input v-model="prefix" placeholder="请输入内容"></el-input>
         <el-tag>起始编号</el-tag>
-        <el-input v-model="IDNum" placeholder="请输入内容"></el-input>
+        <el-input @change="serialStartChange" v-model="serialStart" placeholder="请输入内容"></el-input>
         <el-tag>结束编号</el-tag>
-        <el-input v-model="IDNum" placeholder="请输入内容"></el-input>
+        <el-input @change="serialEndChange" v-model="serialEnd" placeholder="请输入内容"></el-input>
         <el-tag>编号数量</el-tag>
-        <el-input v-model="IDNum" placeholder="请输入内容"></el-input>
+        <el-input :disabled="true" v-model="serialNum" placeholder="请输入内容"></el-input>
 
       </div>
       <div slot="footer" class="dialog-footer">
@@ -244,6 +244,7 @@ export default {
     name:'AdminQRManager',
   data() {
     return {
+      isPass:'',
       customRegion:'',
       prefix:'',
       serialStart:'',
@@ -337,6 +338,17 @@ export default {
     };
   },
   methods: {
+    verfiyNum(){
+      if(this.IDNum == this.serialNum){
+        
+      }
+    },
+    serialStartChange(){
+      this.serialNum = this.serialEnd - this.serialStart;
+    },
+    serialEndChange(){
+      this.serialNum = this.serialEnd - this.serialStart;
+    },
     cityChange(e){
       console.log("cityChange",e);
       http.requestWithToken(
