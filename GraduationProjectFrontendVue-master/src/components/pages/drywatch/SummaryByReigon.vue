@@ -9,24 +9,17 @@
       <el-select v-if="this.$store.state.user.role==3" placeholder="编号/区域/批次/施工人员" v-model="selected">
         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
       </el-select>
-      <span style="font-size: 14px; margin-left: 14px">搜索内容:</span>
-      <el-input style="width: 200px" placeholder="搜索内容" v-model="searchText"></el-input>
+      <!-- <span style="font-size: 14px; margin-left: 14px">搜索内容:</span>
+      <el-input style="width: 200px" placeholder="搜索内容" v-model="searchText"></el-input> -->
       <el-button type="primary" @click="handleSubmit">搜索</el-button>
     </div>
     <el-table border :data="DryWatchData.list" style="width: 100%" height="600">
-      <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
-      <el-table-column prop="serial" label="编号" align="center"></el-table-column>
-      <el-table-column prop="region" label="所属区域" align="center"></el-table-column>
-      <el-table-column prop="submitDate" label="日期" align="center"></el-table-column>
-      <el-table-column prop="batch" label="批次" align="center"></el-table-column>
-      <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
-      <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
-      <el-table-column prop="workContent" label="工作内容" align="center"></el-table-column>
-      <el-table-column prop="injectionNum" label="注剂数量" align="center"></el-table-column>
-      <el-table-column prop="woodstatus" label="树木状态" align="center"></el-table-column>
-      <el-table-column prop="pic" label="照片" align="center"></el-table-column>
-      <el-table-column prop="worker" label="施工人员" align="center"></el-table-column>
-      <el-table-column prop="remarks" label="备注" align="center"></el-table-column>
+      <el-table-column prop="deviceId" label="区域" align="center"></el-table-column>
+      <el-table-column prop="serial" label="起始日期" align="center"></el-table-column>
+      <el-table-column prop="region" label="截止日期" align="center"></el-table-column>
+      <el-table-column prop="submitDate" label="注剂数量" align="center"></el-table-column>
+      <el-table-column prop="batch" label="注药株数" align="center"></el-table-column>
+      <el-table-column prop="longitude" label="枯死株数" align="center"></el-table-column>
       <el-table-column
         prop="manager"
         label="管理员"
@@ -54,7 +47,6 @@
 
   export default {
     mounted() {
-      this.loadDevice();
     },
     methods: {
       handleDataCurrentPageChanged(val) {
@@ -62,12 +54,12 @@
         this.loadDevice();
       },
       handleSubmit() {
-        console.log(this.selected);
+        console.log(this.DryWatchData);
         this.loadDevice()
       },
       loadDevice() {
         http.requestWithToken(
-          "/dryWatch/dataDetail",
+          "/dryWatch/Summary/byCustomReigon",
           "post",
           {
             page: this.DryWatchData.page,
