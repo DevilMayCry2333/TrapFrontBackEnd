@@ -34,6 +34,7 @@ import NaturalDeviceMap from '@/components/pages/naturalEnemies/NaturalDeviceMap
 import DeadTreeDeviceMap from '@/components/pages/deadTrees/DeadTreeDeviceMap'
 import TrackDeviceMap from '@/components/pages/track/TrackDeviceMap'
 import AdminQRManager from '@/components/pages/admin/AdminQRManager'
+import SummaryByReigon from '@/components/pages/drywatch/SummaryByReigon'
 
 Vue.use(Router)
 
@@ -234,6 +235,11 @@ export default new Router({
             path: 'pages/admin/qrmanager',
             name: 'AdminQRManager',
             component: AdminQRManager
+          },
+          {
+            path: 'pages/drywatch/summaryByRegion',
+            name: 'SummaryByReigon',
+            component: SummaryByReigon
           },
 
 
