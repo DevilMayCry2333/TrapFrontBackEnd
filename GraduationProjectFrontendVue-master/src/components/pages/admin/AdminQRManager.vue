@@ -349,6 +349,27 @@ export default {
       console.log(this.serialStart);
       console.log(this.serialEnd);
       console.log(this.serialNum);
+            http.requestWithToken(
+        "/newQrCode/assignCodeByManager",
+        "get",
+        {
+           startID: this.startID,
+           endID: this.endID,
+           IDNum: this.IDNum,
+           applicationValue: this.applicationValue,
+           customRegion: this.customRegion,
+           prefix: this.prefix,
+           serialStart: this.serialStart,
+           serialEnd: this.serialEnd,
+           serialNum: this.serialNum
+           },
+        res => {
+          console.log(res);
+
+        },
+        () => {}
+      );
+
       this.AssignQRCodeManagerDialog.visible = false;
 
       }else{
@@ -370,10 +391,10 @@ export default {
       }
     },
     serialStartChange(){
-      this.serialNum = this.serialEnd - this.serialStart;
+      this.serialNum = this.serialEnd - this.serialStart + 1;
     },
     serialEndChange(){
-      this.serialNum = this.serialEnd - this.serialStart;
+      this.serialNum = this.serialEnd - this.serialStart + 1;
     },
     cityChange(e){
       console.log("cityChange",e);
@@ -391,10 +412,10 @@ export default {
 
     },
     managerStartIdChange(){
-      this.IDNum = this.endID - this.startID;
+      this.IDNum = this.endID - this.startID + 1;
     },
     managerEndIdChange(){
-      this.IDNum = this.endID - this.startID;
+      this.IDNum = this.endID - this.startID + 1;
     },
     proxyChange(e){
       console.log("proxyChange",e);
