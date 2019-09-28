@@ -14,12 +14,12 @@
       <el-button type="primary" @click="handleSubmit">搜索</el-button>
     </div>
     <el-table border :data="DryWatchData.list" style="width: 100%" height="600">
-      <el-table-column prop="deviceId" label="区域" align="center"></el-table-column>
-      <el-table-column prop="serial" label="起始日期" align="center"></el-table-column>
-      <el-table-column prop="region" label="截止日期" align="center"></el-table-column>
-      <el-table-column prop="submitDate" label="注剂数量" align="center"></el-table-column>
-      <el-table-column prop="batch" label="注药株数" align="center"></el-table-column>
-      <el-table-column prop="longitude" label="枯死株数" align="center"></el-table-column>
+      <el-table-column prop="customTown" label="区域" align="center"></el-table-column>
+      <el-table-column prop="startDate" label="起始日期" align="center"></el-table-column>
+      <el-table-column prop="endDate" label="截止日期" align="center"></el-table-column>
+      <el-table-column prop="injectNumSum" label="注剂数量" align="center"></el-table-column>
+      <el-table-column prop="woodNum" label="注药株数" align="center"></el-table-column>
+      <el-table-column prop="woodStatusSum" label="枯死株数" align="center"></el-table-column>
       <el-table-column
         prop="manager"
         label="管理员"
