@@ -16,6 +16,25 @@ import DeviceSummary from '@/components/pages/DeviceSummary'
 import MapStatistics from '@/components/pages/MapStatistics'
 import DeviceMessage from '@/components/pages/DeviceMessage'
 import DeviceWanted from '@/components/pages/DeviceWanted'
+import Test from '@/components/pages/Test'
+import DryWatchDataDetail from '@/components/pages/drywatch/DataDetail'
+import NaturalEnemiesDataDetail from '@/components/pages/naturalEnemies/DataDetail'
+import DeadTreeDataDetail from '@/components/pages/deadTrees/DataDetail'
+import TrackDataDetail from '@/components/pages/track/DataDetail'
+import DryWatchDataSummary from '@/components/pages/drywatch/DataSummary'
+import DryWatchMaintanceData from '@/components/pages/drywatch/DryWatchMaintanceData'
+import DryWatchDeviceMessage from '@/components/pages/drywatch/DryWatchDeviceMessage'
+import DryWatchDeviceWanted from '@/components/pages/drywatch/DryWatchDeviceWanted'
+import NaturalEnemiesDataSummary from '@/components/pages/naturalEnemies/DataSummary'
+import NaturalMaintanceData from '@/components/pages/naturalEnemies/NaturalMaintanceData'
+import NaturalDeviceMessage from '@/components/pages/naturalEnemies/NaturalDeviceMessage'
+import NaturalDeviceWanted from '@/components/pages/naturalEnemies/NaturalDeviceWanted'
+import DryWatchDeviceMap from '@/components/pages/drywatch/DryWatchDeviceMap'
+import NaturalDeviceMap from '@/components/pages/naturalEnemies/NaturalDeviceMap'
+import DeadTreeDeviceMap from '@/components/pages/deadTrees/DeadTreeDeviceMap'
+import TrackDeviceMap from '@/components/pages/track/TrackDeviceMap'
+import AdminQRManager from '@/components/pages/admin/AdminQRManager'
+import SummaryByReigon from '@/components/pages/drywatch/SummaryByReigon'
 
 Vue.use(Router)
 
@@ -127,7 +146,106 @@ export default new Router({
           name: '时间动态',
           component: MonthSummary
         },
+        {
+          path: 'pages/Test',
+          name: 'Test',
+          component: Test
+        },
+        {
+          path: 'pages/drywatch/detail',
+          name: 'DryWatchDetail',
+          component: DryWatchDataDetail
+        },
+        {
+          path: 'pages/naturalEnemy/detail',
+          name: 'NaturalEnemiesDataDetail',
+          component: NaturalEnemiesDataDetail
+        },
+        {
+          path: 'pages/deadTrees/detail',
+          name: 'DeadTreesDataDetail',
+          component: DeadTreeDataDetail
+        },
+        {
+          path: 'pages/track/detail',
+          name: 'TrackDataDetail',
+          component: TrackDataDetail
+        },
+        {
+          path: 'pages/drywatch/datasummary',
+          name: 'DryWatchDataSummary',
+          component: DryWatchDataSummary
+        },
+        {
+          path: 'pages/drywatch/Maintance',
+          name: 'DryWatchMaintanceData',
+          component: DryWatchMaintanceData
+        },
+        {
+          path: 'pages/drywatch/message',
+          name: 'DryWatchDeviceMessage',
+          component: DryWatchDeviceMessage
+        },
+        {
+          path: 'pages/drywatch/wanted',
+          name: 'DryWatchDeviceWanted',
+          component: DryWatchDeviceWanted
+        },
+        {
+          path: 'pages/natural/datasummary',
+          name: 'NaturalEnemiesDataSummary',
+          component: NaturalEnemiesDataSummary
+        },
+        {
+          path: 'pages/natural/maintance',
+          name: 'NaturalMaintanceData',
+          component: NaturalMaintanceData
+        },
+        {
+          path: 'pages/natural/message',
+          name: 'NaturalDeviceMessage',
+          component: NaturalDeviceMessage
+        },
+        {
+          path: 'pages/natural/wanted',
+          name: 'NaturalDeviceWanted',
+          component: NaturalDeviceWanted
+        },
+        {
+              path: 'pages/drywatch/map',
+              name: 'DryWatchDeviceMap',
+              component: DryWatchDeviceMap
+        },
+        {
+          path: 'pages/natural/map',
+          name: 'NaturalDeviceMap',
+          component: NaturalDeviceMap
+        },
+          {
+              path: 'pages/deadtree/map',
+              name: 'DeadTreeDeviceMap',
+              component: DeadTreeDeviceMap
+          },
+          {
+            path: 'pages/track/map',
+            name: 'TrackDeviceMap',
+            component: TrackDeviceMap
+          },
+          {
+            path: 'pages/admin/qrmanager',
+            name: 'AdminQRManager',
+            component: AdminQRManager
+          },
+          {
+            path: 'pages/drywatch/summaryByRegion',
+            name: 'SummaryByReigon',
+            component: SummaryByReigon
+          },
 
+
+
+
+        
       ]
     },
 

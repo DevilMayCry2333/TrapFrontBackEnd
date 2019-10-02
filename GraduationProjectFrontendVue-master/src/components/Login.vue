@@ -73,6 +73,8 @@ export default {
           http.requestWithoutToken('/login', 'post', loginParams, (res)=>{
               console.log(res.data);
               sessionStorage['token'] = res.data.token;
+              sessionStorage['username'] = _this.ruleForm2.account;
+              console.log(sessionStorage['username']);
               http.requestWithToken('/auth_api/test', 'get', {}, (res)=>{
                 this.$router.push({path:'/'})
               }, (res)=>{
