@@ -9,6 +9,7 @@
           <el-option :value="1" label="省级用户" v-if="this.$store.state.user.role == 0">省级用户</el-option>
           <el-option :key="2" :value="2" label="市级用户" v-if="this.$store.state.user.role == 0">市级用户</el-option>
           <el-option :key="3" :value="3" label="县级用户" v-if="this.$store.state.user.role == 0">县级用户</el-option>
+          <el-option :key="7" :value="7" label="代理商" v-if="this.$store.state.user.role == 0">代理商</el-option>
           <el-option
             :key="4"
             :value="4"
@@ -179,6 +180,13 @@
                 >县级用户
                 </el-option>
                 <el-option
+                  :key="7"
+                  :value="7"
+                  label="代理商"
+                  v-if="this.$store.state.user.role === 0"
+                >代理商
+                </el-option>
+                <el-option
                   :key="4"
                   :value="4"
                   label="项目管理员"
@@ -218,7 +226,7 @@
               label-width="80px"
               size="mini"
               prop="cityCode"
-              v-if="userInfoDialog.form.role > 1 && userInfoDialog.form.role !== 5"
+              v-if="userInfoDialog.form.role > 1 && userInfoDialog.form.role !== 5 && userInfoDialog.form.role !== 7"
             >
               <el-select
                 placeholder="市"
@@ -239,7 +247,7 @@
               label-width="80px"
               size="mini"
               prop="areaCode"
-              v-if="userInfoDialog.form.role > 2 && userInfoDialog.form.role !== 5"
+              v-if="userInfoDialog.form.role > 2 && userInfoDialog.form.role !== 5 && userInfoDialog.form.role !== 7"
             >
               <el-select
                 placeholder="县"
@@ -412,6 +420,9 @@
             break;*/
           case 6:
             formData.adcode = formData.areaCode;
+            break;
+          case 7:
+            formData.adcode = formData.provinceCode;
             break;
         }
 
