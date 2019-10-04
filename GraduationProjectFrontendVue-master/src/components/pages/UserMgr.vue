@@ -9,6 +9,7 @@
           <el-option :value="1" label="省级用户" v-if="this.$store.state.user.role == 0">省级用户</el-option>
           <el-option :key="2" :value="2" label="市级用户" v-if="this.$store.state.user.role == 0">市级用户</el-option>
           <el-option :key="3" :value="3" label="县级用户" v-if="this.$store.state.user.role == 0">县级用户</el-option>
+          <el-option :key="7" :value="7" label="代理商用户" v-if="this.$store.state.user.role == 0">代理商用户</el-option>
           <el-option
             :key="4"
             :value="4"
@@ -61,7 +62,7 @@
               :label="scope.$index"
               v-model="userData.selectedIndex"
               @change.native="getCurrentRow(scope.$index)"
-            >&nbsp
+            >
             </el-radio>
           </template>
         </el-table-column>
@@ -192,6 +193,14 @@
                   v-if="this.$store.state.user.role === 3"
                 >项目工程
                 </el-option>
+                <el-option
+                  :key="7"
+                  :value="7"
+                  label="代理商用户"
+                  v-if="this.$store.state.user.role === 0"
+                >代理商用户
+                </el-option>
+
               </el-select>
             </el-form-item>
             <el-form-item label="用户类型" size="mini" label-width="80px" v-else>
@@ -389,6 +398,7 @@
         }
         let formData = this.userInfoDialog.form;
         let role = this.userInfoDialog.form.role;
+              console.log(formData);
         switch (role) {
           case 1:
             // 省级用户
@@ -412,6 +422,8 @@
             break;*/
           case 6:
             formData.adcode = formData.areaCode;
+          case 7:
+            formData.adcode = formData.provinceCode;
             break;
         }
 
