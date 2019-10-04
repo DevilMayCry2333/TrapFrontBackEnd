@@ -200,13 +200,6 @@
                   v-if="this.$store.state.user.role === 3"
                 >项目工程
                 </el-option>
-                <el-option
-                  :key="7"
-                  :value="7"
-                  label="代理商用户"
-                  v-if="this.$store.state.user.role === 0"
-                >代理商用户
-                </el-option>
 
               </el-select>
             </el-form-item>
@@ -429,9 +422,6 @@
             break;*/
           case 6:
             formData.adcode = formData.areaCode;
-          case 7:
-            formData.adcode = formData.provinceCode;
-            break;
           case 7:
             formData.adcode = formData.provinceCode;
             break;
