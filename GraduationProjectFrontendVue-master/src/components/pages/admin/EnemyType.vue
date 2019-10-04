@@ -74,16 +74,20 @@ export default {
   methods: {
     loadOtherBeetleData() {
       let url = "/auth_api/enemy_Type";
-      if (this.$store.state.user.role == 3) {
+      if (this.$store.state.user.role == 4) {
         url = "/auth_api/enemy_Type/town";
       }
+      console.log(url);
+      console.log(this.$store.state.user.role);
       http.requestWithToken(
         url,
         "get",
         {},
         res => {
+          console.log(res);
           this.list = res.data.data;
-          if (this.$store.state.user.role == 3) {
+          if (this.$store.state.user.role == 4) {
+             this.list = res.data;
             this.loadAll();
           }
         },
@@ -97,6 +101,7 @@ export default {
         "get",
         {},
         res => {
+          console.log(res);
           this.leftlist = res.data.data;
           let lefti=0;
           for (let i = 0; i < this.leftlist.length; ++i) {
@@ -120,7 +125,7 @@ export default {
       );
     },
     showAdd() {
-      if (this.$store.state.user.role == 3) {
+      if (this.$store.state.user.role == 4) {
         this.townUserToAdd = "";
         this.townUserDialogVisible = true;
         return;
@@ -214,7 +219,7 @@ this.loadOtherBeetleData();
           },
           () => {}
         );
-      } else if (this.$store.state.user.role == 3) {
+      } else if (this.$store.state.user.role == 4) {
         http.requestWithToken(
           "/auth_api/enemy_Type/town",
           "delete",
