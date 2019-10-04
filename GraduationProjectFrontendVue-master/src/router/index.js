@@ -41,6 +41,8 @@ import InjectWoodStatus from '@/components/pages/admin/InjectWoodStatus'
 import InjectWorkContent from '@/components/pages/admin/InjectWorkContent'
 import EnemyType from '@/components/pages/admin/EnemyType'
 import DeadTreesKill from '@/components/pages/admin/DeadTreesKill'
+import AreaStatic from '@/components/pages/admin/AreaStatic'
+import TimeStatic from '@/components/pages/admin/TimeStatic'
 
 Vue.use(Router)
 
@@ -277,6 +279,17 @@ export default new Router({
             name: 'DeadTreesKill',
             component: DeadTreesKill
           },
+          {
+            path: 'pages/trap/AreaStatic',
+            name: 'AreaStatic',
+            component: AreaStatic
+          },
+          {
+            path: 'pages/trap/TimeStatic',
+            name: 'TimeStatic',
+            component: TimeStatic
+          },
+
 
 
 
