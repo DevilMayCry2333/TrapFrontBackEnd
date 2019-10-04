@@ -73,7 +73,7 @@ export default {
   methods: {
     loadOtherBeetleData() {
       let url = "/auth_api/other_beetle";
-      if (this.$store.state.user.role == 3) {
+      if (this.$store.state.user.role == 4) {
         url = "/auth_api/other_beetle/town";
       }
       http.requestWithToken(
@@ -82,7 +82,7 @@ export default {
         {},
         res => {
           this.list = res.data.data;
-          if (this.$store.state.user.role == 3) {
+          if (this.$store.state.user.role == 4) {
             this.loadAll();
           }
         },
@@ -119,7 +119,7 @@ export default {
       );
     },
     showAdd() {
-      if (this.$store.state.user.role == 3) {
+      if (this.$store.state.user.role == 4) {
         this.townUserToAdd = "";
         this.townUserDialogVisible = true;
         return;
@@ -213,7 +213,7 @@ this.loadOtherBeetleData();
           },
           () => {}
         );
-      } else if (this.$store.state.user.role == 3) {
+      } else if (this.$store.state.user.role == 4) {
         http.requestWithToken(
           "/auth_api/other_beetle/town",
           "delete",

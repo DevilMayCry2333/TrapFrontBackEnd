@@ -74,7 +74,7 @@ export default {
   methods: {
     loadOtherBeetleData() {
       let url = "/auth_api/inject_woodstatus";
-      if (this.$store.state.user.role == 3) {
+      if (this.$store.state.user.role == 4) {
         url = "/auth_api/inject_woodstatus/town";
       }
       http.requestWithToken(
@@ -82,8 +82,8 @@ export default {
         "get",
         {},
         res => {
-          this.list = res.data.data;
-          if (this.$store.state.user.role == 3) {
+          this.list = res.data;
+          if (this.$store.state.user.role == 4) {
             this.loadAll();
           }
         },
@@ -120,7 +120,7 @@ export default {
       );
     },
     showAdd() {
-      if (this.$store.state.user.role == 3) {
+      if (this.$store.state.user.role == 4) {
         this.townUserToAdd = "";
         this.townUserDialogVisible = true;
         return;
@@ -214,7 +214,7 @@ this.loadOtherBeetleData();
           },
           () => {}
         );
-      } else if (this.$store.state.user.role == 3) {
+      } else if (this.$store.state.user.role == 4) {
         http.requestWithToken(
           "/auth_api/inject_woodstatus/town",
           "delete",
