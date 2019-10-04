@@ -174,7 +174,9 @@ export default {
         "/statics/area",
         "get",
         {
-            ProjectAdminName:this.manager
+            ProjectAdminName:this.manager,
+            startDate:this.startYear,
+            endDate:this.endYear
         },
         res => {
             console.log(res);

@@ -146,7 +146,7 @@ export default {
     init() {
       this.showCity = true;
       this.showArea = true;
-
+      console.log("init");
       let role = this.$store.state.user.role;
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
@@ -172,17 +172,17 @@ export default {
         console.log(this.manager);
         console.log(this.startYear);
         console.log(this.endYear);
-        var CurrentM = this.startYear.split("-");
-        console.log(CurrentM);
-        var endM = this.endYear.split("-");
-        console.log(endM);
+        // var CurrentM = this.startYear.split("-");
+        // console.log(CurrentM);
+        // var endM = this.endYear.split("-");
+        // console.log(endM);
             http.requestWithToken(
-        "/statics/month",
+        "/statics/batch",
         "get",
         {
             ProjectAdminName:this.manager,
-            startM:CurrentM[1],
-            endM:endM[1],
+            startM:this.startYear,
+            endM:this.endYear
         },
         res => {
             console.log(res);
@@ -191,6 +191,7 @@ export default {
                 this.option.xAxis[0].data.push(res.data[i].customTown);
                 this.option.series[0].data.push(res.data[i].beetlesNum);
                 this.option.series[1].data.push(res.data[i].otherNum);
+                 this.option.series[2].data.push(res.data[i].avager);
                 //Mgh9nigujiOwZO5HFNkCoQ==
             }
                     let myChart = echarts.init(this.$refs.echartsArea);

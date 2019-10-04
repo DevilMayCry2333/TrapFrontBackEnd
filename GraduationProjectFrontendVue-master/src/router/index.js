@@ -43,6 +43,9 @@ import EnemyType from '@/components/pages/admin/EnemyType'
 import DeadTreesKill from '@/components/pages/admin/DeadTreesKill'
 import AreaStatic from '@/components/pages/admin/AreaStatic'
 import TimeStatic from '@/components/pages/admin/TimeStatic'
+import BatchStatic from '@/components/pages/admin/BatchStatic'
+import WorkerStatic from '@/components/pages/admin/WorkerStatic'
+import NewMapStatic from '@/components/pages/admin/NewMapStatic'
 
 Vue.use(Router)
 
@@ -289,6 +292,23 @@ export default new Router({
             name: 'TimeStatic',
             component: TimeStatic
           },
+          {
+            path: 'pages/trap/BatchStatic',
+            name: 'BatchStatic',
+            component: BatchStatic
+          },
+          {
+            path: 'pages/trap/WorkerStatic',
+            name: 'WorkerStatic',
+            component: WorkerStatic
+          },
+          {
+            path: 'pages/trap/NewMapStatic',
+            name: 'NewMapStatic',
+            component: NewMapStatic
+          }
+
+
 
 
 

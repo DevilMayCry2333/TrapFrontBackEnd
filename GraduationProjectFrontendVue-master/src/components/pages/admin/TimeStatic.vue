@@ -172,17 +172,17 @@ export default {
         console.log(this.manager);
         console.log(this.startYear);
         console.log(this.endYear);
-        var CurrentM = this.startYear.split("-");
-        console.log(CurrentM);
-        var endM = this.endYear.split("-");
-        console.log(endM);
+        // var CurrentM = this.startYear.split("-");
+        // console.log(CurrentM);
+        // var endM = this.endYear.split("-");
+        // console.log(endM);
             http.requestWithToken(
         "/statics/month",
         "get",
         {
             ProjectAdminName:this.manager,
-            startM:CurrentM[1],
-            endM:endM[1],
+            startM: this.startYear,
+            endM: this.endYear
         },
         res => {
             console.log(res);
