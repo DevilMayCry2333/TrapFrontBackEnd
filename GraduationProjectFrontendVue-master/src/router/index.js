@@ -35,6 +35,12 @@ import DeadTreeDeviceMap from '@/components/pages/deadTrees/DeadTreeDeviceMap'
 import TrackDeviceMap from '@/components/pages/track/TrackDeviceMap'
 import AdminQRManager from '@/components/pages/admin/AdminQRManager'
 import SummaryByReigon from '@/components/pages/drywatch/SummaryByReigon'
+import TrapWorkContent from '@/components/pages/admin/TrapWorkContent'
+import TrapInjectType from '@/components/pages/admin/TrapInjectType'
+import InjectWoodStatus from '@/components/pages/admin/InjectWoodStatus'
+import InjectWorkContent from '@/components/pages/admin/InjectWorkContent'
+import EnemyType from '@/components/pages/admin/EnemyType'
+import DeadTreesKill from '@/components/pages/admin/DeadTreesKill'
 
 Vue.use(Router)
 
@@ -241,6 +247,40 @@ export default new Router({
             name: 'SummaryByReigon',
             component: SummaryByReigon
           },
+          {
+            path: 'pages/trap/workcontent',
+            name: 'workcontent',
+            component: TrapWorkContent
+          },
+          {
+            path: 'pages/trap/injectType',
+            name: 'injectType',
+            component: TrapInjectType
+          },
+          {
+            path: 'pages/inject/woodStatus',
+            name: 'InjectWoodStatus',
+            component: InjectWoodStatus
+          },
+          {
+            path: 'pages/inject/workContent',
+            name: 'InjectWorkContent',
+            component: InjectWorkContent
+          },
+          {
+            path: 'pages/inject/EnemyType',
+            name: 'EnemyType',
+            component: EnemyType
+          },
+          {
+            path: 'pages/inject/DeadTreesKill',
+            name: 'DeadTreesKill',
+            component: DeadTreesKill
+          },
+
+
+
+
 
 
 
