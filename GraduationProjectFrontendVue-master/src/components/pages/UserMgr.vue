@@ -422,6 +422,7 @@
             break;*/
           case 6:
             formData.adcode = formData.areaCode;
+            break;
           case 7:
             formData.adcode = formData.provinceCode;
             break;
