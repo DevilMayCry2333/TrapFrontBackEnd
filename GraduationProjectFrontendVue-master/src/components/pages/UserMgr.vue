@@ -422,6 +422,7 @@
             break;*/
           case 6:
             formData.adcode = formData.areaCode;
+            break;
           case 7:
             formData.adcode = formData.provinceCode;
             break;
@@ -536,6 +537,26 @@
       },
 
       loadUser() {
+        console.log(this.roleType);
+              let role = this.$store.state.user.role;
+              console.log(role);
+      if (role == 1) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+      } else if (role == 2) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+      } else if (role == 3) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+            }
+            else if (role == 4) {
+                          this.province = this.$store.state.user.adcode.substr(0, 2);
+                          this.city = this.$store.state.user.adcode.substr(0, 4);
+                          this.area = this.$store.state.user.adcode;
+                          this.manager=this.$store.state.user.username;
+                        }
+
         if (this.roleType == "6") {
           this.roleType = ""
         }
@@ -549,7 +570,7 @@
             searchText: this.searchText,
             limit: this.userData.limit,
             page: this.userData.page,
-            roleType: this.roleType,
+            roleType: role,
             active: this.activeType
           },
           res => {

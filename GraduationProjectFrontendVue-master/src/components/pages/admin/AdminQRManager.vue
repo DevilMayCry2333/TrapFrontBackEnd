@@ -349,6 +349,26 @@ export default {
       console.log(this.serialStart);
       console.log(this.serialEnd);
       console.log(this.serialNum);
+            let role = this.$store.state.user.role;
+      if (role == 1) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        // this.loadCity();
+      } else if (role == 2) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        // this.loadArea();
+      } else if (role == 3) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+        // this.loadManagers();
+      } else if (role == 4) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+        this.manager = this.$store.state.user.username;
+      }
+
             http.requestWithToken(
         "/newQrCode/assignCodeByManager",
         "get",
@@ -361,7 +381,8 @@ export default {
            prefix: this.prefix,
            serialStart: this.serialStart,
            serialEnd: this.serialEnd,
-           serialNum: this.serialNum
+           serialNum: this.serialNum,
+           username: this.manager
            },
         res => {
           console.log(res);
