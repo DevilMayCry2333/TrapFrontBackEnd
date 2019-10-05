@@ -539,18 +539,16 @@
       loadUser() {
         console.log(this.roleType);
               let role = this.$store.state.user.role;
+              console.log(role);
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
-        this.loadCity();
       } else if (role == 2) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         this.city = this.$store.state.user.adcode.substr(0, 4);
-        this.loadArea();
       } else if (role == 3) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         this.city = this.$store.state.user.adcode.substr(0, 4);
         this.area = this.$store.state.user.adcode;
-      this.loadManagers();
             }
             else if (role == 4) {
                           this.province = this.$store.state.user.adcode.substr(0, 2);
