@@ -4,13 +4,13 @@ import axios from 'axios'
 
 //let BASE_URL = "https://39.108.184.47:8081";
 
-let BASE_URL = "http://106.15.90.78:8081";
+let BASE_URL = "http://localhost:8081";
 
 if (window.location.toString().indexOf('106.15.90.78') > -1) {
     //BASE_URL = "http://47.103.66.70:8081";
    BASE_URL = "http://106.15.90.78:8081";
 } else {
-    // BASE_URL = "http://106.15.90.78:8081";
+    // BASE_URL = "http://localhost:8081";
     BASE_URL = "http://localhost:8081";
 }
 

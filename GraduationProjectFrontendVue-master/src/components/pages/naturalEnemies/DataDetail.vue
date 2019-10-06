@@ -24,7 +24,16 @@
         <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
         <el-table-column prop="predatorstype" label="天敌类型" align="center"></el-table-column>
         <el-table-column prop="releaseNum" label="释放数量" align="center"></el-table-column>
-        <el-table-column prop="pic" label="照片" align="center"></el-table-column>
+        <el-table-column prop="pic" label="照片" align="center">
+                            <template slot-scope="scope">
+            <el-button
+              @click="showPhotoDialog(scope.row.pic)"
+              v-if="scope.row.pic != null && scope.row.pic !=''"
+              size="mini"
+            >显示</el-button>
+          </template>
+
+        </el-table-column>
         <el-table-column prop="worker" label="施工人员" align="center"></el-table-column>
         <el-table-column prop="remarks" label="备注" align="center"></el-table-column>
         <el-table-column
@@ -46,6 +55,12 @@
             :total="QRData.total"
         ></el-pagination>
         </div>
+                        <el-dialog title="现场照片" :visible.sync="PhotoDialog.visible" width="700px">
+      <div style="overflow-y:scroll;height: 300px">
+        <img v-bind:src="PhotoDialog.pic" style="width: 600px; ">
+      </div>
+    </el-dialog>
+
 </div>
 
 
@@ -81,6 +96,14 @@ export default {
 
     },
     methods:{
+                      showPhotoDialog(id) {
+            console.log(id);
+      this.PhotoDialog.visible = true;
+     // let BASE_URL = "http://47.103.66.70:8081";
+    let BASE_URL = "http://106.15.90.78:8081";
+      this.PhotoDialog.pic = BASE_URL + "/device_img?imgName=" + id;
+    },
+
       handleQRDataCurrentPageChanged(val) {
         this.QRData.page = val;
         console.log("valChange" + val);
@@ -165,6 +188,11 @@ export default {
     data(){
         return{
         role:'',
+                      PhotoDialog: {
+        visible: false,
+        pic: ""
+      },
+      
         QRData: {
             selectedIndex: -1,
             list: [],

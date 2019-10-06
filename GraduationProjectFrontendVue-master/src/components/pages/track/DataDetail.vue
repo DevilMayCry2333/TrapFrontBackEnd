@@ -21,7 +21,16 @@
             <el-table-column prop="endtime" label="结束时间" align="center"></el-table-column>
             <el-table-column prop="startpoint" label="起点(经纬度)" align="center"></el-table-column>
             <el-table-column prop="endpoint" label="终点(经纬度)" align="center"></el-table-column>
-            <el-table-column prop="pic1" label="照片1" align="center"></el-table-column>
+            <el-table-column prop="pic1" label="照片1" align="center">
+                                <template slot-scope="scope">
+            <el-button
+              @click="showPhotoDialog(scope.row.pic1)"
+              v-if="scope.row.pic1 != null && scope.row.pic1 !=''"
+              size="mini"
+            >显示</el-button>
+          </template>
+
+            </el-table-column>
             <el-table-column prop="pic2" label="照片2" align="center"></el-table-column>
             <el-table-column prop="pic3" label="照片3" align="center"></el-table-column>
             <el-table-column prop="pic4" label="照片4" align="center"></el-table-column>
@@ -48,6 +57,12 @@
                 :total="QRData.total"
             ></el-pagination>
             </div>
+                                    <el-dialog title="现场照片" :visible.sync="PhotoDialog.visible" width="700px">
+      <div style="overflow-y:scroll;height: 300px">
+        <img v-bind:src="PhotoDialog.pic" style="width: 600px; ">
+      </div>
+    </el-dialog>
+
 </div>
 
 </template>
@@ -83,6 +98,14 @@ export default {
 
     },
     methods:{
+                            showPhotoDialog(id) {
+            console.log(id);
+      this.PhotoDialog.visible = true;
+     // let BASE_URL = "http://47.103.66.70:8081";
+    let BASE_URL = "http://106.15.90.78:8081";
+      this.PhotoDialog.pic = BASE_URL + "/device_img?imgName=" + id;
+    },
+
             handleQRDataCurrentPageChanged(val) {
         this.QRData.page = val;
         console.log("valChange" + val);
@@ -174,6 +197,11 @@ export default {
     data(){
         return{
         role:'',
+      PhotoDialog: {
+        visible: false,
+        pic: ""
+      },
+
         QRData: {
             selectedIndex: -1,
             list: [],
