@@ -460,8 +460,8 @@ export default {
     // 下载
     handleDownload() {
       let BASE_URL = "";
-      if (window.location.toString().indexOf("47.103.66.70") > -1) {
-        BASE_URL = "http://47.103.66.70:8081";
+      if (window.location.toString().indexOf("106.15.90.78") > -1) {
+        BASE_URL = "http://106.15.90.78:8081";
       } else {
         BASE_URL = "http://localhost:8081";
       }

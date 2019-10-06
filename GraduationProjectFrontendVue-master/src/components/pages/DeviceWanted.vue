@@ -377,7 +377,7 @@ export default {
     showPhotoDialog(id) {
       this.PhotoDialog.visible = true;
      // let BASE_URL = "http://47.103.66.70:8081";
-    let BASE_URL = "http://39.108.184.47:8081";
+    let BASE_URL = "http://106.15.90.78:8081";
       this.PhotoDialog.pic = BASE_URL + "/device_img?imgName=" + id;
     },
     handleMaintenanceDataSelectionChange(val) {
