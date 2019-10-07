@@ -5,11 +5,10 @@
         <el-input v-model="searchText" placeholder="用户名/姓名/地区" style="width: 150px"></el-input>
         <el-select v-model="roleType" placeholder="用户类型" style="width: 150px">
 
-          <el-option value="6" label="全部">全部</el-option>
+          <el-option value="0" label="全部">全部</el-option>
           <el-option :value="1" label="省级用户" v-if="this.$store.state.user.role == 0">省级用户</el-option>
           <el-option :key="2" :value="2" label="市级用户" v-if="this.$store.state.user.role == 0">市级用户</el-option>
           <el-option :key="3" :value="3" label="县级用户" v-if="this.$store.state.user.role == 0">县级用户</el-option>
-          <el-option :key="7" :value="7" label="代理商用户" v-if="this.$store.state.user.role == 0">代理商用户</el-option>
           <el-option
             :key="4"
             :value="4"
@@ -18,19 +17,22 @@
           >项目管理员
           </el-option>
           <el-option
-            :key="6"
-            :value="6"
-            label="项目工程"
-            v-if="this.$store.state.user.role == 3 || this.$store.state.user.role == 0 || this.$store.state.user.role == 7 ||this.$store.state.user.role == 4"
-          >项目工程
-          </el-option>
-          <el-option
             :key="5"
             :value="5"
             label="工人"
             v-if="this.$store.state.user.role == 4 || this.$store.state.user.role == 0"
           >工人
           </el-option>
+                    <el-option
+            :key="6"
+            :value="6"
+            label="项目工程"
+            v-if="this.$store.state.user.role == 3 || this.$store.state.user.role == 0 || this.$store.state.user.role == 7 ||this.$store.state.user.role == 4"
+          >项目工程
+          </el-option>
+          <el-option :key="7" :value="7" label="代理商用户" v-if="this.$store.state.user.role == 0">代理商用户</el-option>
+
+
         </el-select>
         <el-select v-model="activeType" placeholder="激活状态" style="width: 150px">
           <el-option value="2" label="全部">全部</el-option>
@@ -485,7 +487,7 @@
       },
 
       loadUserActive() {
-        if (this.roleType == "6") {
+        if (this.roleType == "0") {
           this.roleType = ""
         }
         if (this.activeType == "2") {
@@ -557,7 +559,7 @@
                           this.manager=this.$store.state.user.username;
                         }
 
-        if (this.roleType == "6") {
+        if (this.roleType == "0") {
           this.roleType = ""
         }
         if (this.activeType == "2") {
@@ -570,7 +572,7 @@
             searchText: this.searchText,
             limit: this.userData.limit,
             page: this.userData.page,
-            roleType: role,
+            roleType: this.roleType,
             active: this.activeType
           },
           res => {

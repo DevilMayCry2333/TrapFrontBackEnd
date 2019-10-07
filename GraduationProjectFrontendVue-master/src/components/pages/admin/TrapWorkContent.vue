@@ -82,8 +82,13 @@ export default {
         "get",
         {},
         res => {
-          this.list = res.data;
+          console.log(res.data.data);
+          this.list = res.data.data;
+          console.log(this.list);
           if (this.$store.state.user.role == 4) {
+                        this.list = res.data;
+            console.log("list");
+            console.log(this.list);
             this.loadAll();
           }
         },

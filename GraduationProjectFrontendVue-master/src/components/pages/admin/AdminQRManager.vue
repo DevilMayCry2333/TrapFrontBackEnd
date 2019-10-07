@@ -35,6 +35,7 @@
         <el-table-column prop="province" label="省" align="center"></el-table-column>
         <el-table-column prop="city" label="市" align="center"></el-table-column>
         <el-table-column prop="area" label="县" align="center"></el-table-column>
+        <el-table-column prop="customSerial" label="编号" align="center"></el-table-column>
         <el-table-column
           prop="manager"
           label="管理员"
@@ -141,12 +142,12 @@
 
     <!-- 为工人分配二维码对话框 -->
     <el-dialog title="分配二维码" :visible.sync="AssignQRCodeDialog.visible" width="60%">
-      <div>当前可分配设备数量:{{AssignQRCodeDialog.availableNum}}</div>
+      <div>当前ID前缀:{{toCompleteID}}</div>
       <div style="overflow-y: scroll; height: 300px;">
           <el-tag>起始ID:</el-tag>
-          <el-input v-model="startID" placeholder="请输入内容"></el-input>
+          <el-input v-model="startID" placeholder="输入六位数字"></el-input>
           <el-tag>结束ID:</el-tag>
-          <el-input v-model="endID" placeholder="请输入内容"></el-input>
+          <el-input v-model="endID" placeholder="输入六位数字"></el-input>
            <el-tag>代理商</el-tag>
            <el-select @change="proxyChange" v-model="proxyValue" placeholder="请选择">
             <el-option
@@ -160,22 +161,22 @@
         <el-select @change="cityChange" v-model="cityValue" placeholder="请选择">
             <el-option
             v-for="item in city"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
+            :key="item.code"
+            :label="item.name"
+            :value="item.code">
             </el-option>
         </el-select>
          <el-tag>县</el-tag>
-          <el-select v-model="areaValue" placeholder="请选择">
+          <el-select @change="areaChange" v-model="areaValue" placeholder="请选择">
             <el-option
             v-for="item in area"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
+            :key="item.code"
+            :label="item.name"
+            :value="item.code">
             </el-option>
         </el-select>
         <el-tag>应用项目</el-tag>
-          <el-select v-model="applicationValue" placeholder="请选择">
+          <el-select @change="applicationChange" v-model="applicationValue" placeholder="请选择">
             <el-option
             v-for="item in application"
             :key="item.value"
@@ -202,9 +203,8 @@
            <el-tag>ID数量</el-tag>
            <el-input :disabled="true" v-model="IDNum" placeholder="请输入内容"></el-input>
            <br/>
-           <el-button @click="verfiyNum">校验</el-button>
            <el-tag>应用项目</el-tag>
-          <el-select v-model="applicationValue" placeholder="请选择">
+          <el-select @change="managerApplicationChange" v-model="applicationValue" placeholder="请选择">
             <el-option
             v-for="item in application"
             :key="item.value"
@@ -223,8 +223,10 @@
         <el-input @change="serialEndChange" v-model="serialEnd" placeholder="请输入内容"></el-input>
         <el-tag>编号数量</el-tag>
         <el-input :disabled="true" v-model="serialNum" placeholder="请输入内容"></el-input>
-
+        <el-button @click="verfiyNum">校验</el-button>
       </div>
+          
+
       <div slot="footer" class="dialog-footer">
         <el-button @click="AssignQRCodeManagerDialog.visible = false">取 消</el-button>
         <el-button type="primary" @click.native.prevent="handleAssignQRCodeByManager"
@@ -246,6 +248,7 @@ export default {
     return {
       isPass:'',
       customRegion:'',
+      toCompleteID:'',
       prefix:'',
       serialStart:'',
       serialEnd:'',
@@ -338,6 +341,39 @@ export default {
     };
   },
   methods: {
+    managerApplicationChange(){
+      console.log(this.applicationValue);
+            http.requestWithToken(
+        "/newQrCode/getMaxAvableCode",
+        "get",
+        { adcode: this.area,appVal:this.applicationValue},
+        res => {
+          console.log(res);
+          if(res.data.error){
+            this.startID = "没有可分配的=.=";
+          }else{
+          this.startID = res.data;
+          }
+
+
+        },
+        () => {}
+      );
+
+    },
+    applicationChange(){
+      console.log(this.areaValue);
+      console.log(this.applicationValue);
+      var myDate = new Date();
+      var tYear = myDate.getFullYear();
+      console.log(tYear);
+      var shortYear = tYear.toString().split("20");
+      console.log(shortYear[1]);
+      var toCompleteID = this.areaValue.toString() + shortYear[1].toString() + this.applicationValue.toString();
+      console.log(toCompleteID);
+      this.toCompleteID = toCompleteID;
+
+    },
     handleAssignQRCodeByManager(){
       if(this.isPass){
       console.log(this.startID);
@@ -398,6 +434,11 @@ export default {
       }
 
     },
+    areaChange(){
+      console.log(this.areaValue);
+
+
+    },
     verfiyNum(){
       if(this.IDNum == this.serialNum){
         this.isPass = true;
@@ -420,12 +461,12 @@ export default {
     cityChange(e){
       console.log("cityChange",e);
       http.requestWithToken(
-        "/newQrCode/getArea",
+        "/auth_api/dist/areas",
         "get",
-        { adcode: e},
+        { id: e},
         res => {
           console.log(res);
-          this.area = res.data.Data;
+          this.area = res.data;
 
         },
         () => {}
@@ -441,12 +482,13 @@ export default {
     proxyChange(e){
       console.log("proxyChange",e);
       http.requestWithToken(
-        "/newQrCode/getCity",
+        "/auth_api/dist/cities",
         "get",
-        { adcode: e},
+        { id: e},
         res => {
           console.log(res);
-          this.city = res.data.Data;
+          this.city = res.data;
+          console.log(this.city);
 
         },
         () => {}
@@ -455,13 +497,34 @@ export default {
     },
     showAssignQRCodeManagerDialog(){
       this.AssignQRCodeManagerDialog.visible = true;
+            let role = this.$store.state.user.role;
+      if (role == 1) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        // this.loadCity();
+      } else if (role == 2) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        // this.loadArea();
+      } else if (role == 3) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+        // this.loadManagers();
+      } else if (role == 4) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+        this.manager = this.$store.state.user.username;
+      }
+      console.log(this.area);
+
 
     },
     // 下载
     handleDownload() {
       let BASE_URL = "";
-      if (window.location.toString().indexOf("47.103.66.70") > -1) {
-        BASE_URL = "http://47.103.66.70:8081";
+      if (window.location.toString().indexOf("106.15.90.78") > -1) {
+        BASE_URL = "http://106.15.90.78:8081";
       } else {
         BASE_URL = "http://localhost:8081";
       }
@@ -719,6 +782,7 @@ export default {
       console.log(this.cityValue);
       console.log(this.areaValue);
       console.log(this.applicationValue);
+
         http.requestWithToken(
         "/newQrCode/assignQRCode",
         "get",
@@ -727,8 +791,8 @@ export default {
           cityCode: this.cityValue,
           areaCode: this.areaValue,
           projectCode: this.applicationValue,
-          startID: this.startID,
-          endID: this.endID
+          startID: this.toCompleteID + this.startID,
+          endID: this.toCompleteID + this.endID
           },
         res => {
           console.log(res);

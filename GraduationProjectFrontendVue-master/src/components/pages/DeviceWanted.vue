@@ -2,9 +2,9 @@
   <div>
     <div id="tool-row">
       <div>
-        <el-input v-model="searchText" placeholder="搜索" style="width: 120px"></el-input>
+        <!-- <el-input v-model="searchText" placeholder="搜索" style="width: 120px"></el-input>
         <el-input v-model="searchBatch" placeholder="批次" style="width: 120px"></el-input>
-        <el-input v-model="searchTown" placeholder="城镇" style="width: 120px" v-if="this.$store.state.user.role == 3"></el-input>
+        <el-input v-model="searchTown" placeholder="城镇" style="width: 120px" v-if="this.$store.state.user.role == 3"></el-input> -->
         <el-date-picker
           v-model="maintenanceData.startDate"
           type="date"
@@ -17,6 +17,16 @@
           value-format="yyyy-MM-dd"
           placeholder="终止日期"
         ></el-date-picker>
+              <el-select v-model="value" placeholder="请选择">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+      <el-input v-model="input" placeholder="请输入内容"></el-input>
+
         <el-button type="primary" @click="buttonLoadMaintenanceData">搜索</el-button>
       </div>
       <div>
@@ -214,6 +224,22 @@ export default {
     return {
       searchText: "",
       searchBatch: "",
+      options: [{
+          value: 'device_Id',
+          label: '编号'
+        }, {
+          value: 'region',
+          label: '区域'
+        }, {
+          value: 'batch',
+          label: '批次'
+        }, {
+          value: 'Worker',
+          label: '施工人员'
+        }],
+        value: '',
+        input:'',
+
       searchTown: "",
       uploadUrl: "",
       otherBeetleList: [],
@@ -377,7 +403,7 @@ export default {
     showPhotoDialog(id) {
       this.PhotoDialog.visible = true;
      // let BASE_URL = "http://47.103.66.70:8081";
-    let BASE_URL = "http://39.108.184.47:8081";
+    let BASE_URL = "http://106.15.90.78:8081";
       this.PhotoDialog.pic = BASE_URL + "/device_img?imgName=" + id;
     },
     handleMaintenanceDataSelectionChange(val) {
