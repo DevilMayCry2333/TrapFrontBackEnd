@@ -35,6 +35,7 @@
         <el-table-column prop="province" label="省" align="center"></el-table-column>
         <el-table-column prop="city" label="市" align="center"></el-table-column>
         <el-table-column prop="area" label="县" align="center"></el-table-column>
+        <el-table-column prop="customSerial" label="编号" align="center"></el-table-column>
         <el-table-column
           prop="manager"
           label="管理员"
@@ -203,7 +204,7 @@
            <el-input :disabled="true" v-model="IDNum" placeholder="请输入内容"></el-input>
            <br/>
            <el-tag>应用项目</el-tag>
-          <el-select v-model="applicationValue" placeholder="请选择">
+          <el-select @change="managerApplicationChange" v-model="applicationValue" placeholder="请选择">
             <el-option
             v-for="item in application"
             :key="item.value"
@@ -340,6 +341,26 @@ export default {
     };
   },
   methods: {
+    managerApplicationChange(){
+      console.log(this.applicationValue);
+            http.requestWithToken(
+        "/newQrCode/getMaxAvableCode",
+        "get",
+        { adcode: this.area,appVal:this.applicationValue},
+        res => {
+          console.log(res);
+          if(res.data.error){
+            this.startID = "没有可分配的=.=";
+          }else{
+          this.startID = res.data;
+          }
+
+
+        },
+        () => {}
+      );
+
+    },
     applicationChange(){
       console.log(this.areaValue);
       console.log(this.applicationValue);
@@ -496,17 +517,7 @@ export default {
         this.manager = this.$store.state.user.username;
       }
       console.log(this.area);
-      http.requestWithToken(
-        "/newQrCode/getMaxAvableCode",
-        "get",
-        { adcode: this.area },
-        res => {
-          console.log(res);
-          this.startID = res.data;
 
-        },
-        () => {}
-      );
 
     },
     // 下载

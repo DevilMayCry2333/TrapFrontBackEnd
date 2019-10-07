@@ -12,6 +12,17 @@
       <span style="font-size: 14px; margin-left: 14px">搜索内容:</span>
       <el-input style="width: 200px" placeholder="搜索内容" v-model="searchText"></el-input>
       <el-button type="primary" @click="handleSubmit">搜索</el-button>
+
+              <el-button type="primary" @click="exportExcel">导出</el-button>
+        <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
+
+        <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
+        <el-upload  class="upload-demo" ref="upload"
+        :action="uploadUrl"
+        :on-success="loadMaintenanceData">
+          <el-button type="primary" >点击上传</el-button>
+        </el-upload>
+
     </div>
     <el-table border :data="DryWatchData.list" style="width: 100%" height="600">
       <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
@@ -72,6 +83,12 @@
       this.loadDevice();
     },
     methods: {
+      exportExcel(){
+        console.log("导出");
+      },
+      loadMaintenanceData(){
+        
+      },
           showPhotoDialog(id) {
             console.log(id);
       this.PhotoDialog.visible = true;
