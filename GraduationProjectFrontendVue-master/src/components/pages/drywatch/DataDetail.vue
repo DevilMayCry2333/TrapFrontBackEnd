@@ -87,7 +87,7 @@
         console.log("导出");
       },
       loadMaintenanceData(){
-        
+        alert("请手动刷新");
       },
           showPhotoDialog(id) {
             console.log(id);

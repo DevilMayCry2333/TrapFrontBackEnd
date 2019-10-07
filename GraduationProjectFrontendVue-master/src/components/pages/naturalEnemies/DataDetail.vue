@@ -81,6 +81,10 @@
 import http from "../../../utils/http";
 export default {
     mounted(){
+      this.uploadUrl =
+              http.getBaseUrl() +
+              "/natural/importExcel?token=" +
+              sessionStorage["token"];
      console.log("init");
       let role = this.$store.state.user.role;
               this.loadDevice();
@@ -107,6 +111,9 @@ export default {
 
     },
     methods:{
+      loadMaintenanceData(){
+        alert("请手动刷新");
+      },
       exportExcel(){
         console.log(this.QRData.list);
         let role = this.$store.state.user.role;
@@ -140,9 +147,6 @@ export default {
         "&token=" +
         sessionStorage["token"];
         },1000)
-
-      },
-      uploadUrl(){
 
       },
     showPhotoDialog(id) {

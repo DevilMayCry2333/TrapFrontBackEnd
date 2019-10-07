@@ -14,6 +14,16 @@
 
       <el-button type="primary" @click="query()">查询</el-button>
 
+                    <el-button type="primary" @click="exportExcel">导出</el-button>
+        <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
+        <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
+        <el-upload ref="upload"
+        :action="uploadUrl"
+        :on-success="loadMaintenanceData">
+          <el-button type="primary" >点击上传</el-button>
+        </el-upload>
+
+
             <el-table border :data="QRData.list" style="width: 100%" height="600">
             <el-table-column prop="linename" label="线路名称" align="center"></el-table-column>
             <el-table-column prop="timeconsume" label="耗时" align="center"></el-table-column>
@@ -71,6 +81,11 @@
 import http from "../../../utils/http";
 export default {
     mounted(){
+                this.uploadUrl =
+              http.getBaseUrl() +
+              "/track/importExcel?token=" +
+              sessionStorage["token"];
+
      console.log("init");
       let role = this.$store.state.user.role;
       this.role = role;
@@ -98,6 +113,38 @@ export default {
 
     },
     methods:{
+      loadMaintenanceData(){
+        alert("请手动刷新");
+      },
+      exportExcel(){
+
+                let role = this.$store.state.user.role;
+          console.log(role);
+            console.log(this.area);
+            console.log(this.city);
+              console.log(this.province);
+        console.log(http.getBaseUrl());
+
+        setTimeout(()=>{
+                  window.location =
+        http.getBaseUrl() +
+        "/track/exportExcel?startDate=" +
+        this.startDate +
+        "&endDate=" +
+        this.endDate +
+        "&searchText=" +
+        this.input +
+        "&colName=" +
+        this.value +
+        "&adcode=" +
+        this.area +
+        "&username="+
+        sessionStorage['username'] +
+        "&token=" +
+        sessionStorage["token"];
+        },1000)
+
+      },
                             showPhotoDialog(id) {
             console.log(id);
       this.PhotoDialog.visible = true;
