@@ -76,6 +76,8 @@
         <el-table-column prop="province" label="省份" align="center"></el-table-column>
         <el-table-column prop="city" label="市区" align="center"></el-table-column>
         <el-table-column prop="area" label="县" align="center"></el-table-column>
+         <el-table-column prop="parent" label="关联项目" align="center"></el-table-column>
+
         <el-table-column label="激活状态" align="center">
           <template slot-scope="scope">{{scope.row.active == 1 ? '激活' : '禁用'}}</template>
         </el-table-column>

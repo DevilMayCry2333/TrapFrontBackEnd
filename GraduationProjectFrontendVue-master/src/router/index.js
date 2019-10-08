@@ -46,6 +46,7 @@ import TimeStatic from '@/components/pages/admin/TimeStatic'
 import BatchStatic from '@/components/pages/admin/BatchStatic'
 import WorkerStatic from '@/components/pages/admin/WorkerStatic'
 import NewMapStatic from '@/components/pages/admin/NewMapStatic'
+import NewTrapDataSummary from '@/components/pages/NewTrapDataSummary'
 
 Vue.use(Router)
 
@@ -306,7 +307,13 @@ export default new Router({
             path: 'pages/trap/NewMapStatic',
             name: 'NewMapStatic',
             component: NewMapStatic
+          },
+          {
+            path: 'pages/trap/NewTrapDataSummary',
+            name: 'NewTrapDataSummary',
+            component: NewTrapDataSummary
           }
+
 
 
 

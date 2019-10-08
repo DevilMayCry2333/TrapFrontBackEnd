@@ -36,6 +36,9 @@
         <el-table-column prop="city" label="市" align="center"></el-table-column>
         <el-table-column prop="area" label="县" align="center"></el-table-column>
         <el-table-column prop="customSerial" label="编号" align="center"></el-table-column>
+         <el-table-column prop="project" label="项目归属" align="center"></el-table-column>
+         <el-table-column prop="isManagerAssign" label="是否绑定" align="center"></el-table-column>
+
         <el-table-column
           prop="manager"
           label="管理员"
