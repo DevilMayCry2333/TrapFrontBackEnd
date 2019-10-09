@@ -22,6 +22,7 @@ import NaturalEnemiesDataDetail from '@/components/pages/naturalEnemies/DataDeta
 import DeadTreeDataDetail from '@/components/pages/deadTrees/DataDetail'
 import TrackDataDetail from '@/components/pages/track/DataDetail'
 import DryWatchDataSummary from '@/components/pages/drywatch/DataSummary'
+import TrackDataSummary from '@/components/pages/track/DataSummary'
 import DryWatchMaintanceData from '@/components/pages/drywatch/DryWatchMaintanceData'
 import DryWatchDeviceMessage from '@/components/pages/drywatch/DryWatchDeviceMessage'
 import DryWatchDeviceWanted from '@/components/pages/drywatch/DryWatchDeviceWanted'
@@ -46,13 +47,11 @@ import TimeStatic from '@/components/pages/admin/TimeStatic'
 import BatchStatic from '@/components/pages/admin/BatchStatic'
 import WorkerStatic from '@/components/pages/admin/WorkerStatic'
 import NewMapStatic from '@/components/pages/admin/NewMapStatic'
-import NewTrapDataSummary from '@/components/pages/NewTrapDataSummary'
 
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
+  routes: [{
       path: '/login',
       name: 'Login',
       component: Login,
@@ -65,8 +64,7 @@ export default new Router({
       component: home,
       //1、
 
-      children: [
-        {
+      children: [{
           path: '/helloworld',
           name: 'HelloWorld',
           component: HelloWorld
@@ -79,7 +77,7 @@ export default new Router({
 
         {
           path: 'pages/device_wanted2.html',
-          name: '数据修改',
+          name: '数据明细',
           component: DeviceWanted
 
         },
@@ -89,26 +87,38 @@ export default new Router({
           component: MapStatistics
 
         },
+        {
+          path: 'pages/trap/NewTrapDataSummary',
+          name: '数据汇总',
+          component: TrackDataSummary,
+          meta: {
+            keepAlive: true
+          } // 需要被缓存
+        },
 
 
         {
           path: 'pages/device_summary',
           name: '诱捕器情况',
           component: DeviceSummary,
-          meta: {keepAlive: true }// 需要被缓存
+          meta: {
+            keepAlive: true
+          } // 需要被缓存
         },
-    {
-      path: '/pages/device_wanted1.html',
-      name: '数据修改上报',
-      component: DeviceWanted,
-      meta: {keepAlive: true }// 需要被缓存
-    },
-    {
-      path: 'pages/device_message',
-      name: '诱捕器信息',
-      component: DeviceMessage,
+        {
+          path: '/pages/device_wanted1.html',
+          name: '数据修改上报',
+          component: DeviceWanted,
+          meta: {
+            keepAlive: true
+          } // 需要被缓存
+        },
+        {
+          path: 'pages/device_message',
+          name: '诱捕器信息',
+          component: DeviceMessage,
 
-    },
+        },
 
         {
           path: 'pages/device_maintenance.html',
@@ -139,7 +149,7 @@ export default new Router({
         },
         {
           path: 'pages/other_beetle',
-          name: '其他天牛命名',
+          name: '其他天牛类型配置',
           component: OtherBeetle
         },
         {
@@ -165,27 +175,27 @@ export default new Router({
         },
         {
           path: 'pages/drywatch/detail',
-          name: 'DryWatchDetail',
+          name: '数据明细',
           component: DryWatchDataDetail
         },
         {
           path: 'pages/naturalEnemy/detail',
-          name: 'NaturalEnemiesDataDetail',
+          name: '数据明细',
           component: NaturalEnemiesDataDetail
         },
         {
           path: 'pages/deadTrees/detail',
-          name: 'DeadTreesDataDetail',
+          name: '数据明细',
           component: DeadTreeDataDetail
         },
         {
           path: 'pages/track/detail',
-          name: 'TrackDataDetail',
+          name: '数据明细',
           component: TrackDataDetail
         },
         {
           path: 'pages/drywatch/datasummary',
-          name: 'DryWatchDataSummary',
+          name: '数据汇总',
           component: DryWatchDataSummary
         },
         {
@@ -200,12 +210,12 @@ export default new Router({
         },
         {
           path: 'pages/drywatch/wanted',
-          name: 'DryWatchDeviceWanted',
+          name: '数据修改上报',
           component: DryWatchDeviceWanted
         },
         {
           path: 'pages/natural/datasummary',
-          name: 'NaturalEnemiesDataSummary',
+          name: '数据汇总',
           component: NaturalEnemiesDataSummary
         },
         {
@@ -220,99 +230,94 @@ export default new Router({
         },
         {
           path: 'pages/natural/wanted',
-          name: 'NaturalDeviceWanted',
+          name: '数据修改上报',
           component: NaturalDeviceWanted
         },
         {
-              path: 'pages/drywatch/map',
-              name: 'DryWatchDeviceMap',
-              component: DryWatchDeviceMap
+          path: 'pages/drywatch/map',
+          name: '地图查看',
+          component: DryWatchDeviceMap
         },
         {
           path: 'pages/natural/map',
-          name: 'NaturalDeviceMap',
+          name: '地图查看',
           component: NaturalDeviceMap
         },
-          {
-              path: 'pages/deadtree/map',
-              name: 'DeadTreeDeviceMap',
-              component: DeadTreeDeviceMap
-          },
-          {
-            path: 'pages/track/map',
-            name: 'TrackDeviceMap',
-            component: TrackDeviceMap
-          },
-          {
-            path: 'pages/admin/qrmanager',
-            name: 'AdminQRManager',
-            component: AdminQRManager
-          },
-          {
-            path: 'pages/drywatch/summaryByRegion',
-            name: 'SummaryByReigon',
-            component: SummaryByReigon
-          },
-          {
-            path: 'pages/trap/workcontent',
-            name: 'workcontent',
-            component: TrapWorkContent
-          },
-          {
-            path: 'pages/trap/injectType',
-            name: 'injectType',
-            component: TrapInjectType
-          },
-          {
-            path: 'pages/inject/woodStatus',
-            name: 'InjectWoodStatus',
-            component: InjectWoodStatus
-          },
-          {
-            path: 'pages/inject/workContent',
-            name: 'InjectWorkContent',
-            component: InjectWorkContent
-          },
-          {
-            path: 'pages/inject/EnemyType',
-            name: 'EnemyType',
-            component: EnemyType
-          },
-          {
-            path: 'pages/inject/DeadTreesKill',
-            name: 'DeadTreesKill',
-            component: DeadTreesKill
-          },
-          {
-            path: 'pages/trap/AreaStatic',
-            name: 'AreaStatic',
-            component: AreaStatic
-          },
-          {
-            path: 'pages/trap/TimeStatic',
-            name: 'TimeStatic',
-            component: TimeStatic
-          },
-          {
-            path: 'pages/trap/BatchStatic',
-            name: 'BatchStatic',
-            component: BatchStatic
-          },
-          {
-            path: 'pages/trap/WorkerStatic',
-            name: 'WorkerStatic',
-            component: WorkerStatic
-          },
-          {
-            path: 'pages/trap/NewMapStatic',
-            name: 'NewMapStatic',
-            component: NewMapStatic
-          },
-          {
-            path: 'pages/trap/NewTrapDataSummary',
-            name: 'NewTrapDataSummary',
-            component: NewTrapDataSummary
-          }
+        {
+          path: 'pages/deadtree/map',
+          name: '地图查看',
+          component: DeadTreeDeviceMap
+        },
+        {
+          path: 'pages/track/map',
+          name: '地图查看',
+          component: TrackDeviceMap
+        },
+        {
+          path: 'pages/admin/qrmanager',
+          name: 'ID分配管理',
+          component: AdminQRManager
+        },
+        {
+          path: 'pages/drywatch/summaryByRegion',
+          name: '区域汇总',
+          component: SummaryByReigon
+        },
+        {
+          path: 'pages/trap/workcontent',
+          name: '工作内容配置',
+          component: TrapWorkContent
+        },
+        {
+          path: 'pages/trap/injectType',
+          name: '药剂类型配置',
+          component: TrapInjectType
+        },
+        {
+          path: 'pages/inject/woodStatus',
+          name: '树木状态配置',
+          component: InjectWoodStatus
+        },
+        {
+          path: 'pages/inject/workContent',
+          name: '工作内容配置',
+          component: InjectWorkContent
+        },
+        {
+          path: 'pages/inject/EnemyType',
+          name: '天敌类型配置',
+          component: EnemyType
+        },
+        {
+          path: 'pages/inject/DeadTreesKill',
+          name: '除害方式配置',
+          component: DeadTreesKill
+        },
+        {
+          path: 'pages/trap/AreaStatic',
+          name: '区域分析',
+          component: AreaStatic
+        },
+        {
+          path: 'pages/trap/TimeStatic',
+          name: '月份统计',
+          component: TimeStatic
+        },
+        {
+          path: 'pages/trap/BatchStatic',
+          name: '批次统计',
+          component: BatchStatic
+        },
+        {
+          path: 'pages/trap/WorkerStatic',
+          name: '人效分析',
+          component: WorkerStatic
+        },
+        {
+          path: 'pages/trap/NewMapStatic',
+          name: '统计分析',
+          component: NewMapStatic
+        }
 
 
 
@@ -325,7 +330,6 @@ export default new Router({
 
 
 
-        
       ]
     },
 
