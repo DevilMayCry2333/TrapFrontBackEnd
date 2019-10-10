@@ -102,48 +102,35 @@
 
         <el-dialog title="编辑维护信息" :visible.sync="EditMaintenanceDialog.visible" width="30%">
       <el-form label-width="120px">
-        <el-form-item label="松墨天牛数量">
-          <el-input-number :min="0" v-model="EditMaintenanceDialog.form.num"></el-input-number>
-        </el-form-item>
         <el-form-item label="经度">
-                  <el-input  v-model="EditMaintenanceDialog.form.longitude"></el-input>
-                </el-form-item>
-                <el-form-item label="纬度">
-                          <el-input v-model="EditMaintenanceDialog.form.latitude"></el-input>
-                        </el-form-item>
-                        <el-form-item label="海拔">
-                                  <el-input v-model="EditMaintenanceDialog.form.altitude"></el-input>
-                                </el-form-item>
-        <el-form-item label="其他天牛类型">
-          <!-- <el-input-number :min="0"></el-input-number> -->
-          <el-select v-model="EditMaintenanceDialog.form.otherType">
-            <el-option :label="无" value :key="无">无</el-option>
-            <el-option
-              v-for="item in otherBeetleList"
-              :value="item.id"
-              :label="item.name"
-              :key="item.id"
-            ></el-option>
-          </el-select>
+          <el-input  v-model="EditMaintenanceDialog.form.longitude"></el-input>
         </el-form-item>
-        <el-form-item label="其他天牛数量">
-          <el-input-number :min="0" v-model="EditMaintenanceDialog.form.otherNum"></el-input-number>
+        <el-form-item label="纬度">
+          <el-input v-model="EditMaintenanceDialog.form.latitude"></el-input>
         </el-form-item>
-        <el-form-item label="药剂类型">
-          <el-select v-model="EditMaintenanceDialog.form.drug">
-            <el-option label="APF-I持久增强型" value="APF-I持久增强型">APF-I持久增强型</el-option>
-            <el-option label="APF-I持久型" value="APF-I持久型">APF-I持久型</el-option>
-            <el-option label="APF-I普通型" value="APF-I普通型">APF-I普通型</el-option>
-          </el-select>
+        <el-form-item label="设备ID">
+          <el-input v-model="EditMaintenanceDialog.form.deviceId"></el-input>
         </el-form-item>
-        <el-form-item label="工作内容">
-          <el-select v-model="EditMaintenanceDialog.form.workingContent">
-            <el-option :value="0" label="首次悬挂诱捕器">首次悬挂诱捕器</el-option>
-            <el-option :value="1" label="换药+收虫">换药+收虫</el-option>
-            <el-option :value="2" label="收虫">收虫</el-option>
-            <el-option :value="3" label="其他">其他</el-option>
-          </el-select>
+
+        <el-form-item label="编号">
+          <el-input v-model="EditMaintenanceDialog.form.serial"></el-input>
         </el-form-item>
+        <el-form-item label="区域">
+          <el-input v-model="EditMaintenanceDialog.form.region"></el-input>
+        </el-form-item>
+        <el-form-item label="日期">
+          <el-input v-model="EditMaintenanceDialog.form.submitDate"></el-input>
+        </el-form-item>
+        <el-form-item label="天敌类型">
+          <el-input v-model="EditMaintenanceDialog.form.predatorstype"></el-input>
+        </el-form-item>
+        <el-form-item label="释放数量">
+          <el-input v-model="EditMaintenanceDialog.form.releaseNum"></el-input>
+        </el-form-item>
+        <el-form-item label="工人">
+          <el-input v-model="EditMaintenanceDialog.form.worker"></el-input>
+        </el-form-item>
+
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="EditMaintenanceDialog.visible = false">取 消</el-button>
@@ -198,9 +185,10 @@ export default {
         type: "warning"
       })
         .then(() => {
+
           http.requestWithToken(
-            "/auth_api/maintenance",
-            "delete",
+            "/natural/deleteRecord",
+            "post",
             {
               id: row.id,
               deviceID: row.deviceId
@@ -236,28 +224,34 @@ export default {
             console.log(data);
       this.EditMaintenanceDialog.visible = true;
       this.EditMaintenanceDialog.form = {
-        id: 0,
-        num: 0,
-        otherNum: 0,
         otherType: "",
         longitude: "",
         latitude: "",
         batch:0,
         deviceId:"",
-        workingContent: 0,
-        drug: ""
+        
+        serial:"",
+        region:"",
+        submitDate:"",
+        predatorstype:"",
+        releaseNum:"",
+        worker:"",
       };
       this.EditMaintenanceDialog.form.longitude = data.longitude;
       this.EditMaintenanceDialog.form.deviceId = data.deviceId;
       this.EditMaintenanceDialog.form.batch = data.batch;
-      this.EditMaintenanceDialog.form.altitude = data.altitude;
       this.EditMaintenanceDialog.form.latitude = data.latitude;
-      this.EditMaintenanceDialog.form.workingContent = data.workingContent;
-      this.EditMaintenanceDialog.form.drug = data.drug;
-      this.EditMaintenanceDialog.form.num = data.num;
-      this.EditMaintenanceDialog.form.id = data.id;
-      this.EditMaintenanceDialog.form.otherNum = data.otherNum;
-      this.EditMaintenanceDialog.form.otherType = data.otherType;
+
+      this.EditMaintenanceDialog.form.serial = data.serial;
+      this.EditMaintenanceDialog.form.region = data.region;
+      this.EditMaintenanceDialog.form.submitDate = data.submitDate;
+      this.EditMaintenanceDialog.form.predatorstype = data.predatorstype;
+      this.EditMaintenanceDialog.form.releaseNum = data.releaseNum;
+      this.EditMaintenanceDialog.form.worker = data.worker;
+
+
+
+
     },
 
       loadMaintenanceData(){
