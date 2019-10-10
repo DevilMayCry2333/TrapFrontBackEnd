@@ -22,7 +22,7 @@ import NaturalEnemiesDataDetail from '@/components/pages/naturalEnemies/DataDeta
 import DeadTreeDataDetail from '@/components/pages/deadTrees/DataDetail'
 import TrackDataDetail from '@/components/pages/track/DataDetail'
 import DryWatchDataSummary from '@/components/pages/drywatch/DataSummary'
-import TrackDataSummary from '@/components/pages/track/DataSummary'
+import TrackDataSummary from '@/components/pages/DeviceSummary'
 import DryWatchMaintanceData from '@/components/pages/drywatch/DryWatchMaintanceData'
 import DryWatchDeviceMessage from '@/components/pages/drywatch/DryWatchDeviceMessage'
 import DryWatchDeviceWanted from '@/components/pages/drywatch/DryWatchDeviceWanted'

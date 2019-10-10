@@ -257,7 +257,7 @@ export default {
         startDate:'',
         endDate: '',
         options: [{
-          value: 'device_Id',
+          value: 'CustomSerial',
           label: '编号'
         }, {
           value: 'region',

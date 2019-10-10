@@ -6,7 +6,7 @@
     <el-date-picker v-model="DryWatchData.endDate" type="date" value-format="yyyy-MM-dd"
                     placeholder="终止日期"></el-date-picker>
     <div style="margin-top: 10px; margin-left: 60px">
-      <el-select v-if="this.$store.state.user.role==3" placeholder="编号/区域/批次/施工人员" v-model="selected">
+      <el-select v-if="this.$store.state.user.role==3 || this.$store.state.user.role==4" placeholder="编号/区域/批次/施工人员" v-model="selected">
         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
       </el-select>
       <span style="font-size: 14px; margin-left: 14px">搜索内容:</span>
@@ -103,7 +103,35 @@
       },
       handleSubmit() {
         console.log(this.selected);
-        this.loadDevice()
+        console.log(this.searchText);
+        console.log(sessionStorage["username"]);
+        console.log(this.DryWatchData.startDate);
+        console.log(this.DryWatchData.endDate);
+        http.requestWithToken(
+          "/dryWatch/searchDetail",
+          "post",
+          {
+            optionIndex: this.selected,
+            searchText: this.searchText,
+            startDate: this.DryWatchData.startDate,
+            endDate: this.DryWatchData.endDate
+          },
+          res => {
+            console.log(res.data.Data);
+            console.log(res.data.current);
+            console.log(res.data.total);
+            
+            this.DryWatchData.list = res.data.Data;
+            this.DryWatchData.total = res.data.current;
+            this.DryWatchData.page = res.data.total;
+            // this.DryWatchData.optionIndex = -1;
+          },
+          () => {
+          }
+        )
+
+
+        // this.loadDevice()
       },
       loadDevice() {
         http.requestWithToken(
