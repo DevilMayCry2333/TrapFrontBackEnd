@@ -54,6 +54,34 @@
           v-if="this.$store.state.user.role == 3"
         ></el-table-column>
 
+                <el-table-column
+          label="操作"
+          align="center"
+          width="150px"
+          fixed="right"
+          v-if="this.$store.state.user.role == 3 || this.$store.state.user.role == 4"
+        >
+          <template slot-scope="scope">
+            <div v-if="!scope.row.reported">
+              <el-button
+                size="mini"
+                type="primary"
+                @click="showEditMaintenanceDataDialog(scope.row)"
+                v-if="!scope.row.reported"
+              >编辑</el-button>
+              <el-button
+                size="mini"
+                type="danger"
+                @click="handleDelete(scope.row)"
+                v-if="!scope.row.reported"
+              >删除</el-button>
+            </div>
+            <div v-if="scope.row.reported">不可操作</div>
+          </template>
+        </el-table-column>
+        
+
+
 
       </el-table>
         <div class="block">
@@ -71,6 +99,58 @@
         <img v-bind:src="PhotoDialog.pic" style="width: 600px; ">
       </div>
     </el-dialog>
+
+        <el-dialog title="编辑维护信息" :visible.sync="EditMaintenanceDialog.visible" width="30%">
+      <el-form label-width="120px">
+        <el-form-item label="松墨天牛数量">
+          <el-input-number :min="0" v-model="EditMaintenanceDialog.form.num"></el-input-number>
+        </el-form-item>
+        <el-form-item label="经度">
+                  <el-input  v-model="EditMaintenanceDialog.form.longitude"></el-input>
+                </el-form-item>
+                <el-form-item label="纬度">
+                          <el-input v-model="EditMaintenanceDialog.form.latitude"></el-input>
+                        </el-form-item>
+                        <el-form-item label="海拔">
+                                  <el-input v-model="EditMaintenanceDialog.form.altitude"></el-input>
+                                </el-form-item>
+        <el-form-item label="其他天牛类型">
+          <!-- <el-input-number :min="0"></el-input-number> -->
+          <el-select v-model="EditMaintenanceDialog.form.otherType">
+            <el-option :label="无" value :key="无">无</el-option>
+            <el-option
+              v-for="item in otherBeetleList"
+              :value="item.id"
+              :label="item.name"
+              :key="item.id"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="其他天牛数量">
+          <el-input-number :min="0" v-model="EditMaintenanceDialog.form.otherNum"></el-input-number>
+        </el-form-item>
+        <el-form-item label="药剂类型">
+          <el-select v-model="EditMaintenanceDialog.form.drug">
+            <el-option label="APF-I持久增强型" value="APF-I持久增强型">APF-I持久增强型</el-option>
+            <el-option label="APF-I持久型" value="APF-I持久型">APF-I持久型</el-option>
+            <el-option label="APF-I普通型" value="APF-I普通型">APF-I普通型</el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="工作内容">
+          <el-select v-model="EditMaintenanceDialog.form.workingContent">
+            <el-option :value="0" label="首次悬挂诱捕器">首次悬挂诱捕器</el-option>
+            <el-option :value="1" label="换药+收虫">换药+收虫</el-option>
+            <el-option :value="2" label="收虫">收虫</el-option>
+            <el-option :value="3" label="其他">其他</el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="EditMaintenanceDialog.visible = false">取 消</el-button>
+        <el-button type="primary" @click.native.prevent="handleEditMaintenanceDataSubmit">确 定</el-button>
+      </div>
+    </el-dialog>
+    
 
 </div>
 
@@ -111,6 +191,75 @@ export default {
 
     },
     methods:{
+            handleDelete(row) {
+      this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          http.requestWithToken(
+            "/auth_api/maintenance",
+            "delete",
+            {
+              id: row.id,
+              deviceID: row.deviceId
+            },
+            res => {
+              if (!res.data.error) {
+                this.loadDevice();
+                this.$message({
+                  type: "success",
+                  message: "删除成功!"
+                });
+                this.clearMultipleSelection();
+              } else {
+                this.$message({
+                  type: "error",
+                  message: "删除失败!"
+                });
+              }
+            },
+            () => {}
+          );
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
+      this.loadDevice();
+    },
+          showEditMaintenanceDataDialog(data) {
+            console.log("编辑");
+            console.log(data);
+      this.EditMaintenanceDialog.visible = true;
+      this.EditMaintenanceDialog.form = {
+        id: 0,
+        num: 0,
+        otherNum: 0,
+        otherType: "",
+        longitude: "",
+        latitude: "",
+        batch:0,
+        deviceId:"",
+        workingContent: 0,
+        drug: ""
+      };
+      this.EditMaintenanceDialog.form.longitude = data.longitude;
+      this.EditMaintenanceDialog.form.deviceId = data.deviceId;
+      this.EditMaintenanceDialog.form.batch = data.batch;
+      this.EditMaintenanceDialog.form.altitude = data.altitude;
+      this.EditMaintenanceDialog.form.latitude = data.latitude;
+      this.EditMaintenanceDialog.form.workingContent = data.workingContent;
+      this.EditMaintenanceDialog.form.drug = data.drug;
+      this.EditMaintenanceDialog.form.num = data.num;
+      this.EditMaintenanceDialog.form.id = data.id;
+      this.EditMaintenanceDialog.form.otherNum = data.otherNum;
+      this.EditMaintenanceDialog.form.otherType = data.otherType;
+    },
+
       loadMaintenanceData(){
         alert("请手动刷新");
       },
@@ -240,6 +389,22 @@ export default {
     },
     data(){
         return{
+      EditMaintenanceDialog: {
+        visible: false,
+        form: {
+          id: 0,
+          batch:0,
+          num: 0,
+          otherNum: 0,
+          otherType: "",
+          longitude: "",
+          latitude: "",
+          altitude:"",
+          workingContent: 0,
+          deviceId:"",
+          drug: ""
+        }
+      },
         role:'',
                       PhotoDialog: {
         visible: false,

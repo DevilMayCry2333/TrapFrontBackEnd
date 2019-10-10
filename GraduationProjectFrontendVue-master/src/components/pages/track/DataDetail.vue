@@ -55,6 +55,33 @@
             v-if="this.$store.state.user.role == 3"
             ></el-table-column>
 
+                    <el-table-column
+          label="操作"
+          align="center"
+          width="150px"
+          fixed="right"
+          v-if="this.$store.state.user.role == 3 || this.$store.state.user.role == 4"
+        >
+          <template slot-scope="scope">
+            <div v-if="!scope.row.reported">
+              <el-button
+                size="mini"
+                type="primary"
+                @click="showEditMaintenanceDataDialog(scope.row)"
+                v-if="!scope.row.reported"
+              >编辑</el-button>
+              <el-button
+                size="mini"
+                type="danger"
+                @click="handleDelete(scope.row)"
+                v-if="!scope.row.reported"
+              >删除</el-button>
+            </div>
+            <div v-if="scope.row.reported">不可操作</div>
+          </template>
+        </el-table-column>
+        
+
 
         </el-table>
             <div class="block">
