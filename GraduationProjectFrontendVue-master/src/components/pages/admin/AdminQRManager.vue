@@ -3,11 +3,24 @@
     <div id="tool-row">
       <div></div>
       <div>
-        <el-button
+        <!-- <el-button
           type="primary"
           @click="showQRDataInfoDialog"
           v-if="this.$store.state.user.role == 3"
-        >添加</el-button>
+        >添加</el-button> -->
+              <el-select v-model="value" placeholder="请选择">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+      <el-input v-model="input" placeholder="请输入内容"></el-input>
+
+      <el-button type="primary" @click="query()">查询</el-button>
+
+
         <el-button
           type="primary"
           @click="showAssignQRCodeDialog()"
@@ -20,11 +33,11 @@
           v-if="this.$store.state.user.role == 4"
         >分配项目二维码</el-button>
 
-        <el-button
+        <!-- <el-button
           type="primary"
           @click="showQRWorkerDialog()"
           v-if="this.$store.state.user.role == 0"
-        >编辑二维码分配</el-button>
+        >编辑二维码分配</el-button> -->
         <el-button type="primary" @click="handleDownloadID">ID下载</el-button>
         <el-button type="primary" @click="handleDownload">二维码下载</el-button>
       </div>
@@ -36,6 +49,9 @@
         <el-table-column prop="city" label="市" align="center"></el-table-column>
         <el-table-column prop="area" label="县" align="center"></el-table-column>
         <el-table-column prop="customSerial" label="编号" align="center"></el-table-column>
+         <el-table-column prop="project" label="项目归属" align="center"></el-table-column>
+         <el-table-column prop="isManagerAssign" label="是否绑定" align="center"></el-table-column>
+
         <el-table-column
           prop="manager"
           label="管理员"
@@ -246,6 +262,21 @@ export default {
     name:'AdminQRManager',
   data() {
     return {
+        options: [{
+          value: 'id',
+          label: '设备ID'
+        }, {
+          value: 'project',
+          label: '项目归属'
+        }, {
+          value: 'province',
+          label: '省份'
+        }, {
+          value: 'isManagerAssign',
+          label: '绑定状态'
+        }],
+        value: '',
+        input:'',
       isPass:'',
       customRegion:'',
       toCompleteID:'',
@@ -341,6 +372,22 @@ export default {
     };
   },
   methods: {
+    query(){
+      console.log(this.input);
+      console.log(this.value);
+            http.requestWithToken(
+        "/newQrCode/search",
+        "get",
+        { colName: this.value, searchText: this.input },
+        res => {
+          this.QRData.list = res.data.data;
+          this.QRData.total = res.data.totalNum;
+
+        },
+        () => {}
+      );
+
+    },
     managerApplicationChange(){
       console.log(this.applicationValue);
             http.requestWithToken(

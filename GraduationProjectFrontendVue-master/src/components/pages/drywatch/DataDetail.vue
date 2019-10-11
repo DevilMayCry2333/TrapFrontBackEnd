@@ -6,7 +6,7 @@
     <el-date-picker v-model="DryWatchData.endDate" type="date" value-format="yyyy-MM-dd"
                     placeholder="终止日期"></el-date-picker>
     <div style="margin-top: 10px; margin-left: 60px">
-      <el-select v-if="this.$store.state.user.role==3" placeholder="编号/区域/批次/施工人员" v-model="selected">
+      <el-select v-if="this.$store.state.user.role==3 || this.$store.state.user.role==4" placeholder="编号/区域/批次/施工人员" v-model="selected">
         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
       </el-select>
       <span style="font-size: 14px; margin-left: 14px">搜索内容:</span>
@@ -19,7 +19,7 @@
         <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
         <el-upload  class="upload-demo" ref="upload"
         :action="uploadUrl"
-        :on-success="loadMaintenanceData">
+        :on-success="loadDevice">
           <el-button type="primary" >点击上传</el-button>
         </el-upload>
 
@@ -53,12 +53,85 @@
         align="center"
         v-if="this.$store.state.user.role === 3"
       ></el-table-column>
+              <el-table-column
+          label="操作"
+          align="center"
+          width="150px"
+          fixed="right"
+          v-if="this.$store.state.user.role == 3 || this.$store.state.user.role == 4"
+        >
+          <template slot-scope="scope">
+            <div v-if="!scope.row.reported">
+              <el-button
+                size="mini"
+                type="primary"
+                @click="showEditMaintenanceDataDialog(scope.row)"
+                v-if="!scope.row.reported"
+              >编辑</el-button>
+              <el-button
+                size="mini"
+                type="danger"
+                @click="handleDelete(scope.row)"
+                v-if="!scope.row.reported"
+              >删除</el-button>
+            </div>
+            <div v-if="scope.row.reported">不可操作</div>
+          </template>
+        </el-table-column>
+
     </el-table>
         <el-dialog title="现场照片" :visible.sync="PhotoDialog.visible" width="700px">
       <div style="overflow-y:scroll;height: 300px">
         <img v-bind:src="PhotoDialog.pic" style="width: 600px; ">
       </div>
     </el-dialog>
+
+        <el-dialog title="编辑维护信息" :visible.sync="EditMaintenanceDialog.visible" width="30%">
+      <el-form label-width="120px">
+        
+        <el-form-item label="经度">
+            <el-input  v-model="EditMaintenanceDialog.form.longitude"></el-input>
+        </el-form-item>
+          <el-form-item label="纬度">
+              <el-input v-model="EditMaintenanceDialog.form.latitude"></el-input>
+          </el-form-item>
+            <el-form-item label="海拔">
+                <el-input v-model="EditMaintenanceDialog.form.altitude"></el-input>
+            </el-form-item>
+            <el-form-item label="设备ID">
+              <el-input v-model="EditMaintenanceDialog.form.deviceId"></el-input>
+            </el-form-item>
+            <el-form-item label="编号">
+              <el-input v-model="EditMaintenanceDialog.form.serial"></el-input>
+            </el-form-item>
+            <el-form-item label="所属区域">
+              <el-input v-model="EditMaintenanceDialog.form.region"></el-input>
+            </el-form-item>
+            <el-form-item label="日期">
+              <el-input v-model="EditMaintenanceDialog.form.submitDate"></el-input>
+            </el-form-item>
+            <el-form-item label="批次">
+              <el-input v-model="EditMaintenanceDialog.form.batch"></el-input>
+            </el-form-item>
+            <el-form-item label="工作内容">
+              <el-input v-model="EditMaintenanceDialog.form.workContent"></el-input>
+            </el-form-item>
+            <el-form-item label="树木状态">
+              <el-input v-model="EditMaintenanceDialog.form.woodStatus"></el-input>
+            </el-form-item>
+            <el-form-item label="注剂数量">
+              <el-input v-model="EditMaintenanceDialog.form.injectionNum"></el-input>
+            </el-form-item>
+
+
+
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="EditMaintenanceDialog.visible = false">取 消</el-button>
+        <el-button type="primary" @click.native.prevent="handleEditMaintenanceDataSubmit">确 定</el-button>
+      </div>
+    </el-dialog>
+
 
     <div class="block">
       <el-pagination
@@ -83,6 +156,76 @@
       this.loadDevice();
     },
     methods: {
+      handleDelete(row) {
+      this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          console.log(row.id);
+          console.log(row.deviceId);
+          http.requestWithToken(
+            "/dryWatch/deleteRecord",
+            "post",
+            {
+              id: row.id,
+              deviceID: row.deviceId
+            },
+            res => {
+              if (!res.data.error) {
+                this.loadDevice();
+                this.$message({
+                  type: "success",
+                  message: "删除成功!"
+                });
+                this.clearMultipleSelection();
+              } else {
+                this.$message({
+                  type: "error",
+                  message: "删除失败!"
+                });
+              }
+            },
+            () => {}
+          );
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
+      this.loadDevice();
+    },
+          showEditMaintenanceDataDialog(data) {
+      this.EditMaintenanceDialog.visible = true;
+      this.EditMaintenanceDialog.form = {
+        longitude: "",
+        latitude: "",
+        batch:0,
+        deviceId:"",
+        serial:"",
+        region:"",
+        submitDate:"",
+        workContent:"",
+        woodStatus:"",
+        injectionNum:""
+      };
+      this.EditMaintenanceDialog.form.longitude = data.longitude;
+      this.EditMaintenanceDialog.form.deviceId = data.deviceId;
+      this.EditMaintenanceDialog.form.altitude = data.altitude;
+      this.EditMaintenanceDialog.form.latitude = data.latitude;
+      this.EditMaintenanceDialog.form.serial = data.serial;
+      this.EditMaintenanceDialog.form.region = data.region;
+      this.EditMaintenanceDialog.form.submitDate = data.submitDate;
+      this.EditMaintenanceDialog.form.batch = data.batch;
+       this.EditMaintenanceDialog.form.workContent = data.workContent;
+       this.EditMaintenanceDialog.form.woodStatus = data.woodStatus;
+       this.EditMaintenanceDialog.form.injectionNum = data.injectionNum;
+
+    },
+
       exportExcel(){
         console.log("导出");
       },
@@ -103,7 +246,35 @@
       },
       handleSubmit() {
         console.log(this.selected);
-        this.loadDevice()
+        console.log(this.searchText);
+        console.log(sessionStorage["username"]);
+        console.log(this.DryWatchData.startDate);
+        console.log(this.DryWatchData.endDate);
+        http.requestWithToken(
+          "/dryWatch/searchDetail",
+          "post",
+          {
+            optionIndex: this.selected,
+            searchText: this.searchText,
+            startDate: this.DryWatchData.startDate,
+            endDate: this.DryWatchData.endDate
+          },
+          res => {
+            console.log(res.data.Data);
+            console.log(res.data.current);
+            console.log(res.data.total);
+            
+            this.DryWatchData.list = res.data.Data;
+            this.DryWatchData.total = res.data.current;
+            this.DryWatchData.page = res.data.total;
+            // this.DryWatchData.optionIndex = -1;
+          },
+          () => {
+          }
+        )
+
+
+        // this.loadDevice()
       },
       loadDevice() {
         http.requestWithToken(
@@ -130,6 +301,22 @@
     },
     data() {
       return {
+              EditMaintenanceDialog: {
+        visible: false,
+        form: {
+          id: 0,
+          batch:0,
+          num: 0,
+          otherNum: 0,
+          otherType: "",
+          longitude: "",
+          latitude: "",
+          altitude:"",
+          workingContent: 0,
+          deviceId:"",
+          drug: ""
+        }
+      },
         searchText: '',
       PhotoDialog: {
         visible: false,

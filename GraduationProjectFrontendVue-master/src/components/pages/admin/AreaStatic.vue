@@ -104,17 +104,17 @@ export default {
                     type: 'value',
                     name: '松墨天牛',
                     min: 0,
-                    max: 250,
-                    interval: 50,
+                    max: 1000,
+                    interval: 200,
                     axisLabel: {
                         formatter: '{value}只'
                     }
                 },
                 {
                     type: 'value',
-                    name: '其他天牛',
+                    name: '平均诱虫量',
                     min: 0,
-                    max: 250,
+                    max: 200,
                     interval: 50,
                     axisLabel: {
                         formatter: '{value}只'
@@ -133,7 +133,7 @@ export default {
                     data:[]
                 },
                 {
-                    name:'平均数量',
+                    name:'平均诱虫量',
                     type:'line',
                     yAxisIndex: 1,
                     data:[]

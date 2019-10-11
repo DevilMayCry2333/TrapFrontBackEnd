@@ -83,6 +83,8 @@
         <el-table-column type="selection" width="55" fixed="left"></el-table-column>
         <el-table-column prop="deviceId" label="设备ID"></el-table-column>
         <el-table-column prop="batch" label="批次"></el-table-column>
+         <el-table-column prop="customTown" label="区域"></el-table-column>
+          <el-table-column prop="customSerial" label="编号"></el-table-column>
         <el-table-column prop="num" label="松墨天牛数量"></el-table-column>
         <el-table-column label="其他天牛类型">
           <template slot-scope="scope">{{otherBeetleDict["t" + scope.row.otherType]}}</template>
@@ -225,7 +227,7 @@ export default {
       searchText: "",
       searchBatch: "",
       options: [{
-          value: 'device_Id',
+          value: 'CustomSerial',
           label: '编号'
         }, {
           value: 'region',
@@ -391,6 +393,12 @@ export default {
     },
     buttonLoadMaintenanceData() {
       this.maintenanceData.selection = [];
+      console.log(this.input);
+      console.log(this.value);
+      console.log(this.maintenanceData.startDate);
+      console.log(this.maintenanceData.endDate);
+
+
       this.clearMultipleSelection();
       this.loadMaintenanceData();
     },
