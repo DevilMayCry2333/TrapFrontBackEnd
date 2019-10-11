@@ -10,7 +10,7 @@
     id="login-form"
   >
     <h3 class="title">系统登录</h3>
-    <h2 class="title1">松墨天牛高效诱捕器管理和数据分析系统</h2>
+    <h2 class="title1">林业项目工程管理系统</h2>
     <el-form-item prop="account">
       <el-input type="text" v-model="ruleForm2.account" auto-complete="off" placeholder="账号"></el-input>
     </el-form-item>

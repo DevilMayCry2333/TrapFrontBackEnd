@@ -58,9 +58,9 @@
               </el-table>
 
             </el-card>
-            <el-card header="各管理员诱捕情况表" style="padding:5px" v-if="this.$store.state.user.role ==3">
+            <el-card header="各项目工程诱捕情况表" style="padding:5px" v-if="this.$store.state.user.role ==3">
                           <el-table :data="summaryManagerData.list" :row-style="tableRowStyle">
-                            <el-table-column label="管理员" prop="name"></el-table-column>
+                            <el-table-column label="项目工程" prop="name"></el-table-column>
                             <el-table-column label="诱捕器总数" prop="deviceCount"></el-table-column>
                             <el-table-column label="总诱虫量" prop="releaseNum"></el-table-column>
                             <el-table-column label="操作">

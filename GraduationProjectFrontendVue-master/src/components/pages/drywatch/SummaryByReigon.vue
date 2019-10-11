@@ -9,7 +9,7 @@
       <el-select v-if="this.$store.state.user.role==3" placeholder="编号/区域/批次/施工人员" v-model="selected">
         <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
       </el-select>
-      <!-- <span style="font-size: 14px; margin-left: 14px">搜索内容:</span>
+      <!--<span style="font-size: 14px; margin-left: 14px">搜索内容:</span>
       <el-input style="width: 200px" placeholder="搜索内容" v-model="searchText"></el-input> -->
       <el-button type="primary" @click="handleSubmit">搜索</el-button>
     </div>
