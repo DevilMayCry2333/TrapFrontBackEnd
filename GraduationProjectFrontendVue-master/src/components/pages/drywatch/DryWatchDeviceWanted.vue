@@ -87,18 +87,14 @@
           >{{scope.row.province + scope.row.city + scope.row.area + scope.row.town}}</template>
         </el-table-column>
         <el-table-column prop="username" label="用户名"></el-table-column>
-        <el-table-column prop="date" label="日期"></el-table-column>
-        <el-table-column label="工作内容">
-          <template
-            slot-scope="scope"
-          >{{maintenanceData.workingContentDict[scope.row.workingContent]}}</template>
-        </el-table-column>
-        <el-table-column prop="drug" label="药剂类型"></el-table-column>
-        <el-table-column prop="remark" label="备注"></el-table-column>
+        <el-table-column prop="submitDate" label="日期"></el-table-column>
+        <el-table-column prop="injectionNum" label="注剂数量"></el-table-column>
+         <el-table-column prop="woodStatus" label="树木状态"></el-table-column>
+        <el-table-column prop="remarks" label="备注"></el-table-column>
         <el-table-column label="是否上报">
           <template slot-scope="scope">{{scope.row.reported ? '是': '否'}}</template>
         </el-table-column>
-        <el-table-column label="现场照片" width="100px" align="center">
+        <!-- <el-table-column label="现场照片" width="100px" align="center">
           <template slot-scope="scope">
             <el-button
               @click="showPhotoDialog(scope.row.imageId)"
@@ -106,7 +102,7 @@
               size="mini"
             >显示</el-button>
           </template>
-        </el-table-column>
+        </el-table-column> -->
         <el-table-column
           label="操作"
           align="center"
@@ -377,7 +373,7 @@ export default {
     showPhotoDialog(id) {
       this.PhotoDialog.visible = true;
      // let BASE_URL = "http://47.103.66.70:8081";
-    let BASE_URL = "http://39.108.184.47:8081";
+    let BASE_URL = "http://106.15.90.78:8081";
       this.PhotoDialog.pic = BASE_URL + "/device_img?imgName=" + id;
     },
     handleMaintenanceDataSelectionChange(val) {

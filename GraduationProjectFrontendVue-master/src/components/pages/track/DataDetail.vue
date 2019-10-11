@@ -49,7 +49,7 @@
             <el-table-column prop="workingContent" label="工作内容" align="center"></el-table-column>
             <el-table-column prop="remarks" label="备注" align="center"></el-table-column>
             <el-table-column
-            prop="manager"
+            prop="username"
             label="管理员"
             align="center"
             v-if="this.$store.state.user.role == 3"

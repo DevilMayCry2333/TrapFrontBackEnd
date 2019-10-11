@@ -48,7 +48,7 @@
         <el-table-column prop="worker" label="施工人员" align="center"></el-table-column>
         <el-table-column prop="remarks" label="备注" align="center"></el-table-column>
         <el-table-column
-          prop="manager"
+          prop="username"
           label="管理员"
           align="center"
           v-if="this.$store.state.user.role == 3"

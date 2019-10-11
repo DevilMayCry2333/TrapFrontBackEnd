@@ -83,7 +83,7 @@
         <el-table-column type="selection" width="55" fixed="left"></el-table-column>
         <el-table-column prop="deviceId" label="设备ID"></el-table-column>
         <el-table-column prop="batch" label="批次"></el-table-column>
-         <el-table-column prop="customTown" label="区域"></el-table-column>
+         <el-table-column prop="area" label="区域"></el-table-column>
           <el-table-column prop="customSerial" label="编号"></el-table-column>
         <el-table-column prop="num" label="松墨天牛数量"></el-table-column>
         <el-table-column label="其他天牛类型">
