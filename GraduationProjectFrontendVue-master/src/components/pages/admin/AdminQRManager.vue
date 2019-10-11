@@ -375,17 +375,21 @@ export default {
     query(){
       console.log(this.input);
       console.log(this.value);
-            http.requestWithToken(
-        "/newQrCode/search",
-        "get",
-        { colName: this.value, searchText: this.input },
-        res => {
-          this.QRData.list = res.data.data;
-          this.QRData.total = res.data.totalNum;
+      if(!this.input || !this.value){
+        alert("请输入查询条件!!!")
+      }else{
+              http.requestWithToken(
+          "/newQrCode/search",
+          "get",
+          { colName: this.value, searchText: this.input },
+          res => {
+            this.QRData.list = res.data.data;
+            this.QRData.total = res.data.totalNum;
 
-        },
-        () => {}
-      );
+          },
+          () => {}
+        );
+      }
 
     },
     managerApplicationChange(){

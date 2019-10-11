@@ -30,7 +30,8 @@
       <el-tab-pane label="描述性统计分析" name="first">
         <el-card header="描述性统计分析表" style="padding:5px">
           <el-table :data="summaryList" :row-style="tableRowStyle">
-            <el-table-column :label="contentLabelDict[contentLabelIndex]" prop="name"></el-table-column>
+                        <el-table-column label="区域" prop="customtown"></el-table-column>
+            <!-- <el-table-column :label="contentLabelDict[contentLabelIndex]" prop="name"></el-table-column> -->
             <el-table-column label="诱捕器数量" prop="count"></el-table-column>
             <el-table-column label="总诱虫量" prop="sum"></el-table-column>
             <el-table-column label="平均" prop="mean"></el-table-column>
@@ -361,7 +362,7 @@ export default {
             if (res.data.data.multipleComparisonsList.length > 2) {
               this.mcList = res.data.data.multipleComparisonsList;
             } else {
-              this.$message.error("数据量不足");
+              // this.$message.error("数据量不足");
             }
 
             this.makeAnalysisData(res.data.data.analysisEntity);

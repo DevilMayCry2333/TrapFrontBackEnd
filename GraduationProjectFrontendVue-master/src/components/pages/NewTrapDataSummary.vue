@@ -111,6 +111,9 @@ export default {
         this.loadDevice();
       },
       query(){
+        if(!this.input){
+          alert("请输入查询内容啊!!!!!!!!!!!!!!!");
+        }else{
         console.log("query");
         console.log(this.startDate);
         console.log(this.endDate);
@@ -141,6 +144,7 @@ export default {
                 },
                 () => {}
             );
+        }
       },
       handleQRDataCurrentPageChanged() {
         console.log("hello");
