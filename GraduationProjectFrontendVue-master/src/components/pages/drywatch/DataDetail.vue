@@ -228,6 +228,77 @@
 
       exportExcel(){
         console.log("导出");
+      let role2 = this.$store.state.user.role;
+      this.role2 = role2;
+              // this.loadDevice();
+      console.log(role2);
+      if (role2 == 1) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+      } else if (role2 == 2) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+      } else if (role2 == 3) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+            }
+            else if (role2 == 4) {
+                          this.province = this.$store.state.user.adcode.substr(0, 2);
+                          this.city = this.$store.state.user.adcode.substr(0, 4);
+                          this.area = this.$store.state.user.adcode;
+                          this.manager=this.$store.state.user.username;
+                        }
+
+                // let role = this.$store.state.user.role;
+          console.log(role2);
+            console.log(this.area);
+            console.log(this.city);
+              console.log(this.province);
+
+
+        /**
+         *        colName: this.value,
+                  searchText: this.input,
+                  adcode: this.area
+         */
+        console.log(http.getBaseUrl());
+        console.log(this.value);
+        if(!this.value){
+          this.value = "";
+        }
+        if(!this.input){
+          this.input = "";
+        }
+        if(!this.startDate){
+          this.startDate = "";
+        }
+        if(!this.endDate){
+          this.endDate = "";
+        }
+        if(!this.area){
+          this.area = "";
+        }
+         console.log(this.value);
+        setTimeout(()=>{
+                  window.location =
+        http.getBaseUrl() +
+        "/dryWatch/exportExcel?startDate=" +
+        this.startDate +
+        "&endDate=" +
+        this.endDate +
+        "&searchText=" +
+        this.input +
+        "&colName=" +
+        this.value +
+        "&adcode=" +
+        this.area +
+        "&username="+
+        sessionStorage['username'] +
+        "&token=" +
+        sessionStorage["token"];
+        },1000)
+
+
       },
       loadMaintenanceData(){
         alert("请手动刷新");
@@ -301,6 +372,7 @@
     },
     data() {
       return {
+        area:"",
               EditMaintenanceDialog: {
         visible: false,
         form: {
@@ -335,6 +407,9 @@
           value: 4,
           label: '施工人员'
         }],
+                value: '',
+        input:'',
+
         selected: '',
         DryWatchData: {
           // optionIndex: -1,
