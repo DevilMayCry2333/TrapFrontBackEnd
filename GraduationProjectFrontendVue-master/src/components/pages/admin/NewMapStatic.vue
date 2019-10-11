@@ -116,7 +116,7 @@ export default {
       manager: "",
       startDate: "",
       endDate: "",
-      contentLabelDict: ["市", "县", "乡镇", "工人"],
+      contentLabelDict: ["市", "县", "乡镇", "区域"],
       contentLabelIndex: 0,
       summaryList: [],
       analysisList: [],
@@ -341,6 +341,7 @@ export default {
         this.manager = this.$store.state.user.username;
       }
       console.log(this.manager);
+      
       http.requestWithToken(
         "/statics/Desc",
         "get",
@@ -513,7 +514,7 @@ export default {
         myChart.clear();
       } else {
         for (let i = 0; i < this.summaryList.length; ++i) {
-          xLabel.push(this.summaryList[i].name);
+          xLabel.push(this.summaryList[i].customtown);
           yData.push(this.summaryList[i].mean);
           errorData.push([
             i,
