@@ -41,10 +41,10 @@
           </template>
 
             </el-table-column>
-            <el-table-column prop="pic2" label="照片2" align="center"></el-table-column>
+            <!-- <el-table-column prop="pic2" label="照片2" align="center"></el-table-column>
             <el-table-column prop="pic3" label="照片3" align="center"></el-table-column>
             <el-table-column prop="pic4" label="照片4" align="center"></el-table-column>
-            <el-table-column prop="pic5" label="照片5" align="center"></el-table-column>
+            <el-table-column prop="pic5" label="照片5" align="center"></el-table-column> -->
             <el-table-column prop="worker" label="施工人员" align="center"></el-table-column>
             <el-table-column prop="workingContent" label="工作内容" align="center"></el-table-column>
             <el-table-column prop="remarks" label="备注" align="center"></el-table-column>
@@ -100,6 +100,37 @@
       </div>
     </el-dialog>
 
+                <el-dialog title="编辑维护信息" :visible.sync="EditMaintenanceDialog.visible" width="30%">
+      <el-form label-width="120px">
+        <el-form-item label="线路名称">
+          <el-input v-model="EditMaintenanceDialog.form.linename"></el-input>
+        </el-form-item>
+
+        <el-form-item label="开始点">
+          <el-input v-model="EditMaintenanceDialog.form.startpoint"></el-input>
+        </el-form-item>
+        <el-form-item label="结束点">
+          <el-input v-model="EditMaintenanceDialog.form.endpoint"></el-input>
+        </el-form-item>
+        <el-form-item label="工人">
+          <el-input v-model="EditMaintenanceDialog.form.worker"></el-input>
+        </el-form-item>
+        <el-form-item label="工作内容">
+          <el-input v-model="EditMaintenanceDialog.form.workingContent"></el-input>
+        </el-form-item>
+        <el-form-item label="备注">
+          <el-input v-model="EditMaintenanceDialog.form.remarks"></el-input>
+        </el-form-item>
+
+
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="EditMaintenanceDialog.visible = false">取 消</el-button>
+        <el-button type="primary" @click.native.prevent="handleEditMaintenanceDataSubmit">确 定</el-button>
+      </div>
+    </el-dialog>
+
+
 </div>
 
 </template>
@@ -140,6 +171,73 @@ export default {
 
     },
     methods:{
+                  handleDelete(row) {
+      this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+
+          http.requestWithToken(
+            "/app/deleteTrackById",
+            "post",
+            {
+              id: row.id,
+              deviceID: row.deviceId
+            },
+            res => {
+              if (!res.data.error) {
+                this.loadDevice();
+                this.$message({
+                  type: "success",
+                  message: "删除成功!"
+                });
+                this.clearMultipleSelection();
+              } else {
+                this.$message({
+                  type: "error",
+                  message: "删除失败!"
+                });
+              }
+            },
+            () => {}
+          );
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
+      this.loadDevice();
+    },
+          showEditMaintenanceDataDialog(data) {
+            console.log("编辑");
+            console.log(data);
+      this.EditMaintenanceDialog.visible = true;
+      this.EditMaintenanceDialog.form = {
+
+        linename:"",
+        startpoint:"",
+        endpoint:"",
+        worker:"",
+        workingContent:"",
+        remarks:"",
+      };
+      
+      this.EditMaintenanceDialog.form.linename = data.linename;
+      this.EditMaintenanceDialog.form.startpoint = data.startpoint;
+      this.EditMaintenanceDialog.form.endpoint = data.endpoint;
+      this.EditMaintenanceDialog.form.worker = data.worker;
+      this.EditMaintenanceDialog.form.workingContent = data.workingContent;
+      this.EditMaintenanceDialog.form.remarks = data.remarks;
+
+      
+
+
+    },
+
       loadMaintenanceData(){
         alert("请手动刷新");
       },
@@ -270,6 +368,23 @@ export default {
     },
     data(){
         return{
+                          EditMaintenanceDialog: {
+        visible: false,
+        form: {
+          id: 0,
+          batch:0,
+          num: 0,
+          otherNum: 0,
+          otherType: "",
+          longitude: "",
+          latitude: "",
+          altitude:"",
+          workingContent: 0,
+          deviceId:"",
+          drug: ""
+        }
+      },
+
         role:'',
       PhotoDialog: {
         visible: false,

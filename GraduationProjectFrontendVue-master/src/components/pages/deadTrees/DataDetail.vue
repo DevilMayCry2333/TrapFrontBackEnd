@@ -99,6 +99,61 @@
       </div>
     </el-dialog>
 
+            <el-dialog title="编辑维护信息" :visible.sync="EditMaintenanceDialog.visible" width="30%">
+      <el-form label-width="120px">
+        <el-form-item label="经度">
+          <el-input  v-model="EditMaintenanceDialog.form.longitude"></el-input>
+        </el-form-item>
+        <el-form-item label="纬度">
+          <el-input v-model="EditMaintenanceDialog.form.latitude"></el-input>
+        </el-form-item>
+        <el-form-item label="设备ID">
+          <el-input v-model="EditMaintenanceDialog.form.deviceId"></el-input>
+        </el-form-item>
+
+        <el-form-item label="编号">
+          <el-input v-model="EditMaintenanceDialog.form.serial"></el-input>
+        </el-form-item>
+        <el-form-item label="区域">
+          <el-input v-model="EditMaintenanceDialog.form.region"></el-input>
+        </el-form-item>
+        <el-form-item label="日期">
+          <el-input v-model="EditMaintenanceDialog.form.submitDate"></el-input>
+        </el-form-item>
+        <el-form-item label="批次">
+          <el-input v-model="EditMaintenanceDialog.form.batch"></el-input>
+        </el-form-item>
+        <el-form-item label="桩径">
+          <el-input v-model="EditMaintenanceDialog.form.wooddiameter"></el-input>
+        </el-form-item>
+        <el-form-item label="树高">
+          <el-input v-model="EditMaintenanceDialog.form.woodheight"></el-input>
+        </el-form-item>
+        <el-form-item label="材积">
+          <el-input v-model="EditMaintenanceDialog.form.woodvolume"></el-input>
+        </el-form-item>
+        <el-form-item label="除害方式">
+          <el-input v-model="EditMaintenanceDialog.form.killmethod"></el-input>
+        </el-form-item>
+        <el-form-item label="施工人员">
+          <el-input v-model="EditMaintenanceDialog.form.worker"></el-input>
+        </el-form-item>
+        <el-form-item label="备注">
+          <el-input v-model="EditMaintenanceDialog.form.remarks"></el-input>
+        </el-form-item>
+
+
+
+
+
+      </el-form>
+      <div slot="footer" class="dialog-footer">
+        <el-button @click="EditMaintenanceDialog.visible = false">取 消</el-button>
+        <el-button type="primary" @click.native.prevent="handleEditMaintenanceDataSubmit">确 定</el-button>
+      </div>
+    </el-dialog>
+
+
 </div>
 
 
@@ -139,6 +194,84 @@ export default {
                              console.log(this.area);
     },
     methods:{
+            handleDelete(row) {
+      this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+
+          http.requestWithToken(
+            "/app/DeleteById",
+            "post",
+            {
+              id: row.id,
+              deviceID: row.deviceId
+            },
+            res => {
+              if (!res.data.error) {
+                this.loadDevice();
+                this.$message({
+                  type: "success",
+                  message: "删除成功!"
+                });
+                this.clearMultipleSelection();
+              } else {
+                this.$message({
+                  type: "error",
+                  message: "删除失败!"
+                });
+              }
+            },
+            () => {}
+          );
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
+      this.loadDevice();
+    },
+          showEditMaintenanceDataDialog(data) {
+            console.log("编辑");
+            console.log(data);
+      this.EditMaintenanceDialog.visible = true;
+      this.EditMaintenanceDialog.form = {
+        otherType: "",
+        longitude: "",
+        latitude: "",
+        batch:0,
+        deviceId:"",
+        
+        serial:"",
+        region:"",
+        submitDate:"",
+        wooddiameter:"",
+        woodheight:"",
+        woodvolume:"",
+        killmethod:"",
+        remarks:"",
+        worker:""
+      };
+      this.EditMaintenanceDialog.form.longitude = data.longitude;
+      this.EditMaintenanceDialog.form.deviceId = data.deviceId;
+      this.EditMaintenanceDialog.form.batch = data.batch;
+      this.EditMaintenanceDialog.form.latitude = data.latitude;
+
+      this.EditMaintenanceDialog.form.serial = data.serial;
+      this.EditMaintenanceDialog.form.region = data.region;
+      this.EditMaintenanceDialog.form.submitDate = data.submitDate;
+      this.EditMaintenanceDialog.form.wooddiameter = data.wooddiameter;
+      this.EditMaintenanceDialog.form.woodheight = data.woodheight;
+      this.EditMaintenanceDialog.form.woodvolume = data.woodvolume;
+      this.EditMaintenanceDialog.form.killmethod = data.killmethod;
+      this.EditMaintenanceDialog.form.remarks = data.remarks;
+      this.EditMaintenanceDialog.form.worker = data.worker;
+
+    },
       loadMaintenanceData(){
         alert("请手动刷新~");
       },
@@ -268,6 +401,22 @@ export default {
     },
     data(){
         return{
+                EditMaintenanceDialog: {
+        visible: false,
+        form: {
+          id: 0,
+          batch:0,
+          num: 0,
+          otherNum: 0,
+          otherType: "",
+          longitude: "",
+          latitude: "",
+          altitude:"",
+          workingContent: 0,
+          deviceId:"",
+          drug: ""
+        }
+      },
         role: '',
               PhotoDialog: {
         visible: false,
