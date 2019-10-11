@@ -153,6 +153,11 @@
 
   export default {
     mounted() {
+                this.uploadUrl =
+              http.getBaseUrl() +
+              "/dryWatch/importExcel?token=" +
+              sessionStorage["token"];
+              
       this.loadDevice();
     },
     methods: {
@@ -372,6 +377,7 @@
     },
     data() {
       return {
+        uploadUrl:"",
         area:"",
               EditMaintenanceDialog: {
         visible: false,
