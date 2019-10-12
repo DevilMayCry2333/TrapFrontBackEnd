@@ -73,7 +73,8 @@
         <el-table-column type="selection" width="55" fixed="left"></el-table-column>
         <el-table-column prop="deviceId" label="设备ID"></el-table-column>
         <el-table-column prop="batch" label="批次"></el-table-column>
-        <el-table-column prop="injectionNum" label="注剂数量"></el-table-column>
+        <el-table-column prop="predatorstype" label="天敌类型"></el-table-column>
+         <el-table-column prop="releaseNum" label="释放数量"></el-table-column>
         <!-- <el-table-column label="其他天牛类型">
           <template slot-scope="scope">{{otherBeetleDict["t" + scope.row.otherType]}}</template>
         </el-table-column>
@@ -86,19 +87,18 @@
             slot-scope="scope"
           >{{scope.row.province + scope.row.city + scope.row.area + scope.row.town}}</template>
         </el-table-column>
-        <el-table-column prop="username" label="用户名"></el-table-column>
-        <el-table-column prop="date" label="日期"></el-table-column>
-        <el-table-column label="工作内容">
-          <template
+        <el-table-column prop="username" label="管理员"></el-table-column>
+        <el-table-column prop="submitDate" label="日期"></el-table-column>
+        <el-table-column prop="worker" label="施工人员">
+          <!-- <template
             slot-scope="scope"
-          >{{maintenanceData.workingContentDict[scope.row.workingContent]}}</template>
+          >{{maintenanceData.workingContentDict[scope.row.workingContent]}}</template> -->
         </el-table-column>
-        <el-table-column prop="drug" label="药剂类型"></el-table-column>
-        <el-table-column prop="remark" label="备注"></el-table-column>
+        <el-table-column prop="remarks" label="备注"></el-table-column>
         <el-table-column label="是否上报">
           <template slot-scope="scope">{{scope.row.reported ? '是': '否'}}</template>
         </el-table-column>
-        <el-table-column label="现场照片" width="100px" align="center">
+        <!-- <el-table-column label="现场照片" width="100px" align="center">
           <template slot-scope="scope">
             <el-button
               @click="showPhotoDialog(scope.row.imageId)"
@@ -106,7 +106,7 @@
               size="mini"
             >显示</el-button>
           </template>
-        </el-table-column>
+        </el-table-column> -->
         <el-table-column
           label="操作"
           align="center"

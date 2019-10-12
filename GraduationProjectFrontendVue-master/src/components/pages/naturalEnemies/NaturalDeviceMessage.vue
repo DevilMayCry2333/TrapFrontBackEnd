@@ -21,7 +21,7 @@
         <el-table-column prop="batch" label="维护批次"></el-table-column>
         <el-table-column prop="releaseNum" label="释放数量"></el-table-column>
          <el-table-column prop="predatorstype" label="天敌类型"></el-table-column>
-         <el-table-column prop="pic" label="区域"></el-table-column>
+         <el-table-column prop="region" label="区域"></el-table-column>
         <!-- <el-table-column prop="drug" label="注药株数"></el-table-column> -->
 
       </el-table>

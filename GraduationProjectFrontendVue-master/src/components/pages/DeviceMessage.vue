@@ -19,9 +19,9 @@
                 </el-table-column>-->
         <el-table-column type="selection" width="55" fixed="left"></el-table-column>
         <el-table-column prop="batch" label="维护批次"></el-table-column>
-        <el-table-column prop="injectionNum" label="注剂数量"></el-table-column>
-         <el-table-column prop="woodstatus" label="树木状态"></el-table-column>
-         <el-table-column prop="workContent" label="工作内容"></el-table-column>
+        <el-table-column prop="num" label="诱虫数量"></el-table-column>
+         <el-table-column prop="otherNum" label="其他数量"></el-table-column>
+         <el-table-column prop="otherType" label="其他类型"></el-table-column>
         <!-- <el-table-column prop="drug" label="注药株数"></el-table-column> -->
 
       </el-table>
@@ -70,7 +70,7 @@ returnlast(){
     loadMaintenanceData() {
 
       http.requestWithToken(
-        "/dryWatch/maintenance/byDeviceId",
+        "/auth_api/maintenance/byDeviceId",
         "get",
         {
           deviceId: this.deviceID,

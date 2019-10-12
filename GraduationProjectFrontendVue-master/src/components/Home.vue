@@ -7,7 +7,7 @@
             <i class="fa fa-align-justify"></i>
           </div>
         </el-col>
-        <el-col :span="5" class="logo">松墨天牛高效诱捕器管理和数据分析系统</el-col>
+        <el-col :span="5" class="logo">林业项目工程管理系统</el-col>
       </el-row>
     </div>
     <div class="main">

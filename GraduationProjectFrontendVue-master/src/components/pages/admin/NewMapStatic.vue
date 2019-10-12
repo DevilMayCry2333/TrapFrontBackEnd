@@ -30,7 +30,8 @@
       <el-tab-pane label="描述性统计分析" name="first">
         <el-card header="描述性统计分析表" style="padding:5px">
           <el-table :data="summaryList" :row-style="tableRowStyle">
-            <el-table-column :label="contentLabelDict[contentLabelIndex]" prop="name"></el-table-column>
+                        <el-table-column label="区域" prop="customtown"></el-table-column>
+            <!-- <el-table-column :label="contentLabelDict[contentLabelIndex]" prop="name"></el-table-column> -->
             <el-table-column label="诱捕器数量" prop="count"></el-table-column>
             <el-table-column label="总诱虫量" prop="sum"></el-table-column>
             <el-table-column label="平均" prop="mean"></el-table-column>
@@ -115,7 +116,7 @@ export default {
       manager: "",
       startDate: "",
       endDate: "",
-      contentLabelDict: ["市", "县", "乡镇", "工人"],
+      contentLabelDict: ["市", "县", "乡镇", "区域"],
       contentLabelIndex: 0,
       summaryList: [],
       analysisList: [],
@@ -340,6 +341,7 @@ export default {
         this.manager = this.$store.state.user.username;
       }
       console.log(this.manager);
+      
       http.requestWithToken(
         "/statics/Desc",
         "get",
@@ -361,7 +363,7 @@ export default {
             if (res.data.data.multipleComparisonsList.length > 2) {
               this.mcList = res.data.data.multipleComparisonsList;
             } else {
-              this.$message.error("数据量不足");
+              // this.$message.error("数据量不足");
             }
 
             this.makeAnalysisData(res.data.data.analysisEntity);
@@ -512,7 +514,7 @@ export default {
         myChart.clear();
       } else {
         for (let i = 0; i < this.summaryList.length; ++i) {
-          xLabel.push(this.summaryList[i].name);
+          xLabel.push(this.summaryList[i].customtown);
           yData.push(this.summaryList[i].mean);
           errorData.push([
             i,
