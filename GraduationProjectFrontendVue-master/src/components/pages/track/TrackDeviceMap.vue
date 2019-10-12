@@ -62,6 +62,9 @@ export default {
                that.map.addOverlay(markerClusterer);
             }
             function addText(text, point) {
+              console.log(text);
+              console.log(point);
+
               var opts = {
                 position: point, // 指定文本标注所在的地理位置
                 offset: new BMap.Size(5, -5) //设置文本偏移量
@@ -77,13 +80,26 @@ export default {
               that.map.addOverlay(label);
             }
             let data = res.data.data;
+            console.log("实际data");
+            console.log(data);
+            
             var flag = 1;
             for (let i = 0; i < data.length; ++i) {
               if (data[i].longitude && data[i].latitude) {
                 var point = gps.convert(data[i].latitude, data[i].longitude);
+                console.log("遍历data");
+
+                console.log(data[i].latitude);
+                console.log(data[i].longitude);
+
+                console.log(point);
+
                 point = new BMap.Point(point[1], point[0]);
                 markers.push(point);
-                addText(data[i]["id"], point);
+                addText(data[i]["linename"], point);
+
+                console.log(data[i]["linename"]);
+                console.log(point);
 
                 let center = "";
                 if (data[i].town != null) center = data[i].town + center;
