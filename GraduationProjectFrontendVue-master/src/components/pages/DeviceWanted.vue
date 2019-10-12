@@ -236,7 +236,7 @@ export default {
           value: 'batch',
           label: '批次'
         }, {
-          value: 'Worker',
+          value: 'username',
           label: '施工人员'
         }],
         value: '',
@@ -616,12 +616,39 @@ export default {
 
     },
     exportExcel() {
+            let role2 = this.$store.state.user.role;
+      this.role2 = role2;
+              // this.loadDevice();
+      console.log(role2);
+      if (role2 == 1) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+      } else if (role2 == 2) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+      } else if (role2 == 3) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+            }
+            else if (role2 == 4) {
+                          this.province = this.$store.state.user.adcode.substr(0, 2);
+                          this.city = this.$store.state.user.adcode.substr(0, 4);
+                          this.area = this.$store.state.user.adcode;
+                          this.manager=this.$store.state.user.username;
+                        }
+
+                // let role = this.$store.state.user.role;
+          console.log(role2);
+            console.log(this.area);
+            console.log(this.city);
+              console.log(this.province);
+              
               this.buttonLoadMaintenanceData();
 //alert(this.maintenanceData.startDate);
 
       window.location =
         http.getBaseUrl() +
-        "/maintenance/export?startDate=" +
+        "/app/exportExcelTrap?startDate=" +
         this.maintenanceData.startDate +
         "&endDate=" +
         this.maintenanceData.endDate +
@@ -632,7 +659,16 @@ export default {
         "&town=" +
         this.searchTown +
         "&token=" +
-        sessionStorage["token"];
+        sessionStorage["token"]+
+
+        "&searchText=" +
+        this.input +
+        "&colName=" +
+        this.value +
+        "&adcode=" +
+        this.area +
+        "&username="+
+        sessionStorage['username'];
 
     },
     importExcel1(){
