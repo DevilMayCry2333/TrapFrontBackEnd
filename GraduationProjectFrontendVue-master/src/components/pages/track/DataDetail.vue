@@ -335,7 +335,13 @@ export default {
             http.requestWithToken(
                 "/track/areaDetail",
                 "post",
-                { page: this.QRData.page, limit: 10, username: sessionStorage['username']},
+                { page: this.QRData.page, limit: 10, username: sessionStorage['username'],
+                                  startDate: this.startDate,
+                  endDate: this.endDate,
+                  colName: this.value,
+                  searchText: this.input,
+                  adcode: this.area
+                  },
                 res => {
                 this.QRData.list = res.data.Data;
                 this.QRData.total = res.data.total;
@@ -345,9 +351,15 @@ export default {
             );
           }else if(this.role == 4){
               http.requestWithToken(
-                "/track/detail",
+                "/track/searchDetail",
                 "post",
-                { page: this.QRData.page, limit: 10, username: sessionStorage['username']},
+                { page: this.QRData.page, limit: 10, username: sessionStorage['username'],
+                                  startDate: this.startDate,
+                  endDate: this.endDate,
+                  colName: this.value,
+                  searchText: this.input,
+                  adcode: this.area
+                  },
                 res => {
                 this.QRData.list = res.data.Data;
                 this.QRData.total = res.data.total;
