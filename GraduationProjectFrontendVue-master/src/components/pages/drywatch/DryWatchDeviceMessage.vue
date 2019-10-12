@@ -1,8 +1,8 @@
 <template>
   <div>
-  <router-link to='/pages/device_summary'>诱捕器情况</router-link>
+  <router-link to='/pages/drywatch/Maintance'>诱捕器情况</router-link>
 >
-  <router-link to='/pages/device_maintenance.html'>设备维护信息</router-link>
+  <router-link to='/pages/drywatch/Maintance'>设备维护信息</router-link>
       >诱捕器信息
 
 
@@ -20,7 +20,7 @@
         <el-table-column type="selection" width="55" fixed="left"></el-table-column>
         <el-table-column prop="batch" label="维护批次"></el-table-column>
         <el-table-column prop="injectionNum" label="注剂数量"></el-table-column>
-        <el-table-column prop="woodStatus" label="树木状态"></el-table-column>
+        <el-table-column prop="woodstatus" label="树木状态"></el-table-column>
          <el-table-column prop="submitDate" label="日期"></el-table-column>
          <el-table-column prop="workContent" label="工作内容"></el-table-column>
 
