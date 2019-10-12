@@ -34,7 +34,7 @@
       <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
       <el-table-column prop="workContent" label="工作内容" align="center"></el-table-column>
       <el-table-column prop="injectionNum" label="注剂数量" align="center"></el-table-column>
-      <el-table-column prop="woodStatus" label="树木状态" align="center"></el-table-column>
+      <el-table-column prop="woodstatus" label="树木状态" align="center"></el-table-column>
       <el-table-column prop="pic" label="照片" align="center">
         <template slot-scope="scope">
             <el-button
@@ -105,7 +105,7 @@
               <el-input v-model="EditMaintenanceDialog.form.serial"></el-input>
             </el-form-item>
             <el-form-item label="所属区域">
-              <el-input v-model="EditMaintenanceDialog.form.region"></el-input>
+              <el-input v-model="EditMaintenanceDialog.form.customTown"></el-input>
             </el-form-item>
             <el-form-item label="日期">
               <el-input v-model="EditMaintenanceDialog.form.submitDate"></el-input>
@@ -161,6 +161,22 @@
       this.loadDevice();
     },
     methods: {
+      handleEditMaintenanceDataSubmit(){
+        console.log(this.EditMaintenanceDialog.form);
+              http.requestWithTokenJson(
+        "/dryWatch/updateRec",
+        "post",
+        this.EditMaintenanceDialog.form,
+        res => {
+          this.$message.success("修改成功");
+          this.EditMaintenanceDialog.visible = false;
+          this.loadMaintenanceData();
+        },
+        () => {}
+      );
+
+        this.EditMaintenanceDialog.visible = false;
+      },
       handleDelete(row) {
       this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
         confirmButtonText: "确定",
@@ -211,18 +227,20 @@
         batch:0,
         deviceId:"",
         serial:"",
-        region:"",
+        customTown:"",
         submitDate:"",
         workContent:"",
+        id:"",
         woodStatus:"",
         injectionNum:""
       };
+      this.EditMaintenanceDialog.form.id = data.id;
       this.EditMaintenanceDialog.form.longitude = data.longitude;
       this.EditMaintenanceDialog.form.deviceId = data.deviceId;
       this.EditMaintenanceDialog.form.altitude = data.altitude;
       this.EditMaintenanceDialog.form.latitude = data.latitude;
       this.EditMaintenanceDialog.form.serial = data.serial;
-      this.EditMaintenanceDialog.form.region = data.region;
+      this.EditMaintenanceDialog.form.customTown = data.customTown;
       this.EditMaintenanceDialog.form.submitDate = data.submitDate;
       this.EditMaintenanceDialog.form.batch = data.batch;
        this.EditMaintenanceDialog.form.workContent = data.workContent;
