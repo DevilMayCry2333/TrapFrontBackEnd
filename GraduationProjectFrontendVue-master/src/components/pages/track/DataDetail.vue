@@ -25,6 +25,11 @@
 
 
             <el-table border :data="QRData.list" style="width: 100%" height="600">
+              <el-table-column prop="checked" label="选项" align="center">
+                <template>
+                <el-radio v-model="radio" label="1">备选项</el-radio>
+                </template>
+              </el-table-column>
             <el-table-column prop="linename" label="线路名称" align="center"></el-table-column>
             <el-table-column prop="timeconsume" label="耗时" align="center"></el-table-column>
             <el-table-column prop="starttime" label="开始时间" align="center"></el-table-column>
@@ -368,6 +373,7 @@ export default {
     },
     data(){
         return{
+          radio:true,
                           EditMaintenanceDialog: {
         visible: false,
         form: {
