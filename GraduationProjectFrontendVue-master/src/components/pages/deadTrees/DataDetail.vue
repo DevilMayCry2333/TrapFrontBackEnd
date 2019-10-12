@@ -26,7 +26,7 @@
           <el-table border :data="QRData.list" style="width: 100%" height="600">
         <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
         <el-table-column prop="serial" label="编号" align="center"></el-table-column>
-        <el-table-column prop="region" label="所属区域" align="center"></el-table-column>
+        <el-table-column prop="customTown" label="所属区域" align="center"></el-table-column>
         <el-table-column prop="submitDate" label="日期" align="center"></el-table-column>
         <el-table-column prop="batch" label="批次" align="center"></el-table-column>
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
@@ -373,9 +373,15 @@ export default {
             );
           }else if(this.role == 4){
               http.requestWithToken(
-                "/deadTree/detail",
+                "/deadTree/searchDetail",
                 "post",
-                { page: this.QRData.page, limit: 10, username: sessionStorage['username']},
+                { page: this.QRData.page, limit: 10, username: sessionStorage['username'],
+                                  startDate: this.startDate,
+                  endDate: this.endDate,
+                  colName: this.value,
+                  searchText: this.input,
+                  adcode: this.area
+                },
                 res => {
                 this.QRData.list = res.data.Data;
                 this.QRData.total = res.data.total;
@@ -436,7 +442,7 @@ export default {
           value: 'CustomSerial',
           label: '编号'
         }, {
-          value: 'region',
+          value: 'CustomTown',
           label: '区域'
         }, {
           value: 'batch',
