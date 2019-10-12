@@ -87,10 +87,17 @@ export default {
             for (let i = 0; i < data.length; ++i) {
               if (data[i].longitude && data[i].latitude) {
                 var point = gps.convert(data[i].latitude, data[i].longitude);
+                console.log("遍历data");
+
+                console.log(data[i].latitude);
+                console.log(data[i].longitude);
+
+                console.log(point);
+
                 point = new BMap.Point(point[1], point[0]);
                 markers.push(point);
                 addText(data[i]["linename"], point);
-                
+
                 console.log(data[i]["linename"]);
                 console.log(point);
 
