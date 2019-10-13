@@ -88,7 +88,6 @@ export default {
               if (data[i].longitude && data[i].latitude) {
                 var point = gps.convert(data[i].latitude, data[i].longitude);
                 console.log("遍历data");
-
                 console.log(data[i].latitude);
                 console.log(data[i].longitude);
 
