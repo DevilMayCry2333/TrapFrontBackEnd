@@ -28,7 +28,7 @@
           <el-table border :data="QRData.list" style="width: 100%" height="600">
         <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
         <el-table-column prop="serial" label="编号" align="center"></el-table-column>
-        <el-table-column prop="customTown" label="所属区域" align="center"></el-table-column>
+        <el-table-column prop="customtown" label="所属区域" align="center"></el-table-column>
         <el-table-column prop="submitDate" label="日期" align="center"></el-table-column>
         <el-table-column prop="batch" label="批次" align="center"></el-table-column>
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
@@ -116,7 +116,7 @@
           <el-input v-model="EditMaintenanceDialog.form.serial"></el-input>
         </el-form-item>
         <el-form-item label="区域">
-          <el-input v-model="EditMaintenanceDialog.form.customTown"></el-input>
+          <el-input v-model="EditMaintenanceDialog.form.customtown"></el-input>
         </el-form-item>
         <el-form-item label="日期">
           <el-input v-model="EditMaintenanceDialog.form.submitDate"></el-input>

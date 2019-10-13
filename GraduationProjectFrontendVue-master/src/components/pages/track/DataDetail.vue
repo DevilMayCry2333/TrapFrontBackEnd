@@ -46,10 +46,45 @@
           </template>
 
             </el-table-column>
-            <!-- <el-table-column prop="pic2" label="照片2" align="center"></el-table-column>
-            <el-table-column prop="pic3" label="照片3" align="center"></el-table-column>
-            <el-table-column prop="pic4" label="照片4" align="center"></el-table-column>
-            <el-table-column prop="pic5" label="照片5" align="center"></el-table-column> -->
+            <el-table-column prop="pic2" label="照片2" align="center">
+            <template slot-scope="scope">
+            <el-button
+              @click="showPhotoDialog(scope.row.pic2)"
+              v-if="scope.row.pic2 != null && scope.row.pic2 !=''"
+              size="mini"
+            >显示</el-button>
+          </template>
+          
+            </el-table-column>
+            <el-table-column prop="pic3" label="照片3" align="center">
+              <template slot-scope="scope">
+            <el-button
+              @click="showPhotoDialog(scope.row.pic3)"
+              v-if="scope.row.pic3 != null && scope.row.pic3 !=''"
+              size="mini"
+            >显示</el-button>
+          </template>
+            </el-table-column>
+            <el-table-column prop="pic4" label="照片4" align="center">
+                <template slot-scope="scope">
+            <el-button
+              @click="showPhotoDialog(scope.row.pic4)"
+              v-if="scope.row.pic4 != null && scope.row.pic4 !=''"
+              size="mini"
+            >显示</el-button>
+          </template>
+
+            </el-table-column>
+            <el-table-column prop="pic5" label="照片5" align="center">
+                              <template slot-scope="scope">
+            <el-button
+              @click="showPhotoDialog(scope.row.pic5)"
+              v-if="scope.row.pic5 != null && scope.row.pic5 !=''"
+              size="mini"
+            >显示</el-button>
+          </template>
+
+            </el-table-column>
             <el-table-column prop="worker" label="施工人员" align="center"></el-table-column>
             <el-table-column prop="workingContent" label="工作内容" align="center"></el-table-column>
             <el-table-column prop="remarks" label="备注" align="center"></el-table-column>

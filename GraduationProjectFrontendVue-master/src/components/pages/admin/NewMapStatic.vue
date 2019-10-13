@@ -707,6 +707,59 @@ export default {
   },
   mounted() {
     this.init();
+
+                let role = this.$store.state.user.role;
+      if (role == 1) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.loadCity();
+      } else if (role == 2) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.loadArea();
+      } else if (role == 3) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+        this.loadManagers();
+      } else if (role == 4) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+        this.manager = this.$store.state.user.username;
+      }
+      console.log(this.manager);
+      
+      http.requestWithToken(
+        "/statics/Desc",
+        "get",
+        {
+          manager: this.manager
+        },
+        res => {
+            console.log(res);
+          if (res.data.error) {
+            this.$message.error("无数据");
+            this.summaryList = [];
+            this.mcList = [];
+            this.makeAnalysisData([]);
+          } else {
+            this.summaryList = res.data.data.summaryList;
+            this.mcList = [];
+            if (res.data.data.multipleComparisonsList.length > 2) {
+              this.mcList = res.data.data.multipleComparisonsList;
+            } else {
+              // this.$message.error("数据量不足");
+            }
+
+            this.makeAnalysisData(res.data.data.analysisEntity);
+          }
+          this.drawChart();
+        },
+        () => {}
+      );
+
+
+
   }
 };
 </script>

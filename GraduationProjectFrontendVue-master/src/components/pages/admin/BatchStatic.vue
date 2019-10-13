@@ -204,6 +204,30 @@ export default {
   },
   mounted() {
     this.init();
+
+                http.requestWithToken(
+        "/statics/batch",
+        "get",
+        {
+            ProjectAdminName:this.manager
+        },
+        res => {
+            console.log(res);
+            for(var i = 0 ; i < res.data.length; i++){
+                console.log(res.data[i]);
+                this.option.xAxis[0].data.push(res.data[i].customTown);
+                this.option.series[0].data.push(res.data[i].beetlesNum);
+                this.option.series[1].data.push(res.data[i].otherNum);
+                 this.option.series[2].data.push(res.data[i].avager);
+                //Mgh9nigujiOwZO5HFNkCoQ==
+            }
+                    let myChart = echarts.init(this.$refs.echartsArea);
+                    myChart.setOption(this.option);
+        },
+        () => {}
+      );
+
+
   }
 };
 </script>
