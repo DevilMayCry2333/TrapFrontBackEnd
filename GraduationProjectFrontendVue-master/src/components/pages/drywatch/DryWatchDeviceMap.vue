@@ -83,8 +83,8 @@ export default {
                 var point = gps.convert(data[i].latitude, data[i].longitude);
                 point = new BMap.Point(point[1], point[0]);
                 markers.push(point);
-                addText(data[i]["id"], point);
-
+                addText(data[i]["customSerial"], point);
+                
                 let center = "";
                 if (data[i].town != null) center = data[i].town + center;
                 if (data[i].city != null) center = data[i].city + center;

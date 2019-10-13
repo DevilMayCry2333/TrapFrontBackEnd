@@ -100,10 +100,10 @@
         </el-table-column>
         <el-table-column prop="username" label="用户名"></el-table-column>
         <el-table-column prop="date" label="日期"></el-table-column>
-        <el-table-column label="工作内容">
-          <template
+        <el-table-column prop="workcontentfront" label="工作内容">
+          <!-- <template
             slot-scope="scope"
-          >{{maintenanceData.workingContentDict[scope.row.workingContent]}}</template>
+          >{{maintenanceData.workingContentDict[scope.row.workingContent]}}</template> -->
         </el-table-column>
         <el-table-column prop="drug" label="药剂类型"></el-table-column>
         <el-table-column prop="remark" label="备注"></el-table-column>
