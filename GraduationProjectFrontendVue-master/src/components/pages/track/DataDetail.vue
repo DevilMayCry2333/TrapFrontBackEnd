@@ -117,9 +117,9 @@
         <el-form-item label="结束点">
           <el-input v-model="EditMaintenanceDialog.form.endpoint"></el-input>
         </el-form-item>
-        <el-form-item label="工人">
+        <!-- <el-form-item label="工人">
           <el-input v-model="EditMaintenanceDialog.form.worker"></el-input>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="工作内容">
           <el-input v-model="EditMaintenanceDialog.form.workingContent"></el-input>
         </el-form-item>
@@ -176,6 +176,21 @@ export default {
 
     },
     methods:{
+      handleEditMaintenanceDataSubmit(){
+        console.log(this.EditMaintenanceDialog.form);
+                       http.requestWithTokenJson(
+        "/track/updateRec",
+        "post",
+        this.EditMaintenanceDialog.form,
+        res => {
+          this.$message.success("修改成功");
+          this.EditMaintenanceDialog.visible = false;
+          this.loadMaintenanceData();
+        },
+        () => {}
+      );
+        this.EditMaintenanceDialog.visible = false;
+      },
                   handleDelete(row) {
       this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
         confirmButtonText: "确定",
@@ -225,12 +240,14 @@ export default {
 
         linename:"",
         startpoint:"",
+        id:"",
         endpoint:"",
         worker:"",
         workingContent:"",
         remarks:"",
       };
       
+      this.EditMaintenanceDialog.form.id = data.id;
       this.EditMaintenanceDialog.form.linename = data.linename;
       this.EditMaintenanceDialog.form.startpoint = data.startpoint;
       this.EditMaintenanceDialog.form.endpoint = data.endpoint;

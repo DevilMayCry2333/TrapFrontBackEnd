@@ -116,7 +116,7 @@
           <el-input v-model="EditMaintenanceDialog.form.serial"></el-input>
         </el-form-item>
         <el-form-item label="区域">
-          <el-input v-model="EditMaintenanceDialog.form.region"></el-input>
+          <el-input v-model="EditMaintenanceDialog.form.customTown"></el-input>
         </el-form-item>
         <el-form-item label="日期">
           <el-input v-model="EditMaintenanceDialog.form.submitDate"></el-input>
@@ -178,6 +178,22 @@ export default {
 
     },
     methods:{
+      handleEditMaintenanceDataSubmit(){
+         console.log(this.EditMaintenanceDialog.form);
+               http.requestWithTokenJson(
+        "/natural/updateRec",
+        "post",
+        this.EditMaintenanceDialog.form,
+        res => {
+          this.$message.success("修改成功");
+          this.EditMaintenanceDialog.visible = false;
+          this.loadMaintenanceData();
+        },
+        () => {}
+      );
+
+        this.EditMaintenanceDialog.visible = false;
+      },
             handleDelete(row) {
       this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
         confirmButtonText: "确定",
@@ -229,21 +245,23 @@ export default {
         latitude: "",
         batch:0,
         deviceId:"",
+        id:"",
         
         serial:"",
-        region:"",
+        customTown:"",
         submitDate:"",
         predatorstype:"",
         releaseNum:"",
         worker:"",
       };
+      this.EditMaintenanceDialog.form.id = data.id;
       this.EditMaintenanceDialog.form.longitude = data.longitude;
       this.EditMaintenanceDialog.form.deviceId = data.deviceId;
       this.EditMaintenanceDialog.form.batch = data.batch;
       this.EditMaintenanceDialog.form.latitude = data.latitude;
 
       this.EditMaintenanceDialog.form.serial = data.serial;
-      this.EditMaintenanceDialog.form.region = data.region;
+      this.EditMaintenanceDialog.form.customTown = data.customTown;
       this.EditMaintenanceDialog.form.submitDate = data.submitDate;
       this.EditMaintenanceDialog.form.predatorstype = data.predatorstype;
       this.EditMaintenanceDialog.form.releaseNum = data.releaseNum;
