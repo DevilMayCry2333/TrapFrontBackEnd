@@ -98,7 +98,7 @@
             <el-form-item label="海拔">
                 <el-input v-model="EditMaintenanceDialog.form.altitude"></el-input>
             </el-form-item>
-            <el-form-item label="设备ID">
+            <!-- <el-form-item label="设备ID">
               <el-input v-model="EditMaintenanceDialog.form.deviceId"></el-input>
             </el-form-item>
             <el-form-item label="编号">
@@ -106,7 +106,7 @@
             </el-form-item>
             <el-form-item label="所属区域">
               <el-input v-model="EditMaintenanceDialog.form.customtown"></el-input>
-            </el-form-item>
+            </el-form-item> -->
             <el-form-item label="日期">
               <el-input v-model="EditMaintenanceDialog.form.submitDate"></el-input>
             </el-form-item>
@@ -301,7 +301,12 @@
         if(!this.area){
           this.area = "";
         }
-         console.log(this.value);
+
+        console.log("====搜索条件===");
+        console.log(this.selected);
+
+         console.log(this.searchText);
+
         setTimeout(()=>{
                   window.location =
         http.getBaseUrl() +
@@ -310,9 +315,9 @@
         "&endDate=" +
         this.endDate +
         "&searchText=" +
-        this.input +
+        this.searchText +
         "&colName=" +
-        this.value +
+        this.selected +
         "&adcode=" +
         this.area +
         "&username="+

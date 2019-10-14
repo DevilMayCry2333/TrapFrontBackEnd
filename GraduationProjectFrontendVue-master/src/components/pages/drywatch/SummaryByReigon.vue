@@ -14,7 +14,7 @@
       <el-button type="primary" @click="handleSubmit">搜索</el-button>
     </div>
     <el-table border :data="DryWatchData.list" style="width: 100%" height="600">
-      <el-table-column prop="customTown" label="区域" align="center"></el-table-column>
+      <el-table-column prop="customtown" label="区域" align="center"></el-table-column>
       <el-table-column prop="startDate" label="起始日期" align="center"></el-table-column>
       <el-table-column prop="endDate" label="截止日期" align="center"></el-table-column>
       <el-table-column prop="injectNumSum" label="注剂数量" align="center"></el-table-column>

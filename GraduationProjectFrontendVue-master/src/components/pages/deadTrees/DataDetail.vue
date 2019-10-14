@@ -107,7 +107,7 @@
         <el-form-item label="纬度">
           <el-input v-model="EditMaintenanceDialog.form.latitude"></el-input>
         </el-form-item>
-        <el-form-item label="设备ID">
+        <!-- <el-form-item label="设备ID">
           <el-input v-model="EditMaintenanceDialog.form.deviceId"></el-input>
         </el-form-item>
 
@@ -116,7 +116,7 @@
         </el-form-item>
         <el-form-item label="区域">
           <el-input v-model="EditMaintenanceDialog.form.customTown"></el-input>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="日期">
           <el-input v-model="EditMaintenanceDialog.form.submitDate"></el-input>
         </el-form-item>
@@ -124,10 +124,10 @@
           <el-input v-model="EditMaintenanceDialog.form.batch"></el-input>
         </el-form-item>
         <el-form-item label="桩径">
-          <el-input v-model="EditMaintenanceDialog.form.wooddiameter"></el-input>
+          <el-input @change="wooddiameterInput" v-model="EditMaintenanceDialog.form.wooddiameter"></el-input>
         </el-form-item>
         <el-form-item label="树高">
-          <el-input v-model="EditMaintenanceDialog.form.woodheight"></el-input>
+          <el-input @change="woodheightInput" v-model="EditMaintenanceDialog.form.woodheight"></el-input>
         </el-form-item>
         <el-form-item label="材积">
           <el-input v-model="EditMaintenanceDialog.form.woodvolume"></el-input>
@@ -194,6 +194,21 @@ export default {
                              console.log(this.area);
     },
     methods:{
+
+      wooddiameterInput(){
+        console.log(this.EditMaintenanceDialog.form.wooddiameter);
+        var tmp = 0.714265437 * 0.0001 * Math.pow(this.EditMaintenanceDialog.form.wooddiameter * 0.7, 1.867010) * Math.pow(this.EditMaintenanceDialog.form.woodheight, 0.9014632);
+        this.EditMaintenanceDialog.form.woodvolume = tmp;
+        console.log(this.EditMaintenanceDialog.form.woodvolume.toString());
+
+      },
+
+      woodheightInput(){
+        console.log(this.EditMaintenanceDialog.form.woodheight);
+        var tmp = 0.714265437 * 0.0001 * Math.pow(this.EditMaintenanceDialog.form.wooddiameter * 0.7, 1.867010) * Math.pow(this.EditMaintenanceDialog.form.woodheight, 0.9014632);
+        this.EditMaintenanceDialog.form.woodvolume = tmp;
+        console.log(this.EditMaintenanceDialog.form.woodvolume.toString());
+      },
       handleEditMaintenanceDataSubmit(){
          console.log(this.EditMaintenanceDialog.form);
                        http.requestWithTokenJson(

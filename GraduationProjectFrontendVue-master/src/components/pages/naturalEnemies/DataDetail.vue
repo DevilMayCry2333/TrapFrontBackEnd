@@ -103,12 +103,12 @@
         <el-dialog title="编辑维护信息" :visible.sync="EditMaintenanceDialog.visible" width="30%">
       <el-form label-width="120px">
         <el-form-item label="经度">
-          <el-input  v-model="EditMaintenanceDialog.form.longitude"></el-input>
+          <el-input v-model="EditMaintenanceDialog.form.longitude"></el-input>
         </el-form-item>
         <el-form-item label="纬度">
           <el-input v-model="EditMaintenanceDialog.form.latitude"></el-input>
         </el-form-item>
-        <el-form-item label="设备ID">
+        <!-- <el-form-item label="设备ID">
           <el-input v-model="EditMaintenanceDialog.form.deviceId"></el-input>
         </el-form-item>
 
@@ -117,7 +117,7 @@
         </el-form-item>
         <el-form-item label="区域">
           <el-input v-model="EditMaintenanceDialog.form.customtown"></el-input>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="日期">
           <el-input v-model="EditMaintenanceDialog.form.submitDate"></el-input>
         </el-form-item>

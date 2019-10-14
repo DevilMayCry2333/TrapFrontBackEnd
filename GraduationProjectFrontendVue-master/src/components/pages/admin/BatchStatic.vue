@@ -172,6 +172,12 @@ export default {
         console.log(this.manager);
         console.log(this.startYear);
         console.log(this.endYear);
+        
+        this.option.xAxis[0].data = [];
+        this.option.series[0].data = [];
+        this.option.series[1].data = [];
+        this.option.series[2].data = [];
+
         // var CurrentM = this.startYear.split("-");
         // console.log(CurrentM);
         // var endM = this.endYear.split("-");

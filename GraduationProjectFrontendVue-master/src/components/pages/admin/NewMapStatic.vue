@@ -68,8 +68,8 @@
             <el-option value="1" key="SCHEFFE" label="SCHEFFE">SCHEFFE</el-option>
           </el-select>
           <el-table :data="mcList" v-if="mcType == 0">
-            <el-table-column :label="'(i)' + contentLabelDict[contentLabelIndex]" prop="labelA"></el-table-column>
-            <el-table-column :label="'(j)' + contentLabelDict[contentLabelIndex]" prop="labelB"></el-table-column>
+            <el-table-column :label="'(i)区域'" prop="labelA"></el-table-column>
+            <el-table-column :label="'(j)区域'" prop="labelB"></el-table-column>
             <el-table-column label="均值差值" prop="dv"></el-table-column>
             <el-table-column label="标准误" prop="standardError"></el-table-column>
             <el-table-column label="置信下限" prop="lsdConfidenceLo"></el-table-column>
@@ -80,8 +80,8 @@
             </el-table-column>
           </el-table>
           <el-table :data="mcList" v-if="mcType == 1">
-            <el-table-column :label="'(i)' + contentLabelDict[contentLabelIndex]" prop="labelA"></el-table-column>
-            <el-table-column :label="'(j)' + contentLabelDict[contentLabelIndex]" prop="labelB"></el-table-column>
+            <el-table-column :label="'(i)区域'" prop="labelA"></el-table-column>
+            <el-table-column :label="'(j)区域'" prop="labelB"></el-table-column>
             <el-table-column label="均值差值" prop="dv"></el-table-column>
             <el-table-column label="标准误" prop="standardError"></el-table-column>
             <el-table-column label="置信下限" prop="scheffeConfidenceLo"></el-table-column>

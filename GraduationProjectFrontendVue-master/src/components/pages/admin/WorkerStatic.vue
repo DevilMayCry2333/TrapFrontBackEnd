@@ -7,7 +7,7 @@
 
       <el-table border :data="list" style="width: 100%" height="600">
         <el-table-column prop="Worker" label="工人名称"></el-table-column>
-        <el-table-column prop="Num" label="诱捕器数量"></el-table-column>
+        <el-table-column prop="Num" label="工作量"></el-table-column>
         <el-table-column prop="day" label="出勤天数"></el-table-column>
         <el-table-column prop="Avg" label="平均工作量"></el-table-column>
       </el-table>
@@ -103,7 +103,7 @@ export default {
             console.log(this.endYear);
             console.log(this.manager);
 
-            
+
       http.requestWithToken(
         "/statics/worker",
         "get",
