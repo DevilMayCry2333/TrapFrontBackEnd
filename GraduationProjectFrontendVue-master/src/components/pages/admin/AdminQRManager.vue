@@ -627,7 +627,8 @@ export default {
       http.requestWithToken(
         "/auth_api/device_list",
         "get",
-        { page: this.QRData.page, limit: this.QRData.limit },
+        { page: this.QRData.page, limit: this.QRData.limit,
+        isMap:false },
         res => {
           this.QRData.list = res.data.data;
           this.QRData.total = res.data.totalNum;
