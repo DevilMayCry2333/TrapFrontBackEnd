@@ -68,8 +68,8 @@
             <el-option value="1" key="SCHEFFE" label="SCHEFFE">SCHEFFE</el-option>
           </el-select>
           <el-table :data="mcList" v-if="mcType == 0">
-            <el-table-column :label="'(i)' + contentLabelDict[contentLabelIndex]" prop="labelA"></el-table-column>
-            <el-table-column :label="'(j)' + contentLabelDict[contentLabelIndex]" prop="labelB"></el-table-column>
+            <el-table-column :label="'(i)区域'" prop="labelA"></el-table-column>
+            <el-table-column :label="'(j)区域'" prop="labelB"></el-table-column>
             <el-table-column label="均值差值" prop="dv"></el-table-column>
             <el-table-column label="标准误" prop="standardError"></el-table-column>
             <el-table-column label="置信下限" prop="lsdConfidenceLo"></el-table-column>
@@ -80,8 +80,8 @@
             </el-table-column>
           </el-table>
           <el-table :data="mcList" v-if="mcType == 1">
-            <el-table-column :label="'(i)' + contentLabelDict[contentLabelIndex]" prop="labelA"></el-table-column>
-            <el-table-column :label="'(j)' + contentLabelDict[contentLabelIndex]" prop="labelB"></el-table-column>
+            <el-table-column :label="'(i)区域'" prop="labelA"></el-table-column>
+            <el-table-column :label="'(j)区域'" prop="labelB"></el-table-column>
             <el-table-column label="均值差值" prop="dv"></el-table-column>
             <el-table-column label="标准误" prop="standardError"></el-table-column>
             <el-table-column label="置信下限" prop="scheffeConfidenceLo"></el-table-column>
@@ -707,6 +707,59 @@ export default {
   },
   mounted() {
     this.init();
+
+                let role = this.$store.state.user.role;
+      if (role == 1) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.loadCity();
+      } else if (role == 2) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.loadArea();
+      } else if (role == 3) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+        this.loadManagers();
+      } else if (role == 4) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+        this.manager = this.$store.state.user.username;
+      }
+      console.log(this.manager);
+      
+      http.requestWithToken(
+        "/statics/Desc",
+        "get",
+        {
+          manager: this.manager
+        },
+        res => {
+            console.log(res);
+          if (res.data.error) {
+            this.$message.error("无数据");
+            this.summaryList = [];
+            this.mcList = [];
+            this.makeAnalysisData([]);
+          } else {
+            this.summaryList = res.data.data.summaryList;
+            this.mcList = [];
+            if (res.data.data.multipleComparisonsList.length > 2) {
+              this.mcList = res.data.data.multipleComparisonsList;
+            } else {
+              // this.$message.error("数据量不足");
+            }
+
+            this.makeAnalysisData(res.data.data.analysisEntity);
+          }
+          this.drawChart();
+        },
+        () => {}
+      );
+
+
+
   }
 };
 </script>
