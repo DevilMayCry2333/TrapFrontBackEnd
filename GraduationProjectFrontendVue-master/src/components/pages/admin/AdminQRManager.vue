@@ -630,6 +630,7 @@ export default {
         { page: this.QRData.page, limit: this.QRData.limit,
         isMap:false },
         res => {
+          console.log(res.data)
           this.QRData.list = res.data.data;
           this.QRData.total = res.data.totalNum;
 
@@ -641,7 +642,7 @@ export default {
       http.requestWithToken(
         "/auth_api/user_list",
         "get",
-        { roleType: 4, page: 1, limit: 9999, searchText: "" },
+        { roleType: 4, page: this.QRData.page, limit: this.QRData.limit, searchText: "" },
         res => {
           this.QRDataInfoDialog.managerList = res.data.data;
           this.QRDataInfoDialog.numList = [];
