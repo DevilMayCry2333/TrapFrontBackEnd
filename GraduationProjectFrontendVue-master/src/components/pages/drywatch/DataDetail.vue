@@ -117,7 +117,7 @@
               <el-input v-model="EditMaintenanceDialog.form.workContent"></el-input>
             </el-form-item>
             <el-form-item label="树木状态">
-              <el-input v-model="EditMaintenanceDialog.form.woodStatus"></el-input>
+              <el-input v-model="EditMaintenanceDialog.form.woodstatus"></el-input>
             </el-form-item>
             <el-form-item label="注剂数量">
               <el-input v-model="EditMaintenanceDialog.form.injectionNum"></el-input>
@@ -231,7 +231,7 @@
         submitDate:"",
         workContent:"",
         id:"",
-        woodStatus:"",
+        woodstatus:"",
         injectionNum:""
       };
       this.EditMaintenanceDialog.form.id = data.id;
@@ -244,7 +244,7 @@
       this.EditMaintenanceDialog.form.submitDate = data.submitDate;
       this.EditMaintenanceDialog.form.batch = data.batch;
        this.EditMaintenanceDialog.form.workContent = data.workContent;
-       this.EditMaintenanceDialog.form.woodStatus = data.woodStatus;
+       this.EditMaintenanceDialog.form.woodstatus = data.woodstatus;
        this.EditMaintenanceDialog.form.injectionNum = data.injectionNum;
 
     },

@@ -43,7 +43,10 @@ export default {
         http.requestWithToken(
           "/auth_api/device_list",
           "get",
-          { page: 1, limit: 1000 },
+          { 
+            page: 1, limit: 1000,
+            isMap:true
+          },
           res => {
             console.log(res.data);
             let that = this;
