@@ -11,7 +11,6 @@
         <el-table-column prop="day" label="出勤天数"></el-table-column>
         <el-table-column prop="Avg" label="平均工作量"></el-table-column>
       </el-table>
-
     </div>
 </template>
 <script>
