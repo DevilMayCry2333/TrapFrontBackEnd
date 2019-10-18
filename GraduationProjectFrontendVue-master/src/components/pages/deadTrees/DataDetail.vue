@@ -92,6 +92,12 @@
             layout="total, prev, pager, next"
             :total="QRData.total"
         ></el-pagination>
+
+        采伐数量:{{totalCutNum}} &nbsp;
+        施工天数:{{totalWorkDay}} &nbsp;
+        材积:{{totalWoodVolume}}
+
+
         </div>
                 <el-dialog title="现场照片" :visible.sync="PhotoDialog.visible" width="700px">
       <div style="overflow-y:scroll;height: 300px">
@@ -381,6 +387,17 @@ export default {
                 this.QRData.list = res.data.Data;
                 this.QRData.total = res.data.total;
 
+                                this.totalWoodVolume = 0;
+                this.totalCutNum = 0;
+                this.totalWorkDay = 0;
+
+                for(var i = 0; i < res.data.Data.length; i++){
+                  this.totalWoodVolume += parseFloat(res.data.Data[i].woodvolume);
+                }
+                this.totalCutNum = res.data.Data.length;
+                this.totalWorkDay = res.data.WorkDay;
+
+
                 },
                 () => {}
             );
@@ -417,6 +434,16 @@ export default {
                 res => {
                 this.QRData.list = res.data.Data;
                 this.QRData.total = res.data.total;
+                this.totalWoodVolume = 0;
+                this.totalCutNum = 0;
+                this.totalWorkDay = 0;
+
+                for(var i = 0; i < res.data.Data.length; i++){
+                  this.totalWoodVolume += parseFloat(res.data.Data[i].woodvolume);
+                }
+                this.totalCutNum = res.data.Data.length;
+                this.totalWorkDay = res.data.WorkDay;
+
 
                 },
                 () => {}
@@ -441,6 +468,9 @@ export default {
         return{
                 EditMaintenanceDialog: {
         visible: false,
+        totalWoodVolume:0,
+        totalWorkDay:0,
+        totalCutNum:0,
         form: {
           id: 0,
           batch:0,

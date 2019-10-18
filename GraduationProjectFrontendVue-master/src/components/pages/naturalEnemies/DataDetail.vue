@@ -93,6 +93,9 @@
             layout="total, prev, pager, next"
             :total="QRData.total"
         ></el-pagination>
+        释放地点:{{releasePlace}} &nbsp;
+        成虫数量:{{releaseNum}} &nbsp;
+        卵卡数量:{{LuanKaNum}} 
         </div>
                         <el-dialog title="现场照片" :visible.sync="PhotoDialog.visible" width="700px">
       <div style="overflow-y:scroll;height: 300px">
@@ -352,6 +355,19 @@ export default {
                   console.log(res);
                 this.QRData.list = res.data.Data;
                 this.QRData.total = res.data.total;
+                this.LuanKaNum = 0;
+                this.releaseNum = 0;
+                this.releasePlace = 0;
+
+                this.releasePlace = res.data.DeviceNum;
+                
+
+                for(var i = 0 ; i < res.data.Data.length; i++){
+                  if(res.data.Data[i].predatorstype=="卵卡"){
+                    this.LuanKaNum++;
+                  }
+                  this.releaseNum += res.data.Data[i].releaseNum;
+                }
 
                 },
                 () => {}
@@ -380,6 +396,16 @@ export default {
                 res => {
                 this.QRData.list = res.data.Data;
                 this.QRData.total = res.data.total;
+                this.LuanKaNum = 0;
+                this.releaseNum = 0;
+                this.releasePlace = 0;
+
+              for(var i = 0 ; i < res.data.Data.length; i++){
+                  if(res.data.Data[i].predatorstype=="卵卡"){
+                    this.LuanKaNum++;
+                  }
+                  this.releaseNum += res.data.Data[i].releaseNum;
+                }
 
                 },
                 () => {}
@@ -398,6 +424,18 @@ export default {
                 res => {
                 this.QRData.list = res.data.Data;
                 this.QRData.total = res.data.total;
+                this.LuanKaNum = 0;
+                this.releaseNum = 0;
+                this.releasePlace = 0;
+                
+                this.releasePlace = res.data.DeviceNum;
+
+              for(var i = 0 ; i < res.data.Data.length; i++){
+                  if(res.data.Data[i].predatorstype=="卵卡"){
+                    this.LuanKaNum++;
+                  }
+                  this.releaseNum += res.data.Data[i].releaseNum;
+                }
 
                 },
                 () => {}
@@ -424,6 +462,9 @@ export default {
         }
       },
         role:'',
+        releasePlace:0,
+        releaseNum:0,
+        LuanKaNum:0,
                       PhotoDialog: {
         visible: false,
         pic: ""
