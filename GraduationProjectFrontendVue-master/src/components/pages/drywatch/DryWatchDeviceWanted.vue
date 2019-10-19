@@ -89,7 +89,7 @@
         <el-table-column prop="username" label="用户名"></el-table-column>
         <el-table-column prop="submitDate" label="日期"></el-table-column>
         <el-table-column prop="injectionNum" label="注剂数量"></el-table-column>
-         <el-table-column prop="woodStatus" label="树木状态"></el-table-column>
+         <el-table-column prop="woodstatus" label="树木状态"></el-table-column>
         <el-table-column prop="remarks" label="备注"></el-table-column>
         <el-table-column label="是否上报">
           <template slot-scope="scope">{{scope.row.reported ? '是': '否'}}</template>

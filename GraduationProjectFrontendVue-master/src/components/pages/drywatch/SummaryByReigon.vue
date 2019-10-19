@@ -76,12 +76,11 @@
             this.DryWatchData.list = res.data.data.data;
             this.DryWatchData.total = res.data.data.totalNum;
             this.DryWatchData.page = res.data.data.currentPage;
-            for(var i = 0 ; i < res.data.data.data.length; i++){
-              console.log(res.data.data.data[i].woodNum);
-              this.totalWoodNum += parseInt(res.data.data.data[i].woodNum);
-              this.totalInject += parseInt(res.data.data.data[i].injectNumSum);
-              this.totalDeadNum += parseInt(res.data.data.data[i].woodStatusSum);
-            }
+
+            this.totalWoodNum = res.data.data.data[0].totalWoodSum;
+            this.totalInject = res.data.data.data[0].totalInjectSum;
+            this.totalDeadNum = res.data.data.data[0].totalDeadSum;
+
             console.log(this.totalWoodNum);
 
             // this.DryWatchData.optionIndex = -1;

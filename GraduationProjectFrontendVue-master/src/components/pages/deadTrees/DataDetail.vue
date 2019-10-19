@@ -387,15 +387,10 @@ export default {
                 this.QRData.list = res.data.Data;
                 this.QRData.total = res.data.total;
 
-                                this.totalWoodVolume = 0;
-                this.totalCutNum = 0;
-                this.totalWorkDay = 0;
-
-                for(var i = 0; i < res.data.Data.length; i++){
-                  this.totalWoodVolume += parseFloat(res.data.Data[i].woodvolume);
-                }
-                this.totalCutNum = res.data.Data.length;
                 this.totalWorkDay = res.data.WorkDay;
+                this.totalCutNum = res.data.woodNum;
+                this.totalWoodVolume = res.data.woodVolume;
+
 
 
                 },
@@ -434,15 +429,10 @@ export default {
                 res => {
                 this.QRData.list = res.data.Data;
                 this.QRData.total = res.data.total;
-                this.totalWoodVolume = 0;
-                this.totalCutNum = 0;
-                this.totalWorkDay = 0;
-
-                for(var i = 0; i < res.data.Data.length; i++){
-                  this.totalWoodVolume += parseFloat(res.data.Data[i].woodvolume);
-                }
-                this.totalCutNum = res.data.Data.length;
+                
                 this.totalWorkDay = res.data.WorkDay;
+                this.totalCutNum = res.data.woodNum;
+                this.totalWoodVolume = res.data.woodVolume;
 
 
                 },

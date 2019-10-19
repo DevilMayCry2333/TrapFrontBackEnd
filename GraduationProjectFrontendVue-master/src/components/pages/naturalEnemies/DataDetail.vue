@@ -48,7 +48,7 @@
         <el-table-column prop="worker" label="施工人员" align="center"></el-table-column>
         <el-table-column prop="remarks" label="备注" align="center"></el-table-column>
         <el-table-column
-          prop="manager"
+          prop="username"
           label="管理员"
           align="center"
           v-if="this.$store.state.user.role == 3"
@@ -355,19 +355,11 @@ export default {
                   console.log(res);
                 this.QRData.list = res.data.Data;
                 this.QRData.total = res.data.total;
-                this.LuanKaNum = 0;
-                this.releaseNum = 0;
-                this.releasePlace = 0;
 
+                this.LuanKaNum = res.data.LuanKaNum;
+                this.releaseNum = res.data.releaseNum;
                 this.releasePlace = res.data.DeviceNum;
-                
 
-                for(var i = 0 ; i < res.data.Data.length; i++){
-                  if(res.data.Data[i].predatorstype=="卵卡"){
-                    this.LuanKaNum++;
-                  }
-                  this.releaseNum += res.data.Data[i].releaseNum;
-                }
 
                 },
                 () => {}
@@ -396,16 +388,10 @@ export default {
                 res => {
                 this.QRData.list = res.data.Data;
                 this.QRData.total = res.data.total;
-                this.LuanKaNum = 0;
-                this.releaseNum = 0;
-                this.releasePlace = 0;
 
-              for(var i = 0 ; i < res.data.Data.length; i++){
-                  if(res.data.Data[i].predatorstype=="卵卡"){
-                    this.LuanKaNum++;
-                  }
-                  this.releaseNum += res.data.Data[i].releaseNum;
-                }
+                this.LuanKaNum = res.data.LuanKaNum;
+                this.releaseNum = res.data.releaseNum;
+                this.releasePlace = res.data.DeviceNum;
 
                 },
                 () => {}
@@ -424,18 +410,10 @@ export default {
                 res => {
                 this.QRData.list = res.data.Data;
                 this.QRData.total = res.data.total;
-                this.LuanKaNum = 0;
-                this.releaseNum = 0;
-                this.releasePlace = 0;
-                
-                this.releasePlace = res.data.DeviceNum;
 
-              for(var i = 0 ; i < res.data.Data.length; i++){
-                  if(res.data.Data[i].predatorstype=="卵卡"){
-                    this.LuanKaNum++;
-                  }
-                  this.releaseNum += res.data.Data[i].releaseNum;
-                }
+                this.LuanKaNum = res.data.LuanKaNum;
+                this.releaseNum = res.data.releaseNum;
+                this.releasePlace = res.data.DeviceNum;
 
                 },
                 () => {}
