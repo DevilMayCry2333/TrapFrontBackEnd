@@ -36,11 +36,11 @@
           @click="handleReportMaintenanceData"
           v-if="this.$store.state.user.role == 3"
         >上报</el-button>
-        <el-button
+        <!-- <el-button
           type="primary"
           @click="handleDeleteSome"
           
-        >批量删除</el-button>
+        >批量删除</el-button> -->
         <el-button type="primary" @click="exportExcel">导出</el-button>
         <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
         
@@ -103,7 +103,8 @@
             >显示</el-button>
           </template>
         </el-table-column> -->
-        <el-table-column
+        
+        <!-- <el-table-column
           label="操作"
           align="center"
           width="150px"
@@ -127,7 +128,7 @@
             </div>
             <div v-if="scope.row.reported">不可操作</div>
           </template>
-        </el-table-column>
+        </el-table-column> -->
       </el-table>
       <div class="block">
         <el-pagination

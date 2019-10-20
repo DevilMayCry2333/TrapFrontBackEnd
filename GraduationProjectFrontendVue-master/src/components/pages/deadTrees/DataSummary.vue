@@ -34,8 +34,8 @@
             <el-card :header="'各' + contentLabelDict[contentLabelIndex] + '诱捕情况表'" style="padding:5px" v-if="this.$store.state.user.role < 4">
               <el-table :data="summaryDeviceData.list" :row-style="tableRowStyle">
                 <el-table-column :label="contentLabelDict[contentLabelIndex]" prop="name"></el-table-column>
-                <el-table-column label="诱捕器总数" prop="deviceCount"></el-table-column>
-                <el-table-column label="总诱虫量" prop="releaseNum"></el-table-column>
+                <el-table-column label="枯死树数量" prop="woodNum"></el-table-column>
+                <el-table-column label="总材积" prop="woodVolume"></el-table-column>
                 <el-table-column label="操作">
                   <template slot-scope="scope">
                     <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
@@ -61,8 +61,8 @@
             <el-card header="各管理员诱捕情况表" style="padding:5px" v-if="this.$store.state.user.role ==3">
                           <el-table :data="summaryManagerData.list" :row-style="tableRowStyle">
                             <el-table-column label="管理员" prop="name"></el-table-column>
-                            <el-table-column label="诱捕器总数" prop="deviceCount"></el-table-column>
-                            <el-table-column label="总诱虫量" prop="releaseNum"></el-table-column>
+                            <el-table-column label="枯死树数量" prop="woodNum"></el-table-column>
+                            <el-table-column label="总材积" prop="woodVolume"></el-table-column>
                             <el-table-column label="操作">
                               <template slot-scope="scope">
                                 <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
@@ -86,7 +86,7 @@ import http from "../../../utils/http";
 import echarts from "echarts";
 import MaintenanceData from "../MaintenanceData.vue";
 export default {
-name:'NaturalEnemiesDataSummary',
+name:'DeadTreesDataSummary',
   components: {
     "t-maintenance-data": MaintenanceData
   },
@@ -174,7 +174,7 @@ name:'NaturalEnemiesDataSummary',
     },
     querySum(adcode) {
       http.requestWithToken(
-        "/natural/Summary/sum",
+        "/deadTree/Summary/sum",
         "get",
         {
           adcode: adcode,
@@ -232,7 +232,7 @@ name:'NaturalEnemiesDataSummary',
     queryWorkerData(adcode) {
       //   this.contentLabelIndex = 3;
       http.requestWithToken(
-        "/natural/Summary/worker",
+        "/deadTree/Summary/worker",
         "get",
         {
           adcode: adcode,
@@ -273,7 +273,7 @@ name:'NaturalEnemiesDataSummary',
     queryTownData() {
       this.contentLabelIndex = 2;
       http.requestWithToken(
-        "/natural/Summary/area",
+        "/deadTree/Summary/area",
         "get",
         {
           adcode: this.area,
@@ -299,7 +299,7 @@ name:'NaturalEnemiesDataSummary',
     queryManagerData() {
           this.contentLabelIndex = 2;
           http.requestWithToken(
-            "/natural/Summary/manager",
+            "/deadTree/Summary/manager",
             "get",
             {
               adcode: this.area,
@@ -321,7 +321,7 @@ name:'NaturalEnemiesDataSummary',
     queryAreaData() {
       this.contentLabelIndex = 1;
       http.requestWithToken(
-        "/natural/Summary/city",
+        "/deadTree/Summary/city",
         "get",
         {
           adcode: this.city,
@@ -344,7 +344,7 @@ name:'NaturalEnemiesDataSummary',
     queryCityData() {
       this.contentLabelIndex = 0;
       http.requestWithToken(
-        "/natural/Summary/province",
+        "/deadTree/Summary/province",
         "get",
         {
           adcode: this.province,
@@ -481,7 +481,7 @@ name:'NaturalEnemiesDataSummary',
       sessionStorage.setItem('startDate',this.startDate);
       sessionStorage.setItem('endDate',this.endDate);
 
-this.$router.push({ path: '/pages/natural/maintance' });
+this.$router.push({ path: '/pages/deadTrees/Maintance' });
 
     }
   },
