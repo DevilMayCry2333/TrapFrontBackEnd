@@ -48,7 +48,7 @@
         <el-table-column prop="worker" label="施工人员" align="center"></el-table-column>
         <el-table-column prop="remarks" label="备注" align="center"></el-table-column>
         <el-table-column
-          prop="manager"
+          prop="username"
           label="管理员"
           align="center"
           v-if="this.$store.state.user.role == 3"
@@ -93,6 +93,9 @@
             layout="total, prev, pager, next"
             :total="QRData.total"
         ></el-pagination>
+        释放地点:{{releasePlace}} &nbsp;
+        成虫数量:{{releaseNum}} &nbsp;
+        卵卡数量:{{LuanKaNum}} 
         </div>
                         <el-dialog title="现场照片" :visible.sync="PhotoDialog.visible" width="700px">
       <div style="overflow-y:scroll;height: 300px">
@@ -353,6 +356,11 @@ export default {
                 this.QRData.list = res.data.Data;
                 this.QRData.total = res.data.total;
 
+                this.LuanKaNum = res.data.LuanKaNum;
+                this.releaseNum = res.data.releaseNum;
+                this.releasePlace = res.data.DeviceNum;
+
+
                 },
                 () => {}
             );
@@ -381,6 +389,10 @@ export default {
                 this.QRData.list = res.data.Data;
                 this.QRData.total = res.data.total;
 
+                this.LuanKaNum = res.data.LuanKaNum;
+                this.releaseNum = res.data.releaseNum;
+                this.releasePlace = res.data.DeviceNum;
+
                 },
                 () => {}
             );
@@ -398,6 +410,10 @@ export default {
                 res => {
                 this.QRData.list = res.data.Data;
                 this.QRData.total = res.data.total;
+
+                this.LuanKaNum = res.data.LuanKaNum;
+                this.releaseNum = res.data.releaseNum;
+                this.releasePlace = res.data.DeviceNum;
 
                 },
                 () => {}
@@ -424,6 +440,9 @@ export default {
         }
       },
         role:'',
+        releasePlace:0,
+        releaseNum:0,
+        LuanKaNum:0,
                       PhotoDialog: {
         visible: false,
         pic: ""
