@@ -104,8 +104,6 @@ export default {
                     type: 'value',
                     name: '松墨天牛',
                     min: 0,
-                    max: 250,
-                    interval: 50,
                     axisLabel: {
                         formatter: '{value}只'
                     }
