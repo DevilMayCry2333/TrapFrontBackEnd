@@ -27,6 +27,7 @@ import DryWatchMaintanceData from '@/components/pages/drywatch/DryWatchMaintance
 import DryWatchDeviceMessage from '@/components/pages/drywatch/DryWatchDeviceMessage'
 import DryWatchDeviceWanted from '@/components/pages/drywatch/DryWatchDeviceWanted'
 import NaturalEnemiesDataSummary from '@/components/pages/naturalEnemies/DataSummary'
+import DeadTreesDataSummary from '@/components/pages/deadtrees/DataSummary'
 import NaturalMaintanceData from '@/components/pages/naturalEnemies/NaturalMaintanceData'
 import NaturalDeviceMessage from '@/components/pages/naturalEnemies/NaturalDeviceMessage'
 import NaturalDeviceWanted from '@/components/pages/naturalEnemies/NaturalDeviceWanted'
@@ -47,11 +48,18 @@ import TimeStatic from '@/components/pages/admin/TimeStatic'
 import BatchStatic from '@/components/pages/admin/BatchStatic'
 import WorkerStatic from '@/components/pages/admin/WorkerStatic'
 import NewMapStatic from '@/components/pages/admin/NewMapStatic'
+<<<<<<< HEAD
 import MedicineDataDetail from '@/components/pages/medicine/MedicineDetail'
 import SummaryBy from '@/components/pages/medicine/SummaryBy'
 import MedicineWatchMap from '@/components/pages/medicine/MedicineWatchMap'
 import MedicineWorkContent from '@/components/pages/admin/MedicineWorkContent'
 import MedicineName from '@/components/pages/admin/MedicineName'
+=======
+import DeadTreeMaintanceData from '@/components/pages/deadTrees/DeadTreeMaintanceData'
+import DeadTreeDeviceMessage from '@/components/pages/deadTrees/DeadTreeDeviceMessage'
+import DeadTreeDeviceWanted from '@/components/pages/deadTrees/DeadTreeDeviceWanted'
+import DataReport from '@/components/pages/admin/DataReport'
+>>>>>>> 6273d2449f10400c9125cee24aa6dd551f776d89
 
 Vue.use(Router)
 
@@ -350,6 +358,31 @@ export default new Router({
           path: 'pages/trap/NewMapStatic',
           name: '统计分析',
           component: NewMapStatic
+        },
+        {
+          path: 'pages/deadTrees/DeadTreesDataSummary',
+          name: '数据汇总',
+          component: DeadTreesDataSummary
+        },
+        {
+          path: 'pages/deadTrees/Maintance',
+          name: '数据维护',
+          component: DeadTreeMaintanceData
+        },
+        {
+          path: 'pages/deadTrees/DeadTreeDeviceMessage',
+          name: '数据查看',
+          component: DeadTreeDeviceMessage
+        },
+        {
+          path: 'pages/deadTrees/DeadTreeDeviceWanted',
+          name: '数据上报',
+          component: DeadTreeDeviceWanted
+        },
+        {
+          path: 'pages/admin/DataReport',
+          name: '数据抄报',
+          component: DataReport
         }
 
 

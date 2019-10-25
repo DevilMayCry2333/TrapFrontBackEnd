@@ -83,7 +83,8 @@
         <el-table-column type="selection" width="55" fixed="left"></el-table-column>
         <el-table-column prop="deviceId" label="设备ID"></el-table-column>
         <el-table-column prop="batch" label="批次"></el-table-column>
-         <el-table-column prop="customtown" label="区域"></el-table-column>
+         <el-table-column  v-if="this.$store.state.user.role == 4" prop="customtown" label="区域"></el-table-column>
+          <el-table-column  v-if="this.$store.state.user.role <= 3" prop="town" label="区域"></el-table-column>
           <el-table-column prop="customserial" label="编号"></el-table-column>
         <el-table-column prop="num" label="松墨天牛数量"></el-table-column>
         <el-table-column label="其他天牛类型">

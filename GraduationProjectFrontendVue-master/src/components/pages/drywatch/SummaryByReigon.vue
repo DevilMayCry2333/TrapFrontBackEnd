@@ -37,6 +37,9 @@
         :total="DryWatchData.total"
       ></el-pagination>
     </div>
+      注药株数:{{totalWoodNum}} &nbsp;
+      注剂数量:{{totalInject}} &nbsp;
+      枯死株数:{{totalDeadNum}} &nbsp;
   </div>
 
 
@@ -73,6 +76,13 @@
             this.DryWatchData.list = res.data.data.data;
             this.DryWatchData.total = res.data.data.totalNum;
             this.DryWatchData.page = res.data.data.currentPage;
+
+            this.totalWoodNum = res.data.data.data[0].totalWoodSum;
+            this.totalInject = res.data.data.data[0].totalInjectSum;
+            this.totalDeadNum = res.data.data.data[0].totalDeadSum;
+
+            console.log(this.totalWoodNum);
+
             // this.DryWatchData.optionIndex = -1;
           },
           () => {
@@ -83,6 +93,9 @@
     data() {
       return {
         searchText: '',
+        totalInject:0,
+        totalWoodNum:0,
+        totalDeadNum:0,
         options: [{
           value: 1,
           label: '编号'

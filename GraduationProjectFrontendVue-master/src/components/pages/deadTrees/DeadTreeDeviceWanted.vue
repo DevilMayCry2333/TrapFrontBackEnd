@@ -73,8 +73,8 @@
         <el-table-column type="selection" width="55" fixed="left"></el-table-column>
         <el-table-column prop="deviceId" label="设备ID"></el-table-column>
         <el-table-column prop="batch" label="批次"></el-table-column>
-        <el-table-column prop="predatorstype" label="天敌类型"></el-table-column>
-         <el-table-column prop="releaseNum" label="释放数量"></el-table-column>
+        <el-table-column prop="woodvolume" label="材积"></el-table-column>
+         <el-table-column prop="killmethod" label="处理方式"></el-table-column>
         <!-- <el-table-column label="其他天牛类型">
           <template slot-scope="scope">{{otherBeetleDict["t" + scope.row.otherType]}}</template>
         </el-table-column>
@@ -339,7 +339,7 @@ export default {
     loadMaintenanceData() {
       this.loadOtherBeetleType();
       http.requestWithToken(
-        "/natural/maintenance1",
+        "/deadTree/maintenance1",
         "get",
         {
           condition: this.searchText,
@@ -477,11 +477,14 @@ export default {
     },
     handleReportMaintenanceData() {
       let data = [];
+
       for (let i = 0; i < this.maintenanceData.selection.length; ++i) {
+          console.log(this.maintenanceData.selection[i]);
+
         data.push(this.maintenanceData.selection[i].id);
       }
       http.requestWithTokenJson(
-        "/natural/maintenance/report",
+        "/deadTree/maintenance/report",
         "post",
         { list: data },
         res => {
