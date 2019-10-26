@@ -27,15 +27,15 @@
     <el-table border :data="DryWatchData.list" style="width: 100%" height="600">
       <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
       <el-table-column prop="serial" label="编号" align="center"></el-table-column>
-      <el-table-column prop="customtown" label="所属区域" align="center"></el-table-column>
+      <el-table-column prop="customTown" label="所属区域" align="center"></el-table-column>
       <el-table-column prop="submitDate" label="日期" align="center"></el-table-column>
       <el-table-column prop="batch" label="批次" align="center"></el-table-column>
       <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
       <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
       <el-table-column prop="workContent" label="工作内容" align="center"></el-table-column>
-      <el-table-column prop="medicineNum" label="药剂质量（kg）" align="center"></el-table-column>
+      <el-table-column prop="medicineQua" label="药剂质量（kg）" align="center"></el-table-column>
       <el-table-column prop="medicineName" label="药剂名称" align="center"></el-table-column>
-      <el-table-column prop="medicineArea" label="防治面积（㎡）" align="center"></el-table-column>
+      <el-table-column prop="areaFz" label="防治面积（㎡）" align="center"></el-table-column>
       <el-table-column prop="pic" label="照片" align="center">
         <template slot-scope="scope">
             <el-button
@@ -105,9 +105,10 @@
             <el-form-item label="编号">
               <el-input v-model="EditMaintenanceDialog.form.serial"></el-input>
             </el-form-item>
+             
             <el-form-item label="所属区域">
               <el-input v-model="EditMaintenanceDialog.form.customtown"></el-input>
-            </el-form-item> -->
+            </el-form-item>-->
             <el-form-item label="日期">
               <el-input v-model="EditMaintenanceDialog.form.submitDate"></el-input>
             </el-form-item>
@@ -121,13 +122,13 @@
               <el-input v-model="EditMaintenanceDialog.form.woodstatus"></el-input>
             </el-form-item>
             <el-form-item label="药剂名称">
-              <el-input v-model="EditMaintenanceDialog.form.woodstatus"></el-input>
+              <el-input v-model="EditMaintenanceDialog.form.medicineName"></el-input>
             </el-form-item>
             <el-form-item label="药剂质量（kg）">
-              <el-input v-model="EditMaintenanceDialog.form.injectionNum"></el-input>
+              <el-input v-model="EditMaintenanceDialog.form.medicineQua"></el-input>
             </el-form-item>
             <el-form-item label="防治面积（㎡）">
-              <el-input v-model="EditMaintenanceDialog.form.injectionNum"></el-input>
+              <el-input v-model="EditMaintenanceDialog.form.areaFz"></el-input>
             </el-form-item>
 
 
@@ -171,7 +172,7 @@
       handleEditMaintenanceDataSubmit(){
         console.log(this.EditMaintenanceDialog.form);
               http.requestWithTokenJson(
-        "/dryWatch/updateRec",
+        "/medicineDataDetail/updateData",
         "post",
         this.EditMaintenanceDialog.form,
         res => {
@@ -194,7 +195,7 @@
           console.log(row.id);
           console.log(row.deviceId);
           http.requestWithToken(
-            "/dryWatch/deleteRecord",
+            "/medicineDataDetail/deleteRecord",
             "post",
             {
               id: row.id,
@@ -239,7 +240,8 @@
         workContent:"",
         id:"",
         woodstatus:"",
-        injectionNum:""
+        medicineQua:"",
+        areaFz:""
       };
       this.EditMaintenanceDialog.form.id = data.id;
       this.EditMaintenanceDialog.form.longitude = data.longitude;
@@ -251,8 +253,8 @@
       this.EditMaintenanceDialog.form.submitDate = data.submitDate;
       this.EditMaintenanceDialog.form.batch = data.batch;
        this.EditMaintenanceDialog.form.workContent = data.workContent;
-       this.EditMaintenanceDialog.form.woodstatus = data.woodstatus;
-       this.EditMaintenanceDialog.form.injectionNum = data.injectionNum;
+       this.EditMaintenanceDialog.form.areaFz = data.areaFz;
+       this.EditMaintenanceDialog.form.medicineQua= data.medicineQua;
 
     },
 
@@ -426,7 +428,9 @@
           altitude:"",
           workingContent: 0,
           deviceId:"",
-          drug: ""
+          drug: "",
+          areaFz:"",
+          medicineQua:""
         }
       },
         searchText: '',

@@ -42,7 +42,7 @@ export default {
         console.log("device");
         var markers = [];
         http.requestWithToken(
-          "/dryWatch/device_list",
+          "/medicineDataDetail/device_list",
           "get",
           { page: 1, limit: 1000 },
           res => {

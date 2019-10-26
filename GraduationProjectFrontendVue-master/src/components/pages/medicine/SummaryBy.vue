@@ -14,11 +14,11 @@
       <el-button type="primary" @click="handleSubmit">搜索</el-button>
     </div>
     <el-table border :data="DryWatchData.list" style="width: 100%" height="600">
-      <el-table-column prop="customtown" label="区域" align="center"></el-table-column>
+      <el-table-column prop="customTown" label="区域" align="center"></el-table-column>
       <el-table-column prop="startDate" label="起始日期" align="center"></el-table-column>
       <el-table-column prop="endDate" label="截止日期" align="center"></el-table-column>
-      <el-table-column prop="medicineSum" label="药剂质量（kg）" align="center"></el-table-column>
-      <el-table-column prop="areaNum" label="防治面积（㎡）" align="center"></el-table-column>
+      <el-table-column prop="medicineQuaSum" label="药剂质量（kg）" align="center"></el-table-column>
+      <el-table-column prop="areaFzSum" label="防治面积（㎡）" align="center"></el-table-column>
       <el-table-column
         prop="manager"
         label="管理员"
@@ -36,6 +36,8 @@
         :total="DryWatchData.total"
       ></el-pagination>
     </div>
+      各区域药剂总质量:{{totalMedicineQuaSum}} &nbsp;
+      各区域防治总面积:{{totalAreaFzNum}} &nbsp;
   </div>
 
 
@@ -58,7 +60,7 @@
       },
       loadDevice() {
         http.requestWithToken(
-          "/dryWatch/Summary/byCustomReigon",
+          "/medicineData/Summary/byCustomReigon",
           "post",
           {
             page: this.DryWatchData.page,
@@ -73,6 +75,8 @@
             this.DryWatchData.total = res.data.data.totalNum;
             this.DryWatchData.page = res.data.data.currentPage;
             // this.DryWatchData.optionIndex = -1;
+            this.totalMedicineQuaSum = res.data.data.data[0].totalMedicineQuaSum;
+            this.totalAreaFzNum = res.data.data.data[0].totalAreaFzNum;
           },
           () => {
           }

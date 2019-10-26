@@ -48,19 +48,15 @@ import TimeStatic from '@/components/pages/admin/TimeStatic'
 import BatchStatic from '@/components/pages/admin/BatchStatic'
 import WorkerStatic from '@/components/pages/admin/WorkerStatic'
 import NewMapStatic from '@/components/pages/admin/NewMapStatic'
-<<<<<<< HEAD
 import MedicineDataDetail from '@/components/pages/medicine/MedicineDetail'
 import SummaryBy from '@/components/pages/medicine/SummaryBy'
 import MedicineWatchMap from '@/components/pages/medicine/MedicineWatchMap'
 import MedicineWorkContent from '@/components/pages/admin/MedicineWorkContent'
 import MedicineName from '@/components/pages/admin/MedicineName'
-=======
 import DeadTreeMaintanceData from '@/components/pages/deadTrees/DeadTreeMaintanceData'
 import DeadTreeDeviceMessage from '@/components/pages/deadTrees/DeadTreeDeviceMessage'
 import DeadTreeDeviceWanted from '@/components/pages/deadTrees/DeadTreeDeviceWanted'
 import DataReport from '@/components/pages/admin/DataReport'
->>>>>>> 6273d2449f10400c9125cee24aa6dd551f776d89
-
 Vue.use(Router)
 
 export default new Router({
@@ -384,18 +380,6 @@ export default new Router({
           name: '数据抄报',
           component: DataReport
         }
-
-
-
-
-
-
-
-
-
-
-
-
       ]
     },
 
