@@ -39,20 +39,20 @@
           <el-option value="1" label="是">是</el-option>
           <el-option value="0" label="否">否</el-option>
         </el-select>
-        <el-button type="primary" @click="loadUser">搜索</el-button>
+        <el-button id="search" type="primary"  @click="loadUser">搜索</el-button>
       </div>
       <div>
-        <el-button type="primary" @click="showAddUser">添加</el-button>
-        <el-button type="primary" @click="showEditUser" :disabled="userData.selectedIndex == -1">修改</el-button>
+        <el-button id="add" type="primary" @click="showAddUser">添加</el-button>
+        <el-button id="alter" type="primary" @click="showEditUser" :disabled="userData.selectedIndex == -1">修改</el-button>
         <el-button
+          id="delete"
           type="primary"
           v-if="this.$store.state.user.role == 6"
           @click="handleUserDelete"
-
         >删除
         </el-button>
 
-        <el-button type="primary" :disabled="userData.selectedIndex == -1" @click="handleRestPassword()">重置密码
+        <el-button id="reset" type="primary" :disabled="userData.selectedIndex == -1" @click="handleRestPassword()">重置密码
         </el-button>
       </div>
     </div>
@@ -707,6 +707,23 @@
     display: flex;
     justify-content: space-between;
   }
+
+  #search{
+    background-color:#1D7155
+  }
+  #add{
+    background-color:#1D7155
+  }
+  #alter{
+    background-color:#1D7155
+  }
+  #delete{
+    background-color:#1D7155
+  }
+  #reset{
+    background-color:#1D7155
+  }
+  
 
   #userInfoDialogData {
     display: flex;

@@ -5,9 +5,9 @@
         <el-col :span="1">
           <div class="tools" @click.prevent="collapse">
             <i class="fa fa-align-justify"></i>
-          </div>
+          </div >
         </el-col>
-        <el-col :span="5" class="logo">林业项目工程管理系统</el-col>
+        <el-col :span="5" class="logo">松材线虫病防控工程管理系统</el-col>
       </el-row>
     </div>
     <div class="main">
@@ -53,7 +53,7 @@
         <!-- </div> -->
       </div>
     </div>
-    <el-dialog :visible.sync="changePasswordDialog.visible" title="修改密码" width="25%">
+    <el-dialog :visible.sync="changePasswordDialog.visible" class="alter" title="修改密码" width="25%">
       <el-form>
         <el-form-item label="原密码">
           <el-input type="password" v-model="changePasswordDialog.orgPassword"></el-input>
@@ -192,27 +192,30 @@ export default {
 		width: 100%;
     height: 100%;
     box-sizing: border-box;
-		.header {
+	  .header {
 			height: 60px;
 			line-height: 60px;
-			background: #2cabe3;
+			background: #1D7155;
 			color:#fff;
-			.userinfo {
+
+		.userinfo {
       text-align: right;
       padding-right: 35px;
       float: right;
-      .userinfo-inner {
-        cursor: pointer;
-        color: #fff;
-        img {
+    .userinfo-inner {
+      cursor: pointer;
+      color: #fff;
+      img {
           width: 40px;
           height: 40px;
           border-radius: 20px;
           margin: 10px 0px 10px 10px;
           float: right;
+        
         }
       }
     }
+
     .logo {
       width: 460px;
       height: 60px;
