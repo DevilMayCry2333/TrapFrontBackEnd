@@ -1,5 +1,5 @@
 <template>
-<div id="login-form-container" style="height:100%; padding:0px;">
+<div id="login-form-container" style="height:100%; padding:0px;background:#B8D3CA;">
   <el-form
     :model="ruleForm2"
     :rules="rules2"
@@ -9,8 +9,8 @@
     class="demo-ruleForm login-container"
     id="login-form"
   >
-    <h3 class="title">系统登录</h3>
-    <h2 class="title1">松材线虫病防控工程管理系统</h2>
+    <h1 class="title">松材线虫病防控工程管理系统</h1>
+    <h2 class="title1">用　户　登　录</h2>
     <el-form-item prop="account">
       <el-input type="text" v-model="ruleForm2.account" auto-complete="off" placeholder="账号"></el-input>
     </el-form-item>
@@ -19,11 +19,12 @@
     </el-form-item>
     <!-- <el-checkbox v-model="checked" checked class="remember">记住密码</el-checkbox> -->
     <el-form-item style="width:100%;">
-      <el-button
+      <el-button class="denglu"
         type="primary"
         style="width:100%;"
         @click.native.prevent="handleSubmit2"
         :loading="logining"
+        
       >登录</el-button>
       <!--<el-button @click.native.prevent="handleReset2">重置</el-button>-->
 
@@ -132,24 +133,34 @@ export default {
   border: 1px solid #eaeaea;
   box-shadow: 0 0 25px #cac6c6;
   .title {
-
-    margin: -250px auto 0px auto;
+    //margin: -250px 20px 10px 20px;
+    margin-top:-250px;
+   // margin-bottom:100px;
+    margin-right:15%;
+    margin-left:23%;
     text-align: center;
     color: #505458;
   }
-
+.denglu{
+   background-color: #1D7155;
+   color: white;
+   text-align: center;
+}
   .remember {
     margin: 0px 0px 0px 0px;
   }
 }
 .title1{
-          font_size: 20px Extra large ！important;
-          margin: 30px auto 40px auto;
+         // font_size: 20px Extra large ！important;
+         // margin: 30px 10px 40px 10px;
+          margin-top:5%;
+          margin-bottom:5%;
+          margin-right:30%;
+          margin-left:40%;
           text-align: center;
           color: #505458;
         }
         .title3{
-
                   margin-left: 30%;
                   text-align: center;
 

@@ -44,11 +44,11 @@ export default {
         http.requestWithToken(
           "/track/device_list",
           "get",
-          { page: 1, limit: 1000 },
+          { page: 1, limit: 1000,isTrack:true },
           res => {
             console.log(res.data);
             let that = this;
-            function addMarker(point, events) {
+            function addMarker(pointArray, events) {
               //此处point不再需要了
                   var options = {
                     size: 30,
@@ -56,10 +56,13 @@ export default {
                     color: '#d340c3'
                   }
               // var marker = new BMap.Marker(point);
-              var markerClusterer = new BMap.PointCollection(markers,options);
+              // var markerClusterer = new BMap.PointCollection(markers,options);
+              var polyline = new BMap.Polyline(pointArray,
+              {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.5});
+
               // marker.addEventListener("click", events);
               // that.map.addOverlay(marker);
-               that.map.addOverlay(markerClusterer);
+               that.map.addOverlay(polyline);
             }
             function addText(text, point) {
               console.log(text);
@@ -85,8 +88,10 @@ export default {
             
             var flag = 1;
             for (let i = 0; i < data.length; ++i) {
-              if (data[i].longitude && data[i].latitude) {
-                var point = gps.convert(data[i].latitude, data[i].longitude);
+              markers = [];
+              for(let j = 0; j < data[i].trackGroup.length; ++j){
+                if(data[i].trackGroup[j].longitude && data[i].trackGroup[j].latitude){
+                var point = gps.convert(data[i].trackGroup[j].latitude, data[i].trackGroup[j].longitude);
                 console.log("遍历data");
                 console.log(data[i].latitude);
                 console.log(data[i].longitude);
@@ -95,26 +100,29 @@ export default {
 
                 point = new BMap.Point(point[1], point[0]);
                 markers.push(point);
-                addText(data[i]["linename"], point);
-
-                console.log(data[i]["linename"]);
+                if(j==0 || j>=data[i].trackGroup.length-1)
+                  addText(data[i].trackGroup[j]["linename"], point);
+                console.log(data[i].trackGroup[j]["linename"]);
                 console.log(point);
 
                 let center = "";
-                if (data[i].town != null) center = data[i].town + center;
+                if (data[i].province != null) center = data[i].province + center;
                 if (data[i].city != null) center = data[i].city + center;
-                if (data[i].area != null) center = data[i].area + center;
-                if (data[i].province != null)
-                  center = data[i].province + center;
+                // if (data[i].trackGroup[j].area != null) center = data[i].trackGroup[j].area + center;
+                if (data[i].area != null)
+                  center = data[i].area + center;
                 if (center && flag){
                   this.map.centerAndZoom(center, 5)
                   flag = 0;
                   };
+                }
               }
-            }
-                addMarker(point, () => {
+              addMarker(markers, () => {
                   this.dialogVisible = true;
                 });
+            }
+               // if (data[i].trackGroup.longitude && data[i].trackGroup.latitude) {
+              // }           
 
           },
           () => {}
