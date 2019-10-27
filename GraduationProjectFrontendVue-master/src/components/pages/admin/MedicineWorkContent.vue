@@ -73,11 +73,11 @@ export default {
   },
   methods: {
     loadOtherBeetleData() {
-      let url = "/auth_api/inject_workContent";
+      let url = "/auth_api/medicine_workContent";
        let role = this.$store.state.user.role;
        console.log(role);
       if (this.$store.state.user.role == 4) {
-        url = "/auth_api/inject_workContent/town";
+        url = "/auth_api/medicine_workContent/town";
       }
       http.requestWithToken(
         url,
@@ -99,7 +99,7 @@ export default {
     loadAll() {
     this.townUserListCanAdd=[];
       http.requestWithToken(
-        "/auth_api/inject_workContent",
+        "/auth_api/medicine_workContent",
         "get",
         {},
         res => {
@@ -145,7 +145,7 @@ export default {
     },
     handleTownSubmit() {
       http.requestWithToken(
-        "/auth_api/inject_workContent",
+        "/auth_api/medicine_workContent",
         "post",
         { name: this.form.name },
         res => {
@@ -162,7 +162,7 @@ export default {
     handleSubmit() {
       if (this.isAdd) {
         http.requestWithToken(
-          "/auth_api/inject_workContent",
+          "/auth_api/medicine_workContent",
           "post",
           { name: this.form.name },
           res => {
@@ -177,7 +177,7 @@ export default {
         );
       } else {
         http.requestWithToken(
-          "/auth_api/inject_workContent",
+          "/auth_api/medicine_workContent",
           "put",
           { id: this.form.id, name: this.form.name },
           res => {
@@ -192,7 +192,7 @@ export default {
     },
     handleSubmitTownUser() {
       http.requestWithToken(
-        "/auth_api/inject_workContent/town",
+        "/auth_api/medicine_workContent/town",
         "post",
         { beetleInfoId: this.townUserToAdd },
         res => {
@@ -210,7 +210,7 @@ this.loadOtherBeetleData();
     handleDelete(data) {
       if (this.$store.state.user.role == 0) {
         http.requestWithToken(
-          "/auth_api/inject_workContent",
+          "/auth_api/medicine_workContent",
           "delete",
           { id: data.id },
           res => {
@@ -224,7 +224,7 @@ this.loadOtherBeetleData();
         );
       } else if (this.$store.state.user.role == 4) {
         http.requestWithToken(
-          "/auth_api/inject_workContent/town",
+          "/auth_api/medicine_workContent/town",
           "delete",
           { beetleInfoId: data.id },
           res => {
