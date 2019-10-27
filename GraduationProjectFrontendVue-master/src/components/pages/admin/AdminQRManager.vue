@@ -306,12 +306,15 @@ export default {
           label: '注干剂监测'
         }, {
           value: '3',
+          label: '药剂防治管理'
+        },{
+          value: '4',
           label: '天敌防治'
         }, {
-          value: '4',
+          value: '5',
           label: '枯死树采伐'
         }, {
-          value: '5',
+          value: '6',
           label: '轨迹追踪'
         }],
 
@@ -381,8 +384,11 @@ export default {
               http.requestWithToken(
           "/newQrCode/search",
           "get",
-          { colName: this.value, searchText: this.input },
+          { colName: this.value, searchText: this.input,
+          page: this.QRData.page, limit: this.QRData.limit },
           res => {
+            console.log(res.data);
+            
             this.QRData.list = res.data.data;
             this.QRData.total = res.data.totalNum;
 
@@ -487,7 +493,15 @@ export default {
     },
     areaChange(){
       console.log(this.areaValue);
-
+      
+      var myDate = new Date();
+      var tYear = myDate.getFullYear();
+      console.log(tYear);
+      var shortYear = tYear.toString().split("20");
+      console.log(shortYear[1]);
+      var toCompleteID = this.areaValue.toString() + shortYear[1].toString() + this.applicationValue.toString();
+      console.log(toCompleteID);
+      this.toCompleteID = toCompleteID;
 
     },
     verfiyNum(){
@@ -517,6 +531,7 @@ export default {
         { id: e},
         res => {
           console.log(res);
+          // this.$set(this.area,res.data);
           this.area = res.data;
 
         },
@@ -538,6 +553,7 @@ export default {
         { id: e},
         res => {
           console.log(res);
+          // this.$set(this.city,res.data);
           this.city = res.data;
           console.log(this.city);
 
@@ -624,19 +640,20 @@ export default {
 
         },
     loadDevice() {
-      http.requestWithToken(
-        "/auth_api/device_list",
-        "get",
-        { page: this.QRData.page, limit: this.QRData.limit,
-        isMap:false },
-        res => {
-          console.log(res.data)
-          this.QRData.list = res.data.data;
-          this.QRData.total = res.data.totalNum;
+              http.requestWithToken(
+          "/newQrCode/search",
+          "get",
+          { colName: this.value, searchText: this.input,
+          page: this.QRData.page, limit: this.QRData.limit },
+          res => {
+            console.log(res.data);
+            
+            this.QRData.list = res.data.data;
+            this.QRData.total = res.data.totalNum;
 
-        },
-        () => {}
-      );
+          },
+          () => {}
+        );
     },
     loadManagers() {
       http.requestWithToken(

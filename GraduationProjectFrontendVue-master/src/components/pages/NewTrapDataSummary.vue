@@ -2,7 +2,7 @@
 <div>
         <el-date-picker v-model="startDate" type="date" value-format="yyyy-MM-dd" placeholder="起始日期"></el-date-picker>
       <el-date-picker v-model="endDate" type="date" value-format="yyyy-MM-dd" placeholder="终止日期"></el-date-picker>
-      <el-select v-model="value" placeholder="请选择">
+      <el-select @change="selectChange" v-model="value" placeholder="请选择">
         <el-option
           v-for="item in options"
           :key="item.value"
@@ -17,7 +17,7 @@
 
 
         <el-table border :data="QRData.list" style="width: 100%" height="600">
-        <el-table-column prop="recordByCol" label="自定义" align="center"></el-table-column>
+        <el-table-column prop="recordByCol" :label="MycolName" align="center"></el-table-column>
         <el-table-column prop="startDate" label="开始日期" align="center"></el-table-column>
         <el-table-column prop="endDate" label="结束日期" align="center"></el-table-column>
         <el-table-column prop="deviceNum" label="诱捕器数量" align="center"></el-table-column>
@@ -46,6 +46,9 @@
 import http from "../../utils/http";
 export default {
     mounted(){
+      this.value = "CustomSerial";
+      this.MycolName = "编号";
+      
       this.uploadUrl =
               http.getBaseUrl() +
               "/natural/importExcel?token=" +
@@ -77,6 +80,19 @@ export default {
 
     },
     methods:{
+      selectChange(){
+        console.log(this.value);
+        if(this.value == "CustomSerial"){
+          this.MycolName = "编号";
+        }else if(this.value == "CustomTown"){
+          this.MycolName = "区域"
+        }else if(this.value == "batch"){
+          this.MycolName = "批次"
+        }else if(this.value == "username"){
+          this.MycolName = "施工人员"
+        }
+        
+      },
         exportExcel(){
         console.log(this.QRData.list);
         let role = this.$store.state.user.role;

@@ -23,11 +23,11 @@
 <script>
 import gps from "../../../utils/gps";
 import http from "../../../utils/http";
-import TrackMapStatic from "./TrackMapStatic.vue";
+// import DryWatchMapStatic from "./DryWatchMapStatic.vue";
 export default {
-    name:'DeadTreeDeviceMap',
+    name:'DryWatchDeviceMap',
   components: {
-    "t-statistics-view": TrackMapStatic
+    // "t-statistics-view": DryWatchMapStatic
   },
   data() {
     return {
@@ -42,13 +42,13 @@ export default {
         console.log("device");
         var markers = [];
         http.requestWithToken(
-          "/track/device_list",
+          "/medicineDataDetail/device_list",
           "get",
-          { page: 1, limit: 1000,isTrack:true },
+          { page: 1, limit: 1000 },
           res => {
             console.log(res.data);
             let that = this;
-            function addMarker(pointArray, events) {
+            function addMarker(point, events) {
               //此处point不再需要了
                   var options = {
                     size: 30,
@@ -56,18 +56,12 @@ export default {
                     color: '#d340c3'
                   }
               // var marker = new BMap.Marker(point);
-              // var markerClusterer = new BMap.PointCollection(markers,options);
-              var polyline = new BMap.Polyline(pointArray,
-              {strokeColor:"blue", strokeWeight:6, strokeOpacity:0.5});
-
+              var markerClusterer = new BMap.PointCollection(markers,options);
               // marker.addEventListener("click", events);
               // that.map.addOverlay(marker);
-               that.map.addOverlay(polyline);
+               that.map.addOverlay(markerClusterer);
             }
             function addText(text, point) {
-              console.log(text);
-              console.log(point);
-
               var opts = {
                 position: point, // 指定文本标注所在的地理位置
                 offset: new BMap.Size(5, -5) //设置文本偏移量
@@ -83,46 +77,29 @@ export default {
               that.map.addOverlay(label);
             }
             let data = res.data.data;
-            console.log("实际data");
-            console.log(data);
-            
             var flag = 1;
             for (let i = 0; i < data.length; ++i) {
-              markers = [];
-              for(let j = 0; j < data[i].trackGroup.length; ++j){
-                if(data[i].trackGroup[j].longitude && data[i].trackGroup[j].latitude){
-                var point = gps.convert(data[i].trackGroup[j].latitude, data[i].trackGroup[j].longitude);
-                console.log("遍历data");
-                console.log(data[i].latitude);
-                console.log(data[i].longitude);
-
-                console.log(point);
-
+              if (data[i].longitude && data[i].latitude) {
+                var point = gps.convert(data[i].latitude, data[i].longitude);
                 point = new BMap.Point(point[1], point[0]);
                 markers.push(point);
-                if(j==0 || j>=data[i].trackGroup.length-1)
-                  addText(data[i].trackGroup[j]["linename"], point);
-                console.log(data[i].trackGroup[j]["linename"]);
-                console.log(point);
-
+                addText(data[i]["customSerial"], point);
+                
                 let center = "";
-                if (data[i].province != null) center = data[i].province + center;
+                if (data[i].town != null) center = data[i].town + center;
                 if (data[i].city != null) center = data[i].city + center;
-                // if (data[i].trackGroup[j].area != null) center = data[i].trackGroup[j].area + center;
-                if (data[i].area != null)
-                  center = data[i].area + center;
+                if (data[i].area != null) center = data[i].area + center;
+                if (data[i].province != null)
+                  center = data[i].province + center;
                 if (center && flag){
                   this.map.centerAndZoom(center, 5)
                   flag = 0;
                   };
-                }
               }
-              addMarker(markers, () => {
+            }
+                addMarker(point, () => {
                   this.dialogVisible = true;
                 });
-            }
-               // if (data[i].trackGroup.longitude && data[i].trackGroup.latitude) {
-              // }           
 
           },
           () => {}

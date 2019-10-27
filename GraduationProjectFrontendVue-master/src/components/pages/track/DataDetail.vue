@@ -419,11 +419,18 @@ export default {
                 },
                 () => {}
             );
-          }else if(this.role == 2 || this.role==1){
-                http.requestWithToken(
-                "/track/selectAll",
+          }else if(this.role == 2){
+            
+            http.requestWithToken(
+                "/track/searchDetail",
                 "post",
-                { page: this.QRData.page, limit: 10, username: sessionStorage['username'],adcode: this.city},
+                { page: this.QRData.page, limit: 10, username: sessionStorage['username'],
+                                  startDate: this.startDate,
+                  endDate: this.endDate,
+                  colName: this.value,
+                  searchText: this.input,
+                  adcode: this.city
+                  },
                 res => {
                 this.QRData.list = res.data.Data;
                 this.QRData.total = res.data.total;
@@ -432,6 +439,36 @@ export default {
                 () => {}
             );
 
+            //     http.requestWithToken(
+            //     "/track/selectAll",
+            //     "post",
+            //     { page: this.QRData.page, limit: 10, username: sessionStorage['username'],adcode: this.city},
+            //     res => {
+            //     this.QRData.list = res.data.Data;
+            //     this.QRData.total = res.data.total;
+
+            //     },
+            //     () => {}
+            // );
+
+          }else if(this.role==1){
+            http.requestWithToken(
+                "/track/searchDetail",
+                "post",
+                { page: this.QRData.page, limit: 10, username: sessionStorage['username'],
+                                  startDate: this.startDate,
+                  endDate: this.endDate,
+                  colName: this.value,
+                  searchText: this.input,
+                  adcode: this.province
+                  },
+                res => {
+                this.QRData.list = res.data.Data;
+                this.QRData.total = res.data.total;
+
+                },
+                () => {}
+            );            
           }
         },
     },

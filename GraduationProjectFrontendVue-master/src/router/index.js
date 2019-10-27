@@ -48,11 +48,15 @@ import TimeStatic from '@/components/pages/admin/TimeStatic'
 import BatchStatic from '@/components/pages/admin/BatchStatic'
 import WorkerStatic from '@/components/pages/admin/WorkerStatic'
 import NewMapStatic from '@/components/pages/admin/NewMapStatic'
+import MedicineDataDetail from '@/components/pages/medicine/MedicineDetail'
+import SummaryBy from '@/components/pages/medicine/SummaryBy'
+import MedicineWatchMap from '@/components/pages/medicine/MedicineWatchMap'
+import MedicineWorkContent from '@/components/pages/admin/MedicineWorkContent'
+import MedicineName from '@/components/pages/admin/MedicineName'
 import DeadTreeMaintanceData from '@/components/pages/deadTrees/DeadTreeMaintanceData'
 import DeadTreeDeviceMessage from '@/components/pages/deadTrees/DeadTreeDeviceMessage'
 import DeadTreeDeviceWanted from '@/components/pages/deadTrees/DeadTreeDeviceWanted'
 import DataReport from '@/components/pages/admin/DataReport'
-
 Vue.use(Router)
 
 export default new Router({
@@ -189,6 +193,11 @@ export default new Router({
           component: NaturalEnemiesDataDetail
         },
         {
+          path: 'pages/medicine/detail',
+          name: '数据明细',
+          component: MedicineDataDetail
+        },
+        {
           path: 'pages/deadTrees/detail',
           name: '数据明细',
           component: DeadTreeDataDetail
@@ -198,11 +207,19 @@ export default new Router({
           name: '数据明细',
           component: TrackDataDetail
         },
+
         {
           path: 'pages/drywatch/datasummary',
           name: '数据汇总',
           component: DryWatchDataSummary
         },
+
+        {
+          path: 'pages/medicine/datasummaryby',
+          name: '数据汇总',
+          component: SummaryBy
+        },
+        
         {
           path: 'pages/drywatch/Maintance',
           name: 'DryWatchMaintanceData',
@@ -249,6 +266,11 @@ export default new Router({
           component: NaturalDeviceMap
         },
         {
+          path: 'pages/medicine/map',
+          name: '地图查看',
+          component: MedicineWatchMap
+        },
+        {
           path: 'pages/deadtree/map',
           name: '地图查看',
           component: DeadTreeDeviceMap
@@ -274,6 +296,11 @@ export default new Router({
           component: TrapWorkContent
         },
         {
+          path: 'pages/medicine/workcontent',
+          name: '工作内容配置',
+          component: MedicineWorkContent
+        },
+        {
           path: 'pages/trap/injectType',
           name: '药剂类型配置',
           component: TrapInjectType
@@ -282,6 +309,11 @@ export default new Router({
           path: 'pages/inject/woodStatus',
           name: '树木状态配置',
           component: InjectWoodStatus
+        },
+        {
+          path: 'pages/medicine/name',
+          name: '药剂名称配置',
+          component: MedicineName
         },
         {
           path: 'pages/inject/workContent',
@@ -348,18 +380,6 @@ export default new Router({
           name: '数据抄报',
           component: DataReport
         }
-
-
-
-
-
-
-
-
-
-
-
-
       ]
     },
 

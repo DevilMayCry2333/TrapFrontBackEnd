@@ -384,8 +384,8 @@ export default {
                 },
                 res => {
                   console.log(res);
-                this.QRData.list = res.data.Data;
-                this.QRData.total = res.data.total;
+                this.QRData.list = res.data.data;
+                this.QRData.total = res.data.totalNum;
 
                 this.totalWorkDay = res.data.WorkDay;
                 this.totalCutNum = res.data.woodNum;
@@ -409,8 +409,8 @@ export default {
                 "post",
                 { page: this.QRData.page, limit: 10, username: sessionStorage['username']},
                 res => {
-                this.QRData.list = res.data.Data;
-                this.QRData.total = res.data.total;
+                this.QRData.list = res.data.data;
+                this.QRData.total = res.data.totalNum;
 
                 },
                 () => {}
@@ -427,13 +427,8 @@ export default {
                   adcode: this.area
                 },
                 res => {
-                this.QRData.list = res.data.Data;
-                this.QRData.total = res.data.total;
-                
-                this.totalWorkDay = res.data.WorkDay;
-                this.totalCutNum = res.data.woodNum;
-                this.totalWoodVolume = res.data.woodVolume;
-
+                this.QRData.list = res.data.data;
+                this.QRData.total = res.data.totalNum;
 
                 },
                 () => {}
