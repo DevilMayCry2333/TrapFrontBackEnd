@@ -25,7 +25,7 @@
     </div>
     <div>
       <br>
-      诱捕器总数:{{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp; 总诱虫量 {{totalSum}}
+      诱捕器总数:{{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp; 注剂总量 {{totalSum}}
       <br>
     </div>
 

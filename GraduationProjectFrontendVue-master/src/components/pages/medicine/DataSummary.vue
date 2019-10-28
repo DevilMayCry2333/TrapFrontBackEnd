@@ -25,7 +25,7 @@
     </div>
     <div>
       <br>
-      诱捕器总数:{{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp; 总诱虫量 {{totalSum}}
+      诱捕器总数:{{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp; 药剂总质量：{{totalSum}}
       <br>
     </div>
 
@@ -35,7 +35,8 @@
               <el-table :data="summaryDeviceData.list" :row-style="tableRowStyle">
                 <el-table-column :label="contentLabelDict[contentLabelIndex]" prop="name"></el-table-column>
                 <el-table-column label="设备数量" prop="deviceCount"></el-table-column>
-                <el-table-column label="注剂数量" prop="injectNum"></el-table-column>
+                <el-table-column label="药剂质量（kg）" prop="medicineQuaSum"></el-table-column>
+                <el-table-column label="防治面积（㎡）" prop="areaFzSum"></el-table-column>
                 <el-table-column label="操作">
                   <template slot-scope="scope">
                     <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
@@ -62,7 +63,8 @@
                           <el-table :data="summaryManagerData.list" :row-style="tableRowStyle">
                             <el-table-column label="项目工程" prop="name"></el-table-column>
                             <el-table-column label="设备数量" prop="deviceCount"></el-table-column>
-                            <el-table-column label="注射剂总量" prop="injectNum"></el-table-column>
+                            <el-table-column label="药剂总质量（kg）" prop="medicineQuaSum"></el-table-column>
+                            <el-table-column label="防治总面积（㎡）" prop="areaFzSum"></el-table-column>
                             <el-table-column label="操作">
                               <template slot-scope="scope">
                                 <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
@@ -175,7 +177,7 @@ export default {
     },
     querySum(adcode) {
       http.requestWithToken(
-        "/dryWatch/Summary/sum",
+        "/medicineData/Summary/sum",
         "get",
         {
           adcode: adcode,
@@ -184,7 +186,8 @@ export default {
                   },
         res => {
           this.totalCount = res.data.data.count;
-          this.totalSum = res.data.data.injectNum;
+          this.totalSum = res.data.data.medicineQuaSum;
+          this.totalFzSum = res.data.data.areaFzSum
           console.log(this.totalCount);
           console.log(res.data.data);
         },
@@ -279,10 +282,10 @@ export default {
     queryTownData() {
       this.contentLabelIndex = 2;
       http.requestWithToken(
-        "/dryWatch/area",
+        "/medicineData/Summary/medicinearea",
         "post",
         {
-          adcode: this.area,
+          adcode: this.area,  
           startDate: this.startDate,
           endDate: this.endDate,
           page: this.summaryDeviceData.page,
@@ -305,7 +308,7 @@ export default {
     queryManagerData() {
           this.contentLabelIndex = 2;
           http.requestWithToken(
-            "/dryWatch/Summary/manager",
+            "/medicineData/Summary/medicinemanager",
             "get",
             {
               adcode: this.area,
@@ -488,7 +491,7 @@ export default {
       sessionStorage.setItem('startDate',this.startDate);
       sessionStorage.setItem('endDate',this.endDate);
 
-this.$router.push({ path: '/pages/drywatch/Maintance' });
+this.$router.push({ path: '/pages/medicine/Maintance' });
 
     }
   },
