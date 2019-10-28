@@ -163,7 +163,7 @@
     mounted() {
                 this.uploadUrl =
               http.getBaseUrl() +
-              "/dryWatch/importExcel?token=" +
+              "/medicineDataDetail/importExcel?token=" +
               sessionStorage["token"];
               
       this.loadDevice();
@@ -319,7 +319,7 @@
         setTimeout(()=>{
                   window.location =
         http.getBaseUrl() +
-        "/dryWatch/exportExcel?startDate=" +
+        "/medicineDataDetail/exportExcel?startDate=" +
         this.startDate +
         "&endDate=" +
         this.endDate +

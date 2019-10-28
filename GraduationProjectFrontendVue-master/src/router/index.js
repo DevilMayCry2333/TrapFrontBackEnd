@@ -57,6 +57,10 @@ import DeadTreeMaintanceData from '@/components/pages/deadTrees/DeadTreeMaintanc
 import DeadTreeDeviceMessage from '@/components/pages/deadTrees/DeadTreeDeviceMessage'
 import DeadTreeDeviceWanted from '@/components/pages/deadTrees/DeadTreeDeviceWanted'
 import DataReport from '@/components/pages/admin/DataReport'
+import DataSummary from '@/components/pages/medicine/DataSummary'
+import MedicineDeviceWanted from '@/components/pages/medicine/MedicineDeviceWanted'
+import MedicineMaintanceData from '@/components/pages/medicine/MedicineMaintanceData'
+import MedicineDeviceMessage from '@/components/pages/medicine/MedicineDeviceMessage'
 Vue.use(Router)
 
 export default new Router({
@@ -226,6 +230,11 @@ export default new Router({
           component: DryWatchMaintanceData
         },
         {
+          path: 'pages/medicine/Maintance',
+          name: 'MedicineMaintanceData',
+          component: MedicineMaintanceData
+        },
+        {
           path: 'pages/drywatch/message',
           name: 'DryWatchDeviceMessage',
           component: DryWatchDeviceMessage
@@ -236,14 +245,30 @@ export default new Router({
           component: DryWatchDeviceWanted
         },
         {
+          path: 'pages/medicine/wanted',
+          name: '数据修改上报',
+          component: MedicineDeviceWanted
+        },
+        {
           path: 'pages/natural/datasummary',
           name: '数据汇总',
           component: NaturalEnemiesDataSummary
+        },
+
+        {
+          path: 'pages/medicine/datasummary',
+          name: '数据汇总',
+          component: DataSummary
         },
         {
           path: 'pages/natural/maintance',
           name: 'NaturalMaintanceData',
           component: NaturalMaintanceData
+        },
+        {
+          path: 'pages/medicine/message',
+          name: 'MedicineDeviceMessage',
+          component: MedicineDeviceMessage
         },
         {
           path: 'pages/natural/message',
@@ -367,6 +392,11 @@ export default new Router({
         },
         {
           path: 'pages/deadTrees/DeadTreeDeviceMessage',
+          name: '数据查看',
+          component: DeadTreeDeviceMessage
+        },
+        {
+          path: 'pages/medicine/DeadTreeDeviceMessage',
           name: '数据查看',
           component: DeadTreeDeviceMessage
         },
