@@ -304,19 +304,17 @@ export default {
         }, {
           value: '2',
           label: '注干剂监测'
-        }, {
-          value: '3',
-          label: '药剂防治管理'
         },{
-          value: '4',
+          value: '3',
           label: '天敌防治'
         }, {
-          value: '5',
+          value: '4',
           label: '枯死树采伐'
         }, {
-          value: '6',
-          label: '轨迹追踪'
-        }],
+          value: '5',
+          label: '药剂防治管理'
+        }
+        ],
 
         value: '',
         startID:'',
