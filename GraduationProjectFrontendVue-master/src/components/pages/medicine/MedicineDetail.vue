@@ -322,7 +322,7 @@
         "/medicineDataDetail/exportExcel?startDate=" +
         this.startDate +
         "&endDate=" +
-        this.endDate +
+        this.endDate +  
         "&searchText=" +
         this.searchText +
         "&colName=" +
