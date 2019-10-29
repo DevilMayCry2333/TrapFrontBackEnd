@@ -511,38 +511,107 @@ export default {
     //     this.clearMultipleSelection();
 
     // },
+
+    
     someExportExcel() {
           window.location =
                   http.getBaseUrl() +
                   "/medicineDataDetail/exportExcel?startDate=" +
-                  this.maintenanceData.startDate +
+                  this.startDate +
                   "&endDate=" +
-                  this.maintenanceData.endDate +
-                  "&token=" +
+                    this.endDate +  
+                    "&searchText=" +
+                    this.searchText +
+                    "&colName=" +
+                    this.selected +
+                    "&adcode=" +
+                    this.area +
+                    "&username="+
+                    sessionStorage['username'] +
+                    "&token=" +
                   sessionStorage["token"];
 
       
     },
-    exportExcel() {
-              this.buttonLoadMaintenanceData();
-//alert(this.maintenanceData.startDate);
+   exportExcel(){
+        console.log("导出");
+      let role2 = this.$store.state.user.role;
+      this.role2 = role2;
+              // this.loadDevice();
+      console.log(role2);
+      if (role2 == 1) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+      } else if (role2 == 2) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+      } else if (role2 == 3) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+            }
+            else if (role2 == 4) {
+                          this.province = this.$store.state.user.adcode.substr(0, 2);
+                          this.city = this.$store.state.user.adcode.substr(0, 4);
+                          this.area = this.$store.state.user.adcode;
+                          this.manager=this.$store.state.user.username;
+                        }
 
-      window.location =
+                // let role = this.$store.state.user.role;
+          console.log(role2);
+            console.log(this.area);
+            console.log(this.city);
+              console.log(this.province);
+
+
+        /**
+         *        colName: this.value,
+                  searchText: this.input,
+                  adcode: this.area
+         */
+        console.log(http.getBaseUrl());
+        console.log(this.value);
+        if(!this.value){
+          this.value = "";
+        }
+        if(!this.input){
+          this.input = "";
+        }
+        if(!this.startDate){
+          this.startDate = "";
+        }
+        if(!this.endDate){
+          this.endDate = "";
+        }
+        if(!this.area){
+          this.area = "";
+        }
+
+        console.log("====搜索条件===");
+        console.log(this.selected);
+
+         console.log(this.searchText);
+
+        setTimeout(()=>{
+                  window.location =
         http.getBaseUrl() +
         "/medicineDataDetail/exportExcel?startDate=" +
-        this.maintenanceData.startDate +
+        this.startDate +
         "&endDate=" +
-        this.maintenanceData.endDate +
-        "&condition=" +
+        this.endDate +  
+        "&searchText=" +
         this.searchText +
-        "&batch=" +
-        this.searchBatch +
-        "&town=" +
-        this.searchTown +
+        "&colName=" +
+        this.selected +
+        "&adcode=" +
+        this.area +
+        "&username="+
+        sessionStorage['username'] +
         "&token=" +
         sessionStorage["token"];
+        },1000)
 
-    },
+
+      },
     importExcel1(){
 
               alert("已上传，请更新");
