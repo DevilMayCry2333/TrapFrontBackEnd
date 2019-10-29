@@ -709,19 +709,19 @@
   }
 
   #search{
-    background-color:#1D7155
+    /* background-color:#1D7155 */
   }
   #add{
-    background-color:#1D7155
+    /* background-color:#1D7155 */
   }
   #alter{
-    background-color:#1D7155
+    /* background-color:#1D7155 */
   }
   #delete{
-    background-color:#1D7155
+    /* background-color:#1D7155 */
   }
   #reset{
-    background-color:#1D7155
+    /* background-color:#1D7155 */
   }
   
 
