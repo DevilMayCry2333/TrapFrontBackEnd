@@ -61,6 +61,7 @@ import DataSummary from '@/components/pages/medicine/DataSummary'
 import MedicineDeviceWanted from '@/components/pages/medicine/MedicineDeviceWanted'
 import MedicineMaintanceData from '@/components/pages/medicine/MedicineMaintanceData'
 import MedicineDeviceMessage from '@/components/pages/medicine/MedicineDeviceMessage'
+import InjectName from '@/components/pages/admin/InjectName'
 Vue.use(Router)
 
 export default new Router({
@@ -339,6 +340,11 @@ export default new Router({
           path: 'pages/medicine/name',
           name: '药剂名称配置',
           component: MedicineName
+        },
+        {
+          path: 'pages/inject/name',
+          name: '注剂名称配置',
+          component: InjectName
         },
         {
           path: 'pages/inject/workContent',
