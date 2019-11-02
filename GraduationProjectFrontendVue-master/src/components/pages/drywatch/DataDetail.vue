@@ -35,6 +35,8 @@
       <el-table-column prop="workContent" label="工作内容" align="center"></el-table-column>
       <el-table-column prop="injectionNum" label="注剂数量" align="center"></el-table-column>
       <el-table-column prop="woodstatus" label="树木状态" align="center"></el-table-column>
+      <el-table-column prop="chestDiameter" label="胸径" align="center"></el-table-column>
+      <el-table-column prop="injectName" label="注剂类型" align="center"></el-table-column>
       <el-table-column prop="pic" label="照片" align="center">
         <template slot-scope="scope">
             <el-button
