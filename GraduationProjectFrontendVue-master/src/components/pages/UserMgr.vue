@@ -2,7 +2,7 @@
   <div>
     <div id="tool-row">
       <div>
-        <el-input v-model="searchText" placeholder="用户名/姓名/地区" style="width: 150px"></el-input>
+        <el-input v-model="searchText" placeholder="用户名/姓名/地区" style="width: 150px;"></el-input>
         <el-select v-model="roleType" placeholder="用户类型" style="width: 150px">
 
           <el-option value="0" label="全部">全部</el-option>
@@ -39,7 +39,7 @@
           <el-option value="1" label="是">是</el-option>
           <el-option value="0" label="否">否</el-option>
         </el-select>
-        <el-button id="search" type="primary"  @click="loadUser">搜索</el-button>
+        <el-button id="search" type="primary"  @click="loadUser">查询</el-button>
       </div>
       <div>
         <el-button id="add" type="primary" @click="showAddUser">添加</el-button>
@@ -57,7 +57,13 @@
       </div>
     </div>
     <div style="padding-top:5px">
-      <el-table border :data="userData.list" style="width: 100%" height="600">
+      <el-table 
+            border 
+            :data="userData.list" 
+            stripe                
+            style="width: 100%" 
+            height="600"
+            :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">             <!-- 斑马纹 表头颜色 和表头字体颜色-->
         <el-table-column label width="50" align="center">
           <template scope="scope">
             <el-radio
@@ -91,7 +97,7 @@
           </template>
         </el-table-column> -->
       </el-table>
-      <div class="block">
+      <div class="block" >
         <el-pagination
           background
           @current-change="handleUserDataCurrentPageChanged"
@@ -154,7 +160,7 @@
                 style="width: 150px"
               ></el-input>
             </el-form-item>
-            <el-form-item label="激活" label-width="80px" size="mini" prop="active">
+            <el-form-item label="　激活:" label-width="80px" size="mini" prop="active" >
               <el-checkbox name="active" v-model="userInfoDialog.form.active"></el-checkbox>
             </el-form-item>
           </div>
@@ -299,8 +305,8 @@
         </div>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="userInfoDialog.visible = false">取 消</el-button>
-        <el-button type="primary" @click.native.prevent="handleUserDataSubmit">确 定</el-button>
+        <el-button id="cancel" @click="userInfoDialog.visible = false">取 消</el-button>
+        <el-button id="sure" type="primary" @click.native.prevent="handleUserDataSubmit">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -709,22 +715,54 @@
   }
 
   #search{
-    /* background-color:#1D7155 */
+    border:#1D7155;
+    background-color:#1D7155 
   }
   #add{
-    /* background-color:#1D7155 */
+    border:#1D7155;
+    background-color:#1D7155 
   }
   #alter{
-    /* background-color:#1D7155 */
+    border:#1D7155;
+    background-color:#1D7155 
   }
   #delete{
-    /* background-color:#1D7155 */
+    border:#1D7155;
+    background-color:#1D7155 
   }
   #reset{
-    /* background-color:#1D7155 */
+    border:#1D7155;
+    background-color:#1D7155 
   }
-  
-
+.el-pagination li.active{
+    background-color:#70AD47!important;
+    /* color: #fff !important; */
+} 
+.el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner {
+    background-color: #1D7155 ;
+    border-color: #1D7155 ;
+   
+}
+.el-select .el-input.is-focus .el-input__inner {
+    border-color: #67c23a;
+    outline: 0;
+}
+.el-select .el-input.is-focus .el-input__inner {
+    border-color: #67c23a;
+    outline: 0;
+}
+.el-input.is-active .el-input__inner, .el-input__inner:focus {
+    border-color:#67c23a;
+    outline: 0;
+}
+  #cancel{
+    background-color:#1D7155;
+    color: #fff;
+  }
+  #sure{
+    background-color:#1D7155;
+    color: #fff;
+  }
   #userInfoDialogData {
     display: flex;
     justify-content: space-around;

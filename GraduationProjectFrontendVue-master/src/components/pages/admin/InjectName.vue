@@ -55,7 +55,7 @@
 import http from "../../../utils/http";
 export default {
   data() {
-      name:'TrapinjectName_type'
+      name:'Trap/injectName_type'
     return {
       list: [],
       townUserListCanAdd: [],
@@ -253,3 +253,4 @@ this.loadOtherBeetleData();
   justify-content: space-between;
 }
 </style>
+
