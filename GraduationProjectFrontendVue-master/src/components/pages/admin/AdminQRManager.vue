@@ -1,49 +1,55 @@
 <template>
   <div>
     <div id="tool-row">
-      <div></div>
       <div>
         <!-- <el-button
           type="primary"
           @click="showQRDataInfoDialog"
           v-if="this.$store.state.user.role == 3"
         >添加</el-button> -->
-              <el-select v-model="value" placeholder="请选择">
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-      <el-input v-model="input" placeholder="请输入内容"></el-input>
+              <el-select v-model="value" placeholder="请选择" style="width: 150px;">
+                <el-option
+                    v-for="item in options"
+                    :key="item.value"
+                    :label="item.label"
+                    :value="item.value">
+                </el-option>
+              </el-select>
+              <el-input v-model="input" placeholder="请输入内容" style="width: 200px;"></el-input>
 
-      <el-button type="primary" @click="query()">查询</el-button>
+              <el-button id="search" type="primary" @click="query()">查询</el-button>
+      </div>
 
+      <div>
+              <el-button
+                id="allocate"
+                type="primary"
+                @click="showAssignQRCodeDialog()"
+                v-if="this.$store.state.user.role == 0">分配二维码</el-button>
 
-        <el-button
-          type="primary"
-          @click="showAssignQRCodeDialog()"
-          v-if="this.$store.state.user.role == 0"
-        >分配二维码</el-button>
+              <el-button
+                type="primary"
+                @click="showAssignQRCodeManagerDialog()"
+                v-if="this.$store.state.user.role == 4"
+              >分配项目二维码</el-button>
 
-        <el-button
-          type="primary"
-          @click="showAssignQRCodeManagerDialog()"
-          v-if="this.$store.state.user.role == 4"
-        >分配项目二维码</el-button>
-
-        <!-- <el-button
-          type="primary"
-          @click="showQRWorkerDialog()"
-          v-if="this.$store.state.user.role == 0"
-        >编辑二维码分配</el-button> -->
-        <el-button type="primary" @click="handleDownloadID">ID下载</el-button>
-        <el-button type="primary" @click="handleDownload">二维码下载</el-button>
+                <!-- <el-button
+                  type="primary"
+                  @click="showQRWorkerDialog()"
+                  v-if="this.$store.state.user.role == 0"
+                >编辑二维码分配</el-button> -->
+              <el-button id="IDdownload" type="primary" @click="handleDownloadID">ID下载</el-button>
+              <el-button id="codedownload" type="primary" @click="handleDownload">二维码下载</el-button>
       </div>
     </div>
     <div style="padding-top:5px">
-      <el-table border :data="QRData.list" style="width: 100%" height="600">
+      <el-table 
+          border 
+          :data="QRData.list" 
+          stripe   
+          style="width: 100%" 
+          height="600"
+          :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">        <!-- 斑马纹 表头颜色 表头字体颜色  -->
         <el-table-column prop="id" label="id" align="center"></el-table-column>
         <el-table-column prop="province" label="省" align="center"></el-table-column>
         <el-table-column prop="city" label="市" align="center"></el-table-column>
@@ -52,14 +58,14 @@
          <el-table-column prop="project" label="项目归属" align="center"></el-table-column>
          <el-table-column prop="isManagerAssign" label="是否绑定" align="center"></el-table-column>
 
-        <el-table-column
-          prop="manager"
-          label="管理员"
-          align="center"
-          v-if="this.$store.state.user.role == 3"
-        ></el-table-column>
+         <el-table-column
+            prop="manager"
+            label="管理员"
+            align="center"
+            v-if="this.$store.state.user.role == 3"
+          ></el-table-column>
       </el-table>
-    </div>
+
     <div class="block">
       <el-pagination
         background
@@ -70,6 +76,8 @@
         :total="QRData.total"
       ></el-pagination>
     </div>
+  </div>
+
     <el-dialog title="编辑二维码分配" :visible.sync="QRWorkerDialog.visible">
       <el-tabs v-model="QRWorkerDialog.tabName">
         <el-tab-pane label="工人-设备关联" name="0">
@@ -157,13 +165,19 @@
     </el-dialog>
 
     <!-- 为工人分配二维码对话框 -->
-    <el-dialog title="分配二维码" :visible.sync="AssignQRCodeDialog.visible" width="60%">
+    <el-dialog title="分配二维码" :visible.sync="AssignQRCodeDialog.visible" width="40%">
       <div>当前ID前缀:{{toCompleteID}}</div>
+            <br />
+            <br />
       <div style="overflow-y: scroll; height: 300px;">
-          <el-tag>起始ID:</el-tag>
-          <el-input v-model="startID" placeholder="输入六位数字"></el-input>
-          <el-tag>结束ID:</el-tag>
-          <el-input v-model="endID" placeholder="输入六位数字"></el-input>
+          <el-tag>起始ID</el-tag>
+          <el-input v-model="startID" placeholder="输入六位数字" style="width: 150px;"></el-input>
+            <br />
+            <br />
+          <el-tag>结束ID</el-tag>
+          <el-input v-model="endID" placeholder="输入六位数字" style="width: 150px;"></el-input>
+            <br />
+            <br />
            <el-tag>代理商</el-tag>
            <el-select @change="proxyChange" v-model="proxyValue" placeholder="请选择">
             <el-option
@@ -173,7 +187,9 @@
             :value="item.value">
             </el-option>
         </el-select>
-        <el-tag>市</el-tag>
+            <br />
+            <br />
+        <el-tag>　市　</el-tag>
         <el-select @change="cityChange" v-model="cityValue" placeholder="请选择">
             <el-option
             v-for="item in city"
@@ -182,7 +198,9 @@
             :value="item.code">
             </el-option>
         </el-select>
-         <el-tag>县</el-tag>
+            <br />
+            <br />
+         <el-tag>　县　</el-tag>
           <el-select @change="areaChange" v-model="areaValue" placeholder="请选择">
             <el-option
             v-for="item in area"
@@ -191,6 +209,8 @@
             :value="item.code">
             </el-option>
         </el-select>
+            <br />
+            <br />
         <el-tag>应用项目</el-tag>
           <el-select @change="applicationChange" v-model="applicationValue" placeholder="请选择">
             <el-option
@@ -202,8 +222,8 @@
         </el-select>
       </div>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="AssignQRCodeDialog.visible = false">取 消</el-button>
-        <el-button type="primary" @click.native.prevent="handleAssignQRCodeDataSubmit"
+        <el-button id="cancel" @click="AssignQRCodeDialog.visible = false">取 消</el-button>
+        <el-button id="sure" type="primary" @click.native.prevent="handleAssignQRCodeDataSubmit"
         :loading="assignQRCode"
         >确 定</el-button>
       </div>
@@ -377,7 +397,7 @@ export default {
       console.log(this.input);
       console.log(this.value);
       if(!this.input || !this.value){
-        alert("请输入查询条件!!!")
+        alert("请输入查询条件!")
       }else{
               http.requestWithToken(
           "/newQrCode/search",
@@ -405,7 +425,7 @@ export default {
         res => {
           console.log(res);
           if(res.data.error){
-            this.startID = "没有可分配的=.=";
+            this.startID = "没有可分配的二维码";
           }else{
           this.startID = res.data;
           }
@@ -883,6 +903,79 @@ export default {
   display: flex;
   justify-content: space-between;
 }
+  #search{
+    border:#1D7155;
+    background-color:#1D7155 
+  }
+  #allocate{    
+    border:#1D7155;
+    background-color:#1D7155 
+  }
+  #IDdownload{
+    border:#1D7155;
+    background-color:#1D7155 
+  }
+  #codedownload{
+    border:#1D7155;
+    background-color:#1D7155 
+  }
+/* 分配二维码 */
+/* 绿色块 */
+.el-tag {
+    background-color: #1D7155;
+    padding: 0 10px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 12px;
+    color: #fff;
+    border-radius: 4px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid rgba(64,158,255,.2);
+    white-space: nowrap;
+}
+/* 输入框 */
+.el-input__inner {
+    -webkit-appearance: none;
+    background-color: #fff;
+    background-image: none;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    font-size: inherit;
+    height: 35px;
+    line-height: 35px;
+    outline: 0;
+    padding: 0 15px;
+    -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 100%;
+}
+.el-input.is-active .el-input__inner, .el-input__inner:focus {
+    border-color: #67c23a;
+    outline: 0;
+}
+.el-select .el-input.is-focus .el-input__inner {
+    border-color: #67c23a;
+}
+.el-select .el-input__inner:focus {
+    border-color: #67c23a;
+}
+  #cancel{
+    background-color:#1D7155;
+    color: #fff;
+  }
+  #sure{
+    background-color:#1D7155;
+    color: #fff;
+  }
 #userInfoDialogData {
   display: flex;
   justify-content: space-around;
