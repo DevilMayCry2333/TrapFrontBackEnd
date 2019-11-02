@@ -12,7 +12,8 @@
     </div>
     <div class="main">
       <aside :class="collapsed?'menu-collapsed':'menu-expanded'">
-        <el-menu
+        <el-menu 
+        active-text-color="#1D7155"
           :default-active="$route.path"
           class="el-menu-vertical-demo"
           @open="handleopen"
@@ -22,8 +23,10 @@
           router
         >
           <template v-for="(item, index) in menus">
-            <el-submenu :index="index">
-              <template slot="title">{{item.name}}</template>
+            <el-submenu class="switchproject" :index="index">
+              <template  slot="title"><div class="projectname">{{item.name}}
+                </div>
+              </template>
               <el-menu-item
                 v-for="child in item.subMenus"
                 :key="'/' + child.path"
@@ -36,8 +39,8 @@
             <!-- <el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item> -->
           </template>
           <!-- <el-dropdown-item>我的消息</el-dropdown-item> -->
-                                                <el-dropdown-item @click.native="showChangePasswordDialog">修改密码</el-dropdown-item>
-                                                <el-dropdown-item divided @click.native="logout">退出登录</el-dropdown-item>
+                                                <el-dropdown-item class="changepassward" @click.native="showChangePasswordDialog">修改密码</el-dropdown-item>
+                                                <el-dropdown-item class="exit" divided @click.native="logout">退出登录</el-dropdown-item>
         </el-menu>
       </aside>
       <div class="content-container">
@@ -220,7 +223,7 @@ export default {
       width: 460px;
       height: 60px;
       font-size: 22px;
-      padding-left: 0px;
+      padding-left: 10px;
       padding-right: 20px;
     }
 			.tools{
@@ -265,7 +268,28 @@ export default {
 				flex:0 0 230px;
 				width: 230px;
 			}
-			
+			.changepassward{
+        margin-top: 3%;
+        background-color: #1D7155;
+        color:white;
+        //height: 8%;
+      
+      }
+      .exit{
+        background-color: #1D7155;
+        color:white;
+       // height: 8%;
+
+        
+      }
+      .switchproject{
+        margin-top: 3%;
+        background-color: #1D7155;
+      }
+      .projectname{
+        color: #fff;
+      }
+
 		}
 	}
 
