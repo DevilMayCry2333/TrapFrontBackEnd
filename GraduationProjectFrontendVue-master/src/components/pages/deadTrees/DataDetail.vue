@@ -384,8 +384,9 @@ export default {
                 },
                 res => {
                   console.log(res);
-                this.QRData.list = res.data.data;
-                this.QRData.total = res.data.totalNum;
+                  //这里改了一下
+                this.QRData.list = res.data.Data;
+                this.QRData.total = res.data.total;
 
                 this.totalWorkDay = res.data.WorkDay;
                 this.totalCutNum = res.data.woodNum;
@@ -427,7 +428,7 @@ export default {
                   adcode: this.area
                 },
                 res => {
-                this.QRData.list = res.data.data;
+                this.QRData.list = res.data.Data;
                 this.QRData.total = res.data.totalNum;
 
                 },
