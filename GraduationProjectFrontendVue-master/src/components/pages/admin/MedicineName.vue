@@ -3,11 +3,14 @@
     <div id="tool-row">
       <div></div>
       <div>
-        <el-button type="primary" @click="showAdd">增加</el-button>
+        <el-button type="primary" id = "create" @click="showAdd">增加</el-button>
       </div>
     </div>
     <div style="padding-top:5px">
-      <el-table border :data="list" style="width: 100%" height="600">
+      <el-table border :data="list" style="width: 100%" height="600" 
+      stripe :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}"
+      >
+        
         <el-table-column prop="id" label="id"></el-table-column>
         <el-table-column prop="name" label="名称"></el-table-column>
         <el-table-column label="操作">
@@ -145,7 +148,7 @@ export default {
     },
     handleTownSubmit() {
       http.requestWithToken(
-        "/auth_api/medicine_type",
+        "/auth_api/medicine_type/town",
         "post",
         { name: this.form.name },
         res => {
@@ -248,8 +251,9 @@ this.loadOtherBeetleData();
 };
 </script>
 <style>
-#tool-row {
-  display: flex;
-  justify-content: space-between;
-}
+
+.el-button {
+    border-color:#1D7155;
+    background-color:#1D7155 
+  }
 </style>

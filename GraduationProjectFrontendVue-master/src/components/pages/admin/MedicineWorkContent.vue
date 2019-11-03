@@ -7,7 +7,8 @@
       </div>
     </div>
     <div style="padding-top:5px">
-      <el-table border :data="list" style="width: 100%" height="600">
+      <el-table border :data="list" style="width: 100%" height="600"
+      stripe :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
         <el-table-column prop="id" label="id"></el-table-column>
         <el-table-column prop="name" label="名称"></el-table-column>
         <el-table-column label="操作">
