@@ -39,8 +39,8 @@
             <!-- <el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item> -->
           </template>
           <!-- <el-dropdown-item>我的消息</el-dropdown-item> -->
-                                                <el-dropdown-item class="changepassward" @click.native="showChangePasswordDialog">修改密码</el-dropdown-item>
-                                                <el-dropdown-item class="exit" divided @click.native="logout">退出登录</el-dropdown-item>
+                                                <el-dropdown-item class="changepassward" @click.native="showChangePasswordDialog"><div style="display:table-cell; vertical-align: middle;">修改密码</div></el-dropdown-item>
+                                                <el-dropdown-item class="exit" @click.native="logout"><div style="display:table-cell; vertical-align: middle;">退出登录</div></el-dropdown-item>
         </el-menu>
       </aside>
       <div class="content-container">
@@ -223,15 +223,16 @@ export default {
       width: 460px;
       height: 60px;
       font-size: 22px;
-      padding-left: 10px;
-      padding-right: 20px;
+      // padding-left: 10px;
+      // padding-right: 20px;
+      margin-left: 0px;
     }
 			.tools{
-				padding: 0px 23px;
+				padding: 0px 30px;
 				width:14px;
 				height: 60px;
 				line-height: 60px;
-				cursor: pointer;
+				// cursor: pointer;
 			}
 		}
 		.main {
@@ -271,15 +272,24 @@ export default {
 			.changepassward{
         margin-top: 3%;
         background-color: #1D7155;
+        width: 83%;
         color:white;
-        //height: 8%;
+        height: 56px;
+        display: table;
+        font-size: 16px;
       
       }
       .exit{
+      //   background-color: #1D7155;
+      //   color:white;
+      //  height: 8.5%;
+        margin-top: 3%;
         background-color: #1D7155;
+        width: 83%;
         color:white;
-       // height: 8%;
-
+        height: 56px;
+        display: table;
+        font-size: 16px;
         
       }
       .switchproject{
@@ -288,6 +298,7 @@ export default {
       }
       .projectname{
         color: #fff;
+        font-size: 16px;
       }
 
 		}

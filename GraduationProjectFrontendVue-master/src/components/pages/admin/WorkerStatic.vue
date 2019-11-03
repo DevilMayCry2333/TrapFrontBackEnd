@@ -3,13 +3,15 @@
             <el-date-picker v-model="startYear" type="date" value-format="yyyy-MM-dd" placeholder="起始日期"></el-date-picker>
         <el-date-picker v-model="endYear" type="date" value-format="yyyy-MM-dd" placeholder="终止日期"></el-date-picker>
 
-        <el-button type="primary" @click="query()">查询</el-button>
+        <el-button type="primary" @click="query()" style="background-color: #1d7155;border-color: #1d7155;">查询</el-button>
 
-      <el-table border :data="list" style="width: 100%" height="600">
-        <el-table-column prop="Worker" label="工人名称"></el-table-column>
-        <el-table-column prop="Num" label="工作量"></el-table-column>
-        <el-table-column prop="day" label="出勤天数"></el-table-column>
-        <el-table-column prop="Avg" label="平均工作量"></el-table-column>
+      <el-table border :data="list" style="width: 100%" height="600" 
+        stripe 
+        :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
+        <el-table-column prop="Worker" label="工人名称" align="center"></el-table-column>
+        <el-table-column prop="Num" label="工作量" align="center"></el-table-column>
+        <el-table-column prop="day" label="出勤天数" align="center"></el-table-column>
+        <el-table-column prop="Avg" label="平均工作量" align="center"></el-table-column>
       </el-table>
     </div>
 </template>

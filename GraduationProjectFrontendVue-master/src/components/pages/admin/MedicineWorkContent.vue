@@ -3,16 +3,19 @@
     <div id="tool-row">
       <div></div>
       <div>
-        <el-button type="primary" @click="showAdd">增加</el-button>
+        <el-button id="add" type="primary" @click="showAdd">增加</el-button>
       </div>
     </div>
     <div style="padding-top:5px">
-      <el-table border :data="list" style="width: 100%" height="600">
-        <el-table-column prop="id" label="id"></el-table-column>
-        <el-table-column prop="name" label="名称"></el-table-column>
-        <el-table-column label="操作">
+      <el-table border :data="list" style="width: 100%" height="600"
+          stripe 
+          :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
+        <el-table-column prop="id" label="id" align="center"></el-table-column>
+        <el-table-column prop="name" label="名称" align="center"></el-table-column>
+        <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <el-button
+            id="edit"
               type="primary"
               @click="showEdit(scope.row)"
               v-if="$store.state.user.role == 0"
@@ -251,5 +254,18 @@ this.loadOtherBeetleData();
 #tool-row {
   display: flex;
   justify-content: space-between;
+}
+#add{
+    border:#1D7155;
+    background-color:#1D7155 
+}
+#edit{
+    border:#1D7155;
+    background-color:#1D7155 
+}
+.el-button {
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
 }
 </style>

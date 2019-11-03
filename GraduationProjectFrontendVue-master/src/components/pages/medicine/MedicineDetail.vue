@@ -1,30 +1,36 @@
 <template>
   <div>
-    <span style="font-size: 14px">搜索条件:</span>
-    <el-date-picker v-model="DryWatchData.startDate" type="date" value-format="yyyy-MM-dd"
-                    placeholder="起始日期"></el-date-picker>
-    <el-date-picker v-model="DryWatchData.endDate" type="date" value-format="yyyy-MM-dd"
-                    placeholder="终止日期"></el-date-picker>
-    <div style="margin-top: 10px; margin-left: 60px">
-      <el-select v-if="this.$store.state.user.role==3 || this.$store.state.user.role==4" placeholder="编号/区域/批次/施工人员" v-model="selected">
-        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
-      </el-select>
-      <span style="font-size: 14px; margin-left: 14px">搜索内容:</span>
-      <el-input style="width: 200px" placeholder="搜索内容" v-model="searchText"></el-input>
-      <el-button type="primary" @click="handleSubmit">搜索</el-button>
+    <div id="tool-row">
+      <div>
+          <!-- <span style="font-size: 14px">搜索条件:</span> -->
+          <el-date-picker v-model="DryWatchData.startDate" type="date" value-format="yyyy-MM-dd"
+                          placeholder="起始日期" style="width: 150px;"></el-date-picker>
+          <el-date-picker v-model="DryWatchData.endDate" type="date" value-format="yyyy-MM-dd"
+                          placeholder="终止日期" style="width: 150px;"></el-date-picker>
+          <el-select v-if="this.$store.state.user.role==3 || this.$store.state.user.role==4" placeholder="编号/区域/批次/施工人员" v-model="selected" style="width: 220px;">
+            <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          </el-select>
+   
+            <!-- <span style="font-size: 14px; ">搜索内容:</span> -->
+            <el-input style="width: 200px" placeholder="搜索内容" v-model="searchText"></el-input>
+            <el-button type="primary" @click="handleSubmit">搜索</el-button>
+      </div>
+      <div style=" display: flex;">
+            <el-button type="primary" @click="exportExcel">导出</el-button>
+              <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
 
-              <el-button type="primary" @click="exportExcel">导出</el-button>
-        <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
+              <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
+              <el-upload  class="upload-demo" ref="upload"
+              :action="uploadUrl"
+              :on-success="loadDevice">
+                <el-button type="primary" style="margin-left:20px" >点击上传</el-button>
+              </el-upload>
 
-        <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
-        <el-upload  class="upload-demo" ref="upload"
-        :action="uploadUrl"
-        :on-success="loadDevice">
-          <el-button type="primary" >点击上传</el-button>
-        </el-upload>
-
+      </div>
     </div>
-    <el-table border :data="DryWatchData.list" style="width: 100%" height="600">
+    <el-table border :data="DryWatchData.list" style="width: 100%" height="600"
+        stripe 
+        :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
       <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
       <el-table-column prop="serial" label="编号" align="center"></el-table-column>
       <el-table-column prop="customTown" label="所属区域" align="center"></el-table-column>
@@ -471,5 +477,9 @@
 </script>
 
 <style>
-
+#tool-row {
+  /* display: flex; */
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
 </style>
