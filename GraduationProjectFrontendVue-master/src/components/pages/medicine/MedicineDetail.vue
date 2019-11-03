@@ -42,12 +42,13 @@
       <el-table-column prop="medicineQua" label="药剂质量（kg）" align="center"></el-table-column>
       <el-table-column prop="medicineName" label="药剂名称" align="center"></el-table-column>
       <el-table-column prop="areaFz" label="防治面积（㎡）" align="center"></el-table-column>
-      <el-table-column prop="pic" label="照片" align="center">
+      <el-table-column prop="pic"  label="照片" align="center">
         <template slot-scope="scope">
             <el-button
               @click="showPhotoDialog(scope.row.pic)"
               v-if="scope.row.pic != null && scope.row.pic !=''"
               size="mini"
+              id = "xianshi"
             >显示</el-button>
           </template>
 
@@ -123,9 +124,6 @@
             </el-form-item>
             <el-form-item label="工作内容">
               <el-input v-model="EditMaintenanceDialog.form.workContent"></el-input>
-            </el-form-item>
-            <el-form-item label="树木状态">
-              <el-input v-model="EditMaintenanceDialog.form.woodstatus"></el-input>
             </el-form-item>
             <el-form-item label="药剂名称">
               <el-input v-model="EditMaintenanceDialog.form.medicineName"></el-input>
@@ -482,4 +480,9 @@
   justify-content: space-between;
   margin-bottom: 5px;
 }
+
+ #xianshi {
+    color: #ffffff
+ }
+
 </style>

@@ -148,7 +148,7 @@ export default {
     },
     handleTownSubmit() {
       http.requestWithToken(
-        "/auth_api/medicine_type",
+        "/auth_api/medicine_type/town",
         "post",
         { name: this.form.name },
         res => {
@@ -268,4 +268,5 @@ this.loadOtherBeetleData();
     background-color: #1D7155;
     border-color: #1D7155;
 }
+
 </style>
