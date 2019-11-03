@@ -214,7 +214,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="用户类型" size="mini" label-width="80px" v-else>
-              <el-input placeholder="施工人员" :disabled="true"></el-input>
+              <el-input placeholder="施工人员" :disabled="true" style="width: 150px;"></el-input>
             </el-form-item>
             <el-form-item label="省" label-width="80px" size="mini" prop="provinceCode"
                           v-if="this.$store.state.user.role !== 4">
@@ -241,7 +241,7 @@
             >
               <el-select
                 placeholder="市"
-                style="width: 150px"
+                style="width: 150px;"
                 v-model="userInfoDialog.form.cityCode"
                 @change="loadArea"
               >
@@ -262,7 +262,7 @@
             >
               <el-select
                 placeholder="县"
-                style="width: 150px"
+                style="width: 150px;"
                 v-model="userInfoDialog.form.areaCode"
                 @change="loadProjects"
               >
@@ -282,12 +282,12 @@
                 style="width: 150px"
               ></el-input>
             </el-form-item>
-            <el-form-item label="电话" label-width="80px" size="mini" prop="phone"
+            <el-form-item label="　电话" label-width="80px" size="mini" prop="phone"
                           v-if="this.$store.state.user.role == 4">
               <el-input
                 v-model="userInfoDialog.form.phone"
                 autocomplete="off"
-                style="width: 150px"
+                style="width: 150px;"
               ></el-input>
             </el-form-item>
             <el-form-item label="关联账号" label-width="80px" size="mini" prop="associated_project"
