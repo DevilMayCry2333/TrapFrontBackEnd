@@ -3,16 +3,23 @@
     <div id="tool-row">
       <div></div>
       <div>
-        <el-button type="primary" @click="showAdd">增加</el-button>
+        <el-button id="add" type="primary" @click="showAdd">增加</el-button>
       </div>
     </div>
     <div style="padding-top:5px">
-      <el-table border :data="list" style="width: 100%" height="600">
-        <el-table-column prop="id" label="id"></el-table-column>
-        <el-table-column prop="name" label="名称"></el-table-column>
-        <el-table-column label="操作">
+      <el-table 
+        border 
+        :data="list" 
+        stripe
+        style="width: 100%" 
+        height="600"
+        :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
+        <el-table-column prop="id" label="id" align="center"></el-table-column>
+        <el-table-column prop="name" label="名称" align="center"></el-table-column>
+        <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <el-button
+              id="edit"
               type="primary"
               @click="showEdit(scope.row)"
               v-if="$store.state.user.role == 0"
@@ -24,16 +31,18 @@
       </el-table>
     </div>
     <el-dialog :title="isAdd? '增加' : '编辑' " :visible.sync="dialogVisible" width="30%">
-      <el-form label-width="150px">
-        <el-form-item label="id" v-if="!isAdd">
-          <el-input disabled style="width:150px" v-model="form.id"></el-input>
+      <el-form >
+        <el-form-item 
+
+          label="id：" v-if="!isAdd">
+          <el-input disabled style="width:100%" v-model="form.id"></el-input>
         </el-form-item>
-        <el-form-item label="名称">
-          <el-input style="width:150px" v-model="form.name"></el-input>
-        </el-form-item>
+          <el-form-item label="天牛名称：">
+            <el-input style="width:100%" v-model="form.name"></el-input>
+          </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click.native.prevent="handleSubmit">确 定</el-button>
+        <el-button id="sure1" type="primary" @click.native.prevent="handleSubmit">确 定</el-button>
       </div>
     </el-dialog>
     <el-dialog title="增加" :visible.sync="townUserDialogVisible" width="30%">
@@ -46,7 +55,7 @@
         ></el-option>
       </el-select>
       <div slot="footer" class="dialog-footer">
-        <el-button type="primary" @click.native.prevent="handleSubmitTownUser">确 定</el-button>
+        <el-button id="sure2" type="primary" @click.native.prevent="handleSubmitTownUser">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -243,6 +252,28 @@ this.loadOtherBeetleData();
   display: flex;
   justify-content: space-between;
 }
+#add{
+    border:#1D7155;
+    background-color:#1D7155 
+}
+#edit{
+    border:#1D7155;
+    background-color:#1D7155 
+}
+#sure1{
+    border:#1D7155;
+    background-color:#1D7155 
+}
+#sure2{
+    border:#1D7155;
+    background-color:#1D7155 
+}
+.el-button {
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+
 </style>
 
 

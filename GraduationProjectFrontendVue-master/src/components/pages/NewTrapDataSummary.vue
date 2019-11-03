@@ -1,8 +1,13 @@
 <template>
 <div>
-        <el-date-picker v-model="startDate" type="date" value-format="yyyy-MM-dd" placeholder="起始日期"></el-date-picker>
-      <el-date-picker v-model="endDate" type="date" value-format="yyyy-MM-dd" placeholder="终止日期"></el-date-picker>
-      <el-select @change="selectChange" v-model="value" placeholder="请选择">
+  <div id="line">
+      <el-date-picker v-model="startDate" type="date" value-format="yyyy-MM-dd" placeholder="起始日期" 
+      style="width:150px;margin-right:1px;"
+      ></el-date-picker>
+      <el-date-picker v-model="endDate" type="date" value-format="yyyy-MM-dd" placeholder="终止日期"
+      style="width:150px;margin-right:1px;"></el-date-picker>
+      <el-select @change="selectChange" v-model="value" placeholder="请选择"
+      style="width:150px;margin-right:1px;">
         <el-option
           v-for="item in options"
           :key="item.value"
@@ -10,13 +15,13 @@
           :value="item.value">
         </el-option>
       </el-select>
-      <el-input v-model="input" placeholder="请输入内容"></el-input>
+      <el-input v-model="input" placeholder="请输入内容" style="width: 170px;margin-right:1px;"></el-input>
+      <el-button type="primary" @click="query()" style="background-color: #1d7155;border-color: #1d7155;">查询</el-button>
+          <el-button type="primary" @click="exportExcel" style="background-color: #1d7155;border-color: #1d7155;">导出</el-button>
+  </div>
+  
 
-      <el-button type="primary" @click="query()">查询</el-button>
-                    <el-button type="primary" @click="exportExcel">导出</el-button>
-
-
-        <el-table border :data="QRData.list" style="width: 100%" height="600">
+        <el-table border :data="QRData.list" style="width: 100%" height="600" stripe :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
         <el-table-column prop="recordByCol" :label="MycolName" align="center"></el-table-column>
         <el-table-column prop="startDate" label="开始日期" align="center"></el-table-column>
         <el-table-column prop="endDate" label="结束日期" align="center"></el-table-column>
@@ -128,7 +133,7 @@ export default {
       },
       query(){
         if(!this.input){
-          alert("请输入查询内容啊!!!!!!!!!!!!!!!");
+          alert("请输入查询内容！");
         }else{
         console.log("query");
         console.log(this.startDate);
@@ -217,5 +222,18 @@ export default {
 </script>
 
 <style>
-
+#line {
+  /* display: flex; */
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+/* 下来框的框线 */
+.el-select .el-input.is-focus .el-input__inner {
+    border-color: #70AD47;
+}
+/* 输入框的框线 */
+.el-input.is-active .el-input__inner, .el-input__inner:focus {
+    border-color: #70AD47;
+    outline: 0;
+}
 </style>

@@ -24,7 +24,7 @@
     <el-date-picker v-model="startYear" type="date" value-format="yyyy-MM-dd" placeholder="起始日期"></el-date-picker>
     <el-date-picker v-model="endYear" type="date" value-format="yyyy-MM-dd" placeholder="终止日期"></el-date-picker>
 
-    <el-button type="primary" @click="query()">查询</el-button>
+    <el-button type="primary" @click="query()" style="background-color: #1d7155;border-color: #1d7155;">查询</el-button>
 
     <el-card style="padding: 5px">
       <div style="width: 100%;height:300px;" ref="echartsArea"></div>
