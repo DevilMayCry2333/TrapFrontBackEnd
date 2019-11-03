@@ -8,6 +8,7 @@ import echarts from 'echarts'
 // import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import 'font-awesome/css/font-awesome.min.css'
+Vue.config.devtools = true;
 Vue.prototype.$echarts = echarts
 import {
   Pagination,
@@ -152,7 +153,6 @@ Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$prompt = MessageBox.prompt;
 Vue.prototype.$notify = Notification;
 Vue.prototype.$message = Message;
-
 Vue.config.productionTip = false
 
 Vue.use(Vuex)
@@ -167,6 +167,7 @@ const store = new Vuex.Store({
 
 export default store;
 
+Vue.config.devtools = true;
 new Vue({
   el: '#app',
   router,
