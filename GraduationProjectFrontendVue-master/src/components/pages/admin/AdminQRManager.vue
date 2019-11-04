@@ -40,7 +40,7 @@
                   v-if="this.$store.state.user.role == 0"
                 >编辑二维码分配</el-button> 
                 <el-button id="IDdownload" type="primary" @click="handleDownloadID">ID下载</el-button>
-                <el-button id="codedownload" type="primary" @click="handleDownload">二维码下载</el-button> 
+                <el-button v-if="this.$store.state.user.role >0" id="codedownload" type="primary" @click="handleDownload">二维码下载</el-button> 
       </div>
     </div>
     <div style="padding-top:5px">

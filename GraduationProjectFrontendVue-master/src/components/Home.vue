@@ -23,7 +23,7 @@
           router
         >
           <template v-for="(item, index) in menus">
-            <el-submenu class="switchproject" :index="index">
+            <el-submenu class="switchproject" :index="index + ''" :key="index">
               <template  slot="title"><div class="projectname">{{item.name}}
                 </div>
               </template>
