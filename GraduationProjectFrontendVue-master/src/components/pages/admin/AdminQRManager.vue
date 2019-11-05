@@ -46,7 +46,7 @@
       <el-table 
           border 
           :data="QRData.list" 
-          stripe   
+          stripe 
           style="width: 100%" 
           height="600"
           :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">        <!-- 斑马纹 表头颜色 表头字体颜色  -->

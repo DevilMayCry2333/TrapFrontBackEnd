@@ -410,8 +410,8 @@ export default {
                 "post",
                 { page: this.QRData.page, limit: 10, username: sessionStorage['username']},
                 res => {
-                this.QRData.list = res.data.data;
-                this.QRData.total = res.data.totalNum;
+                this.QRData.list = res.data.Data;
+                this.QRData.total = res.data.total;
 
                 },
                 () => {}
@@ -429,7 +429,7 @@ export default {
                 },
                 res => {
                 this.QRData.list = res.data.Data;
-                this.QRData.total = res.data.totalNum;
+                this.QRData.total = res.data.total;
 
                 },
                 () => {}
