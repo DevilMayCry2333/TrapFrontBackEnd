@@ -1,65 +1,77 @@
 <template>
   <div>
     <div id="tool-row">
-      <div>
-        <!-- <el-input v-model="searchText" placeholder="搜索" style="width: 120px"></el-input>
-        <el-input v-model="searchBatch" placeholder="批次" style="width: 120px"></el-input>
-        <el-input v-model="searchTown" placeholder="城镇" style="width: 120px" v-if="this.$store.state.user.role == 3"></el-input> -->
-        <el-date-picker
-          v-model="maintenanceData.startDate"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="起始日期"
-        ></el-date-picker>
-        <el-date-picker
-          v-model="maintenanceData.endDate"
-          type="date"
-          value-format="yyyy-MM-dd"
-          placeholder="终止日期"
-        ></el-date-picker>
-              <el-select v-model="value" placeholder="请选择">
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-      <el-input v-model="input" placeholder="请输入内容"></el-input>
-
-        <el-button type="primary" @click="getFuckingSearch">搜索</el-button>
+      <div >
+          <!-- <el-input v-model="searchText" placeholder="搜索" style="width: 120px"></el-input>
+          <el-input v-model="searchBatch" placeholder="批次" style="width: 120px"></el-input>
+          <el-input v-model="searchTown" placeholder="城镇" style="width: 120px" v-if="this.$store.state.user.role == 3"></el-input> -->
+          <el-date-picker
+            v-model="maintenanceData.startDate"
+            type="date"
+            value-format="yyyy-MM-dd"
+            placeholder="起始日期"
+            style="width: 150px;"
+          ></el-date-picker>
+          <el-date-picker
+            v-model="maintenanceData.endDate"
+            type="date"
+            value-format="yyyy-MM-dd"
+            placeholder="终止日期"
+            style="width: 150px;"
+          ></el-date-picker>
+          <el-select v-model="value" placeholder="请选择" style="width: 150px">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value">
+          </el-option>
+        </el-select>
+        <el-input v-model="input" placeholder="请输入内容" style="width: 170px"></el-input>
+        <el-button id="search" type="primary" @click="getFuckingSearch">搜索</el-button>
       </div>
-      <div>
-        <!-- <el-button type="primary" @click="showAdd">添加</el-button> -->
-        <!-- <el-button
-          type="primary"
-          @click="showEdit"
-          :disabled="maintenanceData.selectedIndex == -1"
-        >修改</el-button>
-        <el-button
-          type="primary"
-          :disabled="maintenanceData.selectedIndex == -1"
-          @click="handleDelete"
-        >删除</el-button>-->
-        <el-button
-          type="primary"
-          @click="handleReportMaintenanceData"
-          v-if="this.$store.state.user.role == 3"
-        >上报</el-button>
-        <el-button
-          type="primary"
-          @click="handleDeleteSome"
+      
+          <!-- <el-button type="primary" @click="showAdd">添加</el-button> -->
+          <!-- <el-button
+            type="primary"
+            @click="showEdit"
+            :disabled="maintenanceData.selectedIndex == -1"
+          >修改</el-button>
+          <el-button
+            type="primary"
+            :disabled="maintenanceData.selectedIndex == -1"
+            @click="handleDelete"
+          >删除</el-button>-->
+      <div id="threebuttons">
+          <el-button
+            type="primary"
+            @click="handleReportMaintenanceData"
+            v-if="this.$store.state.user.role == 3"
+          >上报</el-button>
+          <el-button
+            id="delete"
+            type="primary"
+            @click="handleDeleteSome"
+          >批量删除</el-button>
+          <el-button 
+            id="download" 
+            type="primary" 
+            @click="exportExcel"
+            style="margin-right:10px;height: fit-content;background-color: #1d7155;border-color: #1d7155;">导出</el-button>
+          <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
 
-        >批量删除</el-button>
-        <el-button type="primary" @click="exportExcel">导出</el-button>
-        <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
-
-        <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
-        <el-upload  class="upload-demo" ref="upload"
-        :action="uploadUrl"
-        :on-success="loadMaintenanceData">
-          <el-button type="primary" >点击上传</el-button>
-        </el-upload>
+          <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
+          <el-upload  
+            class="upload-demo" 
+            ref="upload"
+            :action="uploadUrl"
+            :on-success="loadMaintenanceData">
+            <el-button 
+            id="shangchuang" 
+            type="primary" 
+            style="background-color: #1d7155;border-color: #1d7155;"
+            >点击上传</el-button>
+          </el-upload>
       </div>
     </div>
     <div style="padding-top:5px">
@@ -70,6 +82,8 @@
         style="width: 100%"
         height="600"
         @selection-change="handleMaintenanceDataSelectionChange"
+        stripe 
+        :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}"
       >
         <!-- <el-table-column label width="50" align="center" fixed="left">
           <template scope="scope">
@@ -80,21 +94,21 @@
             >&nbsp</el-radio>
           </template>
         </el-table-column>-->
-        <el-table-column type="selection" width="55" fixed="left"></el-table-column>
-        <el-table-column prop="deviceId" label="设备ID"></el-table-column>
-        <el-table-column prop="batch" label="批次"></el-table-column>
-         <el-table-column  v-if="this.$store.state.user.role == 4" prop="customtown" label="区域"></el-table-column>
-          <el-table-column  v-if="this.$store.state.user.role <= 3" prop="town" label="区域"></el-table-column>
-          <el-table-column prop="customserial" label="编号"></el-table-column>
-        <el-table-column prop="num" label="松墨天牛数量"></el-table-column>
-        <el-table-column label="其他天牛类型">
+        <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
+        <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
+        <el-table-column prop="batch" label="批次" align="center"></el-table-column>
+         <el-table-column  v-if="this.$store.state.user.role == 4" prop="customtown" label="区域" align="center"></el-table-column>
+          <el-table-column  v-if="this.$store.state.user.role <= 3" prop="town" label="区域" align="center"></el-table-column>
+          <el-table-column prop="customserial" label="编号" align="center"></el-table-column>
+        <el-table-column prop="num" label="松墨天牛数量" align="center"></el-table-column>
+        <el-table-column label="其他天牛类型" align="center">
           <template slot-scope="scope">{{otherBeetleDict["t" + scope.row.otherType]}}</template>
         </el-table-column>
-        <el-table-column prop="otherNum" label="其他天牛数量"></el-table-column>
-        <el-table-column prop="longitude" label="经度"></el-table-column>
-        <el-table-column prop="latitude" label="纬度"></el-table-column>
-        <el-table-column prop="altitude" label="海拔"></el-table-column>
-        <el-table-column label="位置" width="200px">
+        <el-table-column prop="otherNum" label="其他天牛数量" align="center"></el-table-column>
+        <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
+        <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
+        <el-table-column prop="altitude" label="海拔" align="center"></el-table-column>
+        <el-table-column label="位置" width="200px" align="center">
           <template
             slot-scope="scope"
           >{{scope.row.province + scope.row.city + scope.row.area + scope.row.town}}</template>
@@ -134,12 +148,14 @@
                 type="primary"
                 @click="showEditMaintenanceDataDialog(scope.row)"
                 v-if="!scope.row.reported"
+                style="background-color: #1d7155;border-color: #1d7155;"
               >编辑</el-button>
               <el-button
                 size="mini"
                 type="danger"
                 @click="handleDelete(scope.row)"
                 v-if="!scope.row.reported"
+                style="background-color: #1d7155;border-color: #1d7155;"
               >删除</el-button>
             </div>
             <div v-if="scope.row.reported">不可操作</div>
@@ -185,7 +201,7 @@
         <el-form-item label="其他天牛类型">
           <!-- <el-input-number :min="0"></el-input-number> -->
           <el-select v-model="EditMaintenanceDialog.form.otherType">
-            <el-option :label="无" value :key="无">无</el-option>
+            <el-option label="无" value key="无">无</el-option>
             <el-option
               v-for="item in otherBeetleList"
               :value="item.id"
@@ -698,6 +714,37 @@ this.uploadUrl =
 #userInfoDialogData {
   display: flex;
   justify-content: space-around;
+}
+         
+#search{
+  background-color: #1D7155;
+  border-color: #1D7155;
+}
+#delete{
+  background-color: #1D7155;
+  border-color: #1D7155;
+  height: fit-content;
+}
+#download{
+  background-color: #1D7155;
+  border-color: #1D7155;
+  height: fit-content;
+}
+#shangchuan{
+  background-color: #1D7155;
+  border-color: #1D7155;
+}
+#threebuttons{
+  display: flex;
+}
+.el-button--primary {
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+    background-color: #70AD47;
+    color: #fff;
 }
 </style>
 

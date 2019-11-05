@@ -1,29 +1,34 @@
 <template>
 <div>
-          <el-date-picker v-model="startDate" type="date" value-format="yyyy-MM-dd" placeholder="起始日期"></el-date-picker>
-      <el-date-picker v-model="endDate" type="date" value-format="yyyy-MM-dd" placeholder="终止日期"></el-date-picker>
-      <el-select v-model="value" placeholder="请选择">
-        <el-option
-          v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value">
-        </el-option>
-      </el-select>
-      <el-input v-model="input" placeholder="请输入内容"></el-input>
+    <div id="tool-row">
+      <div>
+          <el-date-picker v-model="startDate" type="date" value-format="yyyy-MM-dd" placeholder="起始日期" style="width: 170px;"></el-date-picker>
+          <el-date-picker v-model="endDate" type="date" value-format="yyyy-MM-dd" placeholder="终止日期" style="width: 170px;"></el-date-picker>
+          <el-select v-model="value" placeholder="请选择" style="width: 150px;">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+          <el-input v-model="input" placeholder="请输入内容"  style="width: 200px"></el-input>
+          <el-button type="primary" @click="query()">查询</el-button>
+      </div>
+      <div style=" display: flex;">
+            <el-button type="primary" @click="exportExcel">导出</el-button>
+            <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
+            <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
+            <el-upload ref="upload"
+            :action="uploadUrl"
+            :on-success="loadMaintenanceData">
+              <el-button type="primary" style="margin-left:20px">点击上传</el-button>
+            </el-upload>
+      </div>
+    </div>
 
-      <el-button type="primary" @click="query()">查询</el-button>
-              <el-button type="primary" @click="exportExcel">导出</el-button>
-        <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
-        <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
-        <el-upload ref="upload"
-        :action="uploadUrl"
-        :on-success="loadMaintenanceData">
-          <el-button type="primary" >点击上传</el-button>
-        </el-upload>
 
-
-          <el-table border :data="QRData.list" style="width: 100%" height="600">
+          <el-table border :data="QRData.list" style="width: 100%" height="600" stripe :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
         <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
         <el-table-column prop="serial" label="编号" align="center"></el-table-column>
         <el-table-column prop="customTown" label="所属区域" align="center"></el-table-column>
@@ -514,5 +519,9 @@ export default {
 </script>
 
 <style>
-
+#tool-row {
+  /* display: flex; */
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
 </style>

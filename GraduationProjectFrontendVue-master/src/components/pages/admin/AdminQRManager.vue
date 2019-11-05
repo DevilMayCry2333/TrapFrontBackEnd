@@ -28,27 +28,28 @@
                 v-if="this.$store.state.user.role == 0">分配二维码</el-button>
 
               <el-button
+                id="allocate1"
                 type="primary"
                 @click="showAssignQRCodeManagerDialog()"
                 v-if="this.$store.state.user.role == 4"
               >分配项目二维码</el-button>
 
-                <!-- <el-button
+                <el-button
                   type="primary"
                   @click="showQRWorkerDialog()"
                   v-if="this.$store.state.user.role == 0"
-                >编辑二维码分配</el-button> -->
-              <el-button id="IDdownload" type="primary" @click="handleDownloadID">ID下载</el-button>
-              <el-button id="codedownload" type="primary" @click="handleDownload">二维码下载</el-button>
+                >编辑二维码分配</el-button> 
+                <el-button id="IDdownload" type="primary" @click="handleDownloadID">ID下载</el-button>
+                <el-button v-if="this.$store.state.user.role >0" id="codedownload" type="primary" @click="handleDownload">二维码下载</el-button> 
       </div>
     </div>
     <div style="padding-top:5px">
       <el-table 
           border 
           :data="QRData.list" 
-          stripe   
           style="width: 100%" 
           height="600"
+          stripe 
           :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">        <!-- 斑马纹 表头颜色 表头字体颜色  -->
         <el-table-column prop="id" label="id" align="center"></el-table-column>
         <el-table-column prop="province" label="省" align="center"></el-table-column>
@@ -157,8 +158,8 @@
         </el-table>
       </div>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="QRDataInfoDialog.visible = false">取 消</el-button>
-        <el-button type="primary" @click.native.prevent="handleAddQRCodeDataSubmit"
+        <el-button id="cancel" @click="QRDataInfoDialog.visible = false">取 消</el-button>
+        <el-button id="sure" type="primary" @click.native.prevent="handleAddQRCodeDataSubmit"
         :loading="assignCode"
         >确 定</el-button>
       </div>
@@ -169,17 +170,17 @@
       <div>当前ID前缀:{{toCompleteID}}</div>
             <br />
             <br />
-      <div style="overflow-y: scroll; height: 300px;">
-          <el-tag>起始ID</el-tag>
-          <el-input v-model="startID" placeholder="输入六位数字" style="width: 150px;"></el-input>
+      <div id="assignQR" style="overflow-y: scroll; height: 300px;">
+          <el-tag>起始ID：</el-tag>
+          <el-input v-model="startID" placeholder="输入六位数字" style="width:40%;"></el-input>
             <br />
             <br />
-          <el-tag>结束ID</el-tag>
-          <el-input v-model="endID" placeholder="输入六位数字" style="width: 150px;"></el-input>
+          <el-tag>结束ID：</el-tag>
+          <el-input v-model="endID" placeholder="输入六位数字" style="width:40%;"></el-input>
             <br />
             <br />
-           <el-tag>代理商</el-tag>
-           <el-select @change="proxyChange" v-model="proxyValue" placeholder="请选择">
+           <el-tag>代理商：</el-tag>
+           <el-select @change="proxyChange" v-model="proxyValue" placeholder="请选择" style="width:40%;">
             <el-option
             v-for="item in proxy"
             :key="item.value"
@@ -189,8 +190,8 @@
         </el-select>
             <br />
             <br />
-        <el-tag>　市　</el-tag>
-        <el-select @change="cityChange" v-model="cityValue" placeholder="请选择">
+        <el-tag>　市　　</el-tag>
+        <el-select @change="cityChange" v-model="cityValue" placeholder="请选择" style="width:40%;">
             <el-option
             v-for="item in city"
             :key="item.code"
@@ -200,8 +201,8 @@
         </el-select>
             <br />
             <br />
-         <el-tag>　县　</el-tag>
-          <el-select @change="areaChange" v-model="areaValue" placeholder="请选择">
+         <el-tag>　县　　</el-tag>
+          <el-select @change="areaChange" v-model="areaValue" placeholder="请选择" style="width:40%;">
             <el-option
             v-for="item in area"
             :key="item.code"
@@ -212,7 +213,7 @@
             <br />
             <br />
         <el-tag>应用项目</el-tag>
-          <el-select @change="applicationChange" v-model="applicationValue" placeholder="请选择">
+          <el-select @change="applicationChange" v-model="applicationValue" placeholder="请选择" style="width:40%;">
             <el-option
             v-for="item in application"
             :key="item.value"
@@ -222,50 +223,70 @@
         </el-select>
       </div>
       <div slot="footer" class="dialog-footer">
-        <el-button id="cancel" @click="AssignQRCodeDialog.visible = false">取 消</el-button>
-        <el-button id="sure" type="primary" @click.native.prevent="handleAssignQRCodeDataSubmit"
+        <el-button id="cancel1" @click="AssignQRCodeDialog.visible = false">取 消</el-button>
+        <el-button id="sure1" type="primary" @click.native.prevent="handleAssignQRCodeDataSubmit"
         :loading="assignQRCode"
         >确 定</el-button>
       </div>
     </el-dialog>
 
-        <el-dialog title="分配项目二维码" :visible.sync="AssignQRCodeManagerDialog.visible" width="60%">
+      <el-dialog title="分配项目二维码" :visible.sync="AssignQRCodeManagerDialog.visible" width="50%">
       <div>当前可分配设备数量:{{AssignQRCodeDialog.availableNum}}</div>
-      <div style="overflow-y: scroll; height: 300px;">
-          <el-tag>起始ID:</el-tag>
-          <el-input @change="managerStartIdChange" v-model="startID" placeholder="请输入内容"></el-input>
-          <el-tag>结束ID:</el-tag>
-          <el-input @change="managerEndIdChange" v-model="endID" placeholder="请输入内容"></el-input>
-           <el-tag>ID数量</el-tag>
-           <el-input :disabled="true" v-model="IDNum" placeholder="请输入内容"></el-input>
-           <br/>
-           <el-tag>应用项目</el-tag>
-          <el-select @change="managerApplicationChange" v-model="applicationValue" placeholder="请选择">
-            <el-option
-            v-for="item in application"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-            </el-option>
-        </el-select>
-        <br/>
-        <el-tag>区域</el-tag>
-        <el-input v-model="customRegion" placeholder="请输入内容"></el-input>
-        <el-tag>前缀</el-tag>
-        <el-input v-model="prefix" placeholder="请输入内容"></el-input>
-        <el-tag>起始编号</el-tag>
-        <el-input @change="serialStartChange" v-model="serialStart" placeholder="请输入内容"></el-input>
-        <el-tag>结束编号</el-tag>
-        <el-input @change="serialEndChange" v-model="serialEnd" placeholder="请输入内容"></el-input>
-        <el-tag>编号数量</el-tag>
-        <el-input :disabled="true" v-model="serialNum" placeholder="请输入内容"></el-input>
-        <el-button @click="verfiyNum">校验</el-button>
+            <br />
+            <br />
+      <div id="addusers" style="overflow-y: scroll; height: 300px;">
+        <div >
+              <el-tag>起始ＩＤ</el-tag>
+              <el-input @change="managerStartIdChange" v-model="startID" placeholder="请输入内容" style="width:60%;"></el-input>
+              <br />
+              <br />
+              <el-tag>结束ＩＤ</el-tag>
+              <el-input @change="managerEndIdChange" v-model="endID" placeholder="请输入内容" style="width:60%;"></el-input>
+              <br />
+              <br />
+              <el-tag>ＩＤ数量</el-tag>
+              <el-input :disabled="true" v-model="IDNum" placeholder="请输入内容" style="width:60%;"></el-input>
+              <br />
+              <br />
+              <el-tag>应用项目</el-tag>
+              <el-select @change="managerApplicationChange" v-model="applicationValue" placeholder="请选择" style="width:60%;">
+                <el-option
+                  v-for="item in application"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value">
+                </el-option>
+              </el-select>
+              <br />
+              <br />              
+              <el-tag>　区域　</el-tag>
+              <el-input v-model="customRegion" placeholder="请输入内容" style="width:60%;"></el-input>
+        </div>
+        <div>
+              <el-tag>　前缀　</el-tag>
+              <el-input v-model="prefix" placeholder="请输入内容"  style="width:60%;"></el-input>
+              <br />
+              <br />                 
+              <el-tag>起始编号</el-tag>
+              <el-input @change="serialStartChange" v-model="serialStart" placeholder="请输入内容" style="width:60%;"></el-input>
+              <br />
+              <br />                 
+              <el-tag>结束编号</el-tag>
+              <el-input @change="serialEndChange" v-model="serialEnd" placeholder="请输入内容" style="width:60%;"></el-input>
+              <br />
+              <br />                 
+              <el-tag>编号数量</el-tag>
+              <el-input :disabled="true" v-model="serialNum" placeholder="请输入内容" style="width:60%;"></el-input>
+              <br />
+              <br />                 
+              <el-button @click="verfiyNum" style="width:88%;">请点击校验</el-button>
+        </div>
       </div>
           
 
       <div slot="footer" class="dialog-footer">
-        <el-button @click="AssignQRCodeManagerDialog.visible = false">取 消</el-button>
-        <el-button type="primary" @click.native.prevent="handleAssignQRCodeByManager"
+        <el-button id="cancel2" @click="AssignQRCodeManagerDialog.visible = false">取 消</el-button>
+        <el-button id="sure2" type="primary" @click.native.prevent="handleAssignQRCodeByManager"
         :loading="assignQRCode"
         >确 定</el-button>
       </div>
@@ -911,6 +932,10 @@ export default {
     border:#1D7155;
     background-color:#1D7155 
   }
+    #allocate1{    
+    border:#1D7155;
+    background-color:#1D7155 
+  }
   #IDdownload{
     border:#1D7155;
     background-color:#1D7155 
@@ -968,6 +993,11 @@ export default {
 .el-select .el-input__inner:focus {
     border-color: #67c23a;
 }
+.el-button--primary {
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
   #cancel{
     background-color:#1D7155;
     color: #fff;
@@ -976,10 +1006,35 @@ export default {
     background-color:#1D7155;
     color: #fff;
   }
+    #cancel1{
+    background-color:#1D7155;
+    color: #fff;
+  }
+  #sure1{
+    background-color:#1D7155;
+    color: #fff;
+  }
+    #cancel2{
+    background-color:#1D7155;
+    color: #fff;
+  }
+  #sure2{
+    background-color:#1D7155;
+    color: #fff;
+  }
+
 #userInfoDialogData {
   display: flex;
   justify-content: space-around;
 }
+/* #line1{
+  margin: 1%;
+} */
+#addusers{
+    display: flex;
+    justify-content: space-around;
+}
+
 </style>
 
 
