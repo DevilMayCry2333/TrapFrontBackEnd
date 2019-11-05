@@ -51,7 +51,7 @@
           height="600"
           stripe 
           :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">        <!-- 斑马纹 表头颜色 表头字体颜色  -->
-        <el-table-column prop="id" label="id" align="center"></el-table-column>
+        <el-table-column prop="scanId" label="scanId" align="center"></el-table-column>
         <el-table-column prop="province" label="省" align="center"></el-table-column>
         <el-table-column prop="city" label="市" align="center"></el-table-column>
         <el-table-column prop="area" label="县" align="center"></el-table-column>
@@ -183,39 +183,6 @@
            <el-select @change="proxyChange" v-model="proxyValue" placeholder="请选择" style="width:40%;">
             <el-option
             v-for="item in proxy"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-            </el-option>
-        </el-select>
-            <br />
-            <br />
-        <el-tag>　市　　</el-tag>
-        <el-select @change="cityChange" v-model="cityValue" placeholder="请选择" style="width:40%;">
-            <el-option
-            v-for="item in city"
-            :key="item.code"
-            :label="item.name"
-            :value="item.code">
-            </el-option>
-        </el-select>
-            <br />
-            <br />
-         <el-tag>　县　　</el-tag>
-          <el-select @change="areaChange" v-model="areaValue" placeholder="请选择" style="width:40%;">
-            <el-option
-            v-for="item in area"
-            :key="item.code"
-            :label="item.name"
-            :value="item.code">
-            </el-option>
-        </el-select>
-            <br />
-            <br />
-        <el-tag>应用项目</el-tag>
-          <el-select @change="applicationChange" v-model="applicationValue" placeholder="请选择" style="width:40%;">
-            <el-option
-            v-for="item in application"
             :key="item.value"
             :label="item.label"
             :value="item.value">
@@ -442,7 +409,7 @@ export default {
             http.requestWithToken(
         "/newQrCode/getMaxAvableCode",
         "get",
-        { adcode: this.area,appVal:this.applicationValue},
+        { provinceCode: this.province},
         res => {
           console.log(res);
           if(res.data.error){
@@ -505,8 +472,8 @@ export default {
         "/newQrCode/assignCodeByManager",
         "get",
         {
-           startID: this.startID,
-           endID: this.endID,
+           startScanID: this.startID,
+           endScanID: this.endID,
            IDNum: this.IDNum,
            applicationValue: this.applicationValue,
            customRegion: this.customRegion,
