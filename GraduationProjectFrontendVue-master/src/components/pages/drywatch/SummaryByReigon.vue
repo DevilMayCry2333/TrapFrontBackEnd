@@ -24,6 +24,7 @@
       <el-table-column prop="injectNumSum" label="注剂数量" align="center"></el-table-column>
       <el-table-column prop="woodNum" label="注药株数" align="center"></el-table-column>
       <el-table-column prop="woodStatusSum" label="枯死株数" align="center"></el-table-column>
+      <el-table-column prop="deadRate" label="枯死率" align="center"></el-table-column>
       <el-table-column
         prop="manager"
         label="管理员"

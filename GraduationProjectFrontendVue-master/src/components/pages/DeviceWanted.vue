@@ -202,7 +202,7 @@
         <el-form-item label="其他天牛类型">
           <!-- <el-input-number :min="0"></el-input-number> -->
           <el-select v-model="EditMaintenanceDialog.form.otherType">
-            <el-option :label="无" value :key="无">无</el-option>
+            <el-option label="无" value key="无">无</el-option>
             <el-option
               v-for="item in otherBeetleList"
               :value="item.id"

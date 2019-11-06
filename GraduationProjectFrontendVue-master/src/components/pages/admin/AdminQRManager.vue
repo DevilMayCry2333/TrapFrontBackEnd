@@ -41,17 +41,16 @@
                   v-if="this.$store.state.user.role == 0"
                 >编辑二维码分配</el-button>  -->
                 <el-button id="IDdownload" type="primary" @click="handleDownloadID">ID下载</el-button>
-                <el-button id="codedownload" type="primary" @click="handleDownload">二维码下载</el-button> 
+                <el-button v-if="this.$store.state.user.role >0" id="codedownload" type="primary" @click="handleDownload">二维码下载</el-button> 
       </div>
     </div>
     <div style="padding-top:5px">
       <el-table 
           border 
           :data="QRData.list" 
-          style="width: 100%" 
-          height="600"
           stripe 
-          :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">        <!-- 斑马纹 表头颜色 表头字体颜色  -->
+          style="width: 100%" 
+          height="600">        <!-- 斑马纹 表头颜色 表头字体颜色  -->
         <el-table-column prop="id" label="id" align="center"></el-table-column>
         <el-table-column prop="province" label="省" align="center"></el-table-column>
         <el-table-column prop="city" label="市" align="center"></el-table-column>
