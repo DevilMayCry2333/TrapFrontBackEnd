@@ -482,8 +482,20 @@ export default {
           page: this.QRData.page, limit: this.QRData.limit },
           res => {
             console.log(res.data);
-            
             this.QRData.list = res.data.data;
+            for(var i = 0 ; i < this.QRData.list.length; i++){
+              if(this.QRData.list[i].project=="1"){
+                this.QRData.list[i].project = "诱捕器管理";
+              }else if(this.QRData.list[i].project=="2"){
+                this.QRData.list[i].project = "注干剂监测";
+              }else if(this.QRData.list[i].project=="3"){
+                this.QRData.list[i].project = "天敌防治";
+              }else if(this.QRData.list[i].project=="4"){
+                this.QRData.list[i].project = "枯死树采伐";
+              }else if(this.QRData.list[i].project=="5"){
+                this.QRData.list[i].project = "药剂防治管理";
+              }
+            }
             this.QRData.total = res.data.totalNum;
 
           },
@@ -744,6 +756,20 @@ export default {
             console.log(res.data);
             
             this.QRData.list = res.data.data;
+            for(var i = 0 ; i < this.QRData.list.length; i++){
+              if(this.QRData.list[i].project=="1"){
+                this.QRData.list[i].project = "诱捕器管理";
+              }else if(this.QRData.list[i].project=="2"){
+                this.QRData.list[i].project = "注干剂监测";
+              }else if(this.QRData.list[i].project=="3"){
+                this.QRData.list[i].project = "天敌防治";
+              }else if(this.QRData.list[i].project=="4"){
+                this.QRData.list[i].project = "枯死树采伐";
+              }else if(this.QRData.list[i].project=="5"){
+                this.QRData.list[i].project = "药剂防治管理";
+              }
+            }
+
             this.QRData.total = res.data.totalNum;
 
           },
