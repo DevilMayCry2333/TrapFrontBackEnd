@@ -47,10 +47,9 @@
       <el-table 
           border 
           :data="QRData.list" 
-          style="width: 100%" 
-          height="600"
           stripe 
-          :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">        <!-- 斑马纹 表头颜色 表头字体颜色  -->
+          style="width: 100%" 
+          height="600">        <!-- 斑马纹 表头颜色 表头字体颜色  -->
         <el-table-column prop="id" label="id" align="center"></el-table-column>
         <el-table-column prop="province" label="省" align="center"></el-table-column>
         <el-table-column prop="city" label="市" align="center"></el-table-column>

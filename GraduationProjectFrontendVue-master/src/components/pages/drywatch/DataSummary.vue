@@ -25,7 +25,7 @@
     </div>
     <div>
       <br>
-      诱捕器总数:{{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp; 注剂总量 {{totalSum}}
+      注药株数总数:{{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp; 注剂总量 {{totalSum}}
       <br>
     </div>
 
@@ -34,7 +34,7 @@
             <el-card :header="'各' + contentLabelDict[contentLabelIndex] + '诱捕情况表'" style="padding:5px" v-if="this.$store.state.user.role < 4">
               <el-table :data="summaryDeviceData.list" :row-style="tableRowStyle">
                 <el-table-column :label="contentLabelDict[contentLabelIndex]" prop="name"></el-table-column>
-                <el-table-column label="设备数量" prop="deviceCount"></el-table-column>
+                <el-table-column label="注药株数" prop="deviceCount"></el-table-column>
                 <el-table-column label="注剂数量" prop="injectNum"></el-table-column>
                 <el-table-column label="操作">
                   <template slot-scope="scope">
@@ -61,7 +61,7 @@
             <el-card header="各项目工程诱捕情况表" style="padding:5px" v-if="this.$store.state.user.role ==3">
                           <el-table :data="summaryManagerData.list" :row-style="tableRowStyle">
                             <el-table-column label="项目工程" prop="name"></el-table-column>
-                            <el-table-column label="设备数量" prop="deviceCount"></el-table-column>
+                            <el-table-column label="注药株数" prop="deviceCount"></el-table-column>
                             <el-table-column label="注射剂总量" prop="injectNum"></el-table-column>
                             <el-table-column label="操作">
                               <template slot-scope="scope">

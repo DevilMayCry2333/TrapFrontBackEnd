@@ -413,11 +413,21 @@ export default {
             http.requestWithToken(
                 "/deadTree/areaDetail",
                 "post",
-                { page: this.QRData.page, limit: 10, username: sessionStorage['username']},
-                res => {
-                this.QRData.list = res.data.data;
-                this.QRData.total = res.data.totalNum;
+                { page: this.QRData.page, limit: 10, username: sessionStorage['username'],
+                startDate: this.startDate,
+                  endDate: this.endDate,
+                  colName: this.value,
+                  searchText: this.input,
+                  adcode: this.area 
 
+                },
+                res => {
+                this.QRData.list = res.data.Data;
+                this.QRData.total = res.data.total;
+                  this.totalWorkDay = res.data.WorkDay;
+                this.totalCutNum = res.data.woodNum;
+                this.totalWoodVolume = res.data.woodVolume;
+                
                 },
                 () => {}
             );
@@ -434,8 +444,10 @@ export default {
                 },
                 res => {
                 this.QRData.list = res.data.Data;
-                this.QRData.total = res.data.totalNum;
-
+                this.QRData.total = res.data.total;
+                this.totalWorkDay = res.data.WorkDay;
+                this.totalCutNum = res.data.woodNum;
+                this.totalWoodVolume = res.data.woodVolume;
                 },
                 () => {}
             );
