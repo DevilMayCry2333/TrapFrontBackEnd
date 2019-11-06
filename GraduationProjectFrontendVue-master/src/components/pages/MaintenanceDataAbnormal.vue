@@ -2,7 +2,7 @@
   <div>
     <div id="tool-row">
       <div>
-        <el-input v-model="searchText" placeholder="搜索" style="width: 150px"></el-input>
+        <el-input  v-model="searchText" placeholder="搜索" style="width: 150px"></el-input>
         <el-date-picker
           v-model="maintenanceData.startDate"
           type="date"
@@ -15,11 +15,12 @@
           value-format="yyyy-MM-dd"
           placeholder="终止日期"
         ></el-date-picker>
-        <el-button type="primary" @click="loadMaintenanceData">搜索</el-button>
+        <el-button id="search" type="primary" @click="loadMaintenanceData">搜索</el-button>
       </div>
 
-      <div>
+      <div style=" display: flex;">
       <el-button
+                id="report"
                 type="primary"
                 @click="handleReportMaintenanceData"
                 v-if="this.$store.state.user.role == 3"
@@ -33,6 +34,8 @@
         style="width: 100%"
         height="600"
         @selection-change="handleMaintenanceDataSelectionChange"
+        stripe 
+        :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}"
       >
         <!-- <el-table-column label width="50" align="center" fixed="left">
           <template scope="scope">
@@ -43,33 +46,33 @@
             >&nbsp</el-radio>
           </template>
         </el-table-column>-->
-        <el-table-column type="selection" width="55" fixed="left"></el-table-column>
-        <el-table-column prop="deviceId" label="设备ID"></el-table-column>
-        <el-table-column prop="batch" label="批次"></el-table-column>
-        <el-table-column prop="num" label="松墨天牛数量"></el-table-column>
-        <el-table-column label="其他天牛类型">
+        <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
+        <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
+        <el-table-column prop="batch" label="批次" align="center"></el-table-column>
+        <el-table-column prop="num" label="松墨天牛数量" align="center"></el-table-column>
+        <el-table-column label="其他天牛类型" align="center">
           <template slot-scope="scope">
             {{otherBeetleDict["t" + scope.row.otherType]}}
           </template>
         </el-table-column>
-        <el-table-column prop="otherNum" label="其他天牛数量"></el-table-column>
-        <el-table-column prop="longitude" label="经度"></el-table-column>
-        <el-table-column prop="latitude" label="纬度"></el-table-column>
-        <el-table-column prop="altitude" label="海拔"></el-table-column>
-        <el-table-column label="位置" width="200px">
+        <el-table-column prop="otherNum" label="其他天牛数量" align="center"></el-table-column>
+        <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
+        <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
+        <el-table-column prop="altitude" label="海拔" align="center"></el-table-column>
+        <el-table-column label="位置" width="200px" align="center">
           <template
             slot-scope="scope"
           >{{scope.row.province + scope.row.city + scope.row.area + scope.row.town}}</template>
         </el-table-column>
-        <el-table-column prop="username" label="用户名"></el-table-column>
-        <el-table-column prop="date" label="日期"></el-table-column>
-        <el-table-column label="工作内容">
+        <el-table-column prop="username" label="用户名" align="center"></el-table-column>
+        <el-table-column prop="date" label="日期" align="center"></el-table-column>
+        <el-table-column label="工作内容" align="center">
           <template
             slot-scope="scope"
           >{{maintenanceData.workingContentDict[scope.row.workingContent]}}</template>
         </el-table-column>
-        <el-table-column prop="drug" label="药剂类型"></el-table-column>
-        <el-table-column prop="remark" label="备注"></el-table-column>
+        <el-table-column prop="drug" label="药剂类型" align="center"></el-table-column>
+        <el-table-column prop="remark" label="备注" align="center"></el-table-column>
         <el-table-column label="现场照片" width="100px" align="center">
           <template slot-scope="scope">
             <el-button
@@ -386,6 +389,31 @@ loadMaintenanceData();
 #userInfoDialogData {
   display: flex;
   justify-content: space-around;
+}
+#search{
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+#report{
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+    height: fit-content;
+}
+.el-input.is-active .el-input__inner, .el-input__inner:focus{
+    border-color:#67c23a;
+    outline: 0;
+}
+.el-select .el-input.is-focus .el-input__inner {
+    border-color: #67c23a;
+}
+.el-select .el-input__inner:focus{
+    border-color: #67c23a;
+}
+
+.el-select .el-input.is-focus .el-input__inner{
+    border-color: #67c23a;
 }
 </style>
 

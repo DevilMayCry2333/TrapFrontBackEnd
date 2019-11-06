@@ -49,8 +49,9 @@
         :data="maintenanceData.list"
         style="width: 100%"
         height="600"
-
         @selection-change="handleMaintenanceDataSelectionChange"
+        stripe 
+        :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}"
       >
         <!-- <el-table-column label width="50" align="center" fixed="left">
           <template scope="scope">
@@ -62,19 +63,19 @@
           </template>
         </el-table-column>-->
 
-        <el-table-column type="selection" width="55" fixed="left"></el-table-column>
-        <el-table-column prop="deviceId" label="诱捕器编号"></el-table-column>
+        <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
+        <el-table-column prop="deviceId" label="诱捕器编号" align="center"></el-table-column>
         <!-- <el-table-column prop="num" label="松墨天牛总数"></el-table-column> -->
 
-        <el-table-column prop="longitude" label="经度"></el-table-column>
-        <el-table-column prop="latitude" label="纬度"></el-table-column>
-        <el-table-column prop="altitude" label="海拔"></el-table-column>
-        <el-table-column label="行政区域" width="200px">
+        <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
+        <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
+        <el-table-column prop="altitude" label="海拔" align="center"></el-table-column>
+        <el-table-column label="行政区域" width="200px" align="center">
           <template
             slot-scope="scope"
           >{{scope.row.province + scope.row.city + scope.row.area + scope.row.town}}</template>
         </el-table-column>
-        <el-table-column prop="username" label="工人"></el-table-column>
+        <el-table-column prop="username" label="工人" align="center"></el-table-column>
 
         <el-table-column
           label="操作"
@@ -367,6 +368,7 @@ export default {
 #tool-row {
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
 }
 #userInfoDialogData {
   display: flex;

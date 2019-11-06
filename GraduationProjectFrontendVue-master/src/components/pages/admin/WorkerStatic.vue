@@ -5,15 +5,14 @@
 
         <el-button type="primary" @click="query()" style="background-color: #1d7155;border-color: #1d7155;">查询</el-button>
 
-      <el-table border :data="list" style="width: 100%" height="600">
-        <el-table-column prop="Worker" label="工人名称"></el-table-column>
-        <el-table-column prop="Num" label="管理诱捕器数量"></el-table-column>
-        <el-table-column prop="Num1" label="松墨天牛数量"></el-table-column>
-        <el-table-column prop="Num2" label="其他天牛数量"></el-table-column>
-        <el-table-column prop="Num3" label="天牛总数"></el-table-column>
-        <el-table-column prop="day" label="出勤天数"></el-table-column>
-        <el-table-column prop="Avg" label="平均工作量"></el-table-column>
-        <el-table-column prop="Avg1" label="日均天牛数"></el-table-column>
+      <el-table border :data="list" style="width: 100%" height="600" 
+        stripe 
+        :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
+        <el-table-column prop="Worker" label="工人名称" align="center"></el-table-column>
+        <el-table-column prop="Num" label="工作量" align="center"></el-table-column>
+        <el-table-column prop="day" label="出勤天数" align="center"></el-table-column>
+        <el-table-column prop="Avg" label="日均工作量" align="center"></el-table-column>
+
       </el-table>
     </div>
 </template>

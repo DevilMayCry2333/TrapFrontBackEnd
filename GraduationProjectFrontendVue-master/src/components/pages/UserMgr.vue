@@ -767,4 +767,12 @@
     display: flex;
     justify-content: space-around;
   }
+.el-radio__input.is-checked .el-radio__inner {
+    border-color: #1D7155;
+    background: #1D7155;
+}
+.el-radio__input.is-checked+.el-radio__label {
+    color: #1D7155;
+}
+
 </style>

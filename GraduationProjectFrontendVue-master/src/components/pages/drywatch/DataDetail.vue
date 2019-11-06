@@ -13,17 +13,17 @@
               </el-select>
               <!-- <span style="font-size: 14px; margin-left: 14px">搜索内容:</span> -->
               <el-input style="width: 200px" placeholder="搜索内容" v-model="searchText"></el-input>
-              <el-button type="primary" @click="handleSubmit">搜索</el-button>
+              <el-button id="search" type="primary" @click="handleSubmit">搜索</el-button>
         </div>
         <div style=" display: flex;" >
-          <el-button type="primary" @click="exportExcel">导出</el-button>
+          <el-button id="download" type="primary" @click="exportExcel" style="height: fit-content;">导出</el-button>
             <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
 
             <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
             <el-upload  class="upload-demo" ref="upload"
             :action="uploadUrl"
             :on-success="loadDevice">
-              <el-button type="primary" style="margin-left:20px" >点击上传</el-button>
+              <el-button id="upload" type="primary" style="margin-left:20px" >导入</el-button>
             </el-upload>
         </div>
       </div>
@@ -44,7 +44,7 @@
       <el-table-column prop="chestDiameter" label="胸径(cm)" align="center"></el-table-column>
       <el-table-column prop="injectName" label="注剂类型" align="center"></el-table-column>
       <el-table-column prop="pic" label="照片" align="center">
-        <template slot-scope="scope">
+        <template slot-scope="scope" align="center">
             <el-button
               @click="showPhotoDialog(scope.row.pic)"
               v-if="scope.row.pic != null && scope.row.pic !=''"
@@ -71,6 +71,7 @@
           <template slot-scope="scope">
             <div v-if="!scope.row.reported">
               <el-button
+                id="edit"
                 size="mini"
                 type="primary"
                 @click="showEditMaintenanceDataDialog(scope.row)"
@@ -468,5 +469,55 @@
   /* display: flex; */
   justify-content: space-between;
   margin-bottom: 5px;
+}
+#search{
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+}
+#upload{
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+}
+#download{
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+    height: fit-content;
+}
+#edit{
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+}
+.el-button--primary {
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+}
+.el-input.is-active .el-input__inner, .el-input__inner:focus{
+  border-color: #67c23a;
+  outline: 0;
+}
+.el-select .el-input.is-focus .el-input__inner {
+  border-color: #67c23a;
+}
+.el-select .el-input__inner:focus{
+  border-color: #67c23a;
+}
+
+.el-select .el-input.is-focus .el-input__inner {
+  border-color: #67c23a;
+}
+.el-button--danger {
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+.el-button--danger:focus, .el-button--danger:hover {
+    background: #f78989;
+    border-color: #f78989;
+    color: #fff;
 }
 </style>

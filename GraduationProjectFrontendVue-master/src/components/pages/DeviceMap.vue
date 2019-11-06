@@ -3,7 +3,7 @@
     <div id="float-dropdown-menu">
       <el-dropdown split-button type="primary" @command="loadSpots" style="background-color: #1d7155;border-color: #1d7155;">
         聚合级别
-        <el-dropdown-menu slot="dropdown" > 
+        <el-dropdown-menu slot="dropdown" style="background-color: #1d7155;border-color: #1d7155;"> 
           <el-dropdown-item command="province" v-if="this.$store.state.user.role < 2">省</el-dropdown-item>
           <el-dropdown-item command="city" v-if="this.$store.state.user.role < 3">市</el-dropdown-item>
           <el-dropdown-item command="area" v-if="this.$store.state.user.role < 4">县</el-dropdown-item>
@@ -55,7 +55,7 @@ export default {
                   var options = {
                     size: 30,
                     shape: 2,
-                    color: '#d340c3'
+                    color:"#67c23a",
                   }
               // var marker = new BMap.Marker(point);
               var markerClusterer = new BMap.PointCollection(markers,options);
@@ -65,11 +65,13 @@ export default {
             }
             function addText(text, point) {
               var opts = {
+                background:"#67c23a",
                 position: point, // 指定文本标注所在的地理位置
                 offset: new BMap.Size(5, -5) //设置文本偏移量
               };
               var label = new BMap.Label(text, opts); // 创建文本标注对象
               label.setStyle({
+                border:"1px solid #67c23a ",
                 color: "black",
                 fontSize: "12px",
                 height: "20px",
@@ -253,9 +255,5 @@ export default {
   position: absolute;
   z-index: 9;
 }
-.el-button--primary:focus, .el-button--primary:hover {
-    background: #1D7155;
-    border-color: #1D7155;
-    color: #fff;
-}
+
 </style>
