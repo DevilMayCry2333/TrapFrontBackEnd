@@ -21,9 +21,9 @@
       </el-select>
       <el-date-picker v-model="startDate" type="date" value-format="yyyy-MM-dd" placeholder="起始日期"></el-date-picker>
       <el-date-picker v-model="endDate" type="date" value-format="yyyy-MM-dd" placeholder="终止日期"></el-date-picker>
-      <el-button type="primary" @click="query()">查询</el-button>
+      <el-button id="search" type="primary" @click="query()">查询</el-button>
     </div>
-    <div>
+    <div style="margin-bottom:10px">
       <br>
       诱捕器总数:{{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp; 总诱虫量 {{totalSum}}
       <br>
@@ -38,7 +38,7 @@
                 <el-table-column label="总材积" prop="woodVolume"></el-table-column>
                 <el-table-column label="操作">
                   <template slot-scope="scope">
-                    <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
+                    <el-button id="chakan" type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
                   </template>
                 </el-table-column>
               </el-table>
@@ -52,7 +52,7 @@
                 <el-table-column label="总诱虫量" prop="releaseNum"></el-table-column>
                 <el-table-column label="操作">
                   <template slot-scope="scope">
-                    <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
+                    <el-button id="chakan1" type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
                   </template>
                 </el-table-column>
               </el-table>
@@ -65,7 +65,7 @@
                             <el-table-column label="总材积" prop="woodVolume"></el-table-column>
                             <el-table-column label="操作">
                               <template slot-scope="scope">
-                                <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
+                                <el-button id="chakan2" type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
                               </template>
                             </el-table-column>
                           </el-table>
@@ -513,6 +513,36 @@ this.$router.push({ path: '/pages/deadTrees/Maintance' });
 #statistics-tabs .el-table__body-wrapper tr {
   border-top-color: white;
   border-bottom-color: white;
+}
+#search{
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+#chakan{
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+#chakan1{
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+#chakan2{
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+.el-button--primary {
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+}
+.el-button {
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
 }
 </style>
 

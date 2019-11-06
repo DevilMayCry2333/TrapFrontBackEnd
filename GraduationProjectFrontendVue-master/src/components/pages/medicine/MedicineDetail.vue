@@ -13,17 +13,17 @@
    
             <!-- <span style="font-size: 14px; ">搜索内容:</span> -->
             <el-input style="width: 200px" placeholder="搜索内容" v-model="searchText"></el-input>
-            <el-button type="primary" @click="handleSubmit">搜索</el-button>
+            <el-button id="search" type="primary" @click="handleSubmit">搜索</el-button>
       </div>
       <div style=" display: flex;">
-            <el-button type="primary" @click="exportExcel">导出</el-button>
+            <el-button id="download" type="primary" @click="exportExcel">导出</el-button>
               <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
 
               <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
               <el-upload  class="upload-demo" ref="upload"
               :action="uploadUrl"
               :on-success="loadDevice">
-                <el-button type="primary" style="margin-left:20px" >点击上传</el-button>
+                <el-button id="upload" type="primary" style="margin-left:20px" >导入</el-button>
               </el-upload>
 
       </div>
@@ -48,7 +48,6 @@
               @click="showPhotoDialog(scope.row.pic)"
               v-if="scope.row.pic != null && scope.row.pic !=''"
               size="mini"
-              id = "xianshi"
             >显示</el-button>
           </template>
 
@@ -71,6 +70,7 @@
           <template slot-scope="scope">
             <div v-if="!scope.row.reported">
               <el-button
+                id="edit"
                 size="mini"
                 type="primary"
                 @click="showEditMaintenanceDataDialog(scope.row)"
@@ -480,9 +480,41 @@
   justify-content: space-between;
   margin-bottom: 5px;
 }
+#search{
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+#upload{
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+#download{
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+#edit{
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
 
- #xianshi {
-    color: #ffffff
- }
 
+.el-button--primary {
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+}
+.el-button--danger:focus{
+    background: #f78989;
+    border-color: #f78989;
+    color: #fff;
+}
+.el-button--danger:hover{
+    background: #1d7155;
+    border-color: #1d7155;
+    color: #fff;
+}
 </style>

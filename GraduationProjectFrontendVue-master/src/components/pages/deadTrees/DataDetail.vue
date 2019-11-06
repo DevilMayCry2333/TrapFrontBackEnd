@@ -13,16 +13,16 @@
             </el-option>
           </el-select>
           <el-input v-model="input" placeholder="请输入内容"  style="width: 200px"></el-input>
-          <el-button type="primary" @click="query()">查询</el-button>
+          <el-button id="search" type="primary" @click="query()">查询</el-button>
       </div>
       <div style=" display: flex;">
-            <el-button type="primary" @click="exportExcel">导出</el-button>
+            <el-button id="download" type="primary" @click="exportExcel">导出</el-button>
             <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
             <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
             <el-upload ref="upload"
             :action="uploadUrl"
             :on-success="loadMaintenanceData">
-              <el-button type="primary" style="margin-left:20px">点击上传</el-button>
+              <el-button id="upload" type="primary" style="margin-left:20px">导入</el-button>
             </el-upload>
       </div>
     </div>
@@ -36,9 +36,9 @@
         <el-table-column prop="batch" label="批次" align="center"></el-table-column>
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
         <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
-        <el-table-column prop="wooddiameter" label="桩径m" align="center"></el-table-column>
-        <el-table-column prop="woodheight" label="树高m" align="center"></el-table-column>
-        <el-table-column prop="woodvolume" label="材积m^3" align="center"></el-table-column>
+        <el-table-column prop="wooddiameter" label="桩径(cm)" align="center"></el-table-column>
+        <el-table-column prop="woodheight" label="树高(m)" align="center"></el-table-column>
+        <el-table-column prop="woodvolume" label="材积(m³)" align="center"></el-table-column>
         <el-table-column prop="pic" label="照片" align="center">
                   <template slot-scope="scope">
             <el-button
@@ -69,6 +69,7 @@
           <template slot-scope="scope">
             <div v-if="!scope.row.reported">
               <el-button
+                id="edit"
                 size="mini"
                 type="primary"
                 @click="showEditMaintenanceDataDialog(scope.row)"
@@ -97,11 +98,11 @@
             layout="total, prev, pager, next"
             :total="QRData.total"
         ></el-pagination>
-
-        采伐数量:{{totalCutNum}} &nbsp;
-        施工天数:{{totalWorkDay}} &nbsp;
-        材积:{{totalWoodVolume}}
-
+        <div class="divcss5-right"> 
+          采伐数量:{{totalCutNum}} &nbsp;
+          施工天数:{{totalWorkDay}} &nbsp;
+          材积:{{totalWoodVolume}}
+        </div>
 
         </div>
                 <el-dialog title="现场照片" :visible.sync="PhotoDialog.visible" width="700px">
@@ -535,5 +536,27 @@ export default {
   /* display: flex; */
   justify-content: space-between;
   margin-bottom: 5px;
+}
+.divcss5-right{float:right} 
+#search{
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+}
+#upload{
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+}
+#download{
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+    height: fit-content;
+}
+#edit{
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
 }
 </style>
