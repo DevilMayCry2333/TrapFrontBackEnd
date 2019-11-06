@@ -252,4 +252,9 @@ export default {
   position: absolute;
   z-index: 9;
 }
+.el-button--primary:focus, .el-button--primary:hover {
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+}
 </style>

@@ -20,13 +20,14 @@
         <el-option value>全部</el-option>
         <el-option v-for="item in areas" :value="item.code" :key="item.code" :label="item.name"></el-option>
       </el-select>
-
+   
       <el-date-picker v-model="startDate" type="date" value-format="yyyy-MM-dd" placeholder="起始日期"></el-date-picker>
       <el-date-picker v-model="endDate" type="date" value-format="yyyy-MM-dd" placeholder="终止日期"></el-date-picker>
-      <el-button type="primary" @click="query()">查询</el-button>
-      <el-button type="primary" @click="exportExcel()">保存表格</el-button>
+      <el-button type="primary" @click="query()" style="background-color: #1d7155;border-color: #1d7155;">查询</el-button>
+      <el-button type="primary" @click="exportExcel()" style="background-color: #1d7155;border-color: #1d7155;">保存表格</el-button>
+    
     </div>
-    <el-tabs id="statistics-tabs" v-model="tabPage" type="card">
+    <el-tabs id="statistics-tabs" v-model="tabPage" type="card" >
       <el-tab-pane label="描述性统计分析" name="first">
         <el-card header="描述性统计分析表" style="padding:5px">
           <el-table :data="summaryList" :row-style="tableRowStyle">
@@ -785,6 +786,13 @@ export default {
 #statistics-tabs .el-table__body-wrapper tr {
   border-top-color: white;
   border-bottom-color: white;
+}
+.el-tabs__item:hover {
+    color: #1D7155;
+    cursor: pointer;
+}
+.el-tabs__item.is-active {
+    color: #1D7155;
 }
 </style>
 

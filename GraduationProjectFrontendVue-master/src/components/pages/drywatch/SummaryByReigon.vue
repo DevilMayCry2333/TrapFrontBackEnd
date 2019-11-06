@@ -1,19 +1,23 @@
 <template>
   <div>
-    <span style="font-size: 14px">搜索条件:</span>
-    <el-date-picker v-model="DryWatchData.startDate" type="date" value-format="yyyy-MM-dd"
-                    placeholder="起始日期"></el-date-picker>
-    <el-date-picker v-model="DryWatchData.endDate" type="date" value-format="yyyy-MM-dd"
-                    placeholder="终止日期"></el-date-picker>
-    <div style="margin-top: 10px; margin-left: 60px">
-      <el-select v-if="this.$store.state.user.role==3" placeholder="编号/区域/批次/施工人员" v-model="selected">
-        <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
-      </el-select>
-      <!--<span style="font-size: 14px; margin-left: 14px">搜索内容:</span>
-      <el-input style="width: 200px" placeholder="搜索内容" v-model="searchText"></el-input> -->
-      <el-button type="primary" @click="handleSubmit">搜索</el-button>
-    </div>
-    <el-table border :data="DryWatchData.list" style="width: 100%" height="600">
+      <div id="tool-row">
+        <div>
+          <span style="font-size: 14px">搜索条件:</span>
+          <el-date-picker v-model="DryWatchData.startDate" type="date" value-format="yyyy-MM-dd"
+                          placeholder="起始日期" style="width: 170px;"></el-date-picker>
+          <el-date-picker v-model="DryWatchData.endDate" type="date" value-format="yyyy-MM-dd"
+                          placeholder="终止日期" style="width: 170px;"></el-date-picker>
+          <!-- <div style="margin-top: 10px; margin-left: 60px"> -->
+            <el-select v-if="this.$store.state.user.role==3" placeholder="编号/区域/批次/施工人员" v-model="selected" style="width: 220px;">
+              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+            <!--<span style="font-size: 14px; margin-left: 14px">搜索内容:</span>
+            <el-input style="width: 200px" placeholder="搜索内容" v-model="searchText"></el-input> -->
+            <el-button type="primary" @click="handleSubmit">搜索</el-button>
+        </div>
+      </div>
+        <!-- </div> -->
+    <el-table border :data="DryWatchData.list" style="width: 100%" height="600" stripe :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
       <el-table-column prop="customtown" label="区域" align="center"></el-table-column>
       <el-table-column prop="startDate" label="起始日期" align="center"></el-table-column>
       <el-table-column prop="endDate" label="截止日期" align="center"></el-table-column>
@@ -127,5 +131,9 @@
 </script>
 
 <style>
-
+#tool-row {
+  /* display: flex; */
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
 </style>
