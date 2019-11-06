@@ -69,8 +69,8 @@
         </el-form-item> -->
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="changePasswordDialog.visible = false">取 消</el-button>
-        <el-button type="primary" @click.native.prevent="handleChangePasswordSubmit">确 定</el-button>
+        <el-button id="cancel" @click="changePasswordDialog.visible = false">取 消</el-button>
+        <el-button id="sure" type="primary" @click.native.prevent="handleChangePasswordSubmit">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -324,4 +324,16 @@ export default {
           height: calc(100% - 40px);
 				}
 			}
+
+#cancel{
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+#sure{
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+
 </style>

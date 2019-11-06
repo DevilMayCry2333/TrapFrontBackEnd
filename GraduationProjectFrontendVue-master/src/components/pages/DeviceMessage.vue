@@ -6,22 +6,24 @@
       >诱捕器信息
 
 
-    <div style="padding-top:5px">
+    <div style="padding-top:10px">
       <el-table
         border
         :data="maintenanceData.list"
         style="width: 100%"
         height="600"
+        stripe 
+        :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}"
 
       >
          <!-- <el-table-column label width="50" align="center" fixed="left">
 
                 </el-table-column>-->
-        <el-table-column type="selection" width="55" fixed="left"></el-table-column>
-        <el-table-column prop="batch" label="维护批次"></el-table-column>
-        <el-table-column prop="num" label="诱虫数量"></el-table-column>
-         <el-table-column prop="otherNum" label="其他数量"></el-table-column>
-         <el-table-column prop="otherType" label="其他类型"></el-table-column>
+        <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
+        <el-table-column prop="batch" label="维护批次" align="center"></el-table-column>
+        <el-table-column prop="num" label="诱虫数量" align="center"></el-table-column>
+         <el-table-column prop="otherNum" label="其他数量" align="center"></el-table-column>
+         <el-table-column prop="otherType" label="其他类型" align="center"></el-table-column>
         <!-- <el-table-column prop="drug" label="注药株数"></el-table-column> -->
 
       </el-table>

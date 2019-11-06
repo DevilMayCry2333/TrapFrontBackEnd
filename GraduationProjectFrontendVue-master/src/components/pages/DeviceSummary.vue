@@ -23,7 +23,7 @@
       </el-select>
       <el-date-picker v-model="startDate" type="date" value-format="yyyy-MM-dd" placeholder="起始日期"></el-date-picker>
       <el-date-picker v-model="endDate" type="date" value-format="yyyy-MM-dd" placeholder="终止日期"></el-date-picker>
-      <el-button type="primary" @click="query()">查询</el-button>
+      <el-button id="search" type="primary" @click="query()">查询</el-button>
     </div>
     <div>
       <br>
@@ -40,7 +40,7 @@
                 <el-table-column label="总诱虫量" prop="beetleCount"></el-table-column>
                 <el-table-column label="操作">
                   <template slot-scope="scope">
-                    <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
+                    <el-button id="chakan" type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
                   </template>
                 </el-table-column>
               </el-table>
@@ -54,7 +54,7 @@
                 <el-table-column label="总诱虫量" prop="beetleCount"></el-table-column>
                 <el-table-column label="操作">
                   <template slot-scope="scope">
-                    <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
+                    <el-button id="chakan1" type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
                   </template>
                 </el-table-column>
               </el-table>
@@ -67,7 +67,7 @@
                             <el-table-column label="总诱虫量" prop="beetleCount"></el-table-column>
                             <el-table-column label="操作">
                               <template slot-scope="scope">
-                                <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
+                                <el-button id="chakan1" type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
                               </template>
                             </el-table-column>
                           </el-table>
@@ -493,6 +493,22 @@ this.$router.push({ path: '/pages/device_maintenance.html' });
 };
 </script>
 <style>
+#search{
+    background: #1D7155;
+    border-color: #1D7155;
+}
+#chakan{
+    background: #1D7155;
+    border-color: #1D7155;
+}
+#chakan1{
+    background: #1D7155;
+    border-color: #1D7155;
+}
+#chaka2{
+    background: #1D7155;
+    border-color: #1D7155;
+}
 #statistics-tabs .el-table thead {
   color: black;
   font-weight: 500;
@@ -515,6 +531,40 @@ this.$router.push({ path: '/pages/device_maintenance.html' });
   border-top-color: white;
   border-bottom-color: white;
 }
+.el-pagination li.active{
+  background-color:#70AD47!important;
+  /* color: #fff !important; */
+} 
+.el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  background-color: #1D7155;
+  border-color: #1D7155;
+}
+.el-select .el-input.is-focus .el-input__inner {
+  border-color: #67c23a;
+  outline: 0;
+}
+.el-select .el-input.is-focus .el-input__inner {
+  border-color: #67c23a;
+  outline: 0;
+}
+.el-input.is-active .el-input__inner, .el-input__inner:focus{
+  border-color:#67c23a;
+  outline: 0;
+}
+
+.el-radio__input.is-checked .el-radio__inner {
+  border-color: #1D7155;
+  background: #1D7155;
+}
+.el-radio__input.is-checked+.el-radio__label {
+  color: #1D7155;
+}
+.el-button--primary {
+  color: #fff;
+  background-color: #1D7155;
+  border-color: #1D7155;
+}
+
 </style>
 
 
