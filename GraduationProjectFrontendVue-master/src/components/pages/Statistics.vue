@@ -23,8 +23,8 @@
 
       <el-date-picker v-model="startDate" type="date" value-format="yyyy-MM-dd" placeholder="起始日期"></el-date-picker>
       <el-date-picker v-model="endDate" type="date" value-format="yyyy-MM-dd" placeholder="终止日期"></el-date-picker>
-      <el-button type="primary" @click="query()">查询</el-button>
-      <el-button type="primary" @click="exportExcel()">保存表格</el-button>
+      <el-button id="search" type="primary" @click="query()">查询</el-button>
+      <el-button id="save" type="primary" @click="exportExcel()">保存表格</el-button>
     </div>
     <el-tabs id="statistics-tabs" v-model="tabPage" type="card">
       <el-tab-pane label="描述性统计分析" name="first">
@@ -62,7 +62,7 @@
       </el-tab-pane>
       <el-tab-pane label="多重比较" name="third">
         <el-card header="差异性分析" style="width:100%; padding: 5px">
-          <el-select v-model="mcType">
+          <el-select v-model="mcType" style="margin-top:0px;margin-bottom:10px;">
             <el-option value="0" key="LSD" label="LSD">LSD</el-option>
             <el-option value="1" key="SCHEFFE" label="SCHEFFE">SCHEFFE</el-option>
           </el-select>
@@ -709,6 +709,28 @@ export default {
   border-top-color: white;
   border-bottom-color: white;
 }
+#search{
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+#save{
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+.el-tabs__item.is-active {
+    color: #1D7155;
+}
+.el-tabs__item:hover {
+    color: #1D7155;
+    cursor: pointer;
+}
+.el-select-dropdown__item.selected {
+    color: #1D7155;
+    font-weight: 700;
+}
+
 </style>
 
 

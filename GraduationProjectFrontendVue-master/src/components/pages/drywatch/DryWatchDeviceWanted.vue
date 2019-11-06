@@ -17,9 +17,9 @@
           value-format="yyyy-MM-dd"
           placeholder="终止日期"
         ></el-date-picker>
-        <el-button type="primary" @click="buttonLoadMaintenanceData">搜索</el-button>
+        <el-button id="search" type="primary" @click="buttonLoadMaintenanceData">搜索</el-button>
       </div>
-      <div>
+      <div style=" display: flex;">
         <!-- <el-button type="primary" @click="showAdd">添加</el-button> -->
         <!-- <el-button
           type="primary"
@@ -32,6 +32,7 @@
           @click="handleDelete"
         >删除</el-button>-->
         <el-button
+          id="report"
           type="primary"
           @click="handleReportMaintenanceData"
           v-if="this.$store.state.user.role == 3"
@@ -41,14 +42,14 @@
           @click="handleDeleteSome"
           
         >批量删除</el-button> -->
-        <el-button type="primary" @click="exportExcel">导出</el-button>
+        <el-button id="download" type="primary" @click="exportExcel">导出</el-button>
         <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
         
         <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
         <el-upload  class="upload-demo" ref="upload"
         :action="uploadUrl"
         :on-success="loadMaintenanceData">
-          <el-button type="primary" >点击上传</el-button>
+          <el-button id="upload" type="primary" >导入</el-button>
         </el-upload>
       </div>
     </div>
@@ -60,6 +61,8 @@
         style="width: 100%"
         height="600"
         @selection-change="handleMaintenanceDataSelectionChange"
+        stripe 
+        :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}"
       >
         <!-- <el-table-column label width="50" align="center" fixed="left">
           <template scope="scope">
@@ -70,28 +73,28 @@
             >&nbsp</el-radio>
           </template>
         </el-table-column>-->
-        <el-table-column type="selection" width="55" fixed="left"></el-table-column>
-        <el-table-column prop="deviceId" label="设备ID"></el-table-column>
-        <el-table-column prop="batch" label="批次"></el-table-column>
-        <el-table-column prop="injectionNum" label="注剂数量"></el-table-column>
+        <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
+        <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
+        <el-table-column prop="batch" label="批次" align="center"></el-table-column>
+        <el-table-column prop="injectionNum" label="注剂数量" align="center"></el-table-column>
         <!-- <el-table-column label="其他天牛类型">
           <template slot-scope="scope">{{otherBeetleDict["t" + scope.row.otherType]}}</template>
         </el-table-column>
         <el-table-column prop="otherNum" label="其他天牛数量"></el-table-column> -->
-        <el-table-column prop="longitude" label="经度"></el-table-column>
-        <el-table-column prop="latitude" label="纬度"></el-table-column>
-        <el-table-column prop="altitude" label="海拔"></el-table-column>
-        <el-table-column label="位置" width="200px">
+        <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
+        <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
+        <el-table-column prop="altitude" label="海拔" align="center"></el-table-column>
+        <el-table-column label="位置" width="200px" align="center">
           <template
             slot-scope="scope"
           >{{scope.row.province + scope.row.city + scope.row.area + scope.row.town}}</template>
         </el-table-column>
-        <el-table-column prop="username" label="用户名"></el-table-column>
-        <el-table-column prop="submitDate" label="日期"></el-table-column>
-        <el-table-column prop="injectionNum" label="注剂数量"></el-table-column>
-         <el-table-column prop="woodstatus" label="树木状态"></el-table-column>
-        <el-table-column prop="remarks" label="备注"></el-table-column>
-        <el-table-column label="是否上报">
+        <el-table-column prop="username" label="用户名" align="center"></el-table-column>
+        <el-table-column prop="submitDate" label="日期" align="center"></el-table-column>
+        <el-table-column prop="injectionNum" label="注剂数量" align="center"></el-table-column>
+         <el-table-column prop="woodstatus" label="树木状态" align="center"></el-table-column>
+        <el-table-column prop="remarks" label="备注" align="center"></el-table-column>
+        <el-table-column label="是否上报" align="center">
           <template slot-scope="scope">{{scope.row.reported ? '是': '否'}}</template>
         </el-table-column>
         <!-- <el-table-column label="现场照片" width="100px" align="center">
@@ -569,5 +572,53 @@ this.uploadUrl =
 #userInfoDialogData {
   display: flex;
   justify-content: space-around;
+}
+.el-input.is-active .el-input__inner, .el-input__inner:focus{
+  border-color: #67c23a;
+  outline: 0;
+}
+.el-select .el-input.is-focus .el-input__inner {
+  border-color: #67c23a;
+}
+.el-select .el-input__inner:focus{
+  border-color: #67c23a;
+}
+
+.el-select .el-input.is-focus .el-input__inner {
+  border-color: #67c23a;
+}
+#search{
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+}
+#report{
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+    height: fit-content;
+}
+#upload{
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+    /* height: fit-content; */
+}
+#download{
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+    height: fit-content;
+    margin-right: 10px;
+}
+.el-button--danger {
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+.el-button--danger:focus, .el-button--danger:hover {
+    background: #f78989;
+    border-color: #f78989;
+    color: #fff;
 }
 </style>

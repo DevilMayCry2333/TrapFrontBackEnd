@@ -12,16 +12,17 @@
         :data="maintenanceData.list"
         style="width: 100%"
         height="600"
-
+        stripe 
+        :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}"
       >
          <!-- <el-table-column label width="50" align="center" fixed="left">
 
                 </el-table-column>-->
-        <el-table-column type="selection" width="55" fixed="left"></el-table-column>
-        <el-table-column prop="batch" label="维护批次"></el-table-column>
-        <el-table-column prop="woodvolume" label="材积"></el-table-column>
-         <el-table-column prop="killmethod" label="除害方式"></el-table-column>
-         <el-table-column prop="region" label="区域"></el-table-column>
+        <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
+        <el-table-column prop="batch" label="维护批次" align="center"></el-table-column>
+        <el-table-column prop="woodvolume" label="材积" align="center"></el-table-column>
+         <el-table-column prop="killmethod" label="除害方式" align="center"></el-table-column>
+         <el-table-column prop="region" label="区域" align="center"></el-table-column>
         <!-- <el-table-column prop="drug" label="注药株数"></el-table-column> -->
 
       </el-table>

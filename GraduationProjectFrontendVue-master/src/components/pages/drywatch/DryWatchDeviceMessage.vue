@@ -6,23 +6,25 @@
       >诱捕器信息
 
 
-    <div style="padding-top:5px">
+    <div style="padding-top:10px">
       <el-table
         border
         :data="maintenanceData.list"
         style="width: 100%"
         height="600"
+        stripe 
+        :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}"
 
       >
          <!-- <el-table-column label width="50" align="center" fixed="left">
 
                 </el-table-column>-->
-        <el-table-column type="selection" width="55" fixed="left"></el-table-column>
-        <el-table-column prop="batch" label="维护批次"></el-table-column>
-        <el-table-column prop="injectionNum" label="注剂数量"></el-table-column>
-        <el-table-column prop="woodstatus" label="树木状态"></el-table-column>
-         <el-table-column prop="submitDate" label="日期"></el-table-column>
-         <el-table-column prop="workContent" label="工作内容"></el-table-column>
+        <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
+        <el-table-column prop="batch" label="维护批次" align="center"></el-table-column>
+        <el-table-column prop="injectionNum" label="注剂数量" align="center"></el-table-column>
+        <el-table-column prop="woodstatus" label="树木状态" align="center"></el-table-column>
+         <el-table-column prop="submitDate" label="日期" align="center"></el-table-column>
+         <el-table-column prop="workContent" label="工作内容" align="center"></el-table-column>
 
       </el-table>
 

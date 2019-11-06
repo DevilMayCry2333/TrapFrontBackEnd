@@ -274,6 +274,17 @@ this.loadOtherBeetleData();
     border-color: #1D7155;
 }
 
+.el-button--danger:focus{
+    background: #f78989;
+    border-color: #f78989;
+    color: #fff;
+}
+.el-button--danger:hover {
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+
 </style>
 
 

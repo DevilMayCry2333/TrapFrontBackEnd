@@ -13,17 +13,17 @@
           </el-option>
         </el-select>
         <el-input v-model="input" placeholder="请输入内容" style="width: 180px;"></el-input>
-        <el-button type="primary" @click="query()">查询</el-button>
+        <el-button id="search" type="primary" @click="query()">查询</el-button>
     </div>  
     <div style=" display: flex;" >
-      <el-button type="primary" @click="exportExcel">导出</el-button>
+      <el-button id="download" type="primary" @click="exportExcel">导出</el-button>
         <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
 
         <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
         <el-upload  class="upload-demo" ref="upload"
         :action="uploadUrl"
         :on-success="loadMaintenanceData">
-          <el-button type="primary"  style="margin-left:20px" >点击上传</el-button>
+          <el-button id="upload" type="primary"  style="margin-left:20px" >导入</el-button>
         </el-upload>
     </div>
   </div>
@@ -98,9 +98,11 @@
             layout="total, prev, pager, next"
             :total="QRData.total"
         ></el-pagination>
-        释放地点:{{releasePlace}} &nbsp;
-        成虫数量:{{releaseNum}} &nbsp;
-        卵卡数量:{{LuanKaNum}} 
+        <div class="divcss5-right">
+          释放地点:{{releasePlace}} &nbsp;
+          成虫数量:{{releaseNum}} &nbsp;
+          卵卡数量:{{LuanKaNum}} 
+        </div>
         </div>
                         <el-dialog title="现场照片" :visible.sync="PhotoDialog.visible" width="700px">
       <div style="overflow-y:scroll;height: 300px">
@@ -494,4 +496,31 @@ export default {
   justify-content: space-between;
   margin-bottom: 5px;
 }
+#search{
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+}
+#upload{
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+}
+#download{
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+    height:fit-content;
+}
+.el-button--danger:focus{
+    background: #f78989;
+    border-color: #f78989;
+    color: #fff;
+}
+.el-button--danger:hover{
+    background: #1d7155;
+    border-color: #1d7155;
+    color: #fff;
+}
+.divcss5-right{float:right} 
 </style>
