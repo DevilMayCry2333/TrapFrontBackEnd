@@ -11,7 +11,7 @@
         <el-table-column prop="Worker" label="工人名称" align="center"></el-table-column>
         <el-table-column prop="Num" label="工作量" align="center"></el-table-column>
         <el-table-column prop="day" label="出勤天数" align="center"></el-table-column>
-        <el-table-column prop="Avg" label="平均工作量" align="center"></el-table-column>
+        <el-table-column prop="Avg" label="日均工作量" align="center"></el-table-column>
       </el-table>
     </div>
 </template>

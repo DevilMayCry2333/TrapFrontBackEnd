@@ -19,7 +19,7 @@
           value-format="yyyy-MM-dd"
           placeholder="终止日期"
         ></el-date-picker>
-        <el-button type="primary" @click="loadMaintenanceData">搜索</el-button>
+        <el-button id="search" type="primary" @click="loadMaintenanceData">搜索</el-button>
 
       </div>
       <div>
@@ -39,7 +39,7 @@
           @click="handleReportMaintenanceData"
           v-if="this.$store.state.user.role == 3 "
         >上报</el-button>-->
-        <el-button type="primary" @click="exportExcel">导出</el-button>
+        <el-button id="downolad" type="primary" @click="exportExcel">导出</el-button>
       </div>
     </div>
 
@@ -49,7 +49,8 @@
         :data="maintenanceData.list"
         style="width: 100%"
         height="600"
-
+        stripe 
+        :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}"
         @selection-change="handleMaintenanceDataSelectionChange"
       >
         <!-- <el-table-column label width="50" align="center" fixed="left">
@@ -62,19 +63,19 @@
           </template>
         </el-table-column>-->
 
-        <el-table-column type="selection" width="55" fixed="left"></el-table-column>
-        <el-table-column prop="deviceId" label="诱捕器编号"></el-table-column>
-        <el-table-column prop="num" label="松墨天牛总数"></el-table-column>
+        <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
+        <el-table-column prop="deviceId" label="诱捕器编号" align="center"></el-table-column>
+        <el-table-column prop="num" label="松墨天牛总数" align="center"></el-table-column>
 
-        <el-table-column prop="longitude" label="经度"></el-table-column>
-        <el-table-column prop="latitude" label="纬度"></el-table-column>
-        <el-table-column prop="altitude" label="海拔"></el-table-column>
-        <el-table-column label="行政区域" width="200px">
+        <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
+        <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
+        <el-table-column prop="altitude" label="海拔" align="center"></el-table-column>
+        <el-table-column label="行政区域" width="200px" align="center">
           <template
             slot-scope="scope"
           >{{scope.row.province + scope.row.city + scope.row.area + scope.row.town}}</template>
         </el-table-column>
-        <el-table-column prop="username" label="工人"></el-table-column>
+        <el-table-column prop="username" label="工人" align="center"></el-table-column>
 
         <el-table-column
           label="操作"
@@ -366,10 +367,27 @@ export default {
 #tool-row {
   display: flex;
   justify-content: space-between;
+  margin-top: 8px;
+  margin-bottom: 5px;
 }
 #userInfoDialogData {
   display: flex;
   justify-content: space-around;
+}
+.el-button--primary {
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+.el-button--primary:focus,.el-button--primary:hover {
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+
+.el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner {
+    background-color: #1D7155;
+    border-color: #1D7155;
 }
 </style>
 

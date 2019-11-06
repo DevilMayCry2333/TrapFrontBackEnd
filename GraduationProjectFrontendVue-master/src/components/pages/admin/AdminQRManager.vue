@@ -33,12 +33,13 @@
                 @click="showAssignQRCodeManagerDialog()"
                 v-if="this.$store.state.user.role == 4"
               >分配项目二维码</el-button>
-
+<!-- 
                 <el-button
+                  id="editQRcode"
                   type="primary"
                   @click="showQRWorkerDialog()"
                   v-if="this.$store.state.user.role == 0"
-                >编辑二维码分配</el-button> 
+                >编辑二维码分配</el-button>  -->
                 <el-button id="IDdownload" type="primary" @click="handleDownloadID">ID下载</el-button>
                 <el-button id="codedownload" type="primary" @click="handleDownload">二维码下载</el-button> 
       </div>
@@ -936,6 +937,10 @@ export default {
     border:#1D7155;
     background-color:#1D7155 
   }
+  #editQRcode{
+    border:#1D7155;
+    background-color:#1D7155 
+  }
   #IDdownload{
     border:#1D7155;
     background-color:#1D7155 
@@ -983,14 +988,18 @@ export default {
     transition: border-color .2s cubic-bezier(.645,.045,.355,1);
     width: 100%;
 }
-.el-input.is-active .el-input__inner, .el-input__inner:focus {
+.el-input.is-active {
     border-color: #67c23a;
-    outline: 0;
+    /* outline: 0; */
+}
+
+.el-select .el-input__inner:focus {
+    border-color: #67c23a;
+}
+.el-form-item.is-success .el-input__inner, .el-form-item.is-success .el-input__inner:focus, .el-form-item.is-success .el-textarea__inner, .el-form-item.is-success .el-textarea__inner:focus {
+    border-color: #67c23a;
 }
 .el-select .el-input.is-focus .el-input__inner {
-    border-color: #67c23a;
-}
-.el-select .el-input__inner:focus {
     border-color: #67c23a;
 }
 .el-button--primary {

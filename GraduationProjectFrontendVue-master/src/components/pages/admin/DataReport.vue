@@ -15,7 +15,7 @@
             :value="item.username">
             </el-option>
         </el-select>
-        <el-button @click="ReportData" type="primary">确定</el-button>
+        <el-button id="sure" @click="ReportData" type="primary">确定</el-button>
     </div>
 </template>
 
@@ -86,7 +86,7 @@ export default {
             res => {
                 console.log(res);
                 if(res.data == "OK"){
-                    alert("修改上报成功!!");
+                    alert("修改上报成功!");
                 }
 
             },
@@ -99,5 +99,9 @@ export default {
 </script>
 
 <style>
-
+#sure{
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
 </style>

@@ -13,7 +13,7 @@
             </el-select>
             <!--<span style="font-size: 14px; margin-left: 14px">搜索内容:</span>
             <el-input style="width: 200px" placeholder="搜索内容" v-model="searchText"></el-input> -->
-            <el-button type="primary" @click="handleSubmit">搜索</el-button>
+            <el-button id="search" type="primary" @click="handleSubmit">搜索</el-button>
         </div>
       </div>
         <!-- </div> -->
@@ -41,9 +41,11 @@
         :total="DryWatchData.total"
       ></el-pagination>
     </div>
+    <div  class="divcss5-right">
       注药株数:{{totalWoodNum}} &nbsp;
       注剂数量:{{totalInject}} &nbsp;
       枯死株数:{{totalDeadNum}} &nbsp;
+    </div>
   </div>
 
 
@@ -135,4 +137,16 @@
   justify-content: space-between;
   margin-bottom: 5px;
 }
+#search{
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+}
+.el-button--primary:focus, .el-button--primary:hover {
+    background: #1D7155;
+    border-color: #1D7155;
+    color: #fff;
+}
+
+.divcss5-right{float:right} 
 </style>
