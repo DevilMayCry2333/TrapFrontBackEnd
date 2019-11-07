@@ -35,7 +35,6 @@
               >分配项目二维码</el-button>
               
 
-
               <el-button
                 id="allocate1"
                 type="primary"
@@ -64,7 +63,7 @@
           height="600"
           stripe 
           :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">       <!-- 斑马纹 表头颜色 表头字体颜色  -->
-          
+
         <el-table-column prop="scanId" label="scanId" align="center"></el-table-column>
         <el-table-column prop="province" label="省" align="center"></el-table-column>
         <el-table-column prop="city" label="市" align="center"></el-table-column>
