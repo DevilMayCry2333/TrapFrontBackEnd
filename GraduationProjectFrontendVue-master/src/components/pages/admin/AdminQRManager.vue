@@ -35,7 +35,8 @@
               >分配项目二维码</el-button>
               
 
-                            <el-button
+
+              <el-button
                 id="allocate1"
                 type="primary"
                 @click="showReAssignDialog()"
@@ -43,12 +44,12 @@
               >二维码补码</el-button>
 
 
-                <el-button
+                <!-- <el-button
                   id="editQRcode"
                   type="primary"
                   @click="showQRWorkerDialog()"
                   v-if="this.$store.state.user.role == 0"
-                >编辑二维码分配</el-button>  -->
+                >编辑二维码分配</el-button>   -->
                 <el-button id="IDdownload" type="primary" @click="handleDownloadID">ID下载</el-button>
                 <el-button v-if="this.$store.state.user.role >0" id="codedownload" type="primary" @click="handleDownload">二维码下载</el-button> 
       </div>
@@ -63,6 +64,7 @@
           height="600"
           stripe 
           :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">       <!-- 斑马纹 表头颜色 表头字体颜色  -->
+          
         <el-table-column prop="scanId" label="scanId" align="center"></el-table-column>
         <el-table-column prop="province" label="省" align="center"></el-table-column>
         <el-table-column prop="city" label="市" align="center"></el-table-column>
@@ -417,7 +419,6 @@ export default {
       console.log(this.selectedDevice);
       
             let role = this.$store.state.user.role;
-          
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         // this.loadCity();
