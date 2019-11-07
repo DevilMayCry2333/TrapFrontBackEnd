@@ -35,6 +35,7 @@
               >分配项目二维码</el-button>
               
 
+
               <el-button
                 id="allocate1"
                 type="primary"
@@ -63,7 +64,7 @@
           height="600"
           stripe 
           :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">       <!-- 斑马纹 表头颜色 表头字体颜色  -->
-        
+          
         <el-table-column prop="scanId" label="scanId" align="center"></el-table-column>
         <el-table-column prop="province" label="省" align="center"></el-table-column>
         <el-table-column prop="city" label="市" align="center"></el-table-column>
@@ -750,8 +751,12 @@ export default {
 
         },
     loadDevice() {
+
+                console.log(sessionStorage['username']);
+              let role = this.$store.state.user.role;
+              if(role == 4){
               http.requestWithToken(
-          "/newQrCode/search",
+          "/newQrCode/usertosearch",
           "get",
           { colName: this.value, searchText: this.input,
           page: this.QRData.page, limit: this.QRData.limit },
@@ -778,7 +783,37 @@ export default {
           },
           () => {}
         );
-    },
+              }else if(role == 0){
+http.requestWithToken(
+          "/newQrCode/rootSearch",
+          "get",
+          { colName: this.value, searchText: this.input,
+          page: this.QRData.page, limit: this.QRData.limit },
+          res => {
+            console.log(res.data);
+            
+            this.QRData.list = res.data.data;
+            for(var i = 0 ; i < this.QRData.list.length; i++){
+              if(this.QRData.list[i].project=="1"){
+                this.QRData.list[i].project = "诱捕器管理";
+              }else if(this.QRData.list[i].project=="2"){
+                this.QRData.list[i].project = "注干剂监测";
+              }else if(this.QRData.list[i].project=="3"){
+                this.QRData.list[i].project = "天敌防治";
+              }else if(this.QRData.list[i].project=="4"){
+                this.QRData.list[i].project = "枯死树采伐";
+              }else if(this.QRData.list[i].project=="5"){
+                this.QRData.list[i].project = "药剂防治管理";
+              }
+            }
+
+            this.QRData.total = res.data.totalNum;
+
+          },
+          () => {}
+        );
+              }
+    },  
     loadManagers() {
       http.requestWithToken(
         "/auth_api/user_list",
