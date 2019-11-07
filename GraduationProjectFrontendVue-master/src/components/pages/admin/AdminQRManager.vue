@@ -33,13 +33,22 @@
                 @click="showAssignQRCodeManagerDialog()"
                 v-if="this.$store.state.user.role == 4"
               >分配项目二维码</el-button>
-<!-- 
-                <el-button
+              
+
+              <el-button
+                id="allocate1"
+                type="primary"
+                @click="showReAssignDialog()"
+                v-if="this.$store.state.user.role == 4"
+              >二维码补码</el-button>
+
+
+                <!-- <el-button
                   id="editQRcode"
                   type="primary"
                   @click="showQRWorkerDialog()"
                   v-if="this.$store.state.user.role == 0"
-                >编辑二维码分配</el-button>  -->
+                >编辑二维码分配</el-button>   -->
                 <el-button id="IDdownload" type="primary" @click="handleDownloadID">ID下载</el-button>
                 <el-button v-if="this.$store.state.user.role >0" id="codedownload" type="primary" @click="handleDownload">二维码下载</el-button> 
       </div>
@@ -48,10 +57,14 @@
       <el-table 
           border 
           :data="QRData.list" 
+          style="width: 100%"
+          highlight-current-row
+          @current-change="handleMaintenanceDataSelectionChange"
+          height="600"
           stripe 
-          style="width: 100%" 
-          height="600">        <!-- 斑马纹 表头颜色 表头字体颜色  -->
-        <el-table-column prop="id" label="id" align="center"></el-table-column>
+          :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">       <!-- 斑马纹 表头颜色 表头字体颜色  -->
+        
+        <el-table-column prop="scanId" label="scanId" align="center"></el-table-column>
         <el-table-column prop="province" label="省" align="center"></el-table-column>
         <el-table-column prop="city" label="市" align="center"></el-table-column>
         <el-table-column prop="area" label="县" align="center"></el-table-column>
@@ -188,39 +201,6 @@
             :value="item.value">
             </el-option>
         </el-select>
-            <br />
-            <br />
-        <el-tag>　市　　</el-tag>
-        <el-select @change="cityChange" v-model="cityValue" placeholder="请选择" style="width:40%;">
-            <el-option
-            v-for="item in city"
-            :key="item.code"
-            :label="item.name"
-            :value="item.code">
-            </el-option>
-        </el-select>
-            <br />
-            <br />
-         <el-tag>　县　　</el-tag>
-          <el-select @change="areaChange" v-model="areaValue" placeholder="请选择" style="width:40%;">
-            <el-option
-            v-for="item in area"
-            :key="item.code"
-            :label="item.name"
-            :value="item.code">
-            </el-option>
-        </el-select>
-            <br />
-            <br />
-        <el-tag>应用项目</el-tag>
-          <el-select @change="applicationChange" v-model="applicationValue" placeholder="请选择" style="width:40%;">
-            <el-option
-            v-for="item in application"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-            </el-option>
-        </el-select>
       </div>
       <div slot="footer" class="dialog-footer">
         <el-button id="cancel1" @click="AssignQRCodeDialog.visible = false">取 消</el-button>
@@ -228,6 +208,17 @@
         :loading="assignQRCode"
         >确 定</el-button>
       </div>
+    </el-dialog>
+
+    <el-dialog title="二维码补码" :visible.sync="ReAssignDialog.visible">
+      <el-tag>二维码ＩＤ</el-tag>
+      <el-input v-model="ReAssignDialog.AvailScanId" placeholder="请输入内容" style="width:60%;"></el-input>
+              <div slot="footer" class="dialog-footer">
+                <el-button id="cancel2" @click="ReAssignDialog.visible = false">取 消</el-button>
+                <el-button id="sure2" type="primary" @click.native.prevent="handleReAssign"
+                :loading="assignQRCode"
+                >确 定</el-button>
+            </div>
     </el-dialog>
 
       <el-dialog title="分配项目二维码" :visible.sync="AssignQRCodeManagerDialog.visible" width="50%">
@@ -403,6 +394,10 @@ export default {
         numList: []
       },
 
+      ReAssignDialog:{
+        visible:false,
+        AvailScanId:''
+      },
       searchText: "",
       QRData: {
         selectedIndex: -1,
@@ -410,10 +405,73 @@ export default {
         page: 1,
         limit: 10,
         total: 0
+      },
+      selectedDevice:{
+
       }
     };
   },
   methods: {
+
+    showReAssignDialog(){
+      this.ReAssignDialog.visible = true;
+      console.log(this.selectedDevice);
+      
+            let role = this.$store.state.user.role;
+      if (role == 1) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        // this.loadCity();
+      } else if (role == 2) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        // this.loadArea();
+      } else if (role == 3) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+        // this.loadManagers();
+      } else if (role == 4) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+        this.manager = this.$store.state.user.username;
+      }
+
+      http.requestWithToken(
+          "/newQrCode/getMaxCodeByProvince",
+          "get",
+          { username:this.manager },
+          res => {
+            console.log(res.data);
+            this.ReAssignDialog.AvailScanId = res.data;
+
+          },
+          () => {}
+        );
+
+    },
+    handleMaintenanceDataSelectionChange(val){
+      this.selectedDevice = val;
+      console.log(this.selectedDevice);
+
+    },
+    handleReAssign(){
+      console.log(this.selectedDevice);
+      
+      http.requestWithToken(
+          "/newQrCode/reAssignQRCode",
+          "get",
+          { customSerial:this.selectedDevice.customSerial,
+          scanId: this.ReAssignDialog.AvailScanId,
+          customProject: this.selectedDevice.customProject },
+          res => {
+            console.log(res.data);
+            this.ReAssignDialog.visible = false;
+
+          },
+          () => {}
+        );
+    },
     query(){
       console.log(this.input);
       console.log(this.value);
@@ -427,8 +485,20 @@ export default {
           page: this.QRData.page, limit: this.QRData.limit },
           res => {
             console.log(res.data);
-            
             this.QRData.list = res.data.data;
+            for(var i = 0 ; i < this.QRData.list.length; i++){
+              if(this.QRData.list[i].project=="1"){
+                this.QRData.list[i].project = "诱捕器管理";
+              }else if(this.QRData.list[i].project=="2"){
+                this.QRData.list[i].project = "注干剂监测";
+              }else if(this.QRData.list[i].project=="3"){
+                this.QRData.list[i].project = "天敌防治";
+              }else if(this.QRData.list[i].project=="4"){
+                this.QRData.list[i].project = "枯死树采伐";
+              }else if(this.QRData.list[i].project=="5"){
+                this.QRData.list[i].project = "药剂防治管理";
+              }
+            }
             this.QRData.total = res.data.totalNum;
 
           },
@@ -442,7 +512,7 @@ export default {
             http.requestWithToken(
         "/newQrCode/getMaxAvableCode",
         "get",
-        { adcode: this.area,appVal:this.applicationValue},
+        { provinceCode: this.province},
         res => {
           console.log(res);
           if(res.data.error){
@@ -481,7 +551,8 @@ export default {
       console.log(this.serialStart);
       console.log(this.serialEnd);
       console.log(this.serialNum);
-            let role = this.$store.state.user.role;
+      
+      let role = this.$store.state.user.role;
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         // this.loadCity();
@@ -505,8 +576,8 @@ export default {
         "/newQrCode/assignCodeByManager",
         "get",
         {
-           startID: this.startID,
-           endID: this.endID,
+           startScanID: this.startID,
+           endScanID: this.endID,
            IDNum: this.IDNum,
            applicationValue: this.applicationValue,
            customRegion: this.customRegion,
@@ -688,6 +759,20 @@ export default {
             console.log(res.data);
             
             this.QRData.list = res.data.data;
+            for(var i = 0 ; i < this.QRData.list.length; i++){
+              if(this.QRData.list[i].project=="1"){
+                this.QRData.list[i].project = "诱捕器管理";
+              }else if(this.QRData.list[i].project=="2"){
+                this.QRData.list[i].project = "注干剂监测";
+              }else if(this.QRData.list[i].project=="3"){
+                this.QRData.list[i].project = "天敌防治";
+              }else if(this.QRData.list[i].project=="4"){
+                this.QRData.list[i].project = "枯死树采伐";
+              }else if(this.QRData.list[i].project=="5"){
+                this.QRData.list[i].project = "药剂防治管理";
+              }
+            }
+
             this.QRData.total = res.data.totalNum;
 
           },
