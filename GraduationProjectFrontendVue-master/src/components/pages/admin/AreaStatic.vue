@@ -88,7 +88,7 @@ export default {
                 }
             },
             legend: {
-                data:['松墨天牛','其他天牛','平均诱虫量']
+                data:['松墨天牛','其他天牛','平均诱虫量','其他天牛平均诱虫量']
             },
             xAxis: [
                 {
@@ -102,7 +102,7 @@ export default {
             yAxis: [
                 {
                     type: 'value',
-                    name: '松墨天牛',
+                    name: '天牛数量',
                     min: 0,
                     axisLabel: {
                         formatter: '{value}只'
@@ -112,7 +112,7 @@ export default {
                     type: 'value',
                     name: '平均诱虫量',
                     min: 0,
-                    max: 200,
+                    max: 150,
                     interval: 50,
                     axisLabel: {
                         formatter: '{value}只'
@@ -132,6 +132,12 @@ export default {
                 },
                 {
                     name:'平均诱虫量',
+                    type:'line',
+                    yAxisIndex: 1,
+                    data:[]
+                },
+                {
+                    name:'其他天牛平均诱虫量',
                     type:'line',
                     yAxisIndex: 1,
                     data:[]
@@ -173,6 +179,8 @@ export default {
       this.option.series[0].data = [];
        this.option.series[1].data = [];
         this.option.series[2].data = [];
+        this.option.series[3].data = [];
+
 
         console.log(this.option);
 
@@ -194,6 +202,7 @@ export default {
                 this.option.series[0].data.push(res.data[i].beetlesNum);
                 this.option.series[1].data.push(res.data[i].otherNum);
                 this.option.series[2].data.push(res.data[i].avager);
+                this.option.series[3].data.push(res.data[i].avagerother);
                 //Mgh9nigujiOwZO5HFNkCoQ==
             }
                     let myChart = echarts.init(this.$refs.echartsArea);
@@ -223,6 +232,7 @@ export default {
                 this.option.series[0].data.push(res.data[i].beetlesNum);
                 this.option.series[1].data.push(res.data[i].otherNum);
                 this.option.series[2].data.push(res.data[i].avager);
+                this.option.series[3].data.push(res.data[i].avagerother);
                 //Mgh9nigujiOwZO5HFNkCoQ==
             }
                     let myChart = echarts.init(this.$refs.echartsArea);
