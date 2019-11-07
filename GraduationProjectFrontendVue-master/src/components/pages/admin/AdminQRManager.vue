@@ -63,7 +63,7 @@
           height="600"
           stripe 
           :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">       <!-- 斑马纹 表头颜色 表头字体颜色  -->
-        
+
         <el-table-column prop="scanId" label="scanId" align="center"></el-table-column>
         <el-table-column prop="province" label="省" align="center"></el-table-column>
         <el-table-column prop="city" label="市" align="center"></el-table-column>
@@ -418,7 +418,6 @@ export default {
       console.log(this.selectedDevice);
       
             let role = this.$store.state.user.role;
-          
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         // this.loadCity();
