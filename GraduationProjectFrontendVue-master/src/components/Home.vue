@@ -141,6 +141,7 @@ export default {
       var _this = this;
       this.$confirm("确认退出吗?", "提示", {
         //type: 'warning'
+        
       })
         .then(() => {
           sessionStorage.removeItem("user");
@@ -335,5 +336,14 @@ export default {
     background-color: #1D7155;
     border-color: #1D7155;
 }
-
+.el-button--primary {
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
+.el-button--primary:focus,.el-button--primary:hover {
+    color: #fff;
+    background-color: #1D7155;
+    border-color: #1D7155;
+}
 </style>
