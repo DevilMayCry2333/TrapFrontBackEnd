@@ -55,6 +55,7 @@
     </div>
     <div style="padding-top:5px">
       <el-table 
+          class="tableGreen"
           border 
           :data="QRData.list" 
           style="width: 100%"
@@ -443,6 +444,10 @@ export default {
           { username:this.manager },
           res => {
             console.log(res.data);
+            console.log(res);
+            if(res.status == 500){
+              this.ReAssignDialog.AvailScanId = "没有可以分配的二维码";
+            }
             this.ReAssignDialog.AvailScanId = res.data;
 
           },
@@ -1038,7 +1043,7 @@ http.requestWithToken(
   }
 };
 </script>
-<style>
+<style lang="scss">
 #tool-row {
   display: flex;
   justify-content: space-between;
@@ -1046,6 +1051,14 @@ http.requestWithToken(
   #search{
     border:#1D7155;
     background-color:#1D7155 
+  }
+  .tableGreen{
+    .el-table__row{
+      background-color: #D5E4CF !important;
+    }
+    .el-table__row--striped{
+      background-color: #ECF0EA !important;
+    }
   }
   #allocate{    
     border:#1D7155;
