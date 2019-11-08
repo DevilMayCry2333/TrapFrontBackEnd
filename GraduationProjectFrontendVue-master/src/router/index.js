@@ -28,7 +28,7 @@ import DryWatchMaintanceData from '@/components/pages/drywatch/DryWatchMaintance
 import DryWatchDeviceMessage from '@/components/pages/drywatch/DryWatchDeviceMessage';
 import DryWatchDeviceWanted from '@/components/pages/drywatch/DryWatchDeviceWanted';
 import NaturalEnemiesDataSummary from '@/components/pages/naturalEnemies/DataSummary';
-import DeadTreesDataSummary from '@/components/pages/deadtrees/DataSummary';
+import DeadTreesDataSummary from '@/components/pages/deadtrees/DeadTreesDataSummary';
 import NaturalMaintanceData from '@/components/pages/naturalEnemies/NaturalMaintanceData';
 import NaturalDeviceMessage from '@/components/pages/naturalEnemies/NaturalDeviceMessage';
 import NaturalDeviceWanted from '@/components/pages/naturalEnemies/NaturalDeviceWanted';
