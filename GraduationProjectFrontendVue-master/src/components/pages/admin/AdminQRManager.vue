@@ -57,7 +57,8 @@
       <el-table 
           class="tableGreen"
           border 
-          :data="QRData.list" 
+          :data="QRData.list"
+          tooltip-effect="dark" 
           style="width: 100%"
           highlight-current-row
           @current-change="handleMaintenanceDataSelectionChange"
