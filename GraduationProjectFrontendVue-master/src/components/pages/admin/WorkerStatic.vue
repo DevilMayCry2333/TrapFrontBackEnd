@@ -9,9 +9,14 @@
         stripe 
         :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
         <el-table-column prop="Worker" label="工人名称" align="center"></el-table-column>
-        <el-table-column prop="Num" label="工作量" align="center"></el-table-column>
+        <el-table-column prop="Num" label="管理诱捕器数量" align="center"></el-table-column>
+        <el-table-column prop="Num1" label="松墨天牛数量" align="center"></el-table-column>
+        <el-table-column prop="Num2" label="其他天牛数量" align="center"></el-table-column>
+        <el-table-column prop="Num3" label="天牛总数" align="center"></el-table-column>
         <el-table-column prop="day" label="出勤天数" align="center"></el-table-column>
         <el-table-column prop="Avg" label="日均工作量" align="center"></el-table-column>
+        <el-table-column prop="Avg1" label="日均天牛数" align="center"></el-table-column>
+
 
       </el-table>
     </div>
