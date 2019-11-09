@@ -28,7 +28,9 @@
     </div>
   </div>
 
-        <el-table border :data="QRData.list" style="width: 100%" height="600"
+        <el-table 
+          class="tableGreen"
+          border :data="QRData.list" style="width: 100%" height="600"
           stripe 
           :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
         <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
@@ -85,19 +87,19 @@
           </template>
         </el-table-column>
         
-
-
-
       </el-table>
-        <div class="block">
-         <el-pagination
-            background
-            @current-change="handleQRDataCurrentPageChanged"
-            :current-page.sync="QRData.page"
-            :page-size="10"
-            layout="total, prev, pager, next"
-            :total="QRData.total"
-        ></el-pagination>
+
+        <div class="block" id="tool-row" >
+          <div>
+            <el-pagination
+                background
+                @current-change="handleQRDataCurrentPageChanged"
+                :current-page.sync="QRData.page"
+                :page-size="10"
+                layout="total, prev, pager, next"
+                :total="QRData.total"
+            ></el-pagination>
+          </div>
         <div class="divcss5-right">
           释放地点:{{releasePlace}} &nbsp;
           成虫数量:{{releaseNum}} &nbsp;
@@ -490,12 +492,21 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 #tool-row {
   /* display: flex; */
   justify-content: space-between;
   margin-bottom: 5px;
+  display:flex;
 }
+.tableGreen{
+    .el-table__row{
+      background-color: #D5E4CF !important;
+    }
+    .el-table__row--striped{
+      background-color: #ECF0EA !important;
+    }
+  }
 #search{
     background: #1D7155;
     border-color: #1D7155;

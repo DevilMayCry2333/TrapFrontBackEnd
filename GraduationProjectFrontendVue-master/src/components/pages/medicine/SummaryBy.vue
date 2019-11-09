@@ -31,20 +31,23 @@
         v-if="this.$store.state.user.role === 3"
       ></el-table-column>
     </el-table>
-    <div class="block">
-      <el-pagination
-        background
-        @current-change="handleDataCurrentPageChanged"
-        :current-page.sync="DryWatchData.page"
-        :page-size="10"
-        layout="total, prev, pager, next"
-        :total="DryWatchData.total"
-      ></el-pagination>
+    <div class="block" id="tool-row">
+      <div>
+        <el-pagination
+          background
+          @current-change="handleDataCurrentPageChanged"
+          :current-page.sync="DryWatchData.page"
+          :page-size="10"
+          layout="total, prev, pager, next"
+          :total="DryWatchData.total"
+        ></el-pagination>
     </div>
     <div class="divcss5-right">
         各区域药剂总质量:{{totalMedicineQuaSum}} &nbsp;
         各区域防治总面积:{{totalAreaFzNum}} &nbsp;
     </div>
+    </div>
+
   </div>
 
 
@@ -127,6 +130,7 @@
   /* display: flex; */
   justify-content: space-between;
   margin-bottom: 5px;
+    display:flex;
 }
 #search{
     color: #fff;

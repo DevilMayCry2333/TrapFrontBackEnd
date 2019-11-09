@@ -102,20 +102,20 @@ export default {
             yAxis: [
                 {
                     type: 'value',
-                    name: '松墨天牛',
+                    name: '松墨天牛(只)',
                     min: 0,
                     axisLabel: {
-                        formatter: '{value}只'
+                        formatter: '{value}'
                     }
                 },
                 {
                     type: 'value',
-                    name: '其他天牛',
+                    name: '其他天牛(只)',
                     min: 0,
                     max: 250,
                     interval: 50,
                     axisLabel: {
-                        formatter: '{value}只'
+                        formatter: '{value}'
                     }
                 }
             ],

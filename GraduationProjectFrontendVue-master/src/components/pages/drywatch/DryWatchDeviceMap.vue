@@ -4,11 +4,11 @@
       <el-dropdown split-button type="primary" @command="loadSpots" style="background-color: #1d7155;border-color: #1d7155;">
         聚合级别
         <el-dropdown-menu slot="dropdown" style="background-color: #1d7155;border-color: #1d7155;">
-          <el-dropdown-item command="province" v-if="this.$store.state.user.role < 2">省</el-dropdown-item>
+          <el-dropdown-item style="color:#ffffff;" command="province" v-if="this.$store.state.user.role < 2">省</el-dropdown-item>
           <el-dropdown-item command="city" v-if="this.$store.state.user.role < 3">市</el-dropdown-item>
           <el-dropdown-item command="area" v-if="this.$store.state.user.role < 4">县</el-dropdown-item>
           <el-dropdown-item command="town" v-if="this.$store.state.user.role < 4">乡</el-dropdown-item>
-          <el-dropdown-item command="device">设备</el-dropdown-item>
+          <el-dropdown-item  command="device">设备</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -68,6 +68,7 @@ export default {
               };
               var label = new BMap.Label(text, opts); // 创建文本标注对象
               label.setStyle({
+                border:"1px solid #67c23a",
                 color: "black",
                 fontSize: "12px",
                 height: "20px",

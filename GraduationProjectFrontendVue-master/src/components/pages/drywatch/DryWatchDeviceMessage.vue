@@ -1,9 +1,9 @@
 <template>
   <div>
-  <router-link to='/pages/drywatch/Maintance'>诱捕器情况</router-link>
+  <router-link to='/pages/drywatch/Maintance'>注干剂管理情况</router-link>
 >
-  <router-link to='/pages/drywatch/Maintance'>设备维护信息</router-link>
-      >诱捕器信息
+  <router-link to='/pages/drywatch/Maintance'>注干剂维护信息</router-link>
+      >注干剂信息
 
 
     <div style="padding-top:10px">

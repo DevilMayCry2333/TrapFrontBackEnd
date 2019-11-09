@@ -15,7 +15,7 @@
               <el-input style="width: 200px" placeholder="搜索内容" v-model="searchText"></el-input>
               <el-button id="search" type="primary" @click="handleSubmit">搜索</el-button>
         </div>
-        <div style=" display: flex;" >
+        <div style="display: flex;" class="divcss5-right">
           <el-button id="download" type="primary" @click="exportExcel" style="height: fit-content;">导出</el-button>
             <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
 
@@ -28,7 +28,9 @@
         </div>
       </div>
       <!-- </div> -->
-    <el-table border :data="DryWatchData.list" style="width: 100%" height="600"
+    <el-table 
+        class="tableGreen"
+        border :data="DryWatchData.list" style="width: 100%" height="600"
         stripe 
         :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
       <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
@@ -464,12 +466,21 @@
   }
 </script>
 
-<style>
+<style lang="scss">
 #tool-row {
   /* display: flex; */
   justify-content: space-between;
   margin-bottom: 5px;
+  display:flex;
 }
+.tableGreen{
+    .el-table__row{
+      background-color: #D5E4CF !important;
+    }
+    .el-table__row--striped{
+      background-color: #ECF0EA !important;
+    }
+  }
 #search{
     background: #1D7155;
     border-color: #1D7155;
@@ -520,4 +531,5 @@
     border-color: #f78989;
     color: #fff;
 }
+.divcss5-right{float:right} 
 </style>

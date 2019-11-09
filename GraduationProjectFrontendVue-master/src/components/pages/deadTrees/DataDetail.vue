@@ -31,9 +31,9 @@
           <el-table border :data="QRData.list" style="width: 100%" height="600" stripe :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
         <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
         <el-table-column prop="serial" label="编号" align="center"></el-table-column>
-        <el-table-column prop="customTown" label="所属区域" align="center"></el-table-column>
+        <el-table-column prop="customTown" label="区域" align="center"></el-table-column>
         <el-table-column prop="submitDate" label="日期" align="center"></el-table-column>
-        <el-table-column prop="batch" label="批次" align="center"></el-table-column>
+        <!-- <el-table-column prop="batch" label="批次" align="center"></el-table-column> -->
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
         <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
         <el-table-column prop="wooddiameter" label="桩径(cm)" align="center"></el-table-column>
@@ -49,7 +49,7 @@
           </template>
 
         </el-table-column>
-        <el-table-column prop="killmethod" label="除害方式" align="center"></el-table-column>
+        <el-table-column prop="killmethod" label="处理方式" align="center"></el-table-column>
         <el-table-column prop="worker" label="施工人员" align="center"></el-table-column>
         <el-table-column prop="remarks" label="备注" align="center"></el-table-column>
         <el-table-column
@@ -89,7 +89,7 @@
 
 
       </el-table>
-        <div class="block">
+        <div class="block" id="tool-row">
          <el-pagination
             background
             @current-change="handleQRDataCurrentPageChanged"
@@ -536,6 +536,7 @@ export default {
   /* display: flex; */
   justify-content: space-between;
   margin-bottom: 5px;
+    display:flex;
 }
 .divcss5-right{float:right} 
 #search{
