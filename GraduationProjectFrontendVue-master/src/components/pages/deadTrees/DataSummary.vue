@@ -25,8 +25,6 @@
     </div>
     <div style="font-size:18px;color:#1D7155">
       <br>
-      枯死树总数：{{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp; 总材积：{{totalSum}}
-      <br>
        枯死木总株数:{{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp; 总材积数：{{totalSum}}
       <br>
     </div>
