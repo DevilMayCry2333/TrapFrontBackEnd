@@ -77,6 +77,7 @@
     </div>
     <div style="padding-top:5px">
       <el-table
+        class="tableGreen"
         ref="table"
         border
         :data="maintenanceData.list"
@@ -97,34 +98,30 @@
         </el-table-column>-->
         <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
         <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
+        <el-table-column prop="customserial" label="编号" align="center"></el-table-column>
+        <el-table-column  v-if="this.$store.state.user.role == 4" prop="customtown" label="区域" align="center"></el-table-column>
+        <el-table-column prop="date" label="日期"></el-table-column>
         <el-table-column prop="batch" label="批次" align="center"></el-table-column>
-         <el-table-column  v-if="this.$store.state.user.role == 4" prop="customtown" label="区域" align="center"></el-table-column>
-          <el-table-column  v-if="this.$store.state.user.role <= 3" prop="town" label="区域" align="center"></el-table-column>
-          <el-table-column prop="customserial" label="编号" align="center"></el-table-column>
-        <el-table-column prop="num" label="松墨天牛数量" align="center"></el-table-column>
-        <el-table-column label="其他天牛类型" align="center">
-          <template slot-scope="scope">{{otherBeetleDict["t" + scope.row.otherType]}}</template>
-        </el-table-column>
-        <el-table-column prop="otherNum" label="其他天牛数量" align="center"></el-table-column>
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
         <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
         <el-table-column prop="altitude" label="海拔" align="center"></el-table-column>
-        <el-table-column label="位置" width="200px" align="center">
-          <template
-            slot-scope="scope"
-          >{{scope.row.province + scope.row.city + scope.row.area + scope.row.town}}</template>
-        </el-table-column>
-        <el-table-column prop="username" label="用户名"></el-table-column>
-        <el-table-column prop="date" label="日期"></el-table-column>
         <el-table-column prop="workcontentfront" label="工作内容">
           <!-- <template
             slot-scope="scope"
           >{{maintenanceData.workingContentDict[scope.row.workingContent]}}</template> -->
         </el-table-column>
-        <el-table-column prop="drug" label="药剂类型"></el-table-column>
-        <el-table-column prop="remark" label="备注"></el-table-column>
-        <el-table-column label="是否上报">
-          <template slot-scope="scope">{{scope.row.reported ? '是': '否'}}</template>
+        <!-- <el-table-column  v-if="this.$store.state.user.role <= 3" prop="town" label="区域" align="center"></el-table-column> -->
+          
+        <el-table-column prop="num" label="松墨天牛数量" align="center"></el-table-column>
+        <el-table-column label="其它天牛" align="center">
+          <template slot-scope="scope">{{otherBeetleDict["t" + scope.row.otherType]}}</template>
+        </el-table-column>
+        <el-table-column prop="otherNum" label="其它天牛数量" align="center"></el-table-column>
+        <el-table-column prop="drug" label="诱芯类型"></el-table-column>
+        <el-table-column v-if="this.$store.state.user.role != 4" label="位置" width="200px" align="center">
+          <template
+            slot-scope="scope"
+          >{{scope.row.province + scope.row.city + scope.row.area + scope.row.town}}</template>
         </el-table-column>
         <el-table-column label="现场照片" width="100px" align="center">
           <template slot-scope="scope">
@@ -135,6 +132,12 @@
             >显示</el-button>
           </template>
         </el-table-column>
+        <el-table-column prop="username" label="施工人员"></el-table-column>
+        <el-table-column prop="remark" label="备注"></el-table-column>
+        <el-table-column label="是否上报">
+          <template slot-scope="scope">{{scope.row.reported ? '是': '否'}}</template>
+        </el-table-column>
+
         <el-table-column
           label="操作"
           align="center"
@@ -707,11 +710,19 @@ this.uploadUrl =
   }
 };
 </script>
-<style>
+<style lang="scss">
 #tool-row {
   display: flex;
   justify-content: space-between;
 }
+  .tableGreen{
+    .el-table__row{
+      background-color: #D5E4CF !important;
+    }
+    .el-table__row--striped{
+      background-color: #ECF0EA !important;
+    }
+  }
 #userInfoDialogData {
   display: flex;
   justify-content: space-around;

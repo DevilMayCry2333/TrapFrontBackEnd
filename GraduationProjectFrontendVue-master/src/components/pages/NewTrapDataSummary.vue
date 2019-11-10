@@ -17,7 +17,7 @@
       </el-select>
       <el-input v-model="input" placeholder="请输入内容" style="width: 170px;margin-right:1px;"></el-input>
       <el-button type="primary" @click="query()" style="background-color: #1d7155;border-color: #1d7155;">查询</el-button>
-          <el-button type="primary" @click="exportExcel" style="background-color: #1d7155;border-color: #1d7155;">导出</el-button>
+      <el-button type="primary" @click="exportExcel" style="background-color: #1d7155;border-color: #1d7155;">导出</el-button>
   </div>
   
 
@@ -26,8 +26,8 @@
         <el-table-column prop="startDate" label="开始日期" align="center"></el-table-column>
         <el-table-column prop="endDate" label="结束日期" align="center"></el-table-column>
         <el-table-column prop="deviceNum" label="诱捕器数量" align="center"></el-table-column>
-        <el-table-column prop="beetleNum" label="天牛数量" align="center"></el-table-column>
-        <el-table-column prop="otherNum" label="其他天牛数量" align="center"></el-table-column>
+        <el-table-column prop="beetleNum" label="松墨天牛数量" align="center"></el-table-column>
+        <el-table-column prop="otherNum" label="其它天牛数量" align="center"></el-table-column>
         <el-table-column prop="remark" label="备注" align="center"></el-table-column>
 
       </el-table>

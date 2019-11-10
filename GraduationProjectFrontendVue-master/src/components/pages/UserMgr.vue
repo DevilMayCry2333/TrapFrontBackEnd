@@ -58,6 +58,7 @@
     </div>
     <div style="padding-top:5px">
       <el-table 
+            class="tableGreen"
             border 
             :data="userData.list" 
             stripe                
@@ -706,12 +707,21 @@
       this.loadUser();
     }
   };
+
 </script>
 
-<style>
+<style lang="scss">
   #tool-row {
     display: flex;
     justify-content: space-between;
+  }
+  .tableGreen{
+    .el-table__row{
+      background-color: #D5E4CF !important;
+    }
+    .el-table__row--striped{
+      background-color: #ECF0EA !important;
+    }
   }
 
   #search{

@@ -17,7 +17,7 @@
         </div>
       </div>
         <!-- </div> -->
-    <el-table border :data="DryWatchData.list" style="width: 100%" height="600" stripe :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
+    <el-table class="tableGreen" border :data="DryWatchData.list" style="width: 100%" height="600" stripe :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
       <el-table-column prop="customtown" label="区域" align="center"></el-table-column>
       <el-table-column prop="startDate" label="起始日期" align="center"></el-table-column>
       <el-table-column prop="endDate" label="截止日期" align="center"></el-table-column>
@@ -32,7 +32,8 @@
         v-if="this.$store.state.user.role === 3"
       ></el-table-column>
     </el-table>
-    <div class="block">
+    <div id="tool-row" >
+      <div>
       <el-pagination
         background
         @current-change="handleDataCurrentPageChanged"
@@ -41,12 +42,18 @@
         layout="total, prev, pager, next"
         :total="DryWatchData.total"
       ></el-pagination>
+      </div>
+      <div  class="divcss5-right" >
+        注药株数:{{totalWoodNum}} &nbsp;
+        注剂数量:{{totalInject}} &nbsp;
+        枯死株数:{{totalDeadNum}} &nbsp;
+      </div>
     </div>
-    <div  class="divcss5-right">
+    <!-- <div  class="divcss5-right">
       注药株数:{{totalWoodNum}} &nbsp;
       注剂数量:{{totalInject}} &nbsp;
       枯死株数:{{totalDeadNum}} &nbsp;
-    </div>
+    </div> -->
   </div>
 
 
@@ -132,12 +139,21 @@
   }
 </script>
 
-<style>
+<style lang="scss">
 #tool-row {
   /* display: flex; */
   justify-content: space-between;
   margin-bottom: 5px;
+  display:flex;
 }
+.tableGreen{
+    .el-table__row{
+      background-color: #D5E4CF !important;
+    }
+    .el-table__row--striped{
+      background-color: #ECF0EA !important;
+    }
+  }
 #search{
     background: #1D7155;
     border-color: #1D7155;

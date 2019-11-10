@@ -76,7 +76,7 @@ export default new Router({
 
     {
       path: '/',
-      name: 'Home',
+      name: '欢迎来到...',
       component: home,
       //1、
 
@@ -165,7 +165,7 @@ export default new Router({
         },
         {
           path: 'pages/other_beetle',
-          name: '其他天牛类型配置',
+          name: '其它天牛种类配置',
           component: OtherBeetle
         },
         {
@@ -229,7 +229,7 @@ export default new Router({
         
         {
           path: 'pages/drywatch/Maintance',
-          name: 'DryWatchMaintanceData',
+          name: '注干剂管理',
           component: DryWatchMaintanceData
         },
         {
@@ -239,7 +239,7 @@ export default new Router({
         },
         {
           path: 'pages/drywatch/message',
-          name: 'DryWatchDeviceMessage',
+          name: '注干剂管理信息',
           component: DryWatchDeviceMessage
         },
         {
@@ -315,7 +315,7 @@ export default new Router({
         },
         {
           path: 'pages/drywatch/summaryByRegion',
-          name: '区域汇总',
+          name: '数据汇总',
           component: SummaryByReigon
         },
         {
@@ -330,7 +330,7 @@ export default new Router({
         },
         {
           path: 'pages/trap/injectType',
-          name: '药剂类型配置',
+          name: '诱芯类型配置',
           component: TrapInjectType
         },
         {

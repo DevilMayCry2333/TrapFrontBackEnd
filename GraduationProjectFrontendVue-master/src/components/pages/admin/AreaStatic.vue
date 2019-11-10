@@ -102,20 +102,20 @@ export default {
             yAxis: [
                 {
                     type: 'value',
-                    name: '天牛数量',
+                    name: '天牛数量(只)',
                     min: 0,
                     axisLabel: {
-                        formatter: '{value}只'
+                        formatter: '{value}'
                     }
                 },
                 {
                     type: 'value',
-                    name: '平均诱虫量',
+                    name: '平均诱虫量(只)',
                     min: 0,
                     max: 150,
                     interval: 50,
                     axisLabel: {
-                        formatter: '{value}只'
+                        formatter: '{value}'
                     }
                 }
             ],
