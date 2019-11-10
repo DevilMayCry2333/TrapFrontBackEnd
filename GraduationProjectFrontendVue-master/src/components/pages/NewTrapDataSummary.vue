@@ -21,7 +21,7 @@
   </div>
   
 
-        <el-table border :data="QRData.list" style="width: 100%" height="600" stripe :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
+        <el-table class="tableGreen" border :data="QRData.list" style="width: 100%" height="600" stripe :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
         <el-table-column prop="recordByCol" :label="MycolName" align="center"></el-table-column>
         <el-table-column prop="startDate" label="开始日期" align="center"></el-table-column>
         <el-table-column prop="endDate" label="结束日期" align="center"></el-table-column>
@@ -221,13 +221,21 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+  .tableGreen{
+    .el-table__row{
+      background-color: #D5E4CF !important;
+    }
+    .el-table__row--striped{
+      background-color: #ECF0EA !important;
+    }
+  }
 #line {
   /* display: flex; */
   justify-content: space-between;
   margin-bottom: 5px;
 }
-/* 下来框的框线 */
+/* 下拉框的框线 */
 .el-select .el-input.is-focus .el-input__inner {
     border-color: #70AD47;
 }

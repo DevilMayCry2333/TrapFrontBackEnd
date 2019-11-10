@@ -80,6 +80,7 @@
                 v-if="!scope.row.reported"
               >编辑</el-button>
               <el-button
+                style="background-color: #1D7155;border-color:#1D7155;color:#ffffff;"
                 size="mini"
                 type="danger"
                 @click="handleDelete(scope.row)"

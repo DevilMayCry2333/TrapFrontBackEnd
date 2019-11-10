@@ -71,12 +71,14 @@
           <template slot-scope="scope">
             <div v-if="!scope.row.reported">
               <el-button
+                style="background-color: #1d7155;border-color: #1d7155;color:#ffffff;"
                 size="mini"
                 type="primary"
                 @click="showEditMaintenanceDataDialog(scope.row)"
                 v-if="!scope.row.reported"
               >编辑</el-button>
               <el-button
+                style="background-color: #1d7155;border-color: #1d7155;color:#ffffff;"
                 size="mini"
                 type="danger"
                 @click="handleDelete(scope.row)"

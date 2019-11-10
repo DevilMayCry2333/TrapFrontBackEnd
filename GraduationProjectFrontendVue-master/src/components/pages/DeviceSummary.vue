@@ -25,9 +25,10 @@
       <el-date-picker v-model="endDate" type="date" value-format="yyyy-MM-dd" placeholder="终止日期"></el-date-picker>
       <el-button id="search" type="primary" @click="query()">查询</el-button>
     </div>
-    <div>
+    <div style="font-size:18px;color:#1D7155">
       <br>
-      诱捕器总数:{{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp; 总诱虫量 {{totalSum}}
+      诱捕器总数：{{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp; 总诱虫量： {{totalSum}}
+      <br>
       <br>
     </div>
 

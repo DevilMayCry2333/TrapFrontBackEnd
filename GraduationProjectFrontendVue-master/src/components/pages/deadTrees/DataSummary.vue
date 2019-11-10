@@ -23,15 +23,16 @@
       <el-date-picker v-model="endDate" type="date" value-format="yyyy-MM-dd" placeholder="终止日期"></el-date-picker>
       <el-button id="search" type="primary" @click="query()">查询</el-button>
     </div>
-    <div style="margin-bottom:10px">
+    <div style="font-size:18px;color:#1D7155">
       <br>
-      诱捕器总数:{{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp; 总诱虫量 {{totalSum}}
+      枯死树总数：{{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp; 总材积：{{totalSum}}
+      <br>
       <br>
     </div>
 
     <el-tabs id="statistics-tabs" v-model="tabPage" type="card">
 
-            <el-card :header="'各' + contentLabelDict[contentLabelIndex] + '诱捕情况表'" style="padding:5px" v-if="this.$store.state.user.role < 4">
+            <el-card :header="'各' + contentLabelDict[contentLabelIndex] + '枯死树管理情况表'" style="padding:5px" v-if="this.$store.state.user.role < 4">
               <el-table :data="summaryDeviceData.list" :row-style="tableRowStyle">
                 <el-table-column :label="contentLabelDict[contentLabelIndex]" prop="name"></el-table-column>
                 <el-table-column label="枯死树数量" prop="woodNum"></el-table-column>
@@ -45,7 +46,7 @@
 
             </el-card>
 
-            <el-card header="各工人诱捕情况表" style="padding:5px" v-if="this.$store.state.user.role >3">
+            <el-card header="各工人枯死树管理情况表" style="padding:5px" v-if="this.$store.state.user.role >3">
               <el-table :data="summaryWorkerData.list" :row-style="tableRowStyle">
                 <el-table-column label="工人" prop="name"></el-table-column>
                 <el-table-column label="诱捕器总数" prop="deviceCount"></el-table-column>
@@ -58,7 +59,7 @@
               </el-table>
 
             </el-card>
-            <el-card header="各管理员诱捕情况表" style="padding:5px" v-if="this.$store.state.user.role ==3">
+            <el-card header="各管理员枯死树管理情况表" style="padding:5px" v-if="this.$store.state.user.role ==3">
                           <el-table :data="summaryManagerData.list" :row-style="tableRowStyle">
                             <el-table-column label="管理员" prop="name"></el-table-column>
                             <el-table-column label="枯死树数量" prop="woodNum"></el-table-column>

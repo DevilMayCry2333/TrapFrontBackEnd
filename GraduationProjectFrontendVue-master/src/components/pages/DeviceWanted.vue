@@ -152,14 +152,14 @@
                 type="primary"
                 @click="showEditMaintenanceDataDialog(scope.row)"
                 v-if="!scope.row.reported"
-                style="background-color: #1d7155;border-color: #1d7155;"
+                style="background-color: #1d7155;border-color: #1d7155;color:#ffffff;"
               >编辑</el-button>
               <el-button
                 size="mini"
                 type="danger"
                 @click="handleDelete(scope.row)"
                 v-if="!scope.row.reported"
-                style="background-color: #1d7155;border-color: #1d7155;"
+                style="background-color: #1d7155;border-color: #1d7155;color:#ffffff;"
               >删除</el-button>
             </div>
             <div v-if="scope.row.reported">不可操作</div>
@@ -365,7 +365,8 @@ export default {
       this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
-        type: "warning"
+        type: "warning",
+        
       })
         .then(() => {
       http.requestWithTokenJson(
@@ -711,6 +712,7 @@ this.uploadUrl =
 };
 </script>
 <style lang="scss">
+
 #tool-row {
   display: flex;
   justify-content: space-between;

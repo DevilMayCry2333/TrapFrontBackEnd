@@ -764,7 +764,7 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="scss">
 #statistics-tabs .el-table thead {
   color: black;
   font-weight: 500;
@@ -788,11 +788,11 @@ export default {
   border-bottom-color: white;
 }
 .el-tabs__item:hover {
-    color: #1D7155;
+    color: #1D7155 !important;
     cursor: pointer;
 }
 .el-tabs__item.is-active {
-    color: #1D7155;
+    color: #1D7155 !important;
 }
 </style>
 

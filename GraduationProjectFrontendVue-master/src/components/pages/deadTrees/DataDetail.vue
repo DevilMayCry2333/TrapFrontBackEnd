@@ -28,7 +28,7 @@
     </div>
 
 
-          <el-table border :data="QRData.list" style="width: 100%" height="600" stripe :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
+          <el-table class="tableGreen" border :data="QRData.list" style="width: 100%" height="600" stripe :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
         <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
         <el-table-column prop="serial" label="编号" align="center"></el-table-column>
         <el-table-column prop="customTown" label="区域" align="center"></el-table-column>
@@ -69,6 +69,7 @@
           <template slot-scope="scope">
             <div v-if="!scope.row.reported">
               <el-button
+                style="background-color: #1d7155;border-color: #1d7155;color:#ffffff;"
                 id="edit"
                 size="mini"
                 type="primary"
@@ -76,6 +77,7 @@
                 v-if="!scope.row.reported"
               >编辑</el-button>
               <el-button
+                style="background-color: #1d7155;border-color: #1d7155;color:#ffffff;"
                 size="mini"
                 type="danger"
                 @click="handleDelete(scope.row)"
@@ -531,13 +533,21 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 #tool-row {
   /* display: flex; */
   justify-content: space-between;
   margin-bottom: 5px;
     display:flex;
 }
+.tableGreen{
+    .el-table__row{
+      background-color: #D5E4CF !important;
+    }
+    .el-table__row--striped{
+      background-color: #ECF0EA !important;
+    }
+  }
 .divcss5-right{float:right} 
 #search{
     background: #1D7155;

@@ -1,9 +1,9 @@
 <template>
   <div>
-  <router-link to='/pages/device_summary'>诱捕器情况</router-link>
+  <router-link to='/pages/device_summary'>诱捕器管理情况</router-link>
 >
-  <router-link to='/pages/device_maintenance.html'>设备维护信息</router-link>
-      >诱捕器信息
+  <router-link to='/pages/device_maintenance.html'>诱捕器维护信息</router-link>
+      >诱捕信息
 
 
     <div style="padding-top:10px">

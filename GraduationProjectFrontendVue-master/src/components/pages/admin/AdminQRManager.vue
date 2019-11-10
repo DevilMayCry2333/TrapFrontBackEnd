@@ -214,11 +214,11 @@
 
     <el-dialog title="二维码补码" :visible.sync="ReAssignDialog.visible"  width="30%" >
       <div>
-        <el-tag style="height:35px;border-radius:0;background-color: #1D7155;">当前ＩＤ</el-tag>
+        <el-tag style="height:40px;border-radius:0;background-color: #1D7155;border-color:#1D7155;color:#ffffff;">当前ＩＤ</el-tag>
         <el-input :disabled="true" v-model="getid" placeholder="请输入内容" style="width:40%;"></el-input>
       </div>
       <div style="margin-top:10px;">
-        <el-tag style="height:3s5px;border-radius:0;background-color: #1D7155;">替换ＩＤ</el-tag>
+        <el-tag style="height:40px;border-radius:0;background-color: #1D7155;border-color:#1D7155;color:#ffffff;">替换ＩＤ</el-tag>
         <el-input v-model="ReAssignDialog.AvailScanId" placeholder="请输入内容" style="width:40%;"></el-input>
       </div>
               <div slot="footer" class="dialog-footer">
@@ -233,28 +233,28 @@
       <!-- <div>当前可分配设备数量:{{AssignQRCodeDialog.availableNum}}</div>
             <br />
             <br /> -->
-      <div id="addusers" style="overflow:hidden; height: 300px;">
+      <div id="addusers" style="overflow-y: scroll; height: 300px;">
         <div >
-              <el-tag style="font-size:15px;text-align: center;width:86%;height:40px;border-radius:0;background-color: #1D7155;border-color:#70AD47;color:#ffffff;">设备ＩＤ</el-tag>
+              <el-tag style="font-size:15px;text-align: center;vertical-align:middle;width:86%;height:40px;border-radius:0;background-color: #1D7155;border-color:#1D7155;color:#ffffff;">设备ＩＤ</el-tag>
               <br />
               <br />
-              <el-tag style="height:35px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">剩余ID数</el-tag>
+              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">剩余ID数</el-tag>
               <el-input :disabled="true" v-model="AssignQRCodeDialog.availableNum" placeholder="当前可分配设备数量" style="width:60%;"></el-input>
               <br />
               <br />
-              <el-tag style="height:35px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">起始ＩＤ</el-tag>
+              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">起始ＩＤ</el-tag>
               <el-input @change="managerStartIdChange" v-model="startID" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
               <br />
-              <el-tag style="height:35px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">结束ＩＤ</el-tag>
+              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">结束ＩＤ</el-tag>
               <el-input @change="managerEndIdChange" v-model="endID" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
               <br />
-              <el-tag style="height:35px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">ＩＤ数量</el-tag>
+              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">ＩＤ数量</el-tag>
               <el-input :disabled="true" v-model="IDNum" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
               <br />
-              <el-tag style="height:35px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">应用选项</el-tag>
+              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">应用选项</el-tag>
               <el-select @change="managerApplicationChange" v-model="applicationValue" placeholder="请选择" style="width:60%;">
                 <el-option
                   v-for="item in application"
@@ -270,26 +270,26 @@
             <el-button @click="verfiyNum" style="margin-right:50px;height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">点击校验</el-button>
         </div>
         <div>
-              <el-tag style="font-size:15px;text-align: center;width:86%;height:40px;border-radius:0;background-color: #1D7155;border-color:#70AD47;color:#ffffff;">设备编号</el-tag>
+              <el-tag style="font-size:15px;text-align: center;width:86%;height:40px;border-radius:0;background-color: #1D7155;border-color:#1D7155;color:#ffffff;">设备编号</el-tag>
               <br />
               <br />
-              <el-tag style="height:35px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">区　　域</el-tag>
+              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">区　　域</el-tag>
               <el-input v-model="customRegion" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
               <br />
-              <el-tag style="height:35px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">前　　缀</el-tag>
+              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">前　　缀</el-tag>
               <el-input v-model="prefix" placeholder="请输入内容"  style="width:60%;"></el-input>
               <br />
               <br />                 
-              <el-tag style="height:35px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">起始编号</el-tag>
+              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">起始编号</el-tag>
               <el-input @change="serialStartChange" v-model="serialStart" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
               <br />                 
-              <el-tag style="height:35px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">结束编号</el-tag>
+              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">结束编号</el-tag>
               <el-input @change="serialEndChange" v-model="serialEnd" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
               <br />                 
-              <el-tag style="height:35px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">编号数量</el-tag>
+              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">编号数量</el-tag>
               <el-input :disabled="true" v-model="serialNum" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
               <br />                 
@@ -1132,8 +1132,8 @@ http.requestWithToken(
 .el-tag {
     background-color: #1D7155;
     padding: 0 10px;
-    height: 35px;
-    line-height: 35px;
+    height: 40px;
+    line-height: 40px;
     font-size: 12px;
     color: #fff;
     border-radius: 4px;
@@ -1158,8 +1158,8 @@ http.requestWithToken(
     color: #606266;
     display: inline-block;
     font-size: inherit;
-    height: 35px;
-    line-height: 35px;
+    height: 40px;
+    line-height: 40px;
     outline: 0;
     padding: 0 15px;
     -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);

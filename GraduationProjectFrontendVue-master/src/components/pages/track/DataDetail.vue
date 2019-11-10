@@ -28,7 +28,7 @@
     </div>
 
 
-            <el-table border :data="QRData.list" style="width: 100%" height="600">
+            <el-table class="tableGreen" border :data="QRData.list" style="width: 100%" height="600">
               <el-table-column prop="checked" label="选项" align="center">
                 <template>
                 <el-radio v-model="radio" label="1">备选项</el-radio>
@@ -109,6 +109,7 @@
           <template slot-scope="scope">
             <div v-if="!scope.row.reported">
               <el-button
+                style="background-color: #1d7155;border-color: #1d7155;color:#ffffff;"
                 id="edit"
                 size="mini"
                 type="primary"
@@ -116,6 +117,7 @@
                 v-if="!scope.row.reported"
               >编辑</el-button>
               <el-button
+                style="background-color: #1d7155;border-color: #1d7155;color:#ffffff;"
                 size="mini"
                 type="danger"
                 @click="handleDelete(scope.row)"
@@ -535,7 +537,15 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+.tableGreen{
+    .el-table__row{
+      background-color: #D5E4CF !important;
+    }
+    .el-table__row--striped{
+      background-color: #ECF0EA !important;
+    }
+  }
 #statistics-tabs .el-table thead {
   color: black;
   font-weight: 500;

@@ -25,7 +25,7 @@
               v-if="$store.state.user.role == 0"
               :size="'mini'"
             >编辑</el-button>
-            <el-button type="danger" @click="handleDelete(scope.row)" :size="'mini'">删除</el-button>
+            <el-button type="danger"  @click="handleDelete(scope.row)" :size="'mini'">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -247,7 +247,7 @@ this.loadOtherBeetleData();
   }
 };
 </script>
-<style>
+<style lang="scss">
 #tool-row {
   display: flex;
   justify-content: space-between;
@@ -275,14 +275,14 @@ this.loadOtherBeetleData();
 }
 
 .el-button--danger:focus{
-    background: #f78989;
-    border-color: #f78989;
-    color: #fff;
+    background: #f78989 !important;
+    border-color: #f78989!important;
+    color: #fff!important;
 }
 .el-button--danger:hover {
-    color: #fff;
-    background-color: #1D7155;
-    border-color: #1D7155;
+    color: #fff!important;
+    background-color: #f78989!important;
+    border-color: #f78989!important;
 }
 
 </style>

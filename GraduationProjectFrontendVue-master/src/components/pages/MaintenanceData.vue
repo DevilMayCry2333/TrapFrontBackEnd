@@ -1,7 +1,7 @@
 <template>
   <div>
-  <router-link to='/pages/device_summary'>诱捕器情况</router-link>
-        >设备维护信息
+  <router-link to='/pages/device_summary'>诱捕器管理情况</router-link>
+        >诱捕器维护信息
 
 
     <div id="tool-row">
@@ -19,7 +19,7 @@
           value-format="yyyy-MM-dd"
           placeholder="终止日期"
         ></el-date-picker>
-        <el-button id="search" type="primary" @click="loadMaintenanceData">搜索</el-button>
+        <el-button id="search" type="primary" @click="loadMaintenanceData" style="background-color: #1d7155;border-color: #1d7155;color:#ffffff;">搜索</el-button>
 
       </div>
       <div>
@@ -39,7 +39,7 @@
           @click="handleReportMaintenanceData"
           v-if="this.$store.state.user.role == 3 "
         >上报</el-button>-->
-        <el-button id="downolad" type="primary" @click="exportExcel">导出</el-button>
+        <el-button id="downolad" type="primary" @click="exportExcel" style="background-color: #1d7155;border-color: #1d7155;color:#ffffff;">导出</el-button>
       </div>
     </div>
 
@@ -90,7 +90,7 @@
                 size="mini"
                 type="primary"
                 @click="showEditMaintenanceDataDialog(scope.row)"
-
+                style="background-color: #1d7155;border-color: #1d7155;color:#ffffff;"
               >查看</el-button>
 
           </template>
