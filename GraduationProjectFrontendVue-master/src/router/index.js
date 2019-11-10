@@ -234,7 +234,7 @@ export default new Router({
         },
         {
           path: 'pages/medicine/Maintance',
-          name: 'MedicineMaintanceData',
+          name: '药剂防治管理',
           component: MedicineMaintanceData
         },
         {
@@ -265,17 +265,17 @@ export default new Router({
         },
         {
           path: 'pages/natural/maintance',
-          name: 'NaturalMaintanceData',
+          name: '天地防治管理',
           component: NaturalMaintanceData
         },
         {
           path: 'pages/medicine/message',
-          name: 'MedicineDeviceMessage',
+          name: '药剂防治管理信息',
           component: MedicineDeviceMessage
         },
         {
           path: 'pages/natural/message',
-          name: 'NaturalDeviceMessage',
+          name: '天地防治管理信息',
           component: NaturalDeviceMessage
         },
         {
