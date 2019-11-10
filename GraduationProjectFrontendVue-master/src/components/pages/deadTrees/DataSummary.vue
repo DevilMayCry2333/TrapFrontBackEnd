@@ -27,6 +27,7 @@
       <br>
       枯死树总数：{{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp; 总材积：{{totalSum}}
       <br>
+       枯死木总株数:{{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp; 总材积数：{{totalSum}}
       <br>
     </div>
 
@@ -37,6 +38,7 @@
                 <el-table-column :label="contentLabelDict[contentLabelIndex]" prop="name"></el-table-column>
                 <el-table-column label="枯死树数量" prop="woodNum"></el-table-column>
                 <el-table-column label="总材积" prop="woodVolume"></el-table-column>
+                <el-table-column label="处理方式" prop="mannerSum0"></el-table-column>
                 <el-table-column label="操作">
                   <template slot-scope="scope">
                     <el-button id="chakan" type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
@@ -59,11 +61,12 @@
               </el-table>
 
             </el-card>
-            <el-card header="各管理员枯死树管理情况表" style="padding:5px" v-if="this.$store.state.user.role ==3">
+            <el-card header="各项目工程诱捕情况表" style="padding:5px" v-if="this.$store.state.user.role ==3">
                           <el-table :data="summaryManagerData.list" :row-style="tableRowStyle">
-                            <el-table-column label="管理员" prop="name"></el-table-column>
+                            <el-table-column label="项目工程" prop="name"></el-table-column>
                             <el-table-column label="枯死树数量" prop="woodNum"></el-table-column>
                             <el-table-column label="总材积" prop="woodVolume"></el-table-column>
+                            <el-table-column label="处理方式" prop="mannerSum"></el-table-column>
                             <el-table-column label="操作">
                               <template slot-scope="scope">
                                 <el-button id="chakan2" type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
@@ -285,7 +288,7 @@ name:'DeadTreesDataSummary',
         },
         res => {
           this.summaryDeviceData.list = res.data.data.data;
-
+          console.log(this.summaryDeviceData.list);
           // this.makeAnalysisData(res.data.data.analysisEntity);
         },
         () => {}
