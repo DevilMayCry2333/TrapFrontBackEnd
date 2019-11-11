@@ -787,13 +787,15 @@ export default {
   border-top-color: white;
   border-bottom-color: white;
 }
-.el-tabs__item:hover {
-    color: #1D7155 !important;
-    cursor: pointer;
-}
-.el-tabs__item.is-active {
-    color: #1D7155 !important;
-}
+
+// .el-tabs__item:hover {
+//     color: #1D7155 !important;
+//     cursor: pointer;
+// }
+// .el-tabs__item.is-active {
+//     color: #1D7155 !important;
+// }
+
 </style>
 
 

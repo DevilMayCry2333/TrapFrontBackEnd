@@ -28,7 +28,13 @@
     </div>
 
 
-            <el-table class="tableGreen" border :data="QRData.list" style="width: 100%" height="600">
+            <el-table class="tableGreen" 
+                      border 
+                      :data="QRData.list" 
+                      style="width: 100%" 
+                      height="600"        
+                      stripe 
+                      :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
               <el-table-column prop="checked" label="选项" align="center">
                 <template>
                 <el-radio v-model="radio" label="1">备选项</el-radio>

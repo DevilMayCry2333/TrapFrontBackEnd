@@ -573,7 +573,7 @@ this.uploadUrl =
   display: flex;
   justify-content: space-around;
 }
-.el-input.is-active .el-input__inner, .el-input__inner:focus{
+/* .el-input.is-active .el-input__inner, .el-input__inner:focus{
   border-color: #67c23a;
   outline: 0;
 }
@@ -586,7 +586,7 @@ this.uploadUrl =
 
 .el-select .el-input.is-focus .el-input__inner {
   border-color: #67c23a;
-}
+} */
 #search{
     background: #1D7155;
     border-color: #1D7155;
@@ -611,7 +611,7 @@ this.uploadUrl =
     height: fit-content;
     margin-right: 10px;
 }
-.el-button--danger {
+/* .el-button--danger {
     color: #fff;
     background-color: #1D7155;
     border-color: #1D7155;
@@ -620,5 +620,5 @@ this.uploadUrl =
     background: #f78989;
     border-color: #f78989;
     color: #fff;
-}
+} */
 </style>

@@ -719,17 +719,17 @@ export default {
     background-color: #1D7155;
     border-color: #1D7155;
 }
-.el-tabs__item.is-active {
-    color: #1D7155!important;
-}
-.el-tabs__item:hover {
-    color: #1D7155!important;
-    cursor: pointer;
-}
-.el-select-dropdown__item.selected {
-    color: #1D7155;
-    font-weight: 700;
-}
+// .el-tabs__item.is-active {
+//     color: #1D7155!important;
+// }
+// .el-tabs__item:hover {
+//     color: #1D7155!important;
+//     cursor: pointer;
+// }
+// .el-select-dropdown__item.selected {
+//     color: #1D7155;
+//     font-weight: 700;
+// }
 
 </style>
 

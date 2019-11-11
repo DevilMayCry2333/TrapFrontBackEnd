@@ -748,23 +748,23 @@
     background-color:#70AD47!important;
     /* color: #fff !important; */
 } 
-.el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner {
-    background-color: #1D7155 ;
-    border-color: #1D7155 ;
+// .el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner {
+//     background-color: #1D7155 ;
+//     border-color: #1D7155 ;
    
-}
-.el-select .el-input.is-focus .el-input__inner {
-    border-color: #67c23a;
-    outline: 0;
-}
-.el-select .el-input.is-focus .el-input__inner {
-    border-color: #67c23a;
-    outline: 0;
-}
-.el-input.is-active .el-input__inner, .el-input__inner:focus {
-    border-color:#67c23a;
-    outline: 0;
-}
+// }
+// .el-select .el-input.is-focus .el-input__inner {
+//     border-color: #67c23a;
+//     outline: 0;
+// }
+// .el-select .el-input.is-focus .el-input__inner {
+//     border-color: #67c23a;
+//     outline: 0;
+// }
+// .el-input.is-active .el-input__inner, .el-input__inner:focus {
+//     border-color:#67c23a;
+//     outline: 0;
+// }
   #cancel{
     background-color:#1D7155;
     color: #fff;
@@ -777,12 +777,12 @@
     display: flex;
     justify-content: space-around;
   }
-.el-radio__input.is-checked .el-radio__inner {
-    border-color: #1D7155;
-    background: #1D7155;
-}
-.el-radio__input.is-checked+.el-radio__label {
-    color: #1D7155;
-}
+// .el-radio__input.is-checked .el-radio__inner {
+//     border-color: #1D7155;
+//     background: #1D7155;
+// }
+// .el-radio__input.is-checked+.el-radio__label {
+//     color: #1D7155;
+// }
 
 </style>

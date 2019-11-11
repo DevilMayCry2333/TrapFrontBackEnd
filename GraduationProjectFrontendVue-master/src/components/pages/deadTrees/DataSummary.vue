@@ -538,7 +538,7 @@ this.$router.push({ path: '/pages/deadTrees/Maintance' });
     background-color: #1D7155;
     border-color: #1D7155;
 }
-.el-button--primary {
+/* .el-button--primary {
     background: #1D7155;
     border-color: #1D7155;
     color: #fff;
@@ -547,7 +547,7 @@ this.$router.push({ path: '/pages/deadTrees/Maintance' });
     color: #fff;
     background-color: #1D7155;
     border-color: #1D7155;
-}
+} */
 </style>
 
 

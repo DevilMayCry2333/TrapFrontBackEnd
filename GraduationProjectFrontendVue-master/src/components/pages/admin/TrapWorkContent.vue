@@ -264,7 +264,7 @@ this.loadOtherBeetleData();
     border:#1D7155;
     background-color:#1D7155 
 }
-.el-button {
+/* .el-button {
     color: #fff;
     background-color: #1D7155;
     border-color: #1D7155;
@@ -278,7 +278,7 @@ this.loadOtherBeetleData();
     background: #1d7155;
     border-color: #1d7155;
     color: #fff;
-}
+} */
 </style>
 
 

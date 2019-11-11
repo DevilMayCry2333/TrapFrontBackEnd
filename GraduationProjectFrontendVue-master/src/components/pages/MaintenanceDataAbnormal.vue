@@ -401,7 +401,7 @@ loadMaintenanceData();
     border-color: #1D7155;
     height: fit-content;
 }
-.el-input.is-active .el-input__inner, .el-input__inner:focus{
+/* .el-input.is-active .el-input__inner, .el-input__inner:focus{
     border-color:#67c23a;
     outline: 0;
 }
@@ -414,7 +414,7 @@ loadMaintenanceData();
 
 .el-select .el-input.is-focus .el-input__inner{
     border-color: #67c23a;
-}
+} */
 </style>
 
 

@@ -336,14 +336,14 @@ export default {
     background-color: #1D7155;
     border-color: #1D7155;
 }
-.el-button--primary {
-    color: #fff;
-    background-color: #1D7155;
-    border-color: #1D7155;
-}
-.el-button--primary:focus,.el-button--primary:hover {
-    color: #fff;
-    background-color: #1D7155;
-    border-color: #1D7155;
-}
+// .el-button--primary {
+//     color: #fff;
+//     background-color: #1D7155;
+//     border-color: #1D7155;
+// }
+// .el-button--primary:focus,.el-button--primary:hover {
+//     color: #fff;
+//     background-color: #1D7155;
+//     border-color: #1D7155;
+// }
 </style>

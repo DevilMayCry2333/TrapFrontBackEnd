@@ -503,34 +503,34 @@
     border-color: #1D7155;
     color: #fff;
 }
-.el-button--primary {
-    background: #1D7155;
-    border-color: #1D7155;
-    color: #fff;
-}
-.el-input.is-active .el-input__inner, .el-input__inner:focus{
-  border-color: #67c23a;
-  outline: 0;
-}
-.el-select .el-input.is-focus .el-input__inner {
-  border-color: #67c23a;
-}
-.el-select .el-input__inner:focus{
-  border-color: #67c23a;
-}
+// .el-button--primary {
+//     background: #1D7155;
+//     border-color: #1D7155;
+//     color: #fff;
+// }
+// .el-input.is-active .el-input__inner, .el-input__inner:focus{
+//   border-color: #67c23a;
+//   outline: 0;
+// }
+// .el-select .el-input.is-focus .el-input__inner {
+//   border-color: #67c23a;
+// }
+// .el-select .el-input__inner:focus{
+//   border-color: #67c23a;
+// }
 
-.el-select .el-input.is-focus .el-input__inner {
-  border-color: #67c23a;
-}
-.el-button--danger {
-    color: #fff;
-    background-color: #1D7155;
-    border-color: #1D7155;
-}
-.el-button--danger:focus, .el-button--danger:hover {
-    background: #f78989;
-    border-color: #f78989;
-    color: #fff;
-}
+// .el-select .el-input.is-focus .el-input__inner {
+//   border-color: #67c23a;
+// }
+// .el-button--danger {
+//     color: #fff;
+//     background-color: #1D7155;
+//     border-color: #1D7155;
+// }
+// .el-button--danger:focus, .el-button--danger:hover {
+//     background: #f78989;
+//     border-color: #f78989;
+//     color: #fff;
+// }
 .divcss5-right{float:right} 
 </style>

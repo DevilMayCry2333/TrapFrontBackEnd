@@ -5,7 +5,10 @@
 
         <el-button type="primary" @click="query()" style="background-color: #1d7155;border-color: #1d7155;">查询</el-button>
 
-      <el-table class="tableGreen" border :data="list" style="width: 100%" height="600" 
+      <el-table 
+        class="tableGreen" 
+        border :data="list" 
+        style="width: 100%" height="600" 
         stripe 
         :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
         <el-table-column prop="Worker" label="工人名称" align="center"></el-table-column>

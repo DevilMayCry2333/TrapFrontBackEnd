@@ -374,7 +374,7 @@ export default {
   display: flex;
   justify-content: space-around;
 }
-.el-button--primary {
+/* .el-button--primary {
     color: #fff;
     background-color: #1D7155;
     border-color: #1D7155;
@@ -388,7 +388,7 @@ export default {
 .el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner {
     background-color: #1D7155;
     border-color: #1D7155;
-}
+} */
 </style>
 
 

@@ -1129,63 +1129,63 @@ http.requestWithToken(
   }
 /* 分配二维码 */
 /* 绿色块 */
-.el-tag {
-    background-color: #1D7155;
-    padding: 0 10px;
-    height: 40px;
-    line-height: 40px;
-    font-size: 12px;
-    color: #fff;
-    border-radius: 4px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    border: 1px solid rgba(64,158,255,.2);
-    white-space: nowrap;
-}
-/* 输入框 */
-.el-input__inner {
-    -webkit-appearance: none;
-    background-color: #fff;
-    background-image: none;
-    border-radius: 4px;
-    border: 1px solid #dcdfe6;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    color: #606266;
-    display: inline-block;
-    font-size: inherit;
-    height: 40px;
-    line-height: 40px;
-    outline: 0;
-    padding: 0 15px;
-    -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-    width: 100%;
-}
-.el-input.is-active {
-    border-color: #67c23a;
-    /* outline: 0; */
-}
+// .el-tag {
+//     background-color: #1D7155;
+//     padding: 0 10px;
+//     height: 40px;
+//     line-height: 40px;
+//     font-size: 12px;
+//     color: #fff;
+//     border-radius: 4px;
+//     border-top-left-radius: 4px;
+//     border-top-right-radius: 4px;
+//     border-bottom-right-radius: 4px;
+//     border-bottom-left-radius: 4px;
+//     -webkit-box-sizing: border-box;
+//     box-sizing: border-box;
+//     border: 1px solid rgba(64,158,255,.2);
+//     white-space: nowrap;
+// }
+// /* 输入框 */
+// .el-input__inner {
+//     -webkit-appearance: none;
+//     background-color: #fff;
+//     background-image: none;
+//     border-radius: 4px;
+//     border: 1px solid #dcdfe6;
+//     -webkit-box-sizing: border-box;
+//     box-sizing: border-box;
+//     color: #606266;
+//     display: inline-block;
+//     font-size: inherit;
+//     height: 40px;
+//     line-height: 40px;
+//     outline: 0;
+//     padding: 0 15px;
+//     -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+//     transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+//     width: 100%;
+// }
+// .el-input.is-active {
+//     border-color: #67c23a;
+//     /* outline: 0; */
+// }
 
-.el-select .el-input__inner:focus {
-    border-color: #67c23a;
+// .el-select .el-input__inner:focus {
+//     border-color: #67c23a;
 
-}
-.el-form-item.is-success .el-input__inner, .el-form-item.is-success .el-input__inner:focus, .el-form-item.is-success .el-textarea__inner, .el-form-item.is-success .el-textarea__inner:focus {
-    border-color: #67c23a;
-}
-.el-select .el-input.is-focus .el-input__inner {
-    border-color: #67c23a;
-}
-.el-button--primary {
-    color: #fff;
-    background-color: #1D7155;
-    border-color: #1D7155;
-}
+// }
+// .el-form-item.is-success .el-input__inner, .el-form-item.is-success .el-input__inner:focus, .el-form-item.is-success .el-textarea__inner, .el-form-item.is-success .el-textarea__inner:focus {
+//     border-color: #67c23a;
+// }
+// .el-select .el-input.is-focus .el-input__inner {
+//     border-color: #67c23a;
+// }
+// .el-button--primary {
+//     color: #fff;
+//     background-color: #1D7155;
+//     border-color: #1D7155;
+// }
   #cancel{
     background-color:#1D7155;
     color: #fff;

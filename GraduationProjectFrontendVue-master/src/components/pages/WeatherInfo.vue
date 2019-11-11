@@ -327,13 +327,13 @@ export default {
     border-color: #1D7155;
 
 }
-.el-tabs__item.is-active {
+/* .el-tabs__item.is-active {
     color: #1D7155;
 }
 .el-tabs__item:hover {
     color: #1D7155;
     cursor: pointer;
-}
+} */
 </style>
 
 

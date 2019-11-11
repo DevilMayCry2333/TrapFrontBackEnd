@@ -235,13 +235,14 @@ export default {
   justify-content: space-between;
   margin-bottom: 5px;
 }
-/* 下拉框的框线 */
-.el-select .el-input.is-focus .el-input__inner {
-    border-color: #70AD47;
-}
-/* 输入框的框线 */
-.el-input.is-active .el-input__inner, .el-input__inner:focus {
-    border-color: #70AD47;
-    outline: 0;
-}
+
+// /* 下拉框的框线 */
+// .el-select .el-input.is-focus .el-input__inner {
+//     border-color: #70AD47;
+// }
+// /* 输入框的框线 */
+// .el-input.is-active .el-input__inner, .el-input__inner:focus {
+//     border-color: #70AD47;
+//     outline: 0;
+// }
 </style>

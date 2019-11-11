@@ -268,22 +268,22 @@ this.loadOtherBeetleData();
     border:#1D7155;
     background-color:#1D7155 
 }
-.el-button {
-    color: #fff;
-    background-color: #1D7155;
-    border-color: #1D7155;
-}
+// .el-button {
+//     color: #fff;
+//     background-color: #1D7155;
+//     border-color: #1D7155;
+// }
 
-.el-button--danger:focus{
-    background: #f78989 !important;
-    border-color: #f78989!important;
-    color: #fff!important;
-}
-.el-button--danger:hover {
-    color: #fff!important;
-    background-color: #f78989!important;
-    border-color: #f78989!important;
-}
+// .el-button--danger:focus{
+//     background: #f78989 !important;
+//     border-color: #f78989!important;
+//     color: #fff!important;
+// }
+// .el-button--danger:hover {
+//     color: #fff!important;
+//     background-color: #f78989!important;
+//     border-color: #f78989!important;
+// }
 
 </style>
 
