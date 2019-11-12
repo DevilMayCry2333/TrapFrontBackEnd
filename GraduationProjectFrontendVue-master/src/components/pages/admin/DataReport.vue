@@ -15,7 +15,7 @@
             :value="item.username">
             </el-option>
         </el-select>
-        <el-button id="sure" @click="ReportData" type="primary">确定</el-button>
+        <el-button  @click="ReportData" type="primary">确定</el-button>
     </div>
 </template>
 

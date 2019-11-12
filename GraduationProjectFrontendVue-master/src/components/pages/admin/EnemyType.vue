@@ -3,7 +3,7 @@
     <div id="tool-row">
       <div></div>
       <div>
-        <el-button id="add" type="primary" @click="showAdd">增加</el-button>
+        <el-button type="primary" @click="showAdd">增加</el-button>
       </div>
     </div>
     <div style="padding-top:5px">
@@ -15,7 +15,6 @@
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <el-button
-              id="edit"
               type="primary"
               @click="showEdit(scope.row)"
               v-if="$store.state.user.role == 0"
@@ -260,12 +259,12 @@ this.loadOtherBeetleData();
     border:#1D7155;
     background-color:#1D7155 
 }
-.el-button {
+/* .el-button {
     color: #fff;
     background-color: #1D7155;
     border-color: #1D7155;
 }
-/* .el-button--danger:focus{
+.el-button--danger:focus{
     background: #f78989;
     border-color: #f78989;
     color: #fff;

@@ -3,7 +3,7 @@
     <div id="tool-row">
       <div></div>
       <div>
-        <el-button id="add" type="primary" @click="showAdd">增加</el-button>
+        <el-button type="primary" @click="showAdd">增加</el-button>
       </div>
     </div>
     <div style="padding-top:5px">
@@ -19,7 +19,6 @@
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <el-button
-              id="edit"
               type="primary"
               @click="showEdit(scope.row)"
               v-if="$store.state.user.role == 0"
@@ -42,7 +41,7 @@
           </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button id="sure1" type="primary" @click.native.prevent="handleSubmit">确 定</el-button>
+        <el-button type="primary" @click.native.prevent="handleSubmit">确 定</el-button>
       </div>
     </el-dialog>
     <el-dialog title="增加" :visible.sync="townUserDialogVisible" width="30%">
@@ -55,7 +54,7 @@
         ></el-option>
       </el-select>
       <div slot="footer" class="dialog-footer">
-        <el-button id="sure2" type="primary" @click.native.prevent="handleSubmitTownUser">确 定</el-button>
+        <el-button type="primary" @click.native.prevent="handleSubmitTownUser">确 定</el-button>
       </div>
     </el-dialog>
   </div>

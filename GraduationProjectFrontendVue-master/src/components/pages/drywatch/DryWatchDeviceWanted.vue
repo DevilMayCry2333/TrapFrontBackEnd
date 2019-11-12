@@ -17,7 +17,7 @@
           value-format="yyyy-MM-dd"
           placeholder="终止日期"
         ></el-date-picker>
-        <el-button id="search" type="primary" @click="buttonLoadMaintenanceData">搜索</el-button>
+        <el-button type="primary" @click="buttonLoadMaintenanceData">搜索</el-button>
       </div>
       <div style=" display: flex;">
         <!-- <el-button type="primary" @click="showAdd">添加</el-button> -->
@@ -32,7 +32,6 @@
           @click="handleDelete"
         >删除</el-button>-->
         <el-button
-          id="report"
           type="primary"
           @click="handleReportMaintenanceData"
           v-if="this.$store.state.user.role == 3"
@@ -42,19 +41,20 @@
           @click="handleDeleteSome"
           
         >批量删除</el-button> -->
-        <el-button id="download" type="primary" @click="exportExcel">导出</el-button>
+        <el-button type="primary" @click="exportExcel" style="margin-right:10px">导出</el-button>
         <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
         
         <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
         <el-upload  class="upload-demo" ref="upload"
         :action="uploadUrl"
         :on-success="loadMaintenanceData">
-          <el-button id="upload" type="primary" >导入</el-button>
+          <el-button type="primary" >导入</el-button>
         </el-upload>
       </div>
     </div>
     <div style="padding-top:5px">
       <el-table
+        class="tableGreen" 
         ref="table"
         border
         :data="maintenanceData.list"
@@ -564,7 +564,15 @@ this.uploadUrl =
   }
 };
 </script>
-<style>
+<style lang="scss">
+.tableGreen{
+    .el-table__row{
+      background-color: #D5E4CF !important;
+    }
+    .el-table__row--striped{
+      background-color: #ECF0EA !important;
+    }
+  }
 #tool-row {
   display: flex;
   justify-content: space-between;
