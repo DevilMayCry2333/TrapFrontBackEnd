@@ -54,6 +54,7 @@
     </div>
     <div style="padding-top:5px">
       <el-table
+        class="tableGreen" 
         ref="table"
         border
         :data="maintenanceData.list"
@@ -563,7 +564,15 @@ this.uploadUrl =
   }
 };
 </script>
-<style>
+<style lang="scss">
+.tableGreen{
+    .el-table__row{
+      background-color: #D5E4CF !important;
+    }
+    .el-table__row--striped{
+      background-color: #ECF0EA !important;
+    }
+  }
 #tool-row {
   display: flex;
   justify-content: space-between;

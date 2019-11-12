@@ -28,7 +28,7 @@
     </div>
 
 
-          <el-table class="tableGreen" border :data="QRData.list" style="width: 100%" height="600" stripe :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
+          <el-table class="tableGreen"  border :data="QRData.list" style="width: 100%" height="600px" stripe :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
         <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
         <el-table-column prop="serial" label="编号" align="center"></el-table-column>
         <el-table-column prop="customTown" label="区域" align="center"></el-table-column>
@@ -39,7 +39,7 @@
         <el-table-column prop="wooddiameter" label="桩径(cm)" align="center"></el-table-column>
         <el-table-column prop="woodheight" label="树高(m)" align="center"></el-table-column>
         <el-table-column prop="woodvolume" label="材积(m³)" align="center"></el-table-column>
-        <el-table-column prop="pic" label="照片1" align="center">
+        <el-table-column prop="pic" label="照片（施工前）" width="120px" align="center">
                   <template slot-scope="scope">
             <el-button
               @click="showPhotoDialog(scope.row.pic)"
@@ -49,7 +49,7 @@
           </template>
 
         </el-table-column>
-                <el-table-column prop="pic2" label="照片2" align="center">
+                <el-table-column prop="pic2" label="照片（施工中）" width="120px" align="center">
                   <template slot-scope="scope">
             <el-button
               @click="showPhotoDialog(scope.row.pic)"
@@ -59,7 +59,7 @@
           </template>
 
         </el-table-column>
-                <el-table-column prop="pic3" label="照片3" align="center">
+                <el-table-column prop="pic3" label="照片（施工后）" width="120px" align="center">
                   <template slot-scope="scope">
             <el-button
               @click="showPhotoDialog(scope.row.pic)"
@@ -164,7 +164,7 @@
           <el-input @change="woodheightInput" v-model="EditMaintenanceDialog.form.woodheight"></el-input>
         </el-form-item>
         <el-form-item label="材积">
-          <el-input v-model="EditMaintenanceDialog.form.woodvolume"></el-input>
+          <el-input :disabled="true" v-model="EditMaintenanceDialog.form.woodvolume"></el-input>
         </el-form-item>
         <el-form-item label="除害方式">
           <el-input v-model="EditMaintenanceDialog.form.killmethod"></el-input>

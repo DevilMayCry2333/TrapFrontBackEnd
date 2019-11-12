@@ -76,7 +76,7 @@
         <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
         <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
         <el-table-column prop="batch" label="批次" align="center"></el-table-column>
-        <el-table-column prop="medicineQua" label="药剂质量(kg)" align="center"></el-table-column>
+        <el-table-column prop="medicineQua" label="施药数量(kg)" align="center"></el-table-column>
         <!-- <el-table-column label="其他天牛类型">
           <template slot-scope="scope">{{otherBeetleDict["t" + scope.row.otherType]}}</template>
         </el-table-column>

@@ -100,7 +100,7 @@
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
         <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
         <el-table-column prop="altitude" label="海拔" align="center"></el-table-column>
-        <el-table-column prop="workcontentfront" label="工作内容">
+        <el-table-column prop="workcontentfront" label="工作内容" align="center">
           <!-- <template
             slot-scope="scope"
           >{{maintenanceData.workingContentDict[scope.row.workingContent]}}</template> -->
@@ -112,7 +112,7 @@
           <template slot-scope="scope">{{otherBeetleDict["t" + scope.row.otherType]}}</template>
         </el-table-column>
         <el-table-column prop="otherNum" label="其它天牛数量" align="center"></el-table-column>
-        <el-table-column prop="drug" label="诱芯类型"></el-table-column>
+        <el-table-column prop="drug" label="诱芯类型" align="center"></el-table-column>
         <el-table-column v-if="this.$store.state.user.role != 4" label="位置" width="200px" align="center">
           <template
             slot-scope="scope"
@@ -127,9 +127,9 @@
             >显示</el-button>
           </template>
         </el-table-column>
-        <el-table-column prop="username" label="施工人员"></el-table-column>
-        <el-table-column prop="remark" label="备注"></el-table-column>
-        <el-table-column label="是否上报">
+        <el-table-column prop="username" label="施工人员" align="center"></el-table-column>
+        <el-table-column prop="remark" label="备注" align="center"></el-table-column>
+        <el-table-column label="是否上报" align="center">
           <template slot-scope="scope">{{scope.row.reported ? '是': '否'}}</template>
         </el-table-column>
 

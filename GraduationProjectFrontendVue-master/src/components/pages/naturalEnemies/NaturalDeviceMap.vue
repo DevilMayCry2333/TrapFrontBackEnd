@@ -68,6 +68,7 @@ export default {
               };
               var label = new BMap.Label(text, opts); // 创建文本标注对象
               label.setStyle({
+                border: "1px solid #67c23a ",
                 color: "black",
                 fontSize: "12px",
                 height: "20px",
