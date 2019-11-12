@@ -28,7 +28,7 @@
           </el-option>
         </el-select>
         <el-input v-model="input" placeholder="请输入内容" style="width: 170px"></el-input>
-        <el-button id="search" type="primary" @click="getFuckingSearch">搜索</el-button>
+        <el-button type="primary" @click="getFuckingSearch">搜索</el-button>
       </div>
       
           <!-- <el-button type="primary" @click="showAdd">添加</el-button> -->
@@ -44,21 +44,18 @@
           >删除</el-button>-->
       <div id="threebuttons">
           <el-button
-            id="report"
             type="primary"
             @click="handleReportMaintenanceData"
             v-if="this.$store.state.user.role == 3"
           >上报</el-button>
           <el-button
-            id="delete"
             type="primary"
             @click="handleDeleteSome"
           >批量删除</el-button>
-          <el-button 
-            id="download" 
+          <el-button
             type="primary" 
             @click="exportExcel"
-            style="margin-right:10px;height: fit-content;background-color: #1d7155;border-color: #1d7155;">导出</el-button>
+            style="margin-right:10px;height:fit-content;">导出</el-button>
           <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
 
           <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
@@ -68,9 +65,7 @@
             :action="uploadUrl"
             :on-success="loadMaintenanceData">
             <el-button 
-            id="shangchuang" 
             type="primary" 
-            style="background-color: #1d7155;border-color: #1d7155;"
             >导入</el-button>
           </el-upload>
       </div>

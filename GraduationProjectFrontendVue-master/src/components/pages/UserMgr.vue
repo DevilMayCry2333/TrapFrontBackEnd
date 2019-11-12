@@ -39,20 +39,19 @@
           <el-option value="1" label="是">是</el-option>
           <el-option value="0" label="否">否</el-option>
         </el-select>
-        <el-button id="search" type="primary"  @click="loadUser">查询</el-button>
+        <el-button  type="primary"  @click="loadUser">查询</el-button>
       </div>
       <div>
-        <el-button id="add" type="primary" @click="showAddUser">添加</el-button>
-        <el-button id="alter" type="primary" @click="showEditUser" :disabled="userData.selectedIndex == -1">修改</el-button>
+        <el-button  type="primary" @click="showAddUser">添加</el-button>
+        <el-button  type="primary" @click="showEditUser" :disabled="userData.selectedIndex == -1">修改</el-button>
         <el-button
-          id="delete"
           type="primary"
           v-if="this.$store.state.user.role == 6"
           @click="handleUserDelete"
         >删除
         </el-button>
 
-        <el-button id="reset" type="primary" :disabled="userData.selectedIndex == -1" @click="handleRestPassword()">重置密码
+        <el-button type="primary" :disabled="userData.selectedIndex == -1" @click="handleRestPassword()">重置密码
         </el-button>
       </div>
     </div>
@@ -306,8 +305,8 @@
         </div>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button id="cancel" @click="userInfoDialog.visible = false">取 消</el-button>
-        <el-button id="sure" type="primary" @click.native.prevent="handleUserDataSubmit">确 定</el-button>
+        <el-button  @click="userInfoDialog.visible = false">取 消</el-button>
+        <el-button  type="primary" @click.native.prevent="handleUserDataSubmit">确 定</el-button>
       </div>
     </el-dialog>
   </div>

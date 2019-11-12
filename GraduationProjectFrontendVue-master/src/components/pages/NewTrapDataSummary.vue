@@ -16,8 +16,8 @@
         </el-option>
       </el-select>
       <el-input v-model="input" placeholder="请输入内容" style="width: 170px;margin-right:1px;"></el-input>
-      <el-button type="primary" @click="query()" style="background-color: #1d7155;border-color: #1d7155;">查询</el-button>
-      <el-button type="primary" @click="exportExcel" style="background-color: #1d7155;border-color: #1d7155;">导出</el-button>
+      <el-button type="primary" @click="query()" >查询</el-button>
+      <el-button type="primary" @click="exportExcel" >导出</el-button>
   </div>
   
 

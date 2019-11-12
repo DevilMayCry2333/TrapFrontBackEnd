@@ -1,14 +1,14 @@
 <template>
   <div style="height:100%; width:100%;">
     <div id="float-dropdown-menu">
-      <el-dropdown split-button type="primary" @command="loadSpots" style="background-color: #1d7155;border-color: #1d7155;">
+      <el-dropdown split-button type="primary" @command="loadSpots" >
         行政级别
-        <el-dropdown-menu slot="dropdown" style="background-color: #1d7155;border-color: #1d7155;">
-          <el-dropdown-item style="color:#ffffff;" command="province" v-if="this.$store.state.user.role < 2">省</el-dropdown-item>
-          <el-dropdown-item style="color:#ffffff;" command="city" v-if="this.$store.state.user.role < 3">市</el-dropdown-item>
-          <el-dropdown-item style="color:#ffffff;" command="area" v-if="this.$store.state.user.role < 4">县</el-dropdown-item>
-          <el-dropdown-item style="color:#ffffff;" command="town" v-if="this.$store.state.user.role < 4">乡</el-dropdown-item>
-          <el-dropdown-item style="color:#ffffff;" command="device">设备</el-dropdown-item>
+        <el-dropdown-menu slot="dropdown" >
+          <el-dropdown-item  command="province" v-if="this.$store.state.user.role < 2">省</el-dropdown-item>
+          <el-dropdown-item  command="city" v-if="this.$store.state.user.role < 3">市</el-dropdown-item>
+          <el-dropdown-item  command="area" v-if="this.$store.state.user.role < 4">县</el-dropdown-item>
+          <el-dropdown-item  command="town" v-if="this.$store.state.user.role < 4">乡</el-dropdown-item>
+          <el-dropdown-item  command="device">设备</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>

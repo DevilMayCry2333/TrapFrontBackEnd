@@ -13,7 +13,7 @@
             </el-select>
             <!--<span style="font-size: 14px; margin-left: 14px">搜索内容:</span>
             <el-input style="width: 200px" placeholder="搜索内容" v-model="searchText"></el-input> -->
-            <el-button id="search" type="primary" @click="handleSubmit">搜索</el-button>
+            <el-button  type="primary" @click="handleSubmit">搜索</el-button>
         </div>
     </div>
 
@@ -22,7 +22,7 @@
       <el-table-column prop="customTown" label="区域" align="center"></el-table-column>
       <el-table-column prop="startDate" label="起始日期" align="center"></el-table-column>
       <el-table-column prop="endDate" label="截止日期" align="center"></el-table-column>
-      <el-table-column prop="medicineQuaSum" label="药剂质量（kg）" align="center"></el-table-column>
+      <el-table-column prop="medicineQuaSum" label="施药数量（kg）" align="center"></el-table-column>
       <el-table-column prop="areaFzSum" label="防治面积（㎡）" align="center"></el-table-column>
       <el-table-column
         prop="manager"

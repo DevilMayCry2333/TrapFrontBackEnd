@@ -90,7 +90,6 @@
                 size="mini"
                 type="primary"
                 @click="showEditMaintenanceDataDialog(scope.row)"
-
               >查看</el-button>
 
           </template>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div style="margin-bottom:5px;">
       <!-- <el-select placeholder="省" v-if="this.$store.state.user.role == 1"></el-select> -->
       <el-select
         placeholder="市"
@@ -23,8 +23,8 @@
 
       <el-date-picker v-model="startDate" type="date" value-format="yyyy-MM-dd" placeholder="起始日期"></el-date-picker>
       <el-date-picker v-model="endDate" type="date" value-format="yyyy-MM-dd" placeholder="终止日期"></el-date-picker>
-      <el-button id="search" type="primary" @click="query()">查询</el-button>
-      <el-button id="save" type="primary" @click="exportExcel()">保存表格</el-button>
+      <el-button type="primary" @click="query()">查询</el-button>
+      <el-button type="primary" @click="exportExcel()">保存表格</el-button>
     </div>
     <el-tabs id="statistics-tabs" v-model="tabPage" type="card">
       <el-tab-pane label="描述性统计分析" name="first">

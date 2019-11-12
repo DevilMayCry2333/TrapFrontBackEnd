@@ -15,12 +15,11 @@
           value-format="yyyy-MM-dd"
           placeholder="终止日期"
         ></el-date-picker>
-        <el-button id="search" type="primary" @click="loadMaintenanceData">搜索</el-button>
+        <el-button type="primary" @click="loadMaintenanceData">搜索</el-button>
       </div>
 
       <div style=" display: flex;">
       <el-button
-                id="report"
                 type="primary"
                 @click="handleReportMaintenanceData"
                 v-if="this.$store.state.user.role == 3"

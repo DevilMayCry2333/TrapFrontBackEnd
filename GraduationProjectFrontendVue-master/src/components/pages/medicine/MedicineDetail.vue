@@ -13,17 +13,17 @@
    
             <!-- <span style="font-size: 14px; ">搜索内容:</span> -->
             <el-input style="width: 200px" placeholder="搜索内容" v-model="searchText"></el-input>
-            <el-button id="search" type="primary" @click="handleSubmit">搜索</el-button>
+            <el-button type="primary" @click="handleSubmit">搜索</el-button>
       </div>
       <div style=" display: flex;">
-            <el-button id="download" type="primary" @click="exportExcel">导出</el-button>
+            <el-button type="primary" @click="exportExcel">导出</el-button>
               <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
 
               <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
               <el-upload  class="upload-demo" ref="upload"
               :action="uploadUrl"
               :on-success="loadDevice">
-                <el-button id="upload" type="primary" style="margin-left:20px" >导入</el-button>
+                <el-button type="primary" style="margin-left:20px" >导入</el-button>
               </el-upload>
 
       </div>
@@ -40,7 +40,7 @@
       <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
       <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
       <el-table-column prop="workContent" label="工作内容" align="center"></el-table-column>
-      <el-table-column prop="medicineQua" label="药剂质量（kg）" align="center"></el-table-column>
+      <el-table-column prop="medicineQua" label="施药数量（kg）" align="center"></el-table-column>
       <el-table-column prop="medicineName" label="药剂名称" align="center"></el-table-column>
       <el-table-column prop="areaFz" label="防治面积（㎡）" align="center"></el-table-column>
       <el-table-column prop="pic"  label="照片" align="center">
@@ -72,7 +72,6 @@
             <div v-if="!scope.row.reported">
               <el-button
                 style="background-color: #1d7155;border-color: #1d7155;color:#ffffff;"
-                id="edit"
                 size="mini"
                 type="primary"
                 @click="showEditMaintenanceDataDialog(scope.row)"

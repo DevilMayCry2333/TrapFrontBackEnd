@@ -13,16 +13,16 @@
             </el-option>
           </el-select>
           <el-input v-model="input" placeholder="请输入内容"  style="width: 200px"></el-input>
-          <el-button id="search" type="primary" @click="query()">查询</el-button>
+          <el-button type="primary" @click="query()">查询</el-button>
       </div>
       <div style=" display: flex;">
-            <el-button id="download" type="primary" @click="exportExcel">导出</el-button>
+            <el-button type="primary" @click="exportExcel">导出</el-button>
             <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
             <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
             <el-upload ref="upload"
             :action="uploadUrl"
             :on-success="loadMaintenanceData">
-              <el-button id="upload" type="primary" style="margin-left:20px">导入</el-button>
+              <el-button type="primary" style="margin-left:20px">导入</el-button>
             </el-upload>
       </div>
     </div>
@@ -70,7 +70,6 @@
             <div v-if="!scope.row.reported">
               <el-button
                 style="background-color: #1d7155;border-color: #1d7155;color:#ffffff;"
-                id="edit"
                 size="mini"
                 type="primary"
                 @click="showEditMaintenanceDataDialog(scope.row)"
