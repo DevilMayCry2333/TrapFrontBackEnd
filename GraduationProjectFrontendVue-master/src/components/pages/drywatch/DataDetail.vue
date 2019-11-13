@@ -33,18 +33,18 @@
         border :data="DryWatchData.list" style="width: 100%" height="600"
         stripe 
         :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
-      <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
+      <el-table-column prop="scanId" label="设备ID" align="center"></el-table-column>
       <el-table-column prop="serial" label="编号" align="center"></el-table-column>
       <el-table-column prop="customtown" label="区域" align="center"></el-table-column>
       <el-table-column prop="submitDate" label="日期" align="center"></el-table-column>
       <el-table-column prop="batch" label="批次" align="center"></el-table-column>
       <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
       <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
-      <el-table-column prop="workContent" label="工作内容" align="center"></el-table-column>
+      <el-table-column prop="workContentFront" label="工作内容" align="center"></el-table-column>
       <el-table-column prop="injectionNum" label="注剂数量" align="center"></el-table-column>
-      <el-table-column prop="woodStatusName" label="树木状态" align="center"></el-table-column>
+      <el-table-column prop="woodStatusFront" label="树木状态" align="center"></el-table-column>
       <el-table-column prop="chestDiameter" label="胸径(cm)" align="center"></el-table-column>
-      <el-table-column prop="injectName" label="注剂名称" align="center"></el-table-column>
+      <el-table-column prop="injectNameFront" label="注剂名称" align="center"></el-table-column>
       <el-table-column prop="pic" label="照片" align="center">
         <template slot-scope="scope" align="center">
             <el-button

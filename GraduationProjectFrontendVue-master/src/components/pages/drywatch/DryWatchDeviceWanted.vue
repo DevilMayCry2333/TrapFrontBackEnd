@@ -74,7 +74,7 @@
           </template>
         </el-table-column>-->
         <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
-        <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
+        <el-table-column prop="scanid" label="设备ID" align="center"></el-table-column>
         <el-table-column prop="batch" label="批次" align="center"></el-table-column>
         <el-table-column prop="injectionNum" label="注剂数量" align="center"></el-table-column>
         <!-- <el-table-column label="其他天牛类型">
