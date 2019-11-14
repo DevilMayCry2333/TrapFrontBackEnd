@@ -29,7 +29,7 @@
 
 
           <el-table class="tableGreen"  border :data="QRData.list" style="width: 100%" height="600px" stripe :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
-        <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
+        <el-table-column prop="scanId" label="设备ID" align="center"></el-table-column>
         <el-table-column prop="serial" label="编号" align="center"></el-table-column>
         <el-table-column prop="customTown" label="区域" align="center"></el-table-column>
         <el-table-column prop="submitDate" label="日期" align="center"></el-table-column>
@@ -413,12 +413,12 @@ export default {
                 res => {
                   console.log(res);
                   //这里改了一下
-                this.QRData.list = res.data.Data;
-                this.QRData.total = res.data.total;
+                this.QRData.list = res.data.data;
+                this.QRData.total = res.data.totalNum;
 
-                this.totalWorkDay = res.data.WorkDay;
-                this.totalCutNum = res.data.woodNum;
-                this.totalWoodVolume = res.data.woodVolume;
+                this.totalWorkDay = res.data.data[0].workDaySum;
+                this.totalCutNum = res.data.data[0].woodNumSum;
+                this.totalWoodVolume = res.data.data[0].woodVolumeSum;
 
 
 
@@ -445,11 +445,12 @@ export default {
 
                 },
                 res => {
-                this.QRData.list = res.data.Data;
-                this.QRData.total = res.data.total;
-                  this.totalWorkDay = res.data.WorkDay;
-                this.totalCutNum = res.data.woodNum;
-                this.totalWoodVolume = res.data.woodVolume;
+                this.QRData.list = res.data.data;
+                this.QRData.total = res.data.totalNum;
+
+                this.totalWorkDay = res.data.data[0].workDaySum;
+                this.totalCutNum = res.data.data[0].woodNumSum;
+                this.totalWoodVolume = res.data.data[0].woodVolumeSum;
                 
                 },
                 () => {}
@@ -466,11 +467,14 @@ export default {
                   adcode: this.area
                 },
                 res => {
-                this.QRData.list = res.data.Data;
-                this.QRData.total = res.data.total;
-                this.totalWorkDay = res.data.WorkDay;
-                this.totalCutNum = res.data.woodNum;
-                this.totalWoodVolume = res.data.woodVolume;
+                  console.log(res.data);
+                  
+                this.QRData.list = res.data.data;
+                this.QRData.total = res.data.totalNum;
+
+                this.totalWorkDay = res.data.data[0].workDaySum;
+                this.totalCutNum = res.data.data[0].woodNumSum;
+                this.totalWoodVolume = res.data.data[0].woodVolumeSum;
                 },
                 () => {}
             );
@@ -481,8 +485,8 @@ export default {
                 "post",
                 { page: this.QRData.page, limit: 10, username: sessionStorage['username'],adcode:this.city},
                 res => {
-                this.QRData.list = res.data.Data;
-                this.QRData.total = res.data.total;
+                this.QRData.list = res.data.data.data;
+                this.QRData.total = res.data.data.totalNum;
 
                 },
                 () => {}
@@ -492,11 +496,13 @@ export default {
     },
     data(){
         return{
-                EditMaintenanceDialog: {
-        visible: false,
-        totalWoodVolume:0,
+                  totalWoodVolume:0,
         totalWorkDay:0,
         totalCutNum:0,
+
+                EditMaintenanceDialog: {
+        visible: false,
+
         form: {
           id: 0,
           batch:0,

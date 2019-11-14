@@ -32,7 +32,7 @@
         class="tableGreen" border :data="DryWatchData.list" style="width: 100%" height="600"
         stripe 
         :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
-      <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
+      <el-table-column prop="scanId" label="设备ID" align="center"></el-table-column>
       <el-table-column prop="serial" label="编号" align="center"></el-table-column>
       <el-table-column prop="customTown" label="区域" align="center"></el-table-column>
       <el-table-column prop="submitDate" label="日期" align="center"></el-table-column>
