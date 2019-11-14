@@ -36,6 +36,12 @@
         <!-- <el-table-column prop="batch" label="批次" align="center"></el-table-column> -->
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
         <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
+        <el-table-column prop="altitude" label="海拔" align="center"></el-table-column>
+        <el-table-column label="位置" width="200px" align="center">
+          <template
+            slot-scope="scope"
+          >{{scope.row.province + scope.row.city + scope.row.area + scope.row.town}}</template>
+        </el-table-column>
         <el-table-column prop="wooddiameter" label="桩径(cm)" align="center"></el-table-column>
         <el-table-column prop="woodheight" label="树高(m)" align="center"></el-table-column>
         <el-table-column prop="woodvolume" label="材积(m³)" align="center"></el-table-column>

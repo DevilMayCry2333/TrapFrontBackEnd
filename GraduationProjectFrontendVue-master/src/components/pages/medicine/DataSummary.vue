@@ -25,14 +25,14 @@
     </div>
     <div style="font-size:18px;color:#1D7155">
       <br>
-      药剂总质量:{{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp; 防治总面积：{{totalSum}}
+      药剂总质量:{{totalSum}} &nbsp;&nbsp;&nbsp;&nbsp; 防治总面积：{{totalFzSum}}
       <br>
       <br>
     </div>
 
     <el-tabs id="statistics-tabs" v-model="tabPage" type="card">
 
-            <el-card :header="'各' + contentLabelDict[contentLabelIndex] + '药剂防治管理情况表'" style="padding:5px" v-if="this.$store.state.user.role < 4">
+            <el-card :header="'各' + contentLabelDict[contentLabelIndex] + '药剂防治管理情况表'" style="padding:5px; font-size:16px;color:#1D7155" v-if="this.$store.state.user.role < 4">
               <el-table :data="summaryDeviceData.list" :row-style="tableRowStyle">
                 <el-table-column :label="contentLabelDict[contentLabelIndex]" prop="name"></el-table-column>
                 <el-table-column label="设备数量" prop="deviceCount"></el-table-column>
@@ -47,7 +47,7 @@
 
             </el-card>
 
-            <el-card header="各工人药剂防治管理情况表" style="padding:5px" v-if="this.$store.state.user.role >3">
+            <el-card header="各工人药剂防治管理情况表" style="padding:5px; font-size:16px;color:#1D7155" v-if="this.$store.state.user.role >3">
               <el-table :data="summaryWorkerData.list" :row-style="tableRowStyle">
                 <el-table-column label="工人" prop="name"></el-table-column>
                 <el-table-column label="诱捕器总数" prop="deviceCount"></el-table-column>
@@ -60,11 +60,11 @@
               </el-table>
 
             </el-card>
-            <el-card header="各项目工程药剂防治情况表" style="padding:5px" v-if="this.$store.state.user.role ==3">
+            <el-card header="各项目工程药剂防治情况表" style="padding:5px; font-size:16px;color:#1D7155" v-if="this.$store.state.user.role ==3">
                           <el-table :data="summaryManagerData.list" :row-style="tableRowStyle">
                             <el-table-column label="项目工程" prop="name"></el-table-column>
                             <el-table-column label="设备数量" prop="deviceCount"></el-table-column>
-                            <el-table-column label="药剂总质量（kg）" prop="medicineQuaSum"></el-table-column>
+                            <el-table-column label="施药总数量（kg）" prop="medicineQuaSum"></el-table-column>
                             <el-table-column label="防治总面积（㎡）" prop="areaFzSum"></el-table-column>
                             <el-table-column label="操作">
                               <template slot-scope="scope">

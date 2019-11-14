@@ -32,11 +32,11 @@
 
     <el-tabs id="statistics-tabs" v-model="tabPage" type="card">
 
-            <el-card :header="'各' + contentLabelDict[contentLabelIndex] + '枯死树管理情况表'" style="padding:5px" v-if="this.$store.state.user.role < 4">
+            <el-card :header="'各' + contentLabelDict[contentLabelIndex] + '枯死树管理情况表'" style="padding:5px; font-size:16px;color:#1D7155" v-if="this.$store.state.user.role < 4">
               <el-table :data="summaryDeviceData.list" :row-style="tableRowStyle">
                 <el-table-column :label="contentLabelDict[contentLabelIndex]" prop="name"></el-table-column>
                 <el-table-column label="枯死树数量" prop="woodNum"></el-table-column>
-                <el-table-column label="总材积" prop="woodVolume"></el-table-column>
+                <el-table-column label="总材积（m³）" prop="woodVolume"></el-table-column>
                 <el-table-column label="处理方式(株)" prop="mannerSum0"></el-table-column>
                 <el-table-column label="操作">
                   <template slot-scope="scope">
@@ -47,7 +47,7 @@
 
             </el-card>
 
-            <el-card header="各工人枯死树管理情况表" style="padding:5px" v-if="this.$store.state.user.role >3">
+            <el-card header="各工人枯死树管理情况表" style="padding:5px; font-size:16px;color:#1D7155" v-if="this.$store.state.user.role >3">
               <el-table :data="summaryWorkerData.list" :row-style="tableRowStyle">
                 <el-table-column label="工人" prop="name"></el-table-column>
                 <el-table-column label="诱捕器总数" prop="deviceCount"></el-table-column>
@@ -60,11 +60,11 @@
               </el-table>
 
             </el-card>
-            <el-card header="各项目工程诱捕情况表" style="padding:5px" v-if="this.$store.state.user.role ==3">
+            <el-card header="各项目工程诱捕情况表" style="padding:5px; font-size:16px;color:#1D7155" v-if="this.$store.state.user.role ==3">
                           <el-table :data="summaryManagerData.list" :row-style="tableRowStyle">
                             <el-table-column label="项目工程" prop="name"></el-table-column>
                             <el-table-column label="枯死树数量" prop="woodNum"></el-table-column>
-                            <el-table-column label="总材积" prop="woodVolume"></el-table-column>
+                            <el-table-column label="总材积（m³）" prop="woodVolume"></el-table-column>
                             <el-table-column label="处理方式(株)" prop="mannerSum"></el-table-column>
                             <el-table-column label="操作">
                               <template slot-scope="scope">

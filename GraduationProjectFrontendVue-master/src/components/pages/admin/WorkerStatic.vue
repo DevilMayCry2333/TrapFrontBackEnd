@@ -11,11 +11,13 @@
         style="width: 100%" height="600" 
         stripe 
         :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
-        <el-table-column prop="Worker" label="用户名（工人）" align="center"></el-table-column>
-        <el-table-column prop="Num" label="维护诱捕器总个次" align="center"></el-table-column>
-        <el-table-column prop="Num1" label="捕获松墨天牛数量" align="center"></el-table-column>
-        <el-table-column prop="Num2" label="捕获其它天牛数量" align="center"></el-table-column>
-        <el-table-column prop="Num3" label="捕获天牛总数" align="center"></el-table-column>
+        <el-table-column prop="Worker" label="工人名称" align="center"></el-table-column>
+        <el-table-column prop="Worker" label="姓名" align="center"></el-table-column>
+        <el-table-column prop="Num" label="管理诱捕器数量" align="center"></el-table-column>
+        <el-table-column prop="distinctId" label="维护诱捕器数量" align="center"></el-table-column>
+        <el-table-column prop="Num1" label="松墨天牛数量" align="center"></el-table-column>
+        <el-table-column prop="Num2" label="其它天牛数量" align="center"></el-table-column>
+        <el-table-column prop="Num3" label="天牛总数" align="center"></el-table-column>
         <el-table-column prop="day" label="出勤天数" align="center"></el-table-column>
         <el-table-column prop="Avg" label="日均维护诱捕器个次" align="center"></el-table-column>
         <el-table-column prop="Avg1" label="日均捕获天牛数" align="center"></el-table-column>

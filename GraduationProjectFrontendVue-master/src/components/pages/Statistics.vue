@@ -28,7 +28,7 @@
     </div>
     <el-tabs id="statistics-tabs" v-model="tabPage" type="card">
       <el-tab-pane label="描述性统计分析" name="first">
-        <el-card header="描述性统计分析表" style="padding:5px">
+        <el-card header="描述性统计分析表" style="padding:5px;font-size:16px;color:#1D7155">
           <el-table :data="summaryList" :row-style="tableRowStyle">
             <el-table-column :label="contentLabelDict[contentLabelIndex]" prop="name"></el-table-column>
             <el-table-column label="诱捕器数量" prop="count"></el-table-column>
@@ -61,7 +61,7 @@
         </el-card>
       </el-tab-pane>
       <el-tab-pane label="多重比较" name="third">
-        <el-card header="差异性分析" style="width:100%; padding: 5px">
+        <el-card header="差异性分析" style="width:100%; padding: 5px;font-size:16px;color:#1D7155"> 
           <el-select v-model="mcType" style="margin-top:0px;margin-bottom:10px;">
             <el-option value="0" key="LSD" label="LSD">LSD</el-option>
             <el-option value="1" key="SCHEFFE" label="SCHEFFE">SCHEFFE</el-option>

@@ -13,19 +13,17 @@
             </el-select>
             <!--<span style="font-size: 14px; margin-left: 14px">搜索内容:</span>
             <el-input style="width: 200px" placeholder="搜索内容" v-model="searchText"></el-input> -->
-            <el-button type="primary" @click="handleSubmit">搜索</el-button>
+            <el-button id="search" type="primary" @click="handleSubmit">搜索</el-button>
         </div>
       </div>
         <!-- </div> -->
     <el-table class="tableGreen" border :data="DryWatchData.list" style="width: 100%" height="600" stripe :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
-      <el-table-column prop="customtown" label="区域" align="center"></el-table-column>
+      <el-table-column prop="customTown" label="区域" align="center"></el-table-column>
       <el-table-column prop="startDate" label="起始日期" align="center"></el-table-column>
       <el-table-column prop="endDate" label="截止日期" align="center"></el-table-column>
-      <el-table-column prop="injectNumSum" label="注剂数量" align="center"></el-table-column>
-      <el-table-column prop="woodNum" label="注药株数" align="center"></el-table-column>
-      <el-table-column prop="woodStatusSum" label="枯死株数" align="center"></el-table-column>
-      <el-table-column prop="averageNum" label="株均注药数量" align="center"></el-table-column>
-      <el-table-column prop="deadRate" label="枯死率" align="center"></el-table-column>
+      <el-table-column prop="totalDeadId" label="枯死树数量（株）" align="center"></el-table-column>
+      <el-table-column prop="totalWoodVolume" label="枯死树材积（m³）" align="center"></el-table-column>
+        <el-table-column prop="deadTreesMannerTotal" label="处理方式（株）" align="center"></el-table-column>
       <el-table-column
         prop="manager"
         label="管理员"
@@ -45,9 +43,8 @@
       ></el-pagination>
       </div>
       <div  class="divcss5-right" >
-        注药株数:{{totalWoodNum}} &nbsp;
-        注剂数量:{{totalInject}} &nbsp;
-        枯死株数:{{totalDeadNum}} &nbsp;
+        枯死树数量（株）:{{totalDeadIdSum}} &nbsp;
+        枯死树材积（m³）:{{totalWoodVolumeSum}} &nbsp;
       </div>
     </div>
     <!-- <div  class="divcss5-right">
@@ -77,7 +74,7 @@
       },
       loadDevice() {
         http.requestWithToken(
-          "/dryWatch/Summary/byCustomReigon",
+          "/deadTree/Summary/byCustomReigon",
           "post",
           {
             page: this.DryWatchData.page,
@@ -92,9 +89,8 @@
             this.DryWatchData.total = res.data.data.totalNum;
             this.DryWatchData.page = res.data.data.currentPage;
 
-            this.totalWoodNum = res.data.data.data[0].totalWoodSum;
-            this.totalInject = res.data.data.data[0].totalInjectSum;
-            this.totalDeadNum = res.data.data.data[0].totalDeadSum;
+            this.totalDeadIdSum = res.data.data.data[0].totalDeadIdSum;
+            this.totalWoodVolumeSum = res.data.data.data[0].totalWoodVolumeSum;
 
             console.log(this.totalWoodNum);
 
@@ -152,7 +148,7 @@
       background-color: #D5E4CF !important;
     }
     .el-table__row--striped{
-      background-color: #ECF0EA !important;
+      background-color: #ECF0EA !important; 
     }
   }
 #search{

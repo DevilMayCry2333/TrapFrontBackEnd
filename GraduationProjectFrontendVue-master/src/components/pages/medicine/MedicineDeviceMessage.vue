@@ -21,7 +21,7 @@
         <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
         <el-table-column prop="batch" label="维护批次" align="center"></el-table-column>
         <el-table-column prop="medicineName" label="药剂名称" align="center"></el-table-column>
-        <el-table-column prop="medicineQua" label="药剂质量（kg）" align="center"></el-table-column>
+        <el-table-column prop="medicineQua" label="施药质量（kg）" align="center"></el-table-column>
         <el-table-column prop="areaFz" label="防治面积（㎡）" align="center"></el-table-column>
          <el-table-column prop="submitDate" label="日期" align="center"></el-table-column>
          <el-table-column prop="workContent" label="工作内容" align="center"></el-table-column>
