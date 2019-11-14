@@ -25,7 +25,7 @@
     </div>
     <div style="font-size:18px;color:#1D7155">
       <br>
-      药剂总质量:{{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp; 防治总面积：{{totalSum}}
+      药剂总质量:{{totalSum}} &nbsp;&nbsp;&nbsp;&nbsp; 防治总面积：{{totalFzSum}}
       <br>
       <br>
     </div>

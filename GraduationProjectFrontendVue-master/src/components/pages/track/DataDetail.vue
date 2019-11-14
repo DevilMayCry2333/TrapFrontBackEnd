@@ -30,9 +30,15 @@
 
             <el-table class="tableGreen" border :data="QRData.list" style="width: 100%" height="600">
               <el-table-column prop="checked" label="选项" align="center">
-                <template>
-                <el-radio v-model="radio" label="1">备选项</el-radio>
+                <template slot-scope="scope">
+                  <el-button
+              @click="showmap(scope.row.pic1)"
+              size="mini"
+            >显示</el-button>
                 </template>
+                <!-- <template>
+                <el-radio v-model="radio" label="1">备选项</el-radio>
+                </template> -->
               </el-table-column>
             <el-table-column prop="linename" label="线路名称" align="center"></el-table-column>
             <el-table-column prop="timeconsume" label="耗时" align="center"></el-table-column>

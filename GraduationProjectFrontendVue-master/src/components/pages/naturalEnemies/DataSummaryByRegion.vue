@@ -18,14 +18,11 @@
       </div>
         <!-- </div> -->
     <el-table class="tableGreen" border :data="DryWatchData.list" style="width: 100%" height="600" stripe :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
-      <el-table-column prop="customtown" label="区域" align="center"></el-table-column>
+      <el-table-column prop="customTown" label="区域" align="center"></el-table-column>
       <el-table-column prop="startDate" label="起始日期" align="center"></el-table-column>
       <el-table-column prop="endDate" label="截止日期" align="center"></el-table-column>
-      <el-table-column prop="injectNumSum" label="注剂数量" align="center"></el-table-column>
-      <el-table-column prop="woodNum" label="注药株数" align="center"></el-table-column>
-      <el-table-column prop="woodStatusSum" label="枯死株数" align="center"></el-table-column>
-      <el-table-column prop="averageNum" label="株均注药数量" align="center"></el-table-column>
-      <el-table-column prop="deadRate" label="枯死率" align="center"></el-table-column>
+      <el-table-column prop="releasePlace" label="释放地点" align="center"></el-table-column>
+      <el-table-column prop="natualMannerTotal" label="天敌类型" align="center"></el-table-column>
       <el-table-column
         prop="manager"
         label="管理员"
@@ -45,9 +42,7 @@
       ></el-pagination>
       </div>
       <div  class="divcss5-right" >
-        注药株数:{{totalWoodNum}} &nbsp;
-        注剂数量:{{totalInject}} &nbsp;
-        枯死株数:{{totalDeadNum}} &nbsp;
+        <!-- 释放地点:{{totalWoodNum}} &nbsp; -->
       </div>
     </div>
     <!-- <div  class="divcss5-right">
@@ -77,7 +72,7 @@
       },
       loadDevice() {
         http.requestWithToken(
-          "/dryWatch/Summary/byCustomReigon",
+          "/natural/Summary/byCustomReigon",
           "post",
           {
             page: this.DryWatchData.page,

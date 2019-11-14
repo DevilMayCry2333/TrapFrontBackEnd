@@ -63,6 +63,8 @@ import MedicineDeviceWanted from '@/components/pages/medicine/MedicineDeviceWant
 import MedicineMaintanceData from '@/components/pages/medicine/MedicineMaintanceData';
 import MedicineDeviceMessage from '@/components/pages/medicine/MedicineDeviceMessage';
 import InjectName from '@/components/pages/admin/InjectName';
+import DataSummaryByRegion from '@/components/pages/naturalEnemies/DataSummaryByRegion'
+import DeadTreesSummaryByregion from '@/components/pages/deadTrees/DeadTreesSummaryByregion'
 Vue.use(Router);
 Vue.config.devtools = true;
 
@@ -226,6 +228,12 @@ export default new Router({
           name: '数据汇总',
           component: SummaryBy
         },
+
+        {
+          path: 'pages/naturalEnemies/datasummarybyregion',
+          name: '数据汇总',
+          component: DataSummaryByRegion
+        },
         
         {
           path: 'pages/drywatch/Maintance',
@@ -262,6 +270,12 @@ export default new Router({
           path: 'pages/medicine/datasummary',
           name: '数据汇总',
           component: DataSummary
+        },
+        {
+          path:'pages/deadtrees/datasummarybyregion',
+          name:'数据汇总',
+          component:DeadTreesSummaryByregion
+
         },
         {
           path: 'pages/natural/maintance',
