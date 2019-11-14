@@ -45,6 +45,7 @@
 
     <div style="padding-top:5px">
       <el-table
+        class="tableGreen" 
         border
         :data="maintenanceData.list"
         style="width: 100%"
@@ -363,7 +364,15 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="scss">
+.tableGreen{
+    .el-table__row{
+      background-color: #D5E4CF !important;
+    }
+    .el-table__row--striped{
+      background-color: #ECF0EA !important;
+    }
+  }
 #tool-row {
   display: flex;
   justify-content: space-between;
@@ -374,7 +383,7 @@ export default {
   display: flex;
   justify-content: space-around;
 }
-.el-button--primary {
+/* .el-button--primary {
     color: #fff;
     background-color: #1D7155;
     border-color: #1D7155;
@@ -388,7 +397,7 @@ export default {
 .el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner {
     background-color: #1D7155;
     border-color: #1D7155;
-}
+} */
 </style>
 
 

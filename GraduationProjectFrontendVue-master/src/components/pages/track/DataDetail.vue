@@ -28,7 +28,13 @@
     </div>
 
 
-            <el-table class="tableGreen" border :data="QRData.list" style="width: 100%" height="600">
+            <el-table class="tableGreen" 
+                      border 
+                      :data="QRData.list" 
+                      style="width: 100%" 
+                      height="600"        
+                      stripe 
+                      :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
               <el-table-column prop="checked" label="选项" align="center">
                 <template slot-scope="scope">
                   <el-button
@@ -41,7 +47,7 @@
                 </template> -->
               </el-table-column>
             <el-table-column prop="linename" label="线路名称" align="center"></el-table-column>
-            <el-table-column prop="timeconsume" label="耗时" align="center"></el-table-column>
+            <el-table-column prop="timeconsume" label="耗时(秒)" align="center"></el-table-column>
             <el-table-column prop="starttime" label="开始时间" align="center"></el-table-column>
             <el-table-column prop="endtime" label="结束时间" align="center"></el-table-column>
             <el-table-column prop="startpoint" label="起点(经纬度)" align="center"></el-table-column>

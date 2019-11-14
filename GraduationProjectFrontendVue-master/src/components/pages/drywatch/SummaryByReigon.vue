@@ -13,7 +13,7 @@
             </el-select>
             <!--<span style="font-size: 14px; margin-left: 14px">搜索内容:</span>
             <el-input style="width: 200px" placeholder="搜索内容" v-model="searchText"></el-input> -->
-            <el-button id="search" type="primary" @click="handleSubmit">搜索</el-button>
+            <el-button type="primary" @click="handleSubmit">搜索</el-button>
         </div>
       </div>
         <!-- </div> -->

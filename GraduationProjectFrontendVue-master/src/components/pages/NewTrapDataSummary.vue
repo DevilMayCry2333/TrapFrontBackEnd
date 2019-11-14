@@ -16,8 +16,8 @@
         </el-option>
       </el-select>
       <el-input v-model="input" placeholder="请输入内容" style="width: 170px;margin-right:1px;"></el-input>
-      <el-button type="primary" @click="query()" style="background-color: #1d7155;border-color: #1d7155;">查询</el-button>
-      <el-button type="primary" @click="exportExcel" style="background-color: #1d7155;border-color: #1d7155;">导出</el-button>
+      <el-button type="primary" @click="query()" >查询</el-button>
+      <el-button type="primary" @click="exportExcel" >导出</el-button>
   </div>
   
 
@@ -235,13 +235,14 @@ export default {
   justify-content: space-between;
   margin-bottom: 5px;
 }
-/* 下拉框的框线 */
-.el-select .el-input.is-focus .el-input__inner {
-    border-color: #70AD47;
-}
-/* 输入框的框线 */
-.el-input.is-active .el-input__inner, .el-input__inner:focus {
-    border-color: #70AD47;
-    outline: 0;
-}
+
+// /* 下拉框的框线 */
+// .el-select .el-input.is-focus .el-input__inner {
+//     border-color: #70AD47;
+// }
+// /* 输入框的框线 */
+// .el-input.is-active .el-input__inner, .el-input__inner:focus {
+//     border-color: #70AD47;
+//     outline: 0;
+// }
 </style>

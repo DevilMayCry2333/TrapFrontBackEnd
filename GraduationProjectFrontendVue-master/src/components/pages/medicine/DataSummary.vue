@@ -36,7 +36,7 @@
               <el-table :data="summaryDeviceData.list" :row-style="tableRowStyle">
                 <el-table-column :label="contentLabelDict[contentLabelIndex]" prop="name"></el-table-column>
                 <el-table-column label="设备数量" prop="deviceCount"></el-table-column>
-                <el-table-column label="药剂质量（kg）" prop="medicineQuaSum"></el-table-column>
+                <el-table-column label="施药数量（kg）" prop="medicineQuaSum"></el-table-column>
                 <el-table-column label="防治面积（㎡）" prop="areaFzSum"></el-table-column>
                 <el-table-column label="操作">
                   <template slot-scope="scope">

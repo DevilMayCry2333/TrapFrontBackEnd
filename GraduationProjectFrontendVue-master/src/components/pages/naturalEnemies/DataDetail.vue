@@ -13,17 +13,17 @@
           </el-option>
         </el-select>
         <el-input v-model="input" placeholder="请输入内容" style="width: 180px;"></el-input>
-        <el-button id="search" type="primary" @click="query()">查询</el-button>
+        <el-button type="primary" @click="query()">查询</el-button>
     </div>  
     <div style=" display: flex;" >
-      <el-button id="download" type="primary" @click="exportExcel">导出</el-button>
+      <el-button type="primary" @click="exportExcel">导出</el-button>
         <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
 
         <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
         <el-upload  class="upload-demo" ref="upload"
         :action="uploadUrl"
         :on-success="loadMaintenanceData">
-          <el-button id="upload" type="primary"  style="margin-left:20px" >导入</el-button>
+          <el-button  type="primary"  style="margin-left:20px" >导入</el-button>
         </el-upload>
     </div>
   </div>
@@ -33,9 +33,9 @@
           border :data="QRData.list" style="width: 100%" height="600"
           stripe 
           :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
-        <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
+        <el-table-column prop="scanId" label="设备ID" align="center"></el-table-column>
         <el-table-column prop="serial" label="编号" align="center"></el-table-column>
-        <el-table-column prop="customtown" label="所属区域" align="center"></el-table-column>
+        <el-table-column prop="customTown" label="区域" align="center"></el-table-column>
         <el-table-column prop="submitDate" label="日期" align="center"></el-table-column>
         <el-table-column prop="batch" label="批次" align="center"></el-table-column>
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
@@ -364,12 +364,12 @@ export default {
                 },
                 res => {
                   console.log(res);
-                this.QRData.list = res.data.Data;
-                this.QRData.total = res.data.total;
+                this.QRData.list = res.data.data;
+                this.QRData.total = res.data.totalNum;
 
-                this.LuanKaNum = res.data.LuanKaNum;
-                this.releaseNum = res.data.releaseNum;
-                this.releasePlace = res.data.DeviceNum;
+                this.LuanKaNum = res.data.data[0].LuanKaNum;
+                this.releaseNum = res.data.data[0].releaseNum;
+                this.releasePlace = res.data.data[0].deviceNum;
 
 
                 },
@@ -402,7 +402,7 @@ export default {
 
                 this.LuanKaNum = res.data.LuanKaNum;
                 this.releaseNum = res.data.releaseNum;
-                this.releasePlace = res.data.DeviceNum;
+                this.releasePlace = res.data.deviceNum;
 
                 },
                 () => {}
@@ -419,12 +419,17 @@ export default {
                   adcode: this.area
                 },
                 res => {
-                this.QRData.list = res.data.Data;
-                this.QRData.total = res.data.total;
+                                console.log(res.data);
 
-                this.LuanKaNum = res.data.LuanKaNum;
-                this.releaseNum = res.data.releaseNum;
-                this.releasePlace = res.data.DeviceNum;
+                this.QRData.list = res.data.data.data;
+                this.QRData.total = res.data.data.totalNum;
+
+
+                
+
+                this.LuanKaNum = res.data.data.data[0].luanKaNumSum;
+                this.releaseNum = res.data.data.data[0].releaseNum;
+                this.releasePlace = res.data.data.data[0].deviceNum;
 
                 },
                 () => {}
@@ -525,15 +530,15 @@ export default {
     color: #fff;
     height:fit-content;
 }
-.el-button--danger:focus{
-    background: #f78989;
-    border-color: #f78989;
-    color: #fff;
-}
-.el-button--danger:hover{
-    background: #1d7155;
-    border-color: #1d7155;
-    color: #fff;
-}
+// .el-button--danger:focus{
+//     background: #f78989;
+//     border-color: #f78989;
+//     color: #fff;
+// }
+// .el-button--danger:hover{
+//     background: #1d7155;
+//     border-color: #1d7155;
+//     color: #fff;
+// }
 .divcss5-right{float:right} 
 </style>

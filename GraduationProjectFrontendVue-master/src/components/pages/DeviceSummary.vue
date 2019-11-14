@@ -23,7 +23,7 @@
       </el-select>
       <el-date-picker v-model="startDate" type="date" value-format="yyyy-MM-dd" placeholder="起始日期"></el-date-picker>
       <el-date-picker v-model="endDate" type="date" value-format="yyyy-MM-dd" placeholder="终止日期"></el-date-picker>
-      <el-button id="search" type="primary" @click="query()">查询</el-button>
+      <el-button type="primary" @click="query()">查询</el-button>
     </div>
     <div style="font-size:18px;color:#1D7155">
       <br>
@@ -532,9 +532,9 @@ this.$router.push({ path: '/pages/device_maintenance.html' });
   border-top-color: white;
   border-bottom-color: white;
 }
-.el-pagination li.active{
+
+/* .el-pagination li.active{
   background-color:#70AD47!important;
-  /* color: #fff !important; */
 } 
 .el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner {
   background-color: #1D7155;
@@ -564,7 +564,7 @@ this.$router.push({ path: '/pages/device_maintenance.html' });
   color: #fff;
   background-color: #1D7155;
   border-color: #1D7155;
-}
+} */
 
 </style>
 

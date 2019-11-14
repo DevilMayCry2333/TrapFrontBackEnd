@@ -26,10 +26,10 @@
         ></el-date-picker>
         <el-date-picker v-model="endDate" type="date" value-format="yyyy-MM-dd" placeholder="终止日期"
         ></el-date-picker>
-        <el-button id="search" type="primary" @click="query()">搜索</el-button>
+        <el-button type="primary" @click="query()">搜索</el-button>
       </div>
       <div style=" display: flex;">
-        <el-button id="download" type="primary" @click="download()">下载</el-button>
+        <el-button type="primary" @click="download()">下载</el-button>
       </div>
     </div>
     <div style="padding-top:5px">
@@ -327,13 +327,13 @@ export default {
     border-color: #1D7155;
 
 }
-.el-tabs__item.is-active {
+/* .el-tabs__item.is-active {
     color: #1D7155;
 }
 .el-tabs__item:hover {
     color: #1D7155;
     cursor: pointer;
-}
+} */
 </style>
 
 

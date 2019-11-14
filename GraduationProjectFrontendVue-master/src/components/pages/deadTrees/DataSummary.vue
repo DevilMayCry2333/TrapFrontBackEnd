@@ -21,11 +21,12 @@
       </el-select>
       <el-date-picker v-model="startDate" type="date" value-format="yyyy-MM-dd" placeholder="起始日期"></el-date-picker>
       <el-date-picker v-model="endDate" type="date" value-format="yyyy-MM-dd" placeholder="终止日期"></el-date-picker>
-      <el-button id="search" type="primary" @click="query()">查询</el-button>
+      <el-button type="primary" @click="query()">查询</el-button>
     </div>
     <div style="font-size:18px;color:#1D7155">
       <br>
        枯死木总株数:{{totalCount}} &nbsp;&nbsp;&nbsp;&nbsp; 总材积数：{{totalSum}}
+      <br>
       <br>
     </div>
 
@@ -36,10 +37,10 @@
                 <el-table-column :label="contentLabelDict[contentLabelIndex]" prop="name"></el-table-column>
                 <el-table-column label="枯死树数量" prop="woodNum"></el-table-column>
                 <el-table-column label="总材积" prop="woodVolume"></el-table-column>
-                <el-table-column label="处理方式" prop="mannerSum0"></el-table-column>
+                <el-table-column label="处理方式(株)" prop="mannerSum0"></el-table-column>
                 <el-table-column label="操作">
                   <template slot-scope="scope">
-                    <el-button id="chakan" type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
+                    <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
                   </template>
                 </el-table-column>
               </el-table>
@@ -53,7 +54,7 @@
                 <el-table-column label="总诱虫量" prop="releaseNum"></el-table-column>
                 <el-table-column label="操作">
                   <template slot-scope="scope">
-                    <el-button id="chakan1" type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
+                    <el-button  type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
                   </template>
                 </el-table-column>
               </el-table>
@@ -64,10 +65,10 @@
                             <el-table-column label="项目工程" prop="name"></el-table-column>
                             <el-table-column label="枯死树数量" prop="woodNum"></el-table-column>
                             <el-table-column label="总材积" prop="woodVolume"></el-table-column>
-                            <el-table-column label="处理方式" prop="mannerSum"></el-table-column>
+                            <el-table-column label="处理方式(株)" prop="mannerSum"></el-table-column>
                             <el-table-column label="操作">
                               <template slot-scope="scope">
-                                <el-button id="chakan2" type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
+                                <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
                               </template>
                             </el-table-column>
                           </el-table>
@@ -536,7 +537,7 @@ this.$router.push({ path: '/pages/deadTrees/Maintance' });
     background-color: #1D7155;
     border-color: #1D7155;
 }
-.el-button--primary {
+/* .el-button--primary {
     background: #1D7155;
     border-color: #1D7155;
     color: #fff;
@@ -545,7 +546,7 @@ this.$router.push({ path: '/pages/deadTrees/Maintance' });
     color: #fff;
     background-color: #1D7155;
     border-color: #1D7155;
-}
+} */
 </style>
 
 

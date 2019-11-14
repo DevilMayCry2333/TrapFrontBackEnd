@@ -69,8 +69,8 @@
         </el-form-item> -->
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button id="cancel" @click="changePasswordDialog.visible = false">取 消</el-button>
-        <el-button id="sure" type="primary" @click.native.prevent="handleChangePasswordSubmit">确 定</el-button>
+        <el-button  @click="changePasswordDialog.visible = false">取 消</el-button>
+        <el-button  type="primary" @click.native.prevent="handleChangePasswordSubmit">确 定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -336,14 +336,14 @@ export default {
     background-color: #1D7155;
     border-color: #1D7155;
 }
-.el-button--primary {
-    color: #fff;
-    background-color: #1D7155;
-    border-color: #1D7155;
-}
-.el-button--primary:focus,.el-button--primary:hover {
-    color: #fff;
-    background-color: #1D7155;
-    border-color: #1D7155;
-}
+// .el-button--primary {
+//     color: #fff;
+//     background-color: #1D7155;
+//     border-color: #1D7155;
+// }
+// .el-button--primary:focus,.el-button--primary:hover {
+//     color: #fff;
+//     background-color: #1D7155;
+//     border-color: #1D7155;
+// }
 </style>

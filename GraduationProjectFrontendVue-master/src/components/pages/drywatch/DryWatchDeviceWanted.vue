@@ -17,7 +17,7 @@
           value-format="yyyy-MM-dd"
           placeholder="终止日期"
         ></el-date-picker>
-        <el-button id="search" type="primary" @click="buttonLoadMaintenanceData">搜索</el-button>
+        <el-button type="primary" @click="buttonLoadMaintenanceData">搜索</el-button>
       </div>
       <div style=" display: flex;">
         <!-- <el-button type="primary" @click="showAdd">添加</el-button> -->
@@ -32,7 +32,6 @@
           @click="handleDelete"
         >删除</el-button>-->
         <el-button
-          id="report"
           type="primary"
           @click="handleReportMaintenanceData"
           v-if="this.$store.state.user.role == 3"
@@ -42,19 +41,20 @@
           @click="handleDeleteSome"
           
         >批量删除</el-button> -->
-        <el-button id="download" type="primary" @click="exportExcel">导出</el-button>
+        <el-button type="primary" @click="exportExcel" style="margin-right:10px">导出</el-button>
         <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
         
         <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
         <el-upload  class="upload-demo" ref="upload"
         :action="uploadUrl"
         :on-success="loadMaintenanceData">
-          <el-button id="upload" type="primary" >导入</el-button>
+          <el-button type="primary" >导入</el-button>
         </el-upload>
       </div>
     </div>
     <div style="padding-top:5px">
       <el-table
+        class="tableGreen" 
         ref="table"
         border
         :data="maintenanceData.list"
@@ -74,7 +74,7 @@
           </template>
         </el-table-column>-->
         <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
-        <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
+        <el-table-column prop="scanid" label="设备ID" align="center"></el-table-column>
         <el-table-column prop="batch" label="批次" align="center"></el-table-column>
         <el-table-column prop="injectionNum" label="注剂数量" align="center"></el-table-column>
         <!-- <el-table-column label="其他天牛类型">
@@ -564,7 +564,15 @@ this.uploadUrl =
   }
 };
 </script>
-<style>
+<style lang="scss">
+.tableGreen{
+    .el-table__row{
+      background-color: #D5E4CF !important;
+    }
+    .el-table__row--striped{
+      background-color: #ECF0EA !important;
+    }
+  }
 #tool-row {
   display: flex;
   justify-content: space-between;
@@ -573,7 +581,7 @@ this.uploadUrl =
   display: flex;
   justify-content: space-around;
 }
-.el-input.is-active .el-input__inner, .el-input__inner:focus{
+/* .el-input.is-active .el-input__inner, .el-input__inner:focus{
   border-color: #67c23a;
   outline: 0;
 }
@@ -586,7 +594,7 @@ this.uploadUrl =
 
 .el-select .el-input.is-focus .el-input__inner {
   border-color: #67c23a;
-}
+} */
 #search{
     background: #1D7155;
     border-color: #1D7155;
@@ -611,7 +619,7 @@ this.uploadUrl =
     height: fit-content;
     margin-right: 10px;
 }
-.el-button--danger {
+/* .el-button--danger {
     color: #fff;
     background-color: #1D7155;
     border-color: #1D7155;
@@ -620,5 +628,5 @@ this.uploadUrl =
     background: #f78989;
     border-color: #f78989;
     color: #fff;
-}
+} */
 </style>

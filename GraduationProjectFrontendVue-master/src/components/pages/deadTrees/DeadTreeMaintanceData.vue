@@ -45,6 +45,7 @@
 
     <div style="padding-top:5px">
       <el-table
+        class="tableGreen" 
         border
         :data="maintenanceData.list"
         style="width: 100%"
@@ -90,7 +91,6 @@
                 size="mini"
                 type="primary"
                 @click="showEditMaintenanceDataDialog(scope.row)"
-
               >查看</el-button>
 
           </template>
@@ -364,7 +364,15 @@ export default {
   }
 };
 </script>
-<style>
+<style lang="scss">
+.tableGreen{
+    .el-table__row{
+      background-color: #D5E4CF !important;
+    }
+    .el-table__row--striped{
+      background-color: #ECF0EA !important;
+    }
+  }
 #tool-row {
   display: flex;
   justify-content: space-between;

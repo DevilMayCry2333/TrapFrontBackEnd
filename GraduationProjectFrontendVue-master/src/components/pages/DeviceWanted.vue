@@ -28,7 +28,7 @@
           </el-option>
         </el-select>
         <el-input v-model="input" placeholder="请输入内容" style="width: 170px"></el-input>
-        <el-button id="search" type="primary" @click="getFuckingSearch">搜索</el-button>
+        <el-button type="primary" @click="getFuckingSearch">搜索</el-button>
       </div>
       
           <!-- <el-button type="primary" @click="showAdd">添加</el-button> -->
@@ -44,21 +44,18 @@
           >删除</el-button>-->
       <div id="threebuttons">
           <el-button
-            id="report"
             type="primary"
             @click="handleReportMaintenanceData"
             v-if="this.$store.state.user.role == 3"
           >上报</el-button>
           <el-button
-            id="delete"
             type="primary"
             @click="handleDeleteSome"
           >批量删除</el-button>
-          <el-button 
-            id="download" 
+          <el-button
             type="primary" 
             @click="exportExcel"
-            style="margin-right:10px;height: fit-content;background-color: #1d7155;border-color: #1d7155;">导出</el-button>
+            style="margin-right:10px;height:fit-content;">导出</el-button>
           <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
 
           <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
@@ -68,9 +65,7 @@
             :action="uploadUrl"
             :on-success="loadMaintenanceData">
             <el-button 
-            id="shangchuang" 
             type="primary" 
-            style="background-color: #1d7155;border-color: #1d7155;"
             >导入</el-button>
           </el-upload>
       </div>
@@ -97,15 +92,15 @@
           </template>
         </el-table-column>-->
         <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
-        <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
-        <el-table-column prop="customserial" label="编号" align="center"></el-table-column>
-        <el-table-column  v-if="this.$store.state.user.role == 4" prop="customtown" label="区域" align="center"></el-table-column>
+        <el-table-column prop="scanId" label="设备ID" align="center"></el-table-column>
+        <el-table-column prop="customSerial" label="编号" align="center"></el-table-column>
+        <el-table-column  v-if="this.$store.state.user.role == 4" prop="customTown" label="区域" align="center"></el-table-column>
         <el-table-column prop="date" label="日期"></el-table-column>
         <el-table-column prop="batch" label="批次" align="center"></el-table-column>
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
         <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
         <el-table-column prop="altitude" label="海拔" align="center"></el-table-column>
-        <el-table-column prop="workcontentfront" label="工作内容" align="center">
+        <el-table-column prop="workContentFront" label="工作内容">
           <!-- <template
             slot-scope="scope"
           >{{maintenanceData.workingContentDict[scope.row.workingContent]}}</template> -->
@@ -113,11 +108,11 @@
         <!-- <el-table-column  v-if="this.$store.state.user.role <= 3" prop="town" label="区域" align="center"></el-table-column> -->
           
         <el-table-column prop="num" label="松墨天牛数量" align="center"></el-table-column>
-        <el-table-column label="其它天牛" align="center">
-          <template slot-scope="scope">{{otherBeetleDict["t" + scope.row.otherType]}}</template>
+        <el-table-column prop="otherBeetleFront" label="其它天牛" align="center">
+
         </el-table-column>
         <el-table-column prop="otherNum" label="其它天牛数量" align="center"></el-table-column>
-        <el-table-column prop="drug" label="诱芯类型" align="center"></el-table-column>
+        <el-table-column prop="drugFront" label="诱芯类型"></el-table-column>
         <el-table-column v-if="this.$store.state.user.role != 4" label="位置" width="200px" align="center">
           <template
             slot-scope="scope"
@@ -132,9 +127,9 @@
             >显示</el-button>
           </template>
         </el-table-column>
-        <el-table-column prop="username" label="施工人员"></el-table-column>
-        <el-table-column prop="remark" label="备注"></el-table-column>
-        <el-table-column label="是否上报">
+        <el-table-column prop="username" label="施工人员" align="center"></el-table-column>
+        <el-table-column prop="remark" label="备注" align="center"></el-table-column>
+        <el-table-column label="是否上报" align="center">
           <template slot-scope="scope">{{scope.row.reported ? '是': '否'}}</template>
         </el-table-column>
 
@@ -756,33 +751,29 @@ this.uploadUrl =
 #threebuttons{
   display: flex;
 }
-.el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner {
-    background-color: #1D7155;
-    border-color: #1D7155;
-}
-/* .el-button--danger:focus, .el-button--primary:hover {
-    background: #f78989;
-    border-color: #f78989;
-    color: #fff;
-} */
-.el-button--primary {
-    color: #fff;
-    background-color: #1D7155;
-    border-color:#1D7155;
-}
+// .el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner {
+//     background-color: #1D7155;
+//     border-color: #1D7155;
+// }
 
-.el-button--primary:focus, .el-button--primary:hover {
-    background: #1D7155;
-    border-color: #1D7155;
-    color: #fff;
-}
-.el-pagination.is-background .el-pager li:not(.disabled).active {
-    background-color: #70AD47;
-    color: #fff;
-}
-.el-pagination.is-background .el-pager li:not(.disabled):hover {
-    color: #70AD47;
-}
+// .el-button--primary {
+//     color: #fff;
+//     background-color: #1D7155;
+//     border-color:#1D7155;
+// }
+
+// .el-button--primary:focus, .el-button--primary:hover {
+//     background: #1D7155;
+//     border-color: #1D7155;
+//     color: #fff;
+// }
+// .el-pagination.is-background .el-pager li:not(.disabled).active {
+//     background-color: #70AD47;
+//     color: #fff;
+// }
+// .el-pagination.is-background .el-pager li:not(.disabled):hover {
+//     color: #70AD47;
+// }
 
 </style>
 

@@ -13,17 +13,17 @@
               </el-select>
               <!-- <span style="font-size: 14px; margin-left: 14px">搜索内容:</span> -->
               <el-input style="width: 200px" placeholder="搜索内容" v-model="searchText"></el-input>
-              <el-button id="search" type="primary" @click="handleSubmit">搜索</el-button>
+              <el-button type="primary" @click="handleSubmit">搜索</el-button>
         </div>
         <div style="display: flex;" class="divcss5-right">
-          <el-button id="download" type="primary" @click="exportExcel" style="height: fit-content;">导出</el-button>
+          <el-button  type="primary" @click="exportExcel" style="height: fit-content;">导出</el-button>
             <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
 
             <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
             <el-upload  class="upload-demo" ref="upload"
             :action="uploadUrl"
             :on-success="loadDevice">
-              <el-button id="upload" type="primary" style="margin-left:20px" >导入</el-button>
+              <el-button type="primary" style="margin-left:20px" >导入</el-button>
             </el-upload>
         </div>
       </div>
@@ -33,7 +33,7 @@
         border :data="DryWatchData.list" style="width: 100%" height="600"
         stripe 
         :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
-      <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
+      <el-table-column prop="scanId" label="设备ID" align="center"></el-table-column>
       <el-table-column prop="serial" label="编号" align="center"></el-table-column>
       <el-table-column prop="customtown" label="区域" align="center"></el-table-column>
       <el-table-column prop="submitDate" label="日期" align="center"></el-table-column>
@@ -45,11 +45,11 @@
       <el-table-column prop="batch" label="批次" align="center"></el-table-column>
       <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
       <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
-      <el-table-column prop="workContent" label="工作内容" align="center"></el-table-column>
+      <el-table-column prop="workContentFront" label="工作内容" align="center"></el-table-column>
       <el-table-column prop="injectionNum" label="注剂数量" align="center"></el-table-column>
-      <el-table-column prop="woodstatus" label="树木状态" align="center"></el-table-column>
+      <el-table-column prop="woodStatusFront" label="树木状态" align="center"></el-table-column>
       <el-table-column prop="chestDiameter" label="胸径(cm)" align="center"></el-table-column>
-      <el-table-column prop="injectName" label="注剂类型" align="center"></el-table-column>
+      <el-table-column prop="injectNameFront" label="注剂名称" align="center"></el-table-column>
       <el-table-column prop="pic" label="照片" align="center">
         <template slot-scope="scope" align="center">
             <el-button
@@ -78,7 +78,6 @@
           <template slot-scope="scope">
             <div v-if="!scope.row.reported">
               <el-button
-                id="edit"
                 size="mini"
                 type="primary"
                 @click="showEditMaintenanceDataDialog(scope.row)"
@@ -508,34 +507,34 @@
     border-color: #1D7155;
     color: #fff;
 }
-.el-button--primary {
-    background: #1D7155;
-    border-color: #1D7155;
-    color: #fff;
-}
-.el-input.is-active .el-input__inner, .el-input__inner:focus{
-  border-color: #67c23a;
-  outline: 0;
-}
-.el-select .el-input.is-focus .el-input__inner {
-  border-color: #67c23a;
-}
-.el-select .el-input__inner:focus{
-  border-color: #67c23a;
-}
+// .el-button--primary {
+//     background: #1D7155;
+//     border-color: #1D7155;
+//     color: #fff;
+// }
+// .el-input.is-active .el-input__inner, .el-input__inner:focus{
+//   border-color: #67c23a;
+//   outline: 0;
+// }
+// .el-select .el-input.is-focus .el-input__inner {
+//   border-color: #67c23a;
+// }
+// .el-select .el-input__inner:focus{
+//   border-color: #67c23a;
+// }
 
-.el-select .el-input.is-focus .el-input__inner {
-  border-color: #67c23a;
-}
-.el-button--danger {
-    color: #fff;
-    background-color: #1D7155;
-    border-color: #1D7155;
-}
-.el-button--danger:focus, .el-button--danger:hover {
-    background: #f78989;
-    border-color: #f78989;
-    color: #fff;
-}
+// .el-select .el-input.is-focus .el-input__inner {
+//   border-color: #67c23a;
+// }
+// .el-button--danger {
+//     color: #fff;
+//     background-color: #1D7155;
+//     border-color: #1D7155;
+// }
+// .el-button--danger:focus, .el-button--danger:hover {
+//     background: #f78989;
+//     border-color: #f78989;
+//     color: #fff;
+// }
 .divcss5-right{float:right} 
 </style>

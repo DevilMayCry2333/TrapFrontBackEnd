@@ -17,18 +17,16 @@
               </el-select>
               <el-input v-model="input" placeholder="请输入内容" style="width: 200px;"></el-input>
 
-              <el-button id="search" type="primary" @click="query()">查询</el-button>
+              <el-button  type="primary" @click="query()">查询</el-button>
       </div>
 
       <div>
               <el-button
-                id="allocate"
                 type="primary"
                 @click="showAssignQRCodeDialog()"
                 v-if="this.$store.state.user.role == 0">分配二维码</el-button>
 
               <el-button
-                id="allocate1"
                 type="primary"
                 @click="showAssignQRCodeManagerDialog()"
                 v-if="this.$store.state.user.role == 4"
@@ -36,7 +34,6 @@
               
 
               <el-button
-                id="allocate1"
                 type="primary"
                 @click="showReAssignDialog()"
                 v-if="this.$store.state.user.role == 4"
@@ -49,8 +46,8 @@
                   @click="showQRWorkerDialog()"
                   v-if="this.$store.state.user.role == 0"
                 >编辑二维码分配</el-button>   -->
-                <el-button id="IDdownload" type="primary" @click="handleDownloadID">ID下载</el-button>
-                <el-button v-if="this.$store.state.user.role >0" id="codedownload" type="primary" @click="handleDownload">二维码下载</el-button> 
+                <el-button type="primary" @click="handleDownloadID">ID下载</el-button>
+                <el-button v-if="this.$store.state.user.role >0"  type="primary" @click="handleDownload">二维码下载</el-button> 
       </div>
     </div>
     <div style="padding-top:5px">
@@ -173,8 +170,8 @@
         </el-table>
       </div>
       <div slot="footer" class="dialog-footer">
-        <el-button id="cancel" @click="QRDataInfoDialog.visible = false">取 消</el-button>
-        <el-button id="sure" type="primary" @click.native.prevent="handleAddQRCodeDataSubmit"
+        <el-button  @click="QRDataInfoDialog.visible = false">取 消</el-button>
+        <el-button  type="primary" @click.native.prevent="handleAddQRCodeDataSubmit"
         :loading="assignCode"
         >确 定</el-button>
       </div>
@@ -205,8 +202,8 @@
         </el-select>
       </div>
       <div slot="footer" class="dialog-footer">
-        <el-button id="cancel1" @click="AssignQRCodeDialog.visible = false">取 消</el-button>
-        <el-button id="sure1" type="primary" @click.native.prevent="handleAssignQRCodeDataSubmit"
+        <el-button  @click="AssignQRCodeDialog.visible = false">取 消</el-button>
+        <el-button  type="primary" @click.native.prevent="handleAssignQRCodeDataSubmit"
         :loading="assignQRCode"
         >确 定</el-button>
       </div>
@@ -214,16 +211,16 @@
 
     <el-dialog title="二维码补码" :visible.sync="ReAssignDialog.visible"  width="30%" >
       <div>
-        <el-tag style="height:40px;border-radius:0;background-color: #1D7155;border-color:#1D7155;color:#ffffff;">当前ＩＤ</el-tag>
+        <el-tag style="height:40px;line-height:40px;border-radius:0;background-color: #1D7155;border-color:#1D7155;color:#ffffff;">当前ＩＤ</el-tag>
         <el-input :disabled="true" v-model="getid" placeholder="请输入内容" style="width:40%;"></el-input>
       </div>
       <div style="margin-top:10px;">
-        <el-tag style="height:40px;border-radius:0;background-color: #1D7155;border-color:#1D7155;color:#ffffff;">替换ＩＤ</el-tag>
+        <el-tag style="height:40px;line-height:40px;border-radius:0;background-color: #1D7155;border-color:#1D7155;color:#ffffff;">替换ＩＤ</el-tag>
         <el-input v-model="ReAssignDialog.AvailScanId" placeholder="请输入内容" style="width:40%;"></el-input>
       </div>
               <div slot="footer" class="dialog-footer">
-                <el-button id="cancel2" @click="ReAssignDialog.visible = false">取 消</el-button>
-                <el-button id="sure2" type="primary" @click.native.prevent="handleReAssign"
+                <el-button  @click="ReAssignDialog.visible = false">取 消</el-button>
+                <el-button  type="primary" @click.native.prevent="handleReAssign"
                 :loading="assignQRCode"
                 >替 换</el-button>
             </div>
@@ -233,28 +230,28 @@
       <!-- <div>当前可分配设备数量:{{AssignQRCodeDialog.availableNum}}</div>
             <br />
             <br /> -->
-      <div id="addusers" style="overflow-y: scroll; height: 300px;">
+      <div id="addusers" style="height:350px;margin-left:5%;">
         <div >
-              <el-tag style="font-size:15px;text-align: center;vertical-align:middle;width:86%;height:40px;border-radius:0;background-color: #1D7155;border-color:#1D7155;color:#ffffff;">设备ＩＤ</el-tag>
+              <el-tag style="font-size:15px;line-height:40px;text-align: center;vertical-align:middle;width:86%;height:40px;border-radius:0;background-color: #1D7155;border-color:#1D7155;color:#ffffff;">设备ＩＤ</el-tag>
               <br />
               <br />
-              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">剩余ID数</el-tag>
+              <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">剩余ID数</el-tag>
               <el-input :disabled="true" v-model="AssignQRCodeDialog.availableNum" placeholder="当前可分配设备数量" style="width:60%;"></el-input>
               <br />
               <br />
-              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">起始ＩＤ</el-tag>
+              <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">起始ＩＤ</el-tag>
               <el-input @change="managerStartIdChange" v-model="startID" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
               <br />
-              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">结束ＩＤ</el-tag>
+              <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">结束ＩＤ</el-tag>
               <el-input @change="managerEndIdChange" v-model="endID" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
               <br />
-              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">ＩＤ数量</el-tag>
+              <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">ＩＤ数量</el-tag>
               <el-input :disabled="true" v-model="IDNum" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
               <br />
-              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">应用选项</el-tag>
+              <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">应用选项</el-tag>
               <el-select @change="managerApplicationChange" v-model="applicationValue" placeholder="请选择" style="width:60%;">
                 <el-option
                   v-for="item in application"
@@ -266,30 +263,30 @@
               <br />
               <br />             
         </div>
-        <div style="display:flex;justify-content: center; align-items: center;">
+        <!-- <div style="display:flex;justify-content: center; align-items: center;">
             <el-button @click="verfiyNum" style="margin-right:50px;height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">点击校验</el-button>
-        </div>
+        </div> -->
         <div>
-              <el-tag style="font-size:15px;text-align: center;width:86%;height:40px;border-radius:0;background-color: #1D7155;border-color:#1D7155;color:#ffffff;">设备编号</el-tag>
+              <el-tag style="font-size:15px;line-height:40px;text-align:center;width:86%;height:40px;border-radius:0;background-color:#1D7155;border-color:#1D7155;color:#ffffff;">设备编号</el-tag>
               <br />
               <br />
-              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">区　　域</el-tag>
+              <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">区　　域</el-tag>
               <el-input v-model="customRegion" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
               <br />
-              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">前　　缀</el-tag>
+              <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">前缀标识</el-tag>
               <el-input v-model="prefix" placeholder="请输入内容"  style="width:60%;"></el-input>
               <br />
               <br />                 
-              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">起始编号</el-tag>
+              <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">起始编号</el-tag>
               <el-input @change="serialStartChange" v-model="serialStart" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
               <br />                 
-              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">结束编号</el-tag>
+              <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">结束编号</el-tag>
               <el-input @change="serialEndChange" v-model="serialEnd" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
               <br />                 
-              <el-tag style="height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">编号数量</el-tag>
+              <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">编号数量</el-tag>
               <el-input :disabled="true" v-model="serialNum" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
               <br />                 
@@ -299,8 +296,9 @@
           
 
       <div slot="footer" class="dialog-footer">
-        <el-button id="cancel2" @click="AssignQRCodeManagerDialog.visible = false">取 消</el-button>
-        <el-button id="sure2" type="primary" @click.native.prevent="handleAssignQRCodeByManager"
+        <el-button  @click="AssignQRCodeManagerDialog.visible = false">取 消</el-button>
+        <el-button type="primary" @click="verfiyNum">校 验</el-button>
+        <el-button type="primary" @click.native.prevent="handleAssignQRCodeByManager"
         :loading="assignQRCode"
         >确 定</el-button>
       </div>
@@ -1129,63 +1127,63 @@ http.requestWithToken(
   }
 /* 分配二维码 */
 /* 绿色块 */
-.el-tag {
-    background-color: #1D7155;
-    padding: 0 10px;
-    height: 40px;
-    line-height: 40px;
-    font-size: 12px;
-    color: #fff;
-    border-radius: 4px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-bottom-left-radius: 4px;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    border: 1px solid rgba(64,158,255,.2);
-    white-space: nowrap;
-}
-/* 输入框 */
-.el-input__inner {
-    -webkit-appearance: none;
-    background-color: #fff;
-    background-image: none;
-    border-radius: 4px;
-    border: 1px solid #dcdfe6;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-    color: #606266;
-    display: inline-block;
-    font-size: inherit;
-    height: 40px;
-    line-height: 40px;
-    outline: 0;
-    padding: 0 15px;
-    -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
-    width: 100%;
-}
-.el-input.is-active {
-    border-color: #67c23a;
-    /* outline: 0; */
-}
+// .el-tag {
+//     background-color: #1D7155;
+//     padding: 0 10px;
+//     height: 40px;
+//     line-height: 40px;
+//     font-size: 12px;
+//     color: #fff;
+//     border-radius: 4px;
+//     border-top-left-radius: 4px;
+//     border-top-right-radius: 4px;
+//     border-bottom-right-radius: 4px;
+//     border-bottom-left-radius: 4px;
+//     -webkit-box-sizing: border-box;
+//     box-sizing: border-box;
+//     border: 1px solid rgba(64,158,255,.2);
+//     white-space: nowrap;
+// }
+// /* 输入框 */
+// .el-input__inner {
+//     -webkit-appearance: none;
+//     background-color: #fff;
+//     background-image: none;
+//     border-radius: 4px;
+//     border: 1px solid #dcdfe6;
+//     -webkit-box-sizing: border-box;
+//     box-sizing: border-box;
+//     color: #606266;
+//     display: inline-block;
+//     font-size: inherit;
+//     height: 40px;
+//     line-height: 40px;
+//     outline: 0;
+//     padding: 0 15px;
+//     -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+//     transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+//     width: 100%;
+// }
+// .el-input.is-active {
+//     border-color: #67c23a;
+//     /* outline: 0; */
+// }
 
-.el-select .el-input__inner:focus {
-    border-color: #67c23a;
+// .el-select .el-input__inner:focus {
+//     border-color: #67c23a;
 
-}
-.el-form-item.is-success .el-input__inner, .el-form-item.is-success .el-input__inner:focus, .el-form-item.is-success .el-textarea__inner, .el-form-item.is-success .el-textarea__inner:focus {
-    border-color: #67c23a;
-}
-.el-select .el-input.is-focus .el-input__inner {
-    border-color: #67c23a;
-}
-.el-button--primary {
-    color: #fff;
-    background-color: #1D7155;
-    border-color: #1D7155;
-}
+// }
+// .el-form-item.is-success .el-input__inner, .el-form-item.is-success .el-input__inner:focus, .el-form-item.is-success .el-textarea__inner, .el-form-item.is-success .el-textarea__inner:focus {
+//     border-color: #67c23a;
+// }
+// .el-select .el-input.is-focus .el-input__inner {
+//     border-color: #67c23a;
+// }
+// .el-button--primary {
+//     color: #fff;
+//     background-color: #1D7155;
+//     border-color: #1D7155;
+// }
   #cancel{
     background-color:#1D7155;
     color: #fff;
