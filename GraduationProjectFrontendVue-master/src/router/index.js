@@ -63,8 +63,8 @@ import MedicineDeviceWanted from '@/components/pages/medicine/MedicineDeviceWant
 import MedicineMaintanceData from '@/components/pages/medicine/MedicineMaintanceData';
 import MedicineDeviceMessage from '@/components/pages/medicine/MedicineDeviceMessage';
 import InjectName from '@/components/pages/admin/InjectName';
-import DataSummaryByRegion from '@/components/pages/naturalEnemies/DataSummaryByRegion'
-import DeadTreesSummaryByregion from '@/components/pages/deadTrees/DeadTreesSummaryByregion'
+import DataSummaryByRegion from '@/components/pages/naturalEnemies/DataSummaryByRegion';
+import DeadTreesSummaryByregion from '@/components/pages/deadTrees/DeadTreesSummaryByregion';
 Vue.use(Router);
 Vue.config.devtools = true;
 

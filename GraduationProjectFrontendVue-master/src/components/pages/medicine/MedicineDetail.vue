@@ -39,6 +39,12 @@
       <el-table-column prop="batch" label="批次" align="center"></el-table-column>
       <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
       <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
+      <el-table-column prop="altitude" label="海拔" align="center"></el-table-column>
+        <el-table-column label="位置" width="200px" align="center">
+          <template
+            slot-scope="scope"
+          >{{scope.row.province + scope.row.city + scope.row.area + scope.row.town}}</template>
+        </el-table-column>
       <el-table-column prop="workContent" label="工作内容" align="center"></el-table-column>
       <el-table-column prop="medicineQua" label="施药数量（kg）" align="center"></el-table-column>
       <el-table-column prop="medicineName" label="药剂名称" align="center"></el-table-column>
@@ -130,7 +136,7 @@
             <el-form-item label="药剂名称">
               <el-input v-model="EditMaintenanceDialog.form.medicineName"></el-input>
             </el-form-item>
-            <el-form-item label="药剂质量（kg）">
+            <el-form-item label="施药（kg）">
               <el-input v-model="EditMaintenanceDialog.form.medicineQua"></el-input>
             </el-form-item>
             <el-form-item label="防治面积（㎡）">

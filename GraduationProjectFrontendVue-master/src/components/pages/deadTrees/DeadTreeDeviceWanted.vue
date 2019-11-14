@@ -76,7 +76,7 @@
         <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
         <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
         <el-table-column prop="batch" label="批次" align="center"></el-table-column>
-        <el-table-column prop="woodvolume" label="材积" align="center"></el-table-column>
+        <el-table-column prop="woodvolume" label="材积（m³）" align="center"></el-table-column>
          <el-table-column prop="killmethod" label="处理方式" align="center"></el-table-column>
         <!-- <el-table-column label="其他天牛类型">
           <template slot-scope="scope">{{otherBeetleDict["t" + scope.row.otherType]}}</template>

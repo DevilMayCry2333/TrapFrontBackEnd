@@ -30,7 +30,7 @@
         <el-form-item label="id" v-if="!isAdd">
           <el-input disabled style="width:150px" v-model="form.id"></el-input>
         </el-form-item>
-        <el-form-item label="名称">
+        <el-form-item label="名称：">
           <el-input style="width:150px" v-model="form.name"></el-input>
         </el-form-item>
       </el-form>

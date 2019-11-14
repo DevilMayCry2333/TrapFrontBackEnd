@@ -20,7 +20,7 @@
                 </el-table-column>-->
         <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
         <el-table-column prop="batch" label="维护批次" align="center"></el-table-column>
-        <el-table-column prop="woodvolume" label="材积" align="center"></el-table-column>
+        <el-table-column prop="woodvolume" label="材积（m³）" align="center"></el-table-column>
          <el-table-column prop="killmethod" label="除害方式" align="center"></el-table-column>
          <el-table-column prop="region" label="区域" align="center"></el-table-column>
         <!-- <el-table-column prop="drug" label="注药株数"></el-table-column> -->

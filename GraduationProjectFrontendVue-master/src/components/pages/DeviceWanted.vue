@@ -43,14 +43,17 @@
             @click="handleDelete"
           >删除</el-button>-->
       <div id="threebuttons">
-          <el-button
+
+          <!-- <el-button
             type="primary"
             @click="handleReportMaintenanceData"
             v-if="this.$store.state.user.role == 3"
           >上报</el-button>
+           -->
           <el-button
             type="primary"
             @click="handleDeleteSome"
+            style="height:fit-content;"
           >批量删除</el-button>
           <el-button
             type="primary" 
@@ -92,15 +95,15 @@
           </template>
         </el-table-column>-->
         <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
-        <el-table-column prop="scanId" label="设备ID" align="center"></el-table-column>
-        <el-table-column prop="customSerial" label="编号" align="center"></el-table-column>
-        <el-table-column  v-if="this.$store.state.user.role == 4" prop="customTown" label="区域" align="center"></el-table-column>
-        <el-table-column prop="date" label="日期"></el-table-column>
+        <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
+        <el-table-column prop="customserial" label="编号" align="center"></el-table-column>
+        <el-table-column  v-if="this.$store.state.user.role == 4" prop="customtown" label="区域" align="center"></el-table-column>
+        <el-table-column prop="date" label="日期" align="center"></el-table-column>
         <el-table-column prop="batch" label="批次" align="center"></el-table-column>
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
         <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
         <el-table-column prop="altitude" label="海拔" align="center"></el-table-column>
-        <el-table-column prop="workContentFront" label="工作内容">
+        <el-table-column prop="workContentFront" label="工作内容" align="center">
           <!-- <template
             slot-scope="scope"
           >{{maintenanceData.workingContentDict[scope.row.workingContent]}}</template> -->

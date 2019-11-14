@@ -30,14 +30,13 @@
       </el-table>
     </div>
     <el-dialog :title="isAdd? '增加' : '编辑' " :visible.sync="dialogVisible" width="30%">
-      <el-form >
+      <el-form label-width="150px">
         <el-form-item 
-
           label="id：" v-if="!isAdd">
-          <el-input disabled style="width:100%" v-model="form.id"></el-input>
+          <el-input disabled style="width:150px" v-model="form.id"></el-input>
         </el-form-item>
           <el-form-item label="天牛名称：">
-            <el-input style="width:100%" v-model="form.name"></el-input>
+            <el-input style="width:150px" v-model="form.name"></el-input>
           </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">

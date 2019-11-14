@@ -66,7 +66,7 @@
 
         <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
         <el-table-column prop="deviceId" label="诱捕器编号" align="center"></el-table-column>
-        <el-table-column prop="woodvolume" label="材积" align="center"></el-table-column>
+        <el-table-column prop="woodvolume" label="材积（m³）" align="center"></el-table-column>
 
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
         <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>

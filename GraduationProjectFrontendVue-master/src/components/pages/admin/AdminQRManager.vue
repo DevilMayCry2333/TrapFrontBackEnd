@@ -182,16 +182,16 @@
       <div>当前ID前缀:{{toCompleteID}}</div>
             <br />
             <br />
-      <div id="assignQR" style="overflow-y: scroll; height: 300px;">
-          <el-tag>起始ID：</el-tag>
+      <div id="assignQR" style="height: 150px;">
+          <el-tag style="height: 40px;line-height: 40px;">起始ID：</el-tag>
           <el-input v-model="startID" placeholder="输入六位数字" style="width:40%;"></el-input>
             <br />
             <br />
-          <el-tag>结束ID：</el-tag>
+          <el-tag style="height: 40px;line-height: 40px;">结束ID：</el-tag>
           <el-input v-model="endID" placeholder="输入六位数字" style="width:40%;"></el-input>
             <br />
             <br />
-           <el-tag>代理商：</el-tag>
+           <el-tag style="height: 40px;line-height: 40px;">代理商：</el-tag>
            <el-select @change="proxyChange" v-model="proxyValue" placeholder="请选择" style="width:40%;">
             <el-option
             v-for="item in proxy"
