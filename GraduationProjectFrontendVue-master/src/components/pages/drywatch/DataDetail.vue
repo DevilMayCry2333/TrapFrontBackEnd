@@ -36,7 +36,7 @@
         :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
       <el-table-column prop="scanId" label="设备ID" align="center"></el-table-column>
       <el-table-column prop="serial" label="编号" align="center"></el-table-column>
-      <el-table-column prop="customtown" label="区域" align="center"></el-table-column>
+      <el-table-column prop="region" label="区域" align="center"></el-table-column>
       <el-table-column prop="submitDate" label="日期" align="center"></el-table-column>
       <el-table-column label="位置" width="200px" align="center">
         <template
