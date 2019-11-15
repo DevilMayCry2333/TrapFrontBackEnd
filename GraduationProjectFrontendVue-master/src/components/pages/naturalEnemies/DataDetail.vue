@@ -17,6 +17,7 @@
     </div>  
     <div style=" display: flex;" >
       <el-button type="primary" @click="exportExcel">导出</el-button>
+      <el-button type="primary" @click="exportImage">导出图像</el-button>
         <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
 
         <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
@@ -329,6 +330,42 @@ export default {
         },1000)
 
       },
+      exportImage(){
+        console.log(this.QRData.list);
+        let role = this.$store.state.user.role;
+          console.log(role);
+            console.log(this.area);
+            console.log(this.city);
+              console.log(this.province);
+
+
+        /**
+         *        colName: this.value,
+                  searchText: this.input,
+                  adcode: this.area
+         */
+        console.log(http.getBaseUrl());
+        setTimeout(()=>{
+                  window.location =
+        http.getBaseUrl() +
+        "/natural/exportExcel?startDate=" +
+        this.startDate +
+        "&endDate=" +
+        this.endDate +
+        "&searchText=" +
+        this.input +
+        "&colName=" +
+        this.value +
+        "&adcode=" +
+        this.area +
+        "&username="+
+        sessionStorage['username'] +
+        "&token=" +
+        sessionStorage["token"];
+        },1000)
+
+      },
+
     showPhotoDialog(id) {
             console.log(id);
       this.PhotoDialog.visible = true;
