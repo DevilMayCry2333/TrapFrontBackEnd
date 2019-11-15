@@ -440,7 +440,7 @@ export default {
       this.ReAssignDialog.visible = true;
       console.log(this.selectedDevice);
       
-            let role = this.$store.state.user.role;
+      let role = this.$store.state.user.role;
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         // this.loadCity();
@@ -467,10 +467,12 @@ export default {
           res => {
             console.log(res.data);
             console.log(res);
-            if(res.status == 500){
+            this.ReAssignDialog.AvailScanId = res.data;
+            if(res.data.error == true){
+              console.log(res.data.error);
+              
               this.ReAssignDialog.AvailScanId = "没有可以分配的二维码";
             }
-            this.ReAssignDialog.AvailScanId = res.data;
 
           },
           () => {}
@@ -511,8 +513,23 @@ export default {
       if(!this.input || !this.value){
         alert("请输入查询条件!")
       }else{
+        if(this.value=="project"){
+          if(this.input=="诱捕器管理"){
+            this.input = 1;
+          }else if(this.input=="注干剂监测"){
+             this.input = 2;
+          }else if(this.input=="天敌防治"){
+             this.input = 3;
+          }else if(this.input=="枯死树采伐"){
+             this.input = 4;
+          }else if(this.input=="药剂防治管理"){
+             this.input = 5;
+          }else{
+            alert("输入错误");
+          }
+        }
               http.requestWithToken(
-          "/newQrCode/search",
+          "/newQrCode/usertosearch",
           "get",
           { colName: this.value, searchText: this.input,
           page: this.QRData.page, limit: this.QRData.limit },
@@ -742,10 +759,10 @@ export default {
     // 下载
     handleDownload() {
       let BASE_URL = "";
-      if (window.location.toString().indexOf("106.15.90.78") > -1) {
-        BASE_URL = "http://106.15.90.78:8081";
+      if (window.location.toString().indexOf("106.15.200.245") > -1) {
+        BASE_URL = "http://106.15.200.245:50000";
       } else {
-        BASE_URL = "http://localhost:8081";
+        BASE_URL = "http://localhost:50000";
       }
       window.location = BASE_URL + "/QRCode?token=" + sessionStorage['token'] 
     },

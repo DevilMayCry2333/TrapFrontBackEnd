@@ -348,7 +348,7 @@ export default {
         setTimeout(()=>{
                   window.location =
         http.getBaseUrl() +
-        "/natural/exportExcel?startDate=" +
+        "/natural/exportImage?startDate=" +
         this.startDate +
         "&endDate=" +
         this.endDate +
