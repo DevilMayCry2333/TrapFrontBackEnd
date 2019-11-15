@@ -4,14 +4,14 @@ import axios from 'axios'
 
 //let BASE_URL = "https://39.108.184.47:8081";
 
-let BASE_URL = "http://localhost:8081";
+let BASE_URL = "http://localhost:50000";
 
 if (window.location.toString().indexOf('106.15.200.245') > -1) {
     //BASE_URL = "http://47.103.66.70:8081";
    BASE_URL = "http://106.15.200.245:8081";
 } else {
-    // BASE_URL = "http://localhost:8081";
-    BASE_URL = "http://localhost:8081";
+    // BASE_URL = "http://localhost:50000";
+    BASE_URL = "http://localhost:50000";
 }
 
 
@@ -102,7 +102,7 @@ export const getBaseUrl = () => {
        // BASE_URL = "http://47.103.66.70:8081";
       BASE_URL = "http://106.15.200.245:8081";
     } else {
-        BASE_URL = "http://localhost:8081";
+        BASE_URL = "http://localhost:50000";
     }
     return BASE_URL;
 }
