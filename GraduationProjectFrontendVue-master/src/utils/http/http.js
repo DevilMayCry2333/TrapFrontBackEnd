@@ -8,7 +8,7 @@ let BASE_URL = "http://localhost:50000";
 
 if (window.location.toString().indexOf('106.15.200.245') > -1) {
     //BASE_URL = "http://47.103.66.70:8081";
-   BASE_URL = "http://106.15.200.245:8081";
+   BASE_URL = "http://106.15.200.245:50000";
 } else {
     // BASE_URL = "http://localhost:50000";
     BASE_URL = "http://localhost:50000";
@@ -100,7 +100,7 @@ export const getBaseUrl = () => {
     let BASE_URL = "";
     if (window.location.toString().indexOf("106.15.200.245") > -1) {
        // BASE_URL = "http://47.103.66.70:8081";
-      BASE_URL = "http://106.15.200.245:8081";
+      BASE_URL = "http://106.15.200.245:50000";
     } else {
         BASE_URL = "http://localhost:50000";
     }
