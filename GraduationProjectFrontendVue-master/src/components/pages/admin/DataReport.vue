@@ -1,21 +1,34 @@
 <template>
     <div>
-        <el-select v-model="project" placeholder="选择一个项目">
-            <el-option label="诱捕器管理" value="诱捕器管理"></el-option>
-            <el-option label="注干剂监测" value="注干剂监测"></el-option>
-            <el-option label="天敌防治" value="天敌防治"></el-option>
-            <el-option label="枯死树采伐" value="枯死树采伐"></el-option>
-            <el-option label="轨迹追踪" value="轨迹追踪"></el-option>
-        </el-select>
-          <el-select v-model="value" placeholder="选择抄报单位">
-            <el-option
-            v-for="item in options"
-            :key="item.username"
-            :label="item.username"
-            :value="item.username">
-            </el-option>
-        </el-select>
-        <el-button  @click="ReportData" type="primary">确定</el-button>
+        <div style="margin-bottom:20px;display:flex;align-items:center;">
+            <el-tag style="height:40px;line-height:40px;border-radius:0;">请选择抄报项目：</el-tag>
+            <div style="margin-left:5px;">
+                <el-checkbox-group v-model="project" >
+                <!-- <el-select v-model="project" placeholder="选择一个项目"> -->
+                    <!-- lable和value的值？ -->
+                    <el-checkbox label="诱捕器管理" value="诱捕器管理"  ></el-checkbox>
+                    <el-checkbox label="注干剂监测" value="注干剂监测"></el-checkbox>
+                    <el-checkbox label="天敌防治" value="天敌防治"></el-checkbox>
+                    <el-checkbox label="药剂防治" value="药剂防治"></el-checkbox>
+                    <el-checkbox label="枯死树采伐" value="枯死树采伐"></el-checkbox>
+                    <el-checkbox label="轨迹追踪" value="轨迹追踪"></el-checkbox>
+                <!-- </el-select> -->
+                </el-checkbox-group>
+            </div>
+        </div>          
+        <div style="margin-bottom:20px;">
+            <el-tag style="height:40px;line-height:40px;border-radius:0;">请选择抄报工程：</el-tag>
+            <el-select v-model="value" placeholder="抄报工程" >
+                <el-option
+                v-for="item in options"
+                :key="item.username"
+                :label="item.username"
+                :value="item.username">
+                </el-option>
+            </el-select>
+            <el-button  @click="ReportData" type="primary" style="margin-left:5px">上报</el-button>
+        </div>
+        
     </div>
 </template>
 
@@ -25,10 +38,10 @@ import http from "../../../utils/http";
 export default {
     data(){
         return{
-            project:'',
-            CustomProject:'',
-            options: [],
-            value:''
+            project:[],   //项目
+            CustomProject:'',   //工程
+            options: [],    //
+            value:''     //工程的值
 
         }
     },
@@ -62,10 +75,9 @@ export default {
             },
             res => {
                 console.log(res);
-                for(var i = 0; i < res.data.data.length; i++){
-                    this.options.push(res.data.data[i]);
-                }
-
+                     for(var i = 0; i < res.data.data.length; i++){
+                        this.options.push(res.data.data[i]);
+                    }
             },
             () => {}
         );
@@ -76,22 +88,28 @@ export default {
             console.log("数据报告");
             console.log(this.project);
             console.log(this.value);
-            http.requestWithToken(
-            "/system/dataReport",
-            "get",
-            {
-                project:this.project,
-                customProject: this.value
-            },
-            res => {
-                console.log(res);
-                if(res.data == "OK"){
-                    alert("修改上报成功!");
-                }
-
-            },
-            () => {}
-        );
+            for (var j = 0; j < this.project.length; ++j) {
+                http.requestWithToken(
+                "/system/dataReport",
+                "get",
+                {
+                    project:this.project[j],
+                    customProject: this.value
+                },
+                res => {
+                    console.log(res);
+                    if(res.data == "OK"){
+                      this.$message({
+                      message: "上报成功",
+                      type: "success"
+              });
+            }
+                },
+                    () => {}
+                );
+                
+        }
+            
 
         }
     }
