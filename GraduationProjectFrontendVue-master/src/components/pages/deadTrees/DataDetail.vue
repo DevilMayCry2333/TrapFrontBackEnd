@@ -538,7 +538,7 @@ export default {
         startDate:'',
         endDate: '',
         options: [{
-          value: 'CustomSerial',
+          value: 'serial',
           label: '编号'
         }, {
           value: 'CustomTown',
