@@ -57,7 +57,7 @@
                 <el-table-column prop="pic2" label="照片（施工中）" width="120px" align="center">
                   <template slot-scope="scope">
             <el-button
-              @click="showPhotoDialog(scope.row.pic)"
+              @click="showPhotoDialog(scope.row.pic2)"
               v-if="scope.row.pic2 != null && scope.row.pic2 !=''"
               size="mini"
             >显示</el-button>
@@ -67,7 +67,7 @@
                 <el-table-column prop="pic3" label="照片（施工后）" width="120px" align="center">
                   <template slot-scope="scope">
             <el-button
-              @click="showPhotoDialog(scope.row.pic)"
+              @click="showPhotoDialog(scope.row.pic3)"
               v-if="scope.row.pic3 != null && scope.row.pic3 !=''"
               size="mini"
             >显示</el-button>
