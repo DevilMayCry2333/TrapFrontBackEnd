@@ -16,7 +16,7 @@
           <el-button type="primary" @click="query()">查询</el-button>
       </div>
       <div style=" display: flex;">
-            <el-button type="primary" @click="exportExcel">导出</el-button>
+            <el-button type="primary" @click="exportExcel" style="height:fit-content">导出</el-button>
             <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
             <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
             <el-upload ref="upload"
@@ -141,10 +141,10 @@
             <el-dialog title="编辑维护信息" :visible.sync="EditMaintenanceDialog.visible" width="30%">
       <el-form label-width="120px">
         <el-form-item label="经度">
-          <el-input  v-model="EditMaintenanceDialog.form.longitude"></el-input>
+          <el-input disabled="true" v-model="EditMaintenanceDialog.form.longitude"></el-input>
         </el-form-item>
         <el-form-item label="纬度">
-          <el-input v-model="EditMaintenanceDialog.form.latitude"></el-input>
+          <el-input disabled="true" v-model="EditMaintenanceDialog.form.latitude"></el-input>
         </el-form-item>
         <!-- <el-form-item label="设备ID">
           <el-input v-model="EditMaintenanceDialog.form.deviceId"></el-input>
@@ -159,9 +159,9 @@
         <el-form-item label="日期">
           <el-input v-model="EditMaintenanceDialog.form.submitDate"></el-input>
         </el-form-item>
-        <el-form-item label="批次">
+        <!-- <el-form-item label="批次">
           <el-input v-model="EditMaintenanceDialog.form.batch"></el-input>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="桩径">
           <el-input @change="wooddiameterInput" v-model="EditMaintenanceDialog.form.wooddiameter"></el-input>
         </el-form-item>

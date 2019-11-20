@@ -216,12 +216,13 @@
       </div>
       <div style="margin-top:10px;">
         <el-tag style="height:40px;line-height:40px;border-radius:0;background-color: #1D7155;border-color:#1D7155;color:#ffffff;">替换ＩＤ</el-tag>
-        <el-input v-model="ReAssignDialog.AvailScanId" placeholder="请输入内容" style="width:40%;"></el-input>
+        <el-input name="changeID" v-model="ReAssignDialog.AvailScanId" placeholder="请输入内容" style="width:40%;"></el-input>
       </div>
               <div slot="footer" class="dialog-footer">
                 <el-button  @click="ReAssignDialog.visible = false">取 消</el-button>
                 <el-button  type="primary" @click.native.prevent="handleReAssign"
                 :loading="assignQRCode"
+                :disabled="changeID.disabled"
                 >替 换</el-button>
             </div>
     </el-dialog>
@@ -239,12 +240,12 @@
               <el-input :disabled="true" v-model="AssignQRCodeDialog.availableNum" placeholder="当前可分配设备数量" style="width:60%;"></el-input>
               <br />
               <br />
-              <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">起始ＩＤ</el-tag>
-              <el-input @change="managerStartIdChange" v-model="startID" placeholder="请输入内容" style="width:60%;"></el-input>
+              <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;" >起始ＩＤ</el-tag>
+              <el-input :disabled="true" @change="managerStartIdChange" v-model="startID" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
               <br />
               <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">结束ＩＤ</el-tag>
-              <el-input @change="managerEndIdChange" v-model="endID" placeholder="请输入内容" style="width:60%;"></el-input>
+              <el-input @blur="inputError" @change="managerEndIdChange" v-model="endID" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
               <br />
               <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">ＩＤ数量</el-tag>
@@ -300,7 +301,9 @@
         <el-button type="primary" @click="verfiyNum">校 验</el-button>
         <el-button type="primary" @click.native.prevent="handleAssignQRCodeByManager"
         :loading="assignQRCode"
-        >确 定</el-button>
+        :disabled="isPass"
+        >确 定</el-button>    
+        <!-- 当校验通过后确定按钮解锁 -->
       </div>
     </el-dialog>
 
@@ -315,6 +318,9 @@ export default {
     name:'AdminQRManager',
   data() {
     return {
+      changeID:{
+        disabled:false
+      },
         options: [{
           value: 'id',
           label: '设备ID'
@@ -330,7 +336,7 @@ export default {
         }],
         value: '',
         input:'',
-      isPass:'',
+      isPass:true,
       
       customRegion:'',
       toCompleteID:'',
@@ -472,6 +478,8 @@ export default {
               console.log(res.data.error);
               
               this.ReAssignDialog.AvailScanId = "没有可以分配的二维码";
+              //disable绑定输入框
+               this.changeID.disabled = true;
             }
 
           },
@@ -599,7 +607,7 @@ export default {
 
     },
     handleAssignQRCodeByManager(){
-      if(this.isPass){
+      if(!this.isPass){
       console.log(this.startID);
       console.log(this.endID);
       console.log(this.IDNum);
@@ -675,14 +683,14 @@ export default {
     },
     verfiyNum(){
       if(this.IDNum == this.serialNum){
-        this.isPass = true;
+        this.isPass = false;
          this.$message({
           message: '校验通过!',
           type: 'success'
         });
 
       }else{
-        this.isPass = false;
+        this.isPass = true;
         this.$message.error('数量错误');
       }
     },
@@ -713,6 +721,15 @@ export default {
     },
     managerEndIdChange(){
       this.IDNum = this.endID - this.startID + 1;
+    },
+    //结束ID的输入框事件
+    inputError(){
+      if(this.IDNum > this.AssignQRCodeDialog.availableNum){
+          this.$message({
+          message: "结束ID输入有误",
+          type: "error"
+        });
+      }
     },
     proxyChange(e){
       console.log("proxyChange",e);
@@ -753,6 +770,20 @@ export default {
         this.manager = this.$store.state.user.username;
       }
       console.log(this.area);
+
+               http.requestWithToken(
+                "/newQrCode/getAvailableNum",
+                "get",
+                {
+                  province:this.province
+                },
+                res => {
+                  console.log(res);
+                  this.AssignQRCodeDialog.availableNum = res.data;
+                  
+                },
+                () => {}
+              );     
 
 
     },
