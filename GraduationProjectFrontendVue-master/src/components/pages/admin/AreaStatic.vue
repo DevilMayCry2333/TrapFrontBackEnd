@@ -93,7 +93,7 @@ export default {
                 }
             },
             legend: {
-                data:['松墨天牛','其他天牛','平均诱虫量','其他天牛平均诱虫量']
+                data:['松墨天牛','其他天牛']
             },
             xAxis: [
                 {
@@ -113,16 +113,16 @@ export default {
                         formatter: '{value}'
                     }
                 },
-                {
-                    type: 'value',
-                    name: '平均诱虫量(只)',
-                    min: 0,
-                    max: 150,
-                    interval: 50,
-                    axisLabel: {
-                        formatter: '{value}'
-                    }
-                }
+                // {
+                //     type: 'value',
+                //     name: '平均诱虫量(只)',
+                //     min: 0,
+                //     max: 150,
+                //     interval: 50,
+                //     axisLabel: {
+                //         formatter: '{value}'
+                //     }
+                // }
             ],
             series: [
                 {
@@ -135,18 +135,18 @@ export default {
                     type:'bar',
                     data:[]
                 },
-                {
-                    name:'平均诱虫量',
-                    type:'line',
-                    yAxisIndex: 1,
-                    data:[]
-                },
-                {
-                    name:'其他天牛平均诱虫量',
-                    type:'line',
-                    yAxisIndex: 1,
-                    data:[]
-                }
+                // {
+                //     name:'平均诱虫量',
+                //     type:'line',
+                //     yAxisIndex: 1,
+                //     data:[]
+                // },
+                // {
+                //     name:'其他天牛平均诱虫量',
+                //     type:'line',
+                //     yAxisIndex: 1,
+                //     data:[]
+                // }
             ]
         },
         
@@ -172,7 +172,7 @@ export default {
     toolbox: {
         feature: {
             dataView: {show: true, readOnly: false},
-            // magicType: {show: true, type: ['line', 'bar']},
+            magicType: {show: true, type: ['line', 'bar']},
             restore: {show: true},
             saveAsImage: {show: true}
         }
@@ -242,8 +242,8 @@ export default {
       this.option.xAxis[0].data =[];
       this.option.series[0].data = [];
        this.option.series[1].data = [];
-       this.option.series[2].data = [];
-       this.option.series[3].data = [];
+      //  this.option.series[2].data = [];
+      //  this.option.series[3].data = [];
        //第二个图标
         this.option2.xAxis[0].data = [];
         this.option2.series[0].data = [];
@@ -268,8 +268,8 @@ export default {
                 this.option.xAxis[0].data.push(res.data[i].customTown);
                 this.option.series[0].data.push(res.data[i].beetlesNum);
                 this.option.series[1].data.push(res.data[i].otherNum);
-                this.option.series[2].data.push(res.data[i].avager);
-                this.option.series[3].data.push(res.data[i].avagerother);
+                // this.option.series[2].data.push(res.data[i].avager);
+                // this.option.series[3].data.push(res.data[i].avagerother);
                 //第二个图表
                 this.option2.xAxis[0].data.push(res.data[i].customTown);
                 this.option2.series[0].data.push(res.data[i].avager);
@@ -304,8 +304,8 @@ export default {
                 this.option.xAxis[0].data.push(res.data[i].customTown);
                 this.option.series[0].data.push(res.data[i].beetlesNum);
                 this.option.series[1].data.push(res.data[i].otherNum);
-                this.option.series[2].data.push(res.data[i].avager);
-                this.option.series[3].data.push(res.data[i].avagerother);
+                // this.option.series[2].data.push(res.data[i].avager);
+                // this.option.series[3].data.push(res.data[i].avagerother);
                 //第二个图表
                 this.option2.xAxis[0].data.push(res.data[i].customTown);
                 this.option2.series[0].data.push(res.data[i].avager);
