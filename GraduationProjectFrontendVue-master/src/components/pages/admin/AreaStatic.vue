@@ -29,6 +29,11 @@
     <el-card style="padding: 5px">
       <div style="width: 100%;height:300px;" ref="echartsArea"></div>
     </el-card>
+
+    <el-card style="padding: 5px">
+      <div style="width: 100%;height:300px;" ref="echartsAreaOne"></div>
+    </el-card>
+
   </div>
 </template>
 <script>
@@ -143,9 +148,68 @@ export default {
                     data:[]
                 }
             ]
+        },
+        
+    option2 : {
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            crossStyle: {
+                color: '#999'
+            }
         }
+    },
+    xAxis: [
+      {
+        type: 'category',
+        data: [],
+        axisPointer:
+         {
+          type: 'shadow'
+        }
+    }],
+    toolbox: {
+        feature: {
+            dataView: {show: true, readOnly: false},
+            // magicType: {show: true, type: ['line', 'bar']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    legend: {
+                data:['平均诱虫量','其他天牛平均诱虫量']
+            },
+    yAxis: [{
+        type: 'value',
+        name: '数量(只)',
+         min: 0,
+        max: 150,
+        interval: 50,
+        axisLabel: {
+        formatter: '{value}'
+        }
+    }],
+    series: [
+    {
+      name: '平均诱虫量',
+      data: [],
+      type: 'line',
+    },
+    {
+      name: '其他天牛平均诱虫量',
+      data: [],
+      type: 'line',
+    }
+    ]
+},
     };
+
   },
+  
+
+  
+  
   methods: {
     init() {
       this.showCity = true;
@@ -178,8 +242,12 @@ export default {
       this.option.xAxis[0].data =[];
       this.option.series[0].data = [];
        this.option.series[1].data = [];
-        this.option.series[2].data = [];
-        this.option.series[3].data = [];
+       this.option.series[2].data = [];
+       this.option.series[3].data = [];
+       //第二个图标
+        this.option2.xAxis[0].data = [];
+        this.option2.series[0].data = [];
+        this.option2.series[1].data = [];
 
 
         console.log(this.option);
@@ -195,7 +263,6 @@ export default {
         res => {
             console.log(res);
    console.log(this.option);
-   
             for(var i = 0 ; i < res.data.length; i++){
                 console.log(res.data[i]);
                 this.option.xAxis[0].data.push(res.data[i].customTown);
@@ -203,10 +270,16 @@ export default {
                 this.option.series[1].data.push(res.data[i].otherNum);
                 this.option.series[2].data.push(res.data[i].avager);
                 this.option.series[3].data.push(res.data[i].avagerother);
+                //第二个图表
+                this.option2.xAxis[0].data.push(res.data[i].customTown);
+                this.option2.series[0].data.push(res.data[i].avager);
+                this.option2.series[1].data.push(res.data[i].avagerother);
                 //Mgh9nigujiOwZO5HFNkCoQ==
             }
                     let myChart = echarts.init(this.$refs.echartsArea);
+                    let myChart1 = echarts.init(this.$refs.echartsAreaOne);
                     myChart.setOption(this.option);
+                    myChart1.setOption(this.option2);
         },
         () => {}
       );
@@ -233,10 +306,17 @@ export default {
                 this.option.series[1].data.push(res.data[i].otherNum);
                 this.option.series[2].data.push(res.data[i].avager);
                 this.option.series[3].data.push(res.data[i].avagerother);
+                //第二个图表
+                this.option2.xAxis[0].data.push(res.data[i].customTown);
+                this.option2.series[0].data.push(res.data[i].avager);
+                this.option2.series[1].data.push(res.data[i].avagerother);
                 //Mgh9nigujiOwZO5HFNkCoQ==
             }
                     let myChart = echarts.init(this.$refs.echartsArea);
+                    let mychart1 = echarts.init(this.$refs.echartsAreaOne);
                     myChart.setOption(this.option);
+                    mychart1.setOption(this.option2);
+                    
         },
         () => {}
       );
