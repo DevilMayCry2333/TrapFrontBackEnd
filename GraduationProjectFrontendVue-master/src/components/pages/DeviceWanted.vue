@@ -97,7 +97,7 @@
         <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
         <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
         <el-table-column prop="customserial" label="编号" align="center"></el-table-column>
-        <el-table-column  v-if="this.$store.state.user.role == 4" prop="customtown" label="区域" align="center"></el-table-column>
+        <el-table-column  v-if="this.$store.state.user.role == 4" prop="customTown" label="区域" align="center"></el-table-column>
         <el-table-column prop="date" label="日期" align="center"></el-table-column>
         <el-table-column prop="batch" label="批次" align="center"></el-table-column>
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
@@ -486,7 +486,7 @@ export default {
     showPhotoDialog(id) {
       this.PhotoDialog.visible = true;
      // let BASE_URL = "http://47.103.66.70:8081";
-    let BASE_URL = "http://106.15.90.78:8081";
+    let BASE_URL = "http://106.15.90.78:50000";
       this.PhotoDialog.pic = BASE_URL + "/device_img?imgName=" + id;
     },
     handleMaintenanceDataSelectionChange(val) {
