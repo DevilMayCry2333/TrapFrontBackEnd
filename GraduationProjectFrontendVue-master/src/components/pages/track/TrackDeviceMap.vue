@@ -36,7 +36,7 @@ export default {
     };
   },
   methods: {
-    loadSpots(val) {
+    loadSpots(val,lineName) {
       this.map.clearOverlays();
       if (val == "device") {
         console.log("device");
@@ -44,7 +44,7 @@ export default {
         http.requestWithToken(
           "/track/device_list",
           "get",
-          { page: 1, limit: 1000,isTrack:true },
+          { page: 1, limit: 1000,isTrack:true,lineName:lineName },
           res => {
             console.log(res.data);
             let that = this;
@@ -128,6 +128,7 @@ export default {
           },
           () => {}
         );
+
       }
       if (val != "device") {
          var markers = [];
@@ -253,6 +254,8 @@ export default {
     }
   },
   mounted() {
+    console.log(this.$route.query.lineName);
+    
     this.map = new BMap.Map(this.$refs.allmap); // 创建Map实例
     this.map.centerAndZoom("中国", 11); // 初始化地图,设置中心点坐标（经纬度/城市的名称）和地图级别
     this.map.addControl(
@@ -263,7 +266,7 @@ export default {
     );
     this.map.setCurrentCity("北京");
     this.map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
-    this.loadSpots("device");
+    this.loadSpots("device",this.$route.query.lineName);
   }
 };
 </script>

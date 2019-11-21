@@ -38,7 +38,7 @@
               <el-table-column prop="checked" label="选项" align="center">
                 <template slot-scope="scope">
                   <el-button
-              @click="showmap(scope.row.pic1)"
+              @click="showMap(scope.row.linename)"
               size="mini"
             >显示</el-button>
                 </template>
@@ -230,6 +230,14 @@ export default {
 
     },
     methods:{
+      showMap(lineName){
+        this.$router.push({
+          path:'/pages/track/map',
+          query:{
+            lineName:lineName
+          }
+        })
+      },
       handleEditMaintenanceDataSubmit(){
         console.log(this.EditMaintenanceDialog.form);
                        http.requestWithTokenJson(
