@@ -354,12 +354,14 @@ export default {
         },1000)
 
       },
-            showPhotoDialog(id) {
+      
+      showPhotoDialog(id) {
             console.log(id);
       this.PhotoDialog.visible = true;
      // let BASE_URL = "http://47.103.66.70:8081";
-    let BASE_URL = "http://106.15.90.78:50000";
-      this.PhotoDialog.pic = BASE_URL + "/device_img?imgName=" + id;
+    // let BASE_URL = "http://106.15.90.78:50000";
+    let BASE_URL = "http://106.15.200.245:50000";
+      this.PhotoDialog.pic = BASE_URL + "/device_img2?imgName=" + id;
     },
 
             handleQRDataCurrentPageChanged(val) {
