@@ -383,7 +383,7 @@ export default {
       this.PhotoDialog.visible = true;
      // let BASE_URL = "http://47.103.66.70:8081";
     let BASE_URL = "http://106.15.200.245:50000";
-      this.PhotoDialog.pic = BASE_URL + "/device_img?imgName=" + id;
+      this.PhotoDialog.pic = BASE_URL + "/device_img2?imgName=" + id;
     },
 
       handleQRDataCurrentPageChanged() {

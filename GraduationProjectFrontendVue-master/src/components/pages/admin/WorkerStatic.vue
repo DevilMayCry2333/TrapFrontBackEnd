@@ -12,7 +12,7 @@
         stripe 
         :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
         <el-table-column prop="Worker" label="工人名称" align="center"></el-table-column>
-        <el-table-column prop="Worker" label="姓名" align="center"></el-table-column>
+        <!-- <el-table-column prop="Worker" label="姓名" align="center"></el-table-column> -->
         <el-table-column prop="Num" label="管理诱捕器数量" align="center"></el-table-column>
         <el-table-column prop="distinctId" label="维护诱捕器数量" align="center"></el-table-column>
         <el-table-column prop="Num1" label="松墨天牛数量" align="center"></el-table-column>
