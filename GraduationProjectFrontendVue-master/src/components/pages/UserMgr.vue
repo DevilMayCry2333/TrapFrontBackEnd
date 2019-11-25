@@ -185,7 +185,7 @@
                 style="width: 150px;"
               ></el-input>
             </el-form-item>
-            <el-form-item label="　激活:" label-width="80px" size="mini" prop="active" >
+            <el-form-item label="　激活:" label-width="80px" size="mini" prop="active" v-if="!userInfoDialog.isAdd" >
               <el-checkbox name="active" v-model="userInfoDialog.EditForm.active"></el-checkbox>
             </el-form-item>
             
@@ -387,7 +387,7 @@
             username: "",
             name:"",
             phone:"",
-            active:true,
+            // active: 1,
             // password: "",
             // provinceCode: "",
             // areaCode: "",
@@ -575,9 +575,11 @@
           let name1 = this.userInfoDialog.EditForm.name;
           let phone1 =this.userInfoDialog.EditForm.phone;
           let username = this.userInfoDialog.EditForm.username;
+          let active = this.userInfoDialog.EditForm.active;
           console.log(name1);
           console.log(phone1);
           console.log(username);
+          console.log(active);
          
         // let phone1 = this.userInfoDialog.EditForm.phone;
         http.requestWithToken(
