@@ -419,7 +419,7 @@
               }
             ],
             role: [{required: true, message: "请选择角色", trigger: "blur"}],
-            name: [{required: true, message: "请输入姓名", trigger: "blur"}],
+            // name: [{required: true, message: "请输入姓名", trigger: "blur"}],
             associate_project: [{required: true, message: "请选择关联账号", trigger: "blur"}],
             provinceCode: [
               {required: true, message: "请选择省", trigger: "blur"}
@@ -572,10 +572,23 @@
         );
       },
       handleUserEdit() {
-        http.requestWithTokenJson(
+          let name1 = this.userInfoDialog.EditForm.name;
+          let phone1 =this.userInfoDialog.EditForm.phone;
+          let username = this.userInfoDialog.EditForm.username;
+          console.log(name1);
+          console.log(phone1);
+          console.log(username);
+         
+        // let phone1 = this.userInfoDialog.EditForm.phone;
+        http.requestWithToken(
           "/auth_api/user/nameAndPhone",
           "put",
-          this.userInfoDialog.EditForm,
+          {
+            name: name1,
+            phone: phone1,
+            username: username,
+          },
+          
           res => {
             if (!res.data.error) {
               this.$message({
