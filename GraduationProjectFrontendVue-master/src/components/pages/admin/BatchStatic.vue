@@ -29,6 +29,12 @@
     <el-card style="padding: 5px">
       <div style="width: 100%;height:300px;" ref="echartsArea"></div>
     </el-card>
+
+    <el-card style="padding: 5px">
+      <div style="width: 100%;height:300px;" ref="echartsAreaOne"></div>
+    </el-card>
+
+
   </div>
 </template>
 <script>
@@ -108,16 +114,16 @@ export default {
                         formatter: '{value}'
                     }
                 },
-                {
-                    type: 'value',
-                    name: '其他天牛(只)',
-                    min: 0,
-                    max: 250,
-                    interval: 50,
-                    axisLabel: {
-                        formatter: '{value}'
-                    }
-                }
+                // {
+                //     type: 'value',
+                //     name: '其他天牛(只)',
+                //     min: 0,
+                //     max: 250,
+                //     interval: 50,
+                //     axisLabel: {
+                //         formatter: '{value}'
+                //     }
+                // }
             ],
             series: [
                 {
@@ -130,14 +136,61 @@ export default {
                     type:'bar',
                     data:[]
                 },
-                {
-                    name:'平均数量',
-                    type:'line',
-                    yAxisIndex: 1,
-                    data:[]
-                }
             ]
+        },
+        option2 : {
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            crossStyle: {
+                color: '#999'
+            }
         }
+    },
+    xAxis: [
+      {
+        type: 'category',
+        data: [],
+        axisPointer:
+         {
+          type: 'shadow'
+        }
+    }],
+    toolbox: {
+        feature: {
+            dataView: {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar']},
+            restore: {show: true},
+            saveAsImage: {show: true}
+        }
+    },
+    legend: {
+                data:['平均数量']
+            },
+    yAxis: [{
+        type: 'value',
+        name: '数量(只)',
+         min: 0,
+        max: 150,
+        interval: 50,
+        axisLabel: {
+        formatter: '{value}'
+        }
+    }],
+    series: [
+    {
+      name: '平均数量',
+      data: [],
+      type: 'line',
+    },
+    // {
+    //   name: '其他天牛平均诱虫量',
+    //   data: [],
+    //   type: 'line',
+    // }
+    ]
+},
     };
   },
   methods: {
@@ -174,7 +227,11 @@ export default {
         this.option.xAxis[0].data = [];
         this.option.series[0].data = [];
         this.option.series[1].data = [];
-        this.option.series[2].data = [];
+        // this.option.series[2].data = [];
+
+        //折线图的
+        this.option2.xAxis[0].data = [];
+        this.option2.series[0].data = [];
 
         // var CurrentM = this.startYear.split("-");
         // console.log(CurrentM);
@@ -195,11 +252,16 @@ export default {
                 this.option.xAxis[0].data.push(res.data[i].customTown);
                 this.option.series[0].data.push(res.data[i].beetlesNum);
                 this.option.series[1].data.push(res.data[i].otherNum);
-                 this.option.series[2].data.push(res.data[i].avager);
+                //  this.option.series[2].data.push(res.data[i].avager);
+                //折线图的
+                this.option2.xAxis[0].data.push(res.data[i].customTown);
+                this.option2.series[0].data.push(res.data[i].avager);
                 //Mgh9nigujiOwZO5HFNkCoQ==
             }
                     let myChart = echarts.init(this.$refs.echartsArea);
+                    let myChart1 = echarts.init(this.$refs.echartsAreaOne)
                     myChart.setOption(this.option);
+                    myChart1.setOption(this.option2);
         },
         () => {}
       );
@@ -222,11 +284,15 @@ export default {
                 this.option.xAxis[0].data.push(res.data[i].customTown);
                 this.option.series[0].data.push(res.data[i].beetlesNum);
                 this.option.series[1].data.push(res.data[i].otherNum);
-                 this.option.series[2].data.push(res.data[i].avager);
+                //  this.option.series[2].data.push(res.data[i].avager);
                 //Mgh9nigujiOwZO5HFNkCoQ==
+                 this.option2.xAxis[0].data.push(res.data[i].customTown);
+                this.option2.series[0].data.push(res.data[i].avager);
             }
                     let myChart = echarts.init(this.$refs.echartsArea);
+                    let myChart1 = echarts.init(this.$refs.echartsAreaOne)
                     myChart.setOption(this.option);
+                    myChart1.setOption(this.option2);
         },
         () => {}
       );

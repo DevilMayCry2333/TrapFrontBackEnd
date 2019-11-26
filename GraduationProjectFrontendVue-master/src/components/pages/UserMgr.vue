@@ -125,6 +125,7 @@
               size="mini"
               prop="username"
               v-if="userInfoDialog.isAdd"
+              
             >
               <el-input
                 v-model="userInfoDialog.form.username"
@@ -160,7 +161,35 @@
                 style="width: 150px"
               ></el-input>
             </el-form-item>
-            <el-form-item label="　激活:" label-width="80px" size="mini" prop="active" >
+
+
+            <el-form-item label="用户名" label-width="80px" size="mini" prop="username" v-if="!userInfoDialog.isAdd">
+              <el-input
+                v-model="userInfoDialog.EditForm.username"
+                autocomplete="off"
+                style="width: 150px"
+                :disabled="true"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="姓名" label-width="80px" size="mini" prop="name" v-if="!userInfoDialog.isAdd">
+              <el-input
+                v-model="userInfoDialog.EditForm.name"
+                autocomplete="off"
+                style="width: 150px"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="　电话" label-width="80px" size="mini" prop="phone" v-if="!userInfoDialog.isAdd">
+              <el-input
+                v-model="userInfoDialog.EditForm.phone"
+                autocomplete="off"
+                style="width: 150px;"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="　激活:" label-width="80px" size="mini" prop="active" v-if="!userInfoDialog.isAdd" >
+              <el-checkbox name="active" v-model="userInfoDialog.EditForm.active"></el-checkbox>
+            </el-form-item>
+            
+            <el-form-item label="　激活:" label-width="80px" size="mini" prop="active" v-if="userInfoDialog.isAdd">
               <el-checkbox name="active" v-model="userInfoDialog.form.active"></el-checkbox>
             </el-form-item>
           </div>
@@ -354,6 +383,18 @@
             cityCode: "",
             parent: "" //此处指项目管理员的项目工程
           },
+          EditForm: {
+            username: "",
+            name:"",
+            phone:"",
+            // active: 1,
+            // password: "",
+            // provinceCode: "",
+            // areaCode: "",
+            // cityCode: "",
+            // parent: "" 
+          },
+
           provinces: [],
           cities: [],
           areas: [],
@@ -378,7 +419,7 @@
               }
             ],
             role: [{required: true, message: "请选择角色", trigger: "blur"}],
-            name: [{required: true, message: "请输入姓名", trigger: "blur"}],
+            // name: [{required: true, message: "请输入姓名", trigger: "blur"}],
             associate_project: [{required: true, message: "请选择关联账号", trigger: "blur"}],
             provinceCode: [
               {required: true, message: "请选择省", trigger: "blur"}
@@ -390,6 +431,15 @@
       };
     },
     methods: {
+
+      getCurrentRow(val){
+        console.log(val);
+        console.log(this.userData.list[val]);
+        console.log(this.userData.list[val].username);
+        let username=this.userData.list[val].username;
+    
+      },
+
       handleRestPassword() {
         let username = this.userData.list[this.userData.selectedIndex].username;
         http.requestWithToken('/auth_api/user/reset_password', 'post', {targetUsername: username}, (res) => {
@@ -522,10 +572,25 @@
         );
       },
       handleUserEdit() {
-        http.requestWithTokenJson(
-          "/auth_api/user",
+          let name1 = this.userInfoDialog.EditForm.name;
+          let phone1 =this.userInfoDialog.EditForm.phone;
+          let username = this.userInfoDialog.EditForm.username;
+          let active = this.userInfoDialog.EditForm.active;
+          console.log(name1);
+          console.log(phone1);
+          console.log(username);
+          console.log(active);
+         
+        // let phone1 = this.userInfoDialog.EditForm.phone;
+        http.requestWithToken(
+          "/auth_api/user/nameAndPhone",
           "put",
-          this.userInfoDialog.form,
+          {
+            name: name1,
+            phone: phone1,
+            username: username,
+          },
+          
           res => {
             if (!res.data.error) {
               this.$message({
@@ -619,12 +684,13 @@
       showEditUser() {
         this.userInfoDialog.isAdd = false;
         this.userInfoDialog.visible = true;
-        this.userInfoDialog.form = {
-          username: this.userData.list[this.userData.selectedIndex].username,
-          name: this.userData.list[this.userData.selectedIndex].name,
-          active: this.userData.list[this.userData.selectedIndex].active,
-          phone: this.userData.list[this.userData.selectedIndex].phone,
-          email: this.userData.list[this.userData.selectedIndex].email
+        this.userInfoDialog.EditForm = {
+        username: this.userData.list[this.userData.selectedIndex].username,      
+        name: this.userData.list[this.userData.selectedIndex].name,
+        active: this.userData.list[this.userData.selectedIndex].active,
+        phone: this.userData.list[this.userData.selectedIndex].phone,
+        // email: this.userData.list[this.userData.selectedIndex].email,
+
         };
 
         this.loadProvince();
