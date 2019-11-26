@@ -8,6 +8,11 @@ import Vuex from 'vuex';
 import App from './App';
 import router from './router';
 import echarts from 'echarts';
+import VueLayers from 'vuelayers'
+import 'vuelayers/lib/style.css' // needs css-loader
+
+Vue.use(VueLayers)
+
 // import ElementUI from 'element-ui';
 //import 'element-ui/lib/theme-chalk/index.css';
 import 'font-awesome/css/font-awesome.min.css';
