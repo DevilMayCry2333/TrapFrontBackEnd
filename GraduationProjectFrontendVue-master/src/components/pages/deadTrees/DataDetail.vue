@@ -17,6 +17,8 @@
       </div>
       <div style=" display: flex;">
             <el-button type="primary" @click="exportExcel" style="height:fit-content">导出</el-button>
+            <el-button  type="primary" @click="exportImage" style="height: fit-content;">导出图像</el-button>
+
             <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
             <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
             <el-upload ref="upload"
@@ -234,6 +236,33 @@ export default {
     },
     methods:{
 
+      exportImage(){
+                let role = this.$store.state.user.role;
+          console.log(role);
+            console.log(this.area);
+            console.log(this.city);
+              console.log(this.province);
+        console.log(http.getBaseUrl());
+
+        setTimeout(()=>{
+                  window.location =
+        http.getBaseUrl() +
+        "/deadTree/exportImage?startDate=" +
+        this.startDate +
+        "&endDate=" +
+        this.endDate +
+        "&searchText=" +
+        this.input +
+        "&colName=" +
+        this.value +
+        "&adcode=" +
+        this.area +
+        "&username="+
+        sessionStorage['username'] +
+        "&token=" +
+        sessionStorage["token"];
+        },1000)
+      },
       wooddiameterInput(){
         console.log(this.EditMaintenanceDialog.form.wooddiameter);
         var tmp = 0.714265437 * 0.0001 * Math.pow(this.EditMaintenanceDialog.form.wooddiameter * 0.7, 1.867010) * Math.pow(this.EditMaintenanceDialog.form.woodheight, 0.9014632);

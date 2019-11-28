@@ -62,7 +62,10 @@
           <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
 
           <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
+          <el-button  type="primary" @click="exportImage" style="height: fit-content;">导出图像</el-button>
+
           <el-upload  
+          
             class="upload-demo" 
             ref="upload"
             :action="uploadUrl"
@@ -95,7 +98,7 @@
           </template>
         </el-table-column>-->
         <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
-        <el-table-column prop="deviceId" label="设备ID" align="center"></el-table-column>
+        <el-table-column prop="scanId" label="设备ID" align="center"></el-table-column>
         <el-table-column prop="customSerial" label="编号" align="center"></el-table-column>
         <el-table-column  v-if="this.$store.state.user.role == 4" prop="customTown" label="区域" align="center"></el-table-column>
         <el-table-column prop="date" label="日期" align="center"></el-table-column>
@@ -308,6 +311,66 @@ export default {
     };
   },
   methods: {
+      exportImage(){
+                  console.log("导出");
+        let role2 = this.$store.state.user.role;
+        this.role2 = role2;
+                // this.loadDevice();
+        console.log(role2);
+        if (role2 == 1) {
+          this.province = this.$store.state.user.adcode.substr(0, 2);
+        } else if (role2 == 2) {
+          this.province = this.$store.state.user.adcode.substr(0, 2);
+          this.city = this.$store.state.user.adcode.substr(0, 4);
+        } else if (role2 == 3) {
+          this.province = this.$store.state.user.adcode.substr(0, 2);
+          this.city = this.$store.state.user.adcode.substr(0, 4);
+          this.area = this.$store.state.user.adcode;
+              }
+              else if (role2 == 4) {
+                            this.province = this.$store.state.user.adcode.substr(0, 2);
+                            this.city = this.$store.state.user.adcode.substr(0, 4);
+                            this.area = this.$store.state.user.adcode;
+                            this.manager=this.$store.state.user.username;
+                          }
+
+          if(!this.value){
+            this.value = "";
+          }
+          if(!this.input){
+            this.input = "";
+          }
+          if(!this.startDate){
+            this.startDate = "";
+          }
+          if(!this.endDate){
+            this.endDate = "";
+          }
+          if(!this.area){
+            this.area = "";
+          }
+
+
+          setTimeout(()=>{
+                    window.location =
+          http.getBaseUrl() +
+          "/app/exportImage?startDate=" +
+          this.startDate +
+          "&endDate=" +
+          this.endDate +
+          "&searchText=" +
+          this.searchText +
+          "&colName=" +
+          this.selected +
+          "&adcode=" +
+          this.area +
+          "&username="+
+          sessionStorage['username'] +
+          "&token=" +
+          sessionStorage["token"];
+          },1000)
+
+        },
     getFuckingSearch(){
       console.log(this.input);
       console.log(this.value);
