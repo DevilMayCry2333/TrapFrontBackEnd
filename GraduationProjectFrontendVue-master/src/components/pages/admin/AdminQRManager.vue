@@ -322,7 +322,7 @@ export default {
         disabled:false
       },
         options: [{
-          value: 'id',
+          value: 'scanId',
           label: '设备ID'
         }, {
           value: 'project',
@@ -521,7 +521,7 @@ export default {
       if(!this.input || !this.value){
         alert("请输入查询条件!")
       }else{
-        if(this.value=="project"){
+        if(this.value=="project"||this.value=='isManagerAssign'){
           if(this.input=="诱捕器管理"){
             this.input = 1;
           }else if(this.input=="注干剂监测"){
@@ -532,12 +532,16 @@ export default {
              this.input = 4;
           }else if(this.input=="药剂防治管理"){
              this.input = 5;
-          }else{
-            alert("输入错误!");
+          }else if(this.input=="未绑定"){
+             this.input = 0;
+          }else if(this.input = "已绑定"){
+             this.input = 1;
           }
-        }
+        }else{
+            alert("输入错误");
+          }
               http.requestWithToken(
-          "/newQrCode/usertosearch",
+          "/newQrCode/rootSearch",
           "get",
           { colName: this.value, searchText: this.input,
           page: this.QRData.page, limit: this.QRData.limit },
