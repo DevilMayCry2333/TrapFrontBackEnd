@@ -24,7 +24,7 @@
         <el-upload  class="upload-demo" ref="upload"
         :action="uploadUrl"
         :on-success="loadMaintenanceData">
-          <el-button  type="primary"  style="margin-left:20px" >导入</el-button>
+          <el-button  type="primary"  style="margin-left:10px;" >导入</el-button>
         </el-upload>
     </div>
   </div>

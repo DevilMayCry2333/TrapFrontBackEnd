@@ -184,11 +184,11 @@
             <br />
       <div id="assignQR" style="height: 150px;">
           <el-tag style="height: 40px;line-height: 40px;">起始ID：</el-tag>
-          <el-input v-model="startID" placeholder="输入六位数字" style="width:40%;"></el-input>
+          <el-input v-model="startID" placeholder="请输入以1为开头的设备ID" style="width:40%;"></el-input>
             <br />
             <br />
           <el-tag style="height: 40px;line-height: 40px;">结束ID：</el-tag>
-          <el-input v-model="endID" placeholder="输入六位数字" style="width:40%;"></el-input>
+          <el-input v-model="endID" placeholder="请输入以1为开头的设备ID" style="width:40%;"></el-input>
             <br />
             <br />
            <el-tag style="height: 40px;line-height: 40px;">代理商：</el-tag>
@@ -533,7 +533,7 @@ export default {
           }else if(this.input=="药剂防治管理"){
              this.input = 5;
           }else{
-            alert("输入错误");
+            alert("输入错误!");
           }
         }
               http.requestWithToken(
