@@ -784,7 +784,7 @@ export default {
       console.log(this.area);
 
                http.requestWithToken(
-                "/newQrCode/getAvailableNum",
+                "/newQrCode/getavailableNum",
                 "get",
                 {
                   province:this.province
