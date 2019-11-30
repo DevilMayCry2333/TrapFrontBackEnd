@@ -65,7 +65,7 @@ import MedicineDeviceMessage from '@/components/pages/medicine/MedicineDeviceMes
 import InjectName from '@/components/pages/admin/InjectName';
 import DataSummaryByRegion from '@/components/pages/naturalEnemies/DataSummaryByRegion';
 import DeadTreesSummaryByregion from '@/components/pages/deadTrees/DeadTreesSummaryByregion';
-import MyOpenLayers from '@/components/pages/MyOpen/MyOpenLayers'
+import MyOpenLayers from '@/components/pages/MyOpen/MyOpenLayers';
 Vue.use(Router);
 Vue.config.devtools = true;
 

@@ -62,7 +62,7 @@
           <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
 
           <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->
-          <el-button  type="primary" @click="exportImage" style="height: fit-content;">导出图像</el-button>
+          <el-button  type="primary" @click="exportImage" style="margin-right:10px;height:fit-content;">导出图像</el-button>
 
           <el-upload  
           
