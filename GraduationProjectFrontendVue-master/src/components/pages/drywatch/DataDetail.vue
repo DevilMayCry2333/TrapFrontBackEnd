@@ -124,17 +124,17 @@
             <el-form-item label="所属区域">
               <el-input v-model="EditMaintenanceDialog.form.customtown"></el-input>
             </el-form-item> -->
-            <el-form-item label="日期">
+            <!-- <el-form-item label="日期">
               <el-input v-model="EditMaintenanceDialog.form.submitDate"></el-input>
-            </el-form-item>
+            </el-form-item> -->
             <el-form-item label="批次">
               <el-input v-model="EditMaintenanceDialog.form.batch"></el-input>
             </el-form-item>
             <el-form-item label="工作内容">
-              <el-input v-model="EditMaintenanceDialog.form.workContent"></el-input>
+              <el-input v-model="EditMaintenanceDialog.form.workContentFront"></el-input>
             </el-form-item>
             <el-form-item label="树木状态">
-              <el-input v-model="EditMaintenanceDialog.form.woodstatus"></el-input>
+              <el-input v-model="EditMaintenanceDialog.form.woodStatusFront"></el-input>
             </el-form-item>
             <el-form-item label="注剂数量">
               <el-input v-model="EditMaintenanceDialog.form.injectionNum"></el-input>
@@ -304,12 +304,14 @@
         batch:0,
         deviceId:"",
         serial:"",
-        customTown:"",
+        region:"",
         submitDate:"",
         workContent:"",
         id:"",
         woodstatus:"",
-        injectionNum:""
+        injectionNum:"",
+        woodStatusFront:"",
+        workContentFront:""
       };
       this.EditMaintenanceDialog.form.id = data.id;
       this.EditMaintenanceDialog.form.longitude = data.longitude;
@@ -317,12 +319,15 @@
       this.EditMaintenanceDialog.form.altitude = data.altitude;
       this.EditMaintenanceDialog.form.latitude = data.latitude;
       this.EditMaintenanceDialog.form.serial = data.serial;
-      this.EditMaintenanceDialog.form.customTown = data.customTown;
+      this.EditMaintenanceDialog.form.region = data.region;
       this.EditMaintenanceDialog.form.submitDate = data.submitDate;
       this.EditMaintenanceDialog.form.batch = data.batch;
        this.EditMaintenanceDialog.form.workContent = data.workContent;
        this.EditMaintenanceDialog.form.woodstatus = data.woodstatus;
        this.EditMaintenanceDialog.form.injectionNum = data.injectionNum;
+       this.EditMaintenanceDialog.form.woodStatusFront = data.woodStatusFront;
+        this.EditMaintenanceDialog.form.workContentFront = data.workContentFront;
+
 
     },
 

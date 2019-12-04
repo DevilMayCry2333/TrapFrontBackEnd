@@ -206,7 +206,6 @@
         <el-form-item label="其他天牛类型">
           <!-- <el-input-number :min="0"></el-input-number> -->
           <el-select v-model="EditMaintenanceDialog.form.otherType">
-            <el-option label="无" value key="无">无</el-option>
             <el-option
               v-for="item in otherBeetleList"
               :value="item.id"
@@ -219,18 +218,18 @@
           <el-input-number :min="0" v-model="EditMaintenanceDialog.form.otherNum"></el-input-number>
         </el-form-item>
         <el-form-item label="药剂类型">
-          <el-select v-model="EditMaintenanceDialog.form.drug">
+          <el-select v-model="EditMaintenanceDialog.form.drugFront">
             <el-option label="APF-I持久增强型" value="APF-I持久增强型">APF-I持久增强型</el-option>
             <el-option label="APF-I持久型" value="APF-I持久型">APF-I持久型</el-option>
             <el-option label="APF-I普通型" value="APF-I普通型">APF-I普通型</el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="工作内容">
-          <el-select v-model="EditMaintenanceDialog.form.workingContent">
-            <el-option :value="0" label="首次悬挂诱捕器">首次悬挂诱捕器</el-option>
-            <el-option :value="1" label="换药+收虫">换药+收虫</el-option>
-            <el-option :value="2" label="收虫">收虫</el-option>
-            <el-option :value="3" label="其他">其他</el-option>
+          <el-select v-model="EditMaintenanceDialog.form.workContentFront">
+            <el-option  label="首次悬挂诱捕器" value="首次悬挂诱捕器">首次悬挂诱捕器</el-option>
+            <el-option  label="换药+收虫" value="换药+收虫">换药+收虫</el-option>
+            <el-option  label="收虫" value="收虫">收虫</el-option>
+            <el-option  label="其他" value="其他">其他</el-option>
           </el-select>
         </el-form-item>
       </el-form>
@@ -305,7 +304,10 @@ export default {
           altitude:"",
           workingContent: 0,
           deviceId:"",
-          drug: ""
+          drug: "",
+          drugFront:"",
+          workContentFront:"",
+          otherBeetleFront:""
         }
       }
     };
@@ -604,7 +606,10 @@ export default {
         batch:0,
         deviceId:"",
         workingContent: 0,
-        drug: ""
+        drug: "",
+        drugFront:"",
+        workContentFront:"",
+        otherBeetleFront:"",
       };
       this.EditMaintenanceDialog.form.longitude = data.longitude;
       this.EditMaintenanceDialog.form.deviceId = data.deviceId;
@@ -617,8 +622,15 @@ export default {
       this.EditMaintenanceDialog.form.id = data.id;
       this.EditMaintenanceDialog.form.otherNum = data.otherNum;
       this.EditMaintenanceDialog.form.otherType = data.otherType;
+      this.EditMaintenanceDialog.form.workContentFront = data.workContentFront;
+      this.EditMaintenanceDialog.form.otherBeetleFront = data.otherBeetleFront;
+      this.EditMaintenanceDialog.form.drugFront = data.drugFront;
+
     },
     handleEditMaintenanceDataSubmit() {
+      console.log(this.workContentFront);
+      console.log(this.otherBeetleFront);
+      console.log(this.drugFront);
       http.requestWithTokenJson(
         "/auth_api/maintenance",
         "put",
