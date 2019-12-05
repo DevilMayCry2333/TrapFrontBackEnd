@@ -138,9 +138,9 @@
         <el-form-item label="区域">
           <el-input v-model="EditMaintenanceDialog.form.customtown"></el-input>
         </el-form-item> -->
-        <el-form-item label="日期">
+        <!-- <el-form-item label="日期">
           <el-input v-model="EditMaintenanceDialog.form.submitDate"></el-input>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="天敌类型">
           <el-input v-model="EditMaintenanceDialog.form.predatorstype"></el-input>
         </el-form-item>

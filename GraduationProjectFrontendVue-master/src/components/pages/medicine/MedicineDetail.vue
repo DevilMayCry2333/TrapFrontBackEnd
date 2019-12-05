@@ -112,9 +112,9 @@
           <el-form-item label="纬度">
               <el-input v-model="EditMaintenanceDialog.form.latitude"></el-input>
           </el-form-item>
-            <el-form-item label="海拔">
+            <!-- <el-form-item label="海拔">
                 <el-input v-model="EditMaintenanceDialog.form.altitude"></el-input>
-            </el-form-item>
+            </el-form-item> -->
             <!-- <el-form-item label="设备ID">
               <el-input v-model="EditMaintenanceDialog.form.deviceId"></el-input>
             </el-form-item>
@@ -333,7 +333,8 @@
         id:"",
         woodstatus:"",
         medicineQua:"",
-        areaFz:""
+        areaFz:"",
+        medicineName:""
       };
       this.EditMaintenanceDialog.form.id = data.id;
       this.EditMaintenanceDialog.form.longitude = data.longitude;
@@ -347,7 +348,7 @@
        this.EditMaintenanceDialog.form.workContent = data.workContent;
        this.EditMaintenanceDialog.form.areaFz = data.areaFz;
        this.EditMaintenanceDialog.form.medicineQua= data.medicineQua;
-
+      this.EditMaintenanceDialog.form.medicineName = data.medicineName;
     },
 
       exportExcel(){
