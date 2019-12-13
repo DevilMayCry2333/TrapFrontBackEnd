@@ -401,7 +401,7 @@ export default {
                              console.log(this.area);
 
           http.requestWithToken(
-            "/app/Fuck",
+            "/app/getTrapDetail",
             "post",
             {
               colName:this.value,
@@ -535,7 +535,7 @@ export default {
 
                              
       http.requestWithToken(
-        "/app/Fuck",
+        "/app/getTrapDetail",
         "get",
         {
               colName:this.value,
