@@ -357,13 +357,13 @@ export default {
                     window.location =
           http.getBaseUrl() +
           "/app/exportImage?startDate=" +
-          this.startDate +
+          this.maintenanceData.startDate +
           "&endDate=" +
-          this.endDate +
+          this.maintenanceData.endDate +
           "&searchText=" +
-          this.searchText +
+          this.input +
           "&colName=" +
-          this.selected +
+          this.value +
           "&adcode=" +
           this.area +
           "&username="+
