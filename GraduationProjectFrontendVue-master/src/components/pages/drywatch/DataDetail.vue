@@ -439,7 +439,8 @@
             searchText: this.searchText,
             startDate: this.DryWatchData.startDate,
             endDate: this.DryWatchData.endDate,
-            page:this.DryWatchData.page
+            page:this.DryWatchData.page,
+            limit:10
           },
           res => {
             console.log(res.data.Data);
