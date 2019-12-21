@@ -127,8 +127,8 @@
         <el-table-column label="现场照片" width="100px" align="center">
           <template slot-scope="scope">
             <el-button
-              @click="showPhotoDialog(scope.row.imageId)"
-              v-if="scope.row.imageId != null && scope.row.imageId !=''"
+              @click="showPhotoDialog(scope.row.imgId)"
+              v-if="scope.row.imgId != null && scope.row.imgId !=''"
               size="mini"
             >显示</el-button>
           </template>
