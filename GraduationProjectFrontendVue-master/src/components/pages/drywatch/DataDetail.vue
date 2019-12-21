@@ -438,7 +438,8 @@
             optionIndex: this.selected,
             searchText: this.searchText,
             startDate: this.DryWatchData.startDate,
-            endDate: this.DryWatchData.endDate
+            endDate: this.DryWatchData.endDate,
+            page:this.DryWatchData.page
           },
           res => {
             console.log(res.data.Data);
