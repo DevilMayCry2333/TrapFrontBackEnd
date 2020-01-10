@@ -280,7 +280,7 @@ export default new Router({
         },
         {
           path: 'pages/natural/maintance',
-          name: '天地防治管理',
+          name: '天敌防治管理',
           component: NaturalMaintanceData
         },
         {

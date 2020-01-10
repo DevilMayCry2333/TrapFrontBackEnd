@@ -6,9 +6,9 @@ import axios from 'axios'
 
 let BASE_URL = "http://localhost:50000";
 
-if (window.location.toString().indexOf('106.15.200.245') > -1) {
+if (window.location.toString().indexOf('106.15.90.78') > -1) {
     //BASE_URL = "http://47.103.66.70:8081";
-   BASE_URL = "http://106.15.200.245:50000";
+   BASE_URL = "http://106.15.90.78:50000";
 } else {
     // BASE_URL = "http://localhost:50000";
     BASE_URL = "http://localhost:50000";
@@ -98,9 +98,9 @@ export const requestWithoutTokenJson = (url, method, params, success, error) => 
 }
 export const getBaseUrl = () => {
     let BASE_URL = "";
-    if (window.location.toString().indexOf("106.15.200.245") > -1) {
+    if (window.location.toString().indexOf("106.15.90.78") > -1) {
        // BASE_URL = "http://47.103.66.70:8081";
-      BASE_URL = "http://106.15.200.245:50000";
+      BASE_URL = "http://106.15.90.78:50000";
     } else {
         BASE_URL = "http://localhost:50000";
     }

@@ -65,7 +65,7 @@
         </el-table-column>-->
 
         <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
-        <el-table-column prop="deviceId" label="诱捕器编号" align="center"></el-table-column>
+        <el-table-column prop="scanId" label="注干剂编号" align="center"></el-table-column>
         <!-- <el-table-column prop="num" label="松墨天牛总数"></el-table-column> -->
 
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
@@ -76,7 +76,7 @@
             slot-scope="scope"
           >{{scope.row.province + scope.row.city + scope.row.area + scope.row.town}}</template>
         </el-table-column>
-        <el-table-column prop="username" label="工人" align="center"></el-table-column>
+        <el-table-column prop="username" label="项目管理员" align="center"></el-table-column>
 
         <el-table-column
           label="操作"
