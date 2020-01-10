@@ -22,9 +22,9 @@
         <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
         <el-table-column prop="batch" label="维护批次" align="center"></el-table-column>
         <el-table-column prop="injectionNum" label="注剂数量" align="center"></el-table-column>
-        <el-table-column prop="woodstatus" label="树木状态" align="center"></el-table-column>
+        <el-table-column prop="woodStatusFront" label="树木状态" align="center"></el-table-column>
          <el-table-column prop="submitDate" label="日期" align="center"></el-table-column>
-         <el-table-column prop="workContent" label="工作内容" align="center"></el-table-column>
+         <!-- <el-table-column prop="workContent" label="工作内容" align="center"></el-table-column> -->
 
       </el-table>
 

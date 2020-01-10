@@ -1,7 +1,7 @@
 <template>
   <div>
-  <router-link to='/pages/drywatch/Maintance'>诱捕器情况</router-link>
-        >设备维护信息
+  <router-link to='/pages/medicine/Maintance'>药剂情况</router-link>
+        >药剂维护信息
 
 
     <div id="tool-row">
@@ -65,12 +65,12 @@
         </el-table-column>-->
 
         <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
-        <el-table-column prop="deviceId" label="诱捕器编号" align="center"></el-table-column>
+        <el-table-column prop="scanId" label="药剂编号" align="center"></el-table-column>
         <!-- <el-table-column prop="num" label="松墨天牛总数"></el-table-column> -->
 
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
         <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
-        <el-table-column prop="altitude" label="海拔" align="center"></el-table-column>
+        <!-- <el-table-column prop="altitude" label="海拔" align="center"></el-table-column> -->
         <el-table-column label="行政区域" width="200px" align="center">
           <template
             slot-scope="scope"

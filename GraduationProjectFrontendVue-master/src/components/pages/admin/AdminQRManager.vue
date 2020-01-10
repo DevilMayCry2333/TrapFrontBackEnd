@@ -545,11 +545,11 @@ export default {
         if(this.value=="project"){ 
           if(this.input=="诱捕器管理"){
             this.input = 1;
-          }else if(this.input=="注干剂监测"){
+          }else if(this.input=="注干剂管理"){
              this.input = 2;
-          }else if(this.input=="天敌防治"){
+          }else if(this.input=="天敌防治管理"){
              this.input = 3;
-          }else if(this.input=="枯死树采伐"){
+          }else if(this.input=="枯死树管理"){
              this.input = 4;
           }else if(this.input=="药剂防治管理"){
              this.input = 5;
@@ -582,11 +582,11 @@ export default {
               if(this.QRData.list[i].project=="1"){
                 this.QRData.list[i].project = "诱捕器管理";
               }else if(this.QRData.list[i].project=="2"){
-                this.QRData.list[i].project = "注干剂监测";
+                this.QRData.list[i].project = "注干剂管理";
               }else if(this.QRData.list[i].project=="3"){
-                this.QRData.list[i].project = "天敌防治";
+                this.QRData.list[i].project = "天敌防治管理";
               }else if(this.QRData.list[i].project=="4"){
-                this.QRData.list[i].project = "枯死树采伐";
+                this.QRData.list[i].project = "枯死树管理";
               }else if(this.QRData.list[i].project=="5"){
                 this.QRData.list[i].project = "药剂防治管理";
               }
@@ -824,8 +824,8 @@ export default {
     // 下载
     handleDownload() {
       let BASE_URL = "";
-      if (window.location.toString().indexOf("106.15.200.245") > -1) {
-        BASE_URL = "http://106.15.200.245:50000";
+      if (window.location.toString().indexOf("106.15.90.78") > -1) {
+        BASE_URL = "http://106.15.90.78:50000";
       } else {
         BASE_URL = "http://localhost:50000";
       }
@@ -891,11 +891,11 @@ export default {
               if(this.QRData.list[i].project=="1"){
                 this.QRData.list[i].project = "诱捕器管理";
               }else if(this.QRData.list[i].project=="2"){
-                this.QRData.list[i].project = "注干剂监测";
+                this.QRData.list[i].project = "注干剂管理";
               }else if(this.QRData.list[i].project=="3"){
-                this.QRData.list[i].project = "天敌防治";
+                this.QRData.list[i].project = "天敌防治管理";
               }else if(this.QRData.list[i].project=="4"){
-                this.QRData.list[i].project = "枯死树采伐";
+                this.QRData.list[i].project = "枯死树管理";
               }else if(this.QRData.list[i].project=="5"){
                 this.QRData.list[i].project = "药剂防治管理";
               }

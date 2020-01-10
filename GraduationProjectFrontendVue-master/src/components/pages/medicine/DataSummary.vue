@@ -331,7 +331,7 @@ export default {
     queryAreaData() {
       this.contentLabelIndex = 1;
       http.requestWithToken(
-        "/dryWatch/Summary/city",
+        "/medicineData/Summary/byCustomReigon",
         "get",
         {
           adcode: this.city,
@@ -354,7 +354,7 @@ export default {
     queryCityData() {
       this.contentLabelIndex = 0;
       http.requestWithToken(
-        "/dryWatch/Summary/province",
+        "/medicineData/Summary/byCustomReigon",
         "get",
         {
           adcode: this.province,

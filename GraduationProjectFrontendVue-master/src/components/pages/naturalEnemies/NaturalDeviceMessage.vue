@@ -1,9 +1,9 @@
 <template>
   <div>
-  <router-link to='/pages/natural/maintance'>诱捕器情况</router-link>
+  <router-link to='/pages/natural/maintance'>天敌防治情况</router-link>
 >
   <router-link to='/pages/natural/maintance'>设备维护信息</router-link>
-      >诱捕器信息
+      >设备信息
 
 
     <div style="padding-top:5px">
