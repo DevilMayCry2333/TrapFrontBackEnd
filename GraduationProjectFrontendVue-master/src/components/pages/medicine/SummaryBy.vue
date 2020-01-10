@@ -69,11 +69,34 @@
         this.loadDevice()
       },
       loadDevice() {
+              let role = this.$store.state.user.role;
+      console.log(this.$store.state.user.role);
+      if (role == 1) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.loadCity();
+      } else if (role == 2) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.loadArea();
+      } else if (role == 3) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+      this.loadManagers();
+            }
+            else if (role == 4) {
+                          this.province = this.$store.state.user.adcode.substr(0, 2);
+                          this.city = this.$store.state.user.adcode.substr(0, 4);
+                          this.area = this.$store.state.user.adcode;
+                          this.manager=this.$store.state.user.username;
+                        }
+
         http.requestWithToken(
           "/medicineData/Summary/byCustomReigon",
           "post",
           {
             page: this.DryWatchData.page,
+            adcode: this.area,
             limit: 10,
             optionIndex: this.selected,
             searchText: this.searchText,

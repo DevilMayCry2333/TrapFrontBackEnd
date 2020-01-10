@@ -825,8 +825,8 @@ export default {
     // 下载
     handleDownload() {
       let BASE_URL = "";
-      if (window.location.toString().indexOf("106.15.90.78") > -1) {
-        BASE_URL = "http://106.15.90.78:50000";
+      if (window.location.toString().indexOf("106.15.200.245") > -1) {
+        BASE_URL = "http://106.15.200.245:50000";
       } else {
         BASE_URL = "http://localhost:50000";
       }
