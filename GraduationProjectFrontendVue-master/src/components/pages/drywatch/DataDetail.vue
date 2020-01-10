@@ -432,7 +432,7 @@
         console.log(this.DryWatchData.startDate);
         console.log(this.DryWatchData.endDate);
         http.requestWithToken(
-          "/dryWatch/searchDetail",
+          "/dryWatch/dataDetail",
           "post",
           {
             optionIndex: this.selected,

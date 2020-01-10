@@ -321,6 +321,7 @@ export default {
       changeID:{
         disabled:false
       },
+      inputValue:'',
         options: [{
           value: 'scanId',
           label: '设备ID'
@@ -544,15 +545,15 @@ export default {
       }else{
         if(this.value=="project"){ 
           if(this.input=="诱捕器管理"){
-            this.input = 1;
+            this.inputValue = 1;
           }else if(this.input=="注干剂管理"){
-             this.input = 2;
+             this.inputValue = 2;
           }else if(this.input=="天敌防治管理"){
-             this.input = 3;
+             this.inputValue = 3;
           }else if(this.input=="枯死树管理"){
-             this.input = 4;
+             this.inputValue = 4;
           }else if(this.input=="药剂防治管理"){
-             this.input = 5;
+             this.inputValue = 5;
           // }else if(this.input=="未绑定"){
           //    this.input = 0;
           // }else if(this.input = "已绑定"){
@@ -561,9 +562,9 @@ export default {
           }
           }else if(this.value == "isManagerAssign"){
             if(this.input=="已绑定"){
-              this.input = 1;
+              this.inputValue = 1;
             }else if(this.input=="未绑定"){
-              this.input = 0;
+              this.inputValue = 0;
             }
         }
           // else{
@@ -572,7 +573,7 @@ export default {
               http.requestWithToken(
           "/newQrCode/rootSearch",
           "get",
-          { colName: this.value, searchText: this.input,
+          { colName: this.value, searchText: this.inputValue,
           page: this.QRData.page, limit: this.QRData.limit,
           username: this.manager},
           res => {
