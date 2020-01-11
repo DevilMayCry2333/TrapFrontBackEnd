@@ -23,7 +23,7 @@
             v-if="this.$store.state.user.role == 4 || this.$store.state.user.role == 0"
           >工人
           </el-option>
-                    <el-option
+          <el-option
             :key="6"
             :value="6"
             label="项目工程"
@@ -56,14 +56,14 @@
       </div>
     </div>
     <div style="padding-top:5px">
-      <el-table 
-            class="tableGreen"
-            border 
-            :data="userData.list" 
-            stripe                
-            style="width: 100%" 
-            height="600"
-            :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">             <!-- 斑马纹 表头颜色 和表头字体颜色-->
+      <el-table
+        class="tableGreen"
+        border
+        :data="userData.list"
+        stripe
+        style="width: 100%"
+        height="600"
+        :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">             <!-- 斑马纹 表头颜色 和表头字体颜色-->
         <el-table-column label width="50" align="center">
           <template scope="scope">
             <el-radio
@@ -82,7 +82,7 @@
         <el-table-column prop="province" label="省份" align="center"></el-table-column>
         <el-table-column prop="city" label="市区" align="center"></el-table-column>
         <el-table-column prop="area" label="县" align="center"></el-table-column>
-         <el-table-column prop="parent" label="关联项目" align="center"></el-table-column>
+        <el-table-column prop="parent" label="关联项目" align="center"></el-table-column>
 
         <el-table-column label="激活状态" align="center">
           <template slot-scope="scope">{{scope.row.active == 1 ? '激活' : '禁用'}}</template>
@@ -125,7 +125,7 @@
               size="mini"
               prop="username"
               v-if="userInfoDialog.isAdd"
-              
+
             >
               <el-input
                 v-model="userInfoDialog.form.username"
@@ -188,7 +188,7 @@
             <el-form-item label="　激活:" label-width="80px" size="mini" prop="active" v-if="!userInfoDialog.isAdd" >
               <el-checkbox name="active" v-model="userInfoDialog.EditForm.active"></el-checkbox>
             </el-form-item>
-            
+
             <el-form-item label="　激活:" label-width="80px" size="mini" prop="active" v-if="userInfoDialog.isAdd">
               <el-checkbox name="active" v-model="userInfoDialog.form.active"></el-checkbox>
             </el-form-item>
@@ -387,12 +387,12 @@
             username: "",
             name:"",
             phone:"",
-            // active: 1,
+            active: "",
             // password: "",
             // provinceCode: "",
             // areaCode: "",
             // cityCode: "",
-            // parent: "" 
+            // parent: ""
           },
 
           provinces: [],
@@ -437,7 +437,7 @@
         console.log(this.userData.list[val]);
         console.log(this.userData.list[val].username);
         let username=this.userData.list[val].username;
-    
+
       },
 
       handleRestPassword() {
@@ -458,7 +458,7 @@
         }
         let formData = this.userInfoDialog.form;
         let role = this.userInfoDialog.form.role;
-              console.log(formData);
+        console.log(formData);
         switch (role) {
           case 1:
             // 省级用户
@@ -572,15 +572,15 @@
         );
       },
       handleUserEdit() {
-          let name1 = this.userInfoDialog.EditForm.name;
-          let phone1 =this.userInfoDialog.EditForm.phone;
-          let username = this.userInfoDialog.EditForm.username;
-          let active = this.userInfoDialog.EditForm.active;
-          console.log(name1);
-          console.log(phone1);
-          console.log(username);
-          console.log(active);
-         
+        let name1 = this.userInfoDialog.EditForm.name;
+        let phone1 =this.userInfoDialog.EditForm.phone;
+        let username = this.userInfoDialog.EditForm.username;
+        let active = this.userInfoDialog.EditForm.active;
+        console.log(name1);
+        console.log(phone1);
+        console.log(username);
+        console.log(active);
+
         // let phone1 = this.userInfoDialog.EditForm.phone;
         http.requestWithToken(
           "/auth_api/user/nameAndPhone",
@@ -589,8 +589,9 @@
             name: name1,
             phone: phone1,
             username: username,
+            active: active
           },
-          
+
           res => {
             if (!res.data.error) {
               this.$message({
@@ -613,24 +614,24 @@
 
       loadUser() {
         console.log(this.roleType);
-              let role = this.$store.state.user.role;
-              console.log(role);
-      if (role == 1) {
-        this.province = this.$store.state.user.adcode.substr(0, 2);
-      } else if (role == 2) {
-        this.province = this.$store.state.user.adcode.substr(0, 2);
-        this.city = this.$store.state.user.adcode.substr(0, 4);
-      } else if (role == 3) {
-        this.province = this.$store.state.user.adcode.substr(0, 2);
-        this.city = this.$store.state.user.adcode.substr(0, 4);
-        this.area = this.$store.state.user.adcode;
-            }
-            else if (role == 4) {
-                          this.province = this.$store.state.user.adcode.substr(0, 2);
-                          this.city = this.$store.state.user.adcode.substr(0, 4);
-                          this.area = this.$store.state.user.adcode;
-                          this.manager=this.$store.state.user.username;
-                        }
+        let role = this.$store.state.user.role;
+        console.log(role);
+        if (role == 1) {
+          this.province = this.$store.state.user.adcode.substr(0, 2);
+        } else if (role == 2) {
+          this.province = this.$store.state.user.adcode.substr(0, 2);
+          this.city = this.$store.state.user.adcode.substr(0, 4);
+        } else if (role == 3) {
+          this.province = this.$store.state.user.adcode.substr(0, 2);
+          this.city = this.$store.state.user.adcode.substr(0, 4);
+          this.area = this.$store.state.user.adcode;
+        }
+        else if (role == 4) {
+          this.province = this.$store.state.user.adcode.substr(0, 2);
+          this.city = this.$store.state.user.adcode.substr(0, 4);
+          this.area = this.$store.state.user.adcode;
+          this.manager=this.$store.state.user.username;
+        }
 
         if (this.roleType == "0") {
           this.roleType = ""
@@ -685,11 +686,11 @@
         this.userInfoDialog.isAdd = false;
         this.userInfoDialog.visible = true;
         this.userInfoDialog.EditForm = {
-        username: this.userData.list[this.userData.selectedIndex].username,      
-        name: this.userData.list[this.userData.selectedIndex].name,
-        active: this.userData.list[this.userData.selectedIndex].active,
-        phone: this.userData.list[this.userData.selectedIndex].phone,
-        // email: this.userData.list[this.userData.selectedIndex].email,
+          username: this.userData.list[this.userData.selectedIndex].username,
+          name: this.userData.list[this.userData.selectedIndex].name,
+          active: this.userData.list[this.userData.selectedIndex].active,
+          phone: this.userData.list[this.userData.selectedIndex].phone,
+          // email: this.userData.list[this.userData.selectedIndex].email,
 
         };
 
@@ -791,45 +792,45 @@
 
   #search{
     border:#1D7155;
-    background-color:#1D7155 
+    background-color:#1D7155
   }
   #add{
     border:#1D7155;
-    background-color:#1D7155 
+    background-color:#1D7155
   }
   #alter{
     border:#1D7155;
-    background-color:#1D7155 
+    background-color:#1D7155
   }
   #delete{
     border:#1D7155;
-    background-color:#1D7155 
+    background-color:#1D7155
   }
   #reset{
     border:#1D7155;
-    background-color:#1D7155 
+    background-color:#1D7155
   }
-.el-pagination li.active{
+  .el-pagination li.active{
     background-color:#70AD47!important;
     /* color: #fff !important; */
-} 
-// .el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner {
-//     background-color: #1D7155 ;
-//     border-color: #1D7155 ;
-   
-// }
-// .el-select .el-input.is-focus .el-input__inner {
-//     border-color: #67c23a;
-//     outline: 0;
-// }
-// .el-select .el-input.is-focus .el-input__inner {
-//     border-color: #67c23a;
-//     outline: 0;
-// }
-// .el-input.is-active .el-input__inner, .el-input__inner:focus {
-//     border-color:#67c23a;
-//     outline: 0;
-// }
+  }
+  // .el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  //     background-color: #1D7155 ;
+  //     border-color: #1D7155 ;
+
+  // }
+  // .el-select .el-input.is-focus .el-input__inner {
+  //     border-color: #67c23a;
+  //     outline: 0;
+  // }
+  // .el-select .el-input.is-focus .el-input__inner {
+  //     border-color: #67c23a;
+  //     outline: 0;
+  // }
+  // .el-input.is-active .el-input__inner, .el-input__inner:focus {
+  //     border-color:#67c23a;
+  //     outline: 0;
+  // }
   #cancel{
     background-color:#1D7155;
     color: #fff;
@@ -842,12 +843,12 @@
     display: flex;
     justify-content: space-around;
   }
-// .el-radio__input.is-checked .el-radio__inner {
-//     border-color: #1D7155;
-//     background: #1D7155;
-// }
-// .el-radio__input.is-checked+.el-radio__label {
-//     color: #1D7155;
-// }
+  // .el-radio__input.is-checked .el-radio__inner {
+  //     border-color: #1D7155;
+  //     background: #1D7155;
+  // }
+  // .el-radio__input.is-checked+.el-radio__label {
+  //     color: #1D7155;
+  // }
 
 </style>
