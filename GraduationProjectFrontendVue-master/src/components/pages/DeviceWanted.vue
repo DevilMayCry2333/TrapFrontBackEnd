@@ -133,6 +133,7 @@
             >显示</el-button>
           </template>
         </el-table-column>
+        <el-table-column prop="customTown" label="区域" align="center"></el-table-column>
         <el-table-column prop="username" label="施工人员" align="center"></el-table-column>
         <el-table-column prop="remark" label="备注" align="center"></el-table-column>
         <el-table-column label="是否上报" align="center">

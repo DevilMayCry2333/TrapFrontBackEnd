@@ -241,7 +241,7 @@
               <br />
               <br />
               <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;" >起始ＩＤ</el-tag>
-              <el-input :disabled="true" @change="managerStartIdChange" v-model="startID" placeholder="请输入内容" style="width:60%;"></el-input>
+              <el-input  @change="managerStartIdChange" v-model="startID" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
               <br />
               <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">结束ＩＤ</el-tag>
