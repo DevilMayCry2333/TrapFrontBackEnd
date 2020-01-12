@@ -784,7 +784,7 @@ export default {
 
     },
     showAssignQRCodeManagerDialog(){
-      this.AssignQRCodeManagerDialog.visible = true;
+
             let role = this.$store.state.user.role;
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
@@ -804,6 +804,16 @@ export default {
         this.area = this.$store.state.user.adcode;
         this.manager = this.$store.state.user.username;
       }
+
+            http.requestWithToken(
+        "/newQrCode/getLockStatus",
+        "get",
+        { username: this.manager},
+        res => {
+          console.log(res.data);
+
+          if(res.data == 0){
+      this.AssignQRCodeManagerDialog.visible = true;
       console.log(this.area);
 
                http.requestWithToken(
@@ -819,6 +829,17 @@ export default {
                 },
                 () => {}
               );     
+          }else{
+            this.$message({
+              type:'error',
+              message:'此时已经有其他项目管理员正在分配，请稍后'
+            })
+          }
+        },
+        () => {}
+      );
+
+
 
 
     },
