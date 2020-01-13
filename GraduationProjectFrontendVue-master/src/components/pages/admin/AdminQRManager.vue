@@ -241,7 +241,7 @@
               <br />
               <br />
               <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;" >起始ＩＤ</el-tag>
-              <el-input :disabled="true" @change="managerStartIdChange" v-model="startID" placeholder="请输入内容" style="width:60%;"></el-input>
+              <el-input  @change="managerStartIdChange" v-model="startID" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
               <br />
               <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">结束ＩＤ</el-tag>
@@ -321,6 +321,7 @@ export default {
       changeID:{
         disabled:false
       },
+      inputValue:'',
         options: [{
           value: 'scanId',
           label: '设备ID'
@@ -516,6 +517,27 @@ export default {
         );
     },
     query(){
+      let role = this.$store.state.user.role;
+      if (role == 1) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        // this.loadCity();
+      } else if (role == 2) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        // this.loadArea();
+      } else if (role == 3) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+        // this.loadManagers();
+      } else if (role == 4) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+        this.manager = this.$store.state.user.username;
+      }
+
+
       console.log(this.input);
       console.log(this.value);
       if(!this.input || !this.value){
@@ -523,15 +545,15 @@ export default {
       }else{
         if(this.value=="project"){ 
           if(this.input=="诱捕器管理"){
-            this.input = 1;
-          }else if(this.input=="注干剂监测"){
-             this.input = 2;
-          }else if(this.input=="天敌防治"){
-             this.input = 3;
-          }else if(this.input=="枯死树采伐"){
-             this.input = 4;
+            this.inputValue = 1;
+          }else if(this.input=="注干剂管理"){
+             this.inputValue = 2;
+          }else if(this.input=="天敌防治管理"){
+             this.inputValue = 3;
+          }else if(this.input=="枯死树管理"){
+             this.inputValue = 4;
           }else if(this.input=="药剂防治管理"){
-             this.input = 5;
+             this.inputValue = 5;
           // }else if(this.input=="未绑定"){
           //    this.input = 0;
           // }else if(this.input = "已绑定"){
@@ -540,9 +562,9 @@ export default {
           }
           }else if(this.value == "isManagerAssign"){
             if(this.input=="已绑定"){
-              this.input = 1;
+              this.inputValue = 1;
             }else if(this.input=="未绑定"){
-              this.input = 0;
+              this.inputValue = 0;
             }
         }
           // else{
@@ -551,8 +573,9 @@ export default {
               http.requestWithToken(
           "/newQrCode/rootSearch",
           "get",
-          { colName: this.value, searchText: this.input,
-          page: this.QRData.page, limit: this.QRData.limit },
+          { colName: this.value, searchText: this.inputValue,
+          page: this.QRData.page, limit: this.QRData.limit,
+          username: this.manager},
           res => {
             console.log(res.data);
             this.QRData.list = res.data.data;
@@ -560,11 +583,11 @@ export default {
               if(this.QRData.list[i].project=="1"){
                 this.QRData.list[i].project = "诱捕器管理";
               }else if(this.QRData.list[i].project=="2"){
-                this.QRData.list[i].project = "注干剂监测";
+                this.QRData.list[i].project = "注干剂管理";
               }else if(this.QRData.list[i].project=="3"){
-                this.QRData.list[i].project = "天敌防治";
+                this.QRData.list[i].project = "天敌防治管理";
               }else if(this.QRData.list[i].project=="4"){
-                this.QRData.list[i].project = "枯死树采伐";
+                this.QRData.list[i].project = "枯死树管理";
               }else if(this.QRData.list[i].project=="5"){
                 this.QRData.list[i].project = "药剂防治管理";
               }
@@ -761,7 +784,7 @@ export default {
 
     },
     showAssignQRCodeManagerDialog(){
-      this.AssignQRCodeManagerDialog.visible = true;
+
             let role = this.$store.state.user.role;
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
@@ -781,6 +804,16 @@ export default {
         this.area = this.$store.state.user.adcode;
         this.manager = this.$store.state.user.username;
       }
+
+            http.requestWithToken(
+        "/newQrCode/getLockStatus",
+        "get",
+        { username: this.manager},
+        res => {
+          console.log(res.data);
+
+          if(res.data == 0){
+      this.AssignQRCodeManagerDialog.visible = true;
       console.log(this.area);
 
                http.requestWithToken(
@@ -796,6 +829,17 @@ export default {
                 },
                 () => {}
               );     
+          }else{
+            this.$message({
+              type:'error',
+              message:'此时已经有其他项目管理员正在分配，请稍后'
+            })
+          }
+        },
+        () => {}
+      );
+
+
 
 
     },
@@ -869,11 +913,11 @@ export default {
               if(this.QRData.list[i].project=="1"){
                 this.QRData.list[i].project = "诱捕器管理";
               }else if(this.QRData.list[i].project=="2"){
-                this.QRData.list[i].project = "注干剂监测";
+                this.QRData.list[i].project = "注干剂管理";
               }else if(this.QRData.list[i].project=="3"){
-                this.QRData.list[i].project = "天敌防治";
+                this.QRData.list[i].project = "天敌防治管理";
               }else if(this.QRData.list[i].project=="4"){
-                this.QRData.list[i].project = "枯死树采伐";
+                this.QRData.list[i].project = "枯死树管理";
               }else if(this.QRData.list[i].project=="5"){
                 this.QRData.list[i].project = "药剂防治管理";
               }

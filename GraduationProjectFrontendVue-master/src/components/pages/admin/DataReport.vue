@@ -41,7 +41,7 @@ export default {
             project:[],   //项目
             CustomProject:'',   //工程
             options: [],    //
-            value:''     //工程的值
+            value:'',     //工程的值
 
         }
     },
@@ -53,6 +53,7 @@ export default {
       } else if (role == 2) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
         // this.loadArea();
       } else if (role == 3) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
@@ -66,7 +67,6 @@ export default {
         this.manager = this.$store.state.user.username;
       }
       console.log(this.area);
-
             http.requestWithToken(
             "/system/getCustomProject",
             "get",

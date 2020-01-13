@@ -127,11 +127,11 @@
             layout="total, prev, pager, next"
             :total="QRData.total"
         ></el-pagination>
-        <div class="divcss5-right"> 
+        <!-- <div class="divcss5-right"> 
           采伐数量:{{totalCutNum}} &nbsp;
           施工天数:{{totalWorkDay}} &nbsp;
           材积:{{totalWoodVolume}}
-        </div>
+        </div> -->
 
         </div>
                 <el-dialog title="现场照片" :visible.sync="PhotoDialog.visible" width="700px">
@@ -479,8 +479,8 @@ export default {
 
                 },
                 res => {
-                this.QRData.list = res.data.data;
-                this.QRData.total = res.data.totalNum;
+                this.QRData.list = res.data.data.data;
+                this.QRData.total = res.data.data.totalNum;
 
                 this.totalWorkDay = res.data.data[0].workDaySum;
                 this.totalCutNum = res.data.data[0].woodNumSum;

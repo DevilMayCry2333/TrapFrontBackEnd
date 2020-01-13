@@ -432,20 +432,22 @@
         console.log(this.DryWatchData.startDate);
         console.log(this.DryWatchData.endDate);
         http.requestWithToken(
-          "/dryWatch/searchDetail",
+          "/dryWatch/dataDetail",
           "post",
           {
             optionIndex: this.selected,
             searchText: this.searchText,
             startDate: this.DryWatchData.startDate,
-            endDate: this.DryWatchData.endDate
+            endDate: this.DryWatchData.endDate,
+            page:this.DryWatchData.page,
+            limit:10
           },
           res => {
             console.log(res.data.Data);
             console.log(res.data.current);
             console.log(res.data.total);
             
-            this.DryWatchData.list = res.data.Data;
+            this.DryWatchData.list = res.data.data.data;
             this.DryWatchData.total = res.data.current;
             this.DryWatchData.page = res.data.total;
             // this.DryWatchData.optionIndex = -1;

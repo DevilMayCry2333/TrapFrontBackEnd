@@ -127,12 +127,13 @@
         <el-table-column label="现场照片" width="100px" align="center">
           <template slot-scope="scope">
             <el-button
-              @click="showPhotoDialog(scope.row.imageId)"
-              v-if="scope.row.imageId != null && scope.row.imageId !=''"
+              @click="showPhotoDialog(scope.row.imgId)"
+              v-if="scope.row.imgId != null && scope.row.imgId !=''"
               size="mini"
             >显示</el-button>
           </template>
         </el-table-column>
+        <el-table-column prop="customTown" label="区域" align="center"></el-table-column>
         <el-table-column prop="username" label="施工人员" align="center"></el-table-column>
         <el-table-column prop="remark" label="备注" align="center"></el-table-column>
         <el-table-column label="是否上报" align="center">
@@ -357,13 +358,13 @@ export default {
                     window.location =
           http.getBaseUrl() +
           "/app/exportImage?startDate=" +
-          this.startDate +
+          this.maintenanceData.startDate +
           "&endDate=" +
-          this.endDate +
+          this.maintenanceData.endDate +
           "&searchText=" +
-          this.searchText +
+          this.input +
           "&colName=" +
-          this.selected +
+          this.value +
           "&adcode=" +
           this.area +
           "&username="+
@@ -401,7 +402,7 @@ export default {
                              console.log(this.area);
 
           http.requestWithToken(
-            "/app/Fuck",
+            "/app/getTrapDetail",
             "post",
             {
               colName:this.value,
@@ -506,17 +507,53 @@ export default {
       console.log();
 
       this.loadOtherBeetleType();
+
+            console.log(this.input);
+      console.log(this.value);
+         let role = this.$store.state.user.role;
+         
+          this.role = role;
+      console.log(role);
+      if (role == 1) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+      } else if (role == 2) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+      } else if (role == 3) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+            }
+            else if (role == 4) {
+                          this.province = this.$store.state.user.adcode.substr(0, 2);
+                          this.city = this.$store.state.user.adcode.substr(0, 4);
+                          this.area = this.$store.state.user.adcode;
+                          this.manager=this.$store.state.user.username;
+                        }
+                           console.log(this.city);
+                            console.log(this.province);
+                             console.log(this.area);
+
+                             
       http.requestWithToken(
-        "/auth_api/maintenance1",
+        "/app/getTrapDetail",
         "get",
         {
-          condition: this.searchText,
-          batch: this.searchBatch,
-          town: this.searchTown,
-          page: this.maintenanceData.page,
-          limit: this.maintenanceData.limit,
-          startDate: this.maintenanceData.startDate,
-          endDate: this.maintenanceData.endDate
+              colName:this.value,
+              searchText:this.input,
+              page: this.maintenanceData.page,
+              limit: this.maintenanceData.limit,
+              startDate: this.maintenanceData.startDate,
+              endDate: this.maintenanceData.endDate,
+              username: this.manager
+
+          // condition: this.searchText,
+          // batch: this.searchBatch,
+          // town: this.searchTown,
+          // page: this.maintenanceData.page,
+          // limit: this.maintenanceData.limit,
+          // startDate: this.maintenanceData.startDate,
+          // endDate: this.maintenanceData.endDate
         },
         res => {
           this.maintenanceData.list = res.data.data;

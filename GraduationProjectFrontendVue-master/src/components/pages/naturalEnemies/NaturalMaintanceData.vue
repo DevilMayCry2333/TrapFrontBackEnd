@@ -1,6 +1,6 @@
 <template>
   <div>
-  <router-link to='/pages/drywatch/Maintance'>诱捕器情况</router-link>
+  <router-link to='/pages/drywatch/Maintance'>天敌防治情况</router-link>
         >设备维护信息
 
 
@@ -65,7 +65,7 @@
         </el-table-column>-->
 
         <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
-        <el-table-column prop="deviceId" label="诱捕器编号" align="center"></el-table-column>
+        <el-table-column prop="scanId" label="天敌防治编号" align="center"></el-table-column>
         <el-table-column prop="releaseNum" label="松墨天牛总数" align="center"></el-table-column>
 
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>

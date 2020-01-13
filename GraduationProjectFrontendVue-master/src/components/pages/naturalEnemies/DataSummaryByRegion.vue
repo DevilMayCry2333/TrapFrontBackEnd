@@ -71,6 +71,7 @@
         this.loadDevice()
       },
       loadDevice() {
+        
         http.requestWithToken(
           "/natural/Summary/byCustomReigon",
           "post",
