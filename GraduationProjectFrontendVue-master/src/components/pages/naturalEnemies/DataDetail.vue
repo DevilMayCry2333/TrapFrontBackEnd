@@ -407,7 +407,7 @@ export default {
                 res => {
                   console.log(res);
                 this.QRData.list = res.data.data.data;
-                this.QRData.total = res.data.totalNum;
+                this.QRData.total = res.data.data.totalNum;
 
                 this.LuanKaNum = res.data.data[0].LuanKaNum;
                 this.releaseNum = res.data.data[0].releaseNum;

@@ -431,7 +431,7 @@ export default {
                 res => {
                   console.log(res);
                 this.QRData.list = res.data.data.data;
-                this.QRData.total = res.data.total;
+                this.QRData.total = res.data.data.totalNum;
 
                 },
                 () => {}
