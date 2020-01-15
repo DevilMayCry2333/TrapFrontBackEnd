@@ -203,7 +203,7 @@ export default {
               http.getBaseUrl() +
               "/track/importExcel?token=" +
               sessionStorage["token"];
-
+              this.loadDevice;
      console.log("init");
       let role = this.$store.state.user.role;
       this.role = role;
@@ -431,7 +431,7 @@ export default {
                 res => {
                   console.log(res);
                 this.QRData.list = res.data.data.data;
-                this.QRData.total = res.data.total;
+                this.QRData.total = res.data.data.totalNum;
 
                 },
                 () => {}
@@ -491,8 +491,8 @@ export default {
                   adcode: this.city
                   },
                 res => {
-                this.QRData.list = res.data.Data;
-                this.QRData.total = res.data.total;
+                this.QRData.list = res.data.data.data;
+                this.QRData.total = res.data.data.totalNum;
 
                 },
                 () => {}

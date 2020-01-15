@@ -235,7 +235,7 @@ export default new Router({
           name: '数据汇总',
           component: DataSummaryByRegion
         },
-        
+
         {
           path: 'pages/drywatch/Maintance',
           name: '注干剂管理',
@@ -290,7 +290,7 @@ export default new Router({
         },
         {
           path: 'pages/natural/message',
-          name: '天地防治管理信息',
+          name: '天敌防治管理信息',
           component: NaturalDeviceMessage
         },
         {

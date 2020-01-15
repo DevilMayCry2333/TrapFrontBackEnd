@@ -14,7 +14,7 @@
         </el-select>
         <el-input v-model="input" placeholder="请输入内容" style="width: 180px;"></el-input>
         <el-button type="primary" @click="query()">查询</el-button>
-    </div>  
+    </div>
     <div style=" display: flex;" >
       <el-button type="primary" @click="exportExcel">导出</el-button>
       <el-button type="primary" @click="exportImage">导出图像</el-button>
@@ -29,10 +29,10 @@
     </div>
   </div>
 
-        <el-table 
+        <el-table
           class="tableGreen"
           border :data="QRData.list" style="width: 100%" height="600"
-          stripe 
+          stripe
           :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">
         <el-table-column prop="scanId" label="设备ID" align="center"></el-table-column>
         <el-table-column prop="serial" label="编号" align="center"></el-table-column>
@@ -94,7 +94,7 @@
             <div v-if="scope.row.reported">不可操作</div>
           </template>
         </el-table-column>
-        
+
       </el-table>
 
         <div class="block" id="tool-row" >
@@ -111,7 +111,7 @@
         <div class="divcss5-right">
           释放地点:{{releasePlace}} &nbsp;
           成虫数量:{{releaseNum}} &nbsp;
-          卵卡数量:{{LuanKaNum}} 
+          卵卡数量:{{LuanKaNum}}
         </div>
         </div>
                         <el-dialog title="现场照片" :visible.sync="PhotoDialog.visible" width="700px">
@@ -157,7 +157,7 @@
         <el-button type="primary" @click.native.prevent="handleEditMaintenanceDataSubmit">确 定</el-button>
       </div>
     </el-dialog>
-    
+
 
 </div>
 
@@ -266,7 +266,7 @@ export default {
         batch:0,
         deviceId:"",
         id:"",
-        
+
         serial:"",
         customTown:"",
         submitDate:"",
@@ -394,9 +394,9 @@ export default {
                         http.requestWithToken(
                 "/natural/searchDetail",
                 "post",
-                { 
-                  page: this.QRData.page, 
-                  limit: 10, 
+                {
+                  page: this.QRData.page,
+                  limit: 10,
                   username: sessionStorage['username'],
                   startDate: this.startDate,
                   endDate: this.endDate,
@@ -407,7 +407,7 @@ export default {
                 res => {
                   console.log(res);
                 this.QRData.list = res.data.data.data;
-                this.QRData.total = res.data.totalNum;
+                this.QRData.total = res.data.data.totalNum;
 
                 this.LuanKaNum = res.data.data[0].LuanKaNum;
                 this.releaseNum = res.data.data[0].releaseNum;
@@ -467,7 +467,7 @@ export default {
                 this.QRData.total = res.data.data.totalNum;
 
 
-                
+
 
                 this.LuanKaNum = res.data.data.data[0].luanKaNumSum;
                 this.releaseNum = res.data.data.data[0].releaseNum;
@@ -505,7 +505,7 @@ export default {
         visible: false,
         pic: ""
       },
-      
+
         QRData: {
             selectedIndex: -1,
             list: [],
@@ -582,5 +582,5 @@ export default {
 //     border-color: #1d7155;
 //     color: #fff;
 // }
-.divcss5-right{float:right} 
+.divcss5-right{float:right}
 </style>

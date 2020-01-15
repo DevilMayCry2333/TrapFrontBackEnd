@@ -448,8 +448,8 @@
             console.log(res.data.total);
             
             this.DryWatchData.list = res.data.data.data;
-            this.DryWatchData.total = res.data.current;
-            this.DryWatchData.page = res.data.total;
+            this.DryWatchData.total = res.data.data.totalNum;
+            this.DryWatchData.page = res.data.data.currentPage;
             // this.DryWatchData.optionIndex = -1;
           },
           () => {
