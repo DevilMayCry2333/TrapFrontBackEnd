@@ -108,11 +108,11 @@
                 :total="QRData.total"
             ></el-pagination>
           </div>
-        <div class="divcss5-right">
+        <!-- <div class="divcss5-right">
           释放地点:{{releasePlace}} &nbsp;
           成虫数量:{{releaseNum}} &nbsp;
           卵卡数量:{{LuanKaNum}}
-        </div>
+        </div> -->
         </div>
                         <el-dialog title="现场照片" :visible.sync="PhotoDialog.visible" width="700px">
       <div style="overflow-y:scroll;height: 300px">
