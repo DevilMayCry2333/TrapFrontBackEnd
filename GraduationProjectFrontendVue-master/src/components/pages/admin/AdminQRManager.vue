@@ -945,7 +945,7 @@ http.requestWithToken(
           "/newQrCode/rootSearch",
           "get",
           { colName: this.value, searchText: this.input,
-          page: this.QRData.page, limit: this.QRData.limit },
+          page: this.QRData.page, limit: this.QRData.limit},
           res => {
             console.log(res.data);
 
