@@ -41,11 +41,11 @@
       <el-table-column prop="batch" label="批次" align="center"></el-table-column>
       <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
       <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
-        <el-table-column label="位置" width="200px" align="center">
+        <!-- <el-table-column label="位置" width="200px" align="center">
           <template
             slot-scope="scope"
           >{{scope.row.province + scope.row.city + scope.row.area + scope.row.town}}</template>
-        </el-table-column>
+        </el-table-column> -->
       <el-table-column prop="workContent" label="工作内容" align="center"></el-table-column>
       <el-table-column prop="medicineQua" label="施药数量（kg）" align="center"></el-table-column>
       <el-table-column prop="medicineName" label="药剂名称" align="center"></el-table-column>

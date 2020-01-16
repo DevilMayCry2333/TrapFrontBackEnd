@@ -94,7 +94,7 @@ export default {
                 }
             },
             legend: {
-                data:['松墨天牛','其他天牛','平均诱虫量']
+                data:['松墨天牛','其它天牛','平均诱虫量']
             },
             xAxis: [
                 {
@@ -108,7 +108,7 @@ export default {
             yAxis: [
                 {
                     type: 'value',
-                    name: '松墨天牛(只)',
+                    name: '天牛数量(只)',
                     min: 0,
                     axisLabel: {
                         formatter: '{value}'
@@ -132,7 +132,7 @@ export default {
                     data:[]
                 },
                 {
-                    name:'其他天牛',
+                    name:'其它天牛',
                     type:'bar',
                     data:[]
                 },
@@ -166,11 +166,11 @@ export default {
         }
     },
     legend: {
-                data:['平均数量']
+                data:['松墨天牛平均诱虫量','其它天牛平均诱虫量']
             },
     yAxis: [{
         type: 'value',
-        name: '数量(只)',
+        name: '天牛数量(只)',
          min: 0,
         max: 150,
         interval: 50,
@@ -180,15 +180,15 @@ export default {
     }],
     series: [
     {
-      name: '平均数量',
+      name: '松墨天牛平均诱虫量',
       data: [],
       type: 'line',
     },
-    // {
-    //   name: '其他天牛平均诱虫量',
-    //   data: [],
-    //   type: 'line',
-    // }
+    {
+      name: '其它天牛平均诱虫量',
+      data: [],
+      type: 'line',
+    },
     ]
 },
     };
@@ -288,6 +288,7 @@ export default {
                 //Mgh9nigujiOwZO5HFNkCoQ==
                  this.option2.xAxis[0].data.push(res.data[i].customTown);
                 this.option2.series[0].data.push(res.data[i].avager);
+                this.option2.series[1].data.push(res.data[i].avager1);
             }
                     let myChart = echarts.init(this.$refs.echartsArea);
                     let myChart1 = echarts.init(this.$refs.echartsAreaOne)

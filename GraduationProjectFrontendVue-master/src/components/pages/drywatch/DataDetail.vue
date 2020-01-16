@@ -38,11 +38,11 @@
       <el-table-column prop="serial" label="编号" align="center"></el-table-column>
       <el-table-column prop="region" label="区域" align="center"></el-table-column>
       <el-table-column prop="submitDate" label="日期" align="center"></el-table-column>
-      <el-table-column label="位置" width="200px" align="center">
+      <!-- <el-table-column label="位置" width="200px" align="center">
         <template
           slot-scope="scope"
         >{{scope.row.province + scope.row.city + scope.row.area + scope.row.town}}</template>        
-      </el-table-column>
+      </el-table-column> -->
       <el-table-column prop="batch" label="批次" align="center"></el-table-column>
       <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
       <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>

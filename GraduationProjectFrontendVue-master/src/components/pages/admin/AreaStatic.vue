@@ -93,7 +93,7 @@ export default {
                 }
             },
             legend: {
-                data:['松墨天牛','其他天牛']
+                data:['松墨天牛','其它天牛']
             },
             xAxis: [
                 {
@@ -131,7 +131,7 @@ export default {
                     data:[]
                 },
                 {
-                    name:'其他天牛',
+                    name:'其它天牛',
                     type:'bar',
                     data:[]
                 },
@@ -178,11 +178,11 @@ export default {
         }
     },
     legend: {
-                data:['平均诱虫量','其他天牛平均诱虫量']
+                data:['松墨天牛平均诱虫量','其它天牛平均诱虫量']
             },
     yAxis: [{
         type: 'value',
-        name: '数量(只)',
+        name: '天牛数量(只)',
          min: 0,
         max: 150,
         interval: 50,
@@ -192,12 +192,12 @@ export default {
     }],
     series: [
     {
-      name: '平均诱虫量',
+      name: '松墨天牛平均诱虫量',
       data: [],
       type: 'line',
     },
     {
-      name: '其他天牛平均诱虫量',
+      name: '其它天牛平均诱虫量',
       data: [],
       type: 'line',
     }
