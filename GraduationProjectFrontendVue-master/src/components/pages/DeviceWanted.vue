@@ -53,12 +53,12 @@
           <el-button
             type="primary"
             @click="handleDeleteSome"
-            style="height:fit-content;"
+            style="margin-right:3px;height:fit-content;"
           >批量删除</el-button>
           <el-button
             type="primary" 
             @click="exportExcel"
-            style="margin-right:10px;height:fit-content;">导出</el-button>
+            style="margin-right:3px;height:fit-content;">导出</el-button>
           <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
 
           <!--<el-button type="primary" @click="importExcel(scope.$index)">导入</el-button>-->

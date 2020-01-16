@@ -76,7 +76,7 @@
             slot-scope="scope"
           >{{scope.row.province + scope.row.city + scope.row.area + scope.row.town}}</template>
         </el-table-column>
-        <el-table-column prop="username" label="工人"></el-table-column>
+        <el-table-column prop="username" label="工人" align="center"></el-table-column>
 
         <el-table-column
           label="操作"

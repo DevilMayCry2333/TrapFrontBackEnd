@@ -15,9 +15,9 @@
             <el-input style="width: 200px" placeholder="搜索内容" v-model="searchText"></el-input>
             <el-button type="primary" @click="handleSubmit">搜索</el-button>
       </div>
-      <div style=" display: flex;">
+      <div style="display: flex;">
             <el-button type="primary" @click="exportExcel">导出</el-button>
-                      <el-button  type="primary" @click="exportImage" style="height: fit-content;">导出图像</el-button>
+            <el-button  type="primary" @click="exportImage">导出图像</el-button>
 
               <!--<el-button type="primary" @click="someExportExcel">批量导出</el-button>-->
 
@@ -25,7 +25,7 @@
               <el-upload  class="upload-demo" ref="upload"
               :action="uploadUrl"
               :on-success="loadDevice">
-                <el-button type="primary" style="margin-left:20px" >导入</el-button>
+              <el-button type="primary" style="margin-left:10px" >导入</el-button>
               </el-upload>
 
       </div>
@@ -568,6 +568,7 @@
   /* display: flex; */
   justify-content: space-between;
   margin-bottom: 5px;
+  display:flex;
 }
 .tableGreen{
     .el-table__row{
