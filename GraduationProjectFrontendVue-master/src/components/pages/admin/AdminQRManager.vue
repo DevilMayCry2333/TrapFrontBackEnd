@@ -31,7 +31,7 @@
                 @click="showAssignQRCodeManagerDialog()"
                 v-if="this.$store.state.user.role == 4"
               >分配项目二维码</el-button>
-              
+
 
               <el-button
                 type="primary"
@@ -47,22 +47,32 @@
                   v-if="this.$store.state.user.role == 0"
                 >编辑二维码分配</el-button>   -->
                 <el-button type="primary" @click="handleDownloadID">ID下载</el-button>
-                <el-button v-if="this.$store.state.user.role >0"  type="primary" @click="handleDownload">二维码下载</el-button> 
+                <el-button v-if="this.$store.state.user.role >0"  type="primary" @click="handleDownload">二维码下载</el-button>
       </div>
     </div>
     <div style="padding-top:5px">
-      <el-table 
+      <el-table
           class="tableGreen"
-          border 
+          border
           :data="QRData.list"
-          tooltip-effect="dark" 
+          tooltip-effect="dark"
           style="width: 100%"
           highlight-current-row
           @current-change="handleMaintenanceDataSelectionChange"
           @row-click="GetId"
           height="600"
-          stripe 
-          :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}">       <!-- 斑马纹 表头颜色 表头字体颜色  -->
+          stripe
+          :header-cell-style="{background:'#70AD47',color:'#FFFFFF'}"><!-- 斑马纹 表头颜色 表头字体颜色  -->
+        <el-table-column label width="50" align="center">
+          <template scope="scope">
+            <el-radio
+              :label="scope.$index"
+              v-model="QRData.selectedIndex"
+              @change.native="getCurrentRow(scope.$index)"
+            >
+            </el-radio>
+          </template>
+        </el-table-column>
         <el-table-column prop="scanId" label="设备Id" align="center"></el-table-column>
         <el-table-column prop="province" label="省" align="center"></el-table-column>
         <el-table-column prop="city" label="市" align="center"></el-table-column>
@@ -262,7 +272,7 @@
                 </el-option>
               </el-select>
               <br />
-              <br />             
+              <br />
         </div>
         <!-- <div style="display:flex;justify-content: center; align-items: center;">
             <el-button @click="verfiyNum" style="margin-right:50px;height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">点击校验</el-button>
@@ -278,23 +288,23 @@
               <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">前缀标识</el-tag>
               <el-input v-model="prefix" placeholder="请输入内容"  style="width:60%;"></el-input>
               <br />
-              <br />                 
+              <br />
               <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">起始编号</el-tag>
               <el-input @change="serialStartChange" v-model="serialStart" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
-              <br />                 
+              <br />
               <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">结束编号</el-tag>
               <el-input @change="serialEndChange" v-model="serialEnd" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
-              <br />                 
+              <br />
               <el-tag style="height:40px;line-height:40px;border-radius:0;background-color:#70AD47;border-color:#70AD47;color:#ffffff;">编号数量</el-tag>
               <el-input :disabled="true" v-model="serialNum" placeholder="请输入内容" style="width:60%;"></el-input>
               <br />
-              <br />                 
+              <br />
               <!-- <el-button @click="verfiyNum" style="width:88%;height:40px;border-radius:0;background-color:#70AD47;color:#ffffff;">请点击校验</el-button> -->
         </div>
       </div>
-          
+
 
       <div slot="footer" class="dialog-footer">
         <el-button  @click="AssignQRCodeManagerDialog.visible = false">取 消</el-button>
@@ -302,7 +312,7 @@
         <el-button type="primary" @click.native.prevent="handleAssignQRCodeByManager"
         :loading="assignQRCode"
         :disabled="isPass"
-        >确 定</el-button>    
+        >确 定</el-button>
         <!-- 当校验通过后确定按钮解锁 -->
       </div>
     </el-dialog>
@@ -338,14 +348,14 @@ export default {
         value: '',
         input:'',
       isPass:true,
-      
+
       customRegion:'',
       toCompleteID:'',
       getid:'',
       prefix:'',
       serialStart:'',
       serialEnd:'',
-      serialNum:'', 
+      serialNum:'',
       IDNum:'',
       proxyValue:'',
       cityValue:'',
@@ -442,11 +452,13 @@ export default {
     };
   },
   methods: {
-
+    getCurrentRow(val){
+      console.log(this.QRData.list[val])
+    },
     showReAssignDialog(){
       this.ReAssignDialog.visible = true;
       console.log(this.selectedDevice);
-      
+
       let role = this.$store.state.user.role;
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
@@ -477,7 +489,7 @@ export default {
             this.ReAssignDialog.AvailScanId = res.data;
             if(res.data.error == true){
               console.log(res.data.error);
-              
+
               this.ReAssignDialog.AvailScanId = "没有可以分配的二维码";
               //disable绑定输入框
                this.changeID.disabled = true;
@@ -501,7 +513,7 @@ export default {
     },
     handleReAssign(){
       console.log(this.selectedDevice);
-      
+
       http.requestWithToken(
           "/newQrCode/reAssignQRCode",
           "get",
@@ -543,7 +555,7 @@ export default {
       if(!this.input || !this.value){
         alert("请输入查询条件!")
       }else{
-        if(this.value=="project"){ 
+        if(this.value=="project"){
           if(this.input=="诱捕器管理"){
             this.inputValue = 1;
           }else if(this.input=="注干剂管理"){
@@ -594,7 +606,7 @@ export default {
 
               if(this.QRData.list[i].isManagerAssign == "1"){
                 this.QRData.list[i].isManagerAssign="已绑定";
-                
+
               }
               else if(this.QRData.list[i].isManagerAssign == "0"){
                 this.QRData.list[i].isManagerAssign = "未绑定";
@@ -652,7 +664,7 @@ export default {
       console.log(this.serialStart);
       console.log(this.serialEnd);
       console.log(this.serialNum);
-      
+
       let role = this.$store.state.user.role;
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
@@ -705,7 +717,7 @@ export default {
     },
     areaChange(){
       console.log(this.areaValue);
-      
+
       var myDate = new Date();
       var tYear = myDate.getFullYear();
       console.log(tYear);
@@ -825,10 +837,10 @@ export default {
                 res => {
                   console.log(res);
                   this.AssignQRCodeDialog.availableNum = res.data;
-                  
+
                 },
                 () => {}
-              );     
+              );
           }else{
             this.$message({
               type:'error',
@@ -851,7 +863,7 @@ export default {
       } else {
         BASE_URL = "http://localhost:50000";
       }
-      window.location = BASE_URL + "/QRCode?token=" + sessionStorage['token'] 
+      window.location = BASE_URL + "/QRCode?token=" + sessionStorage['token']
     },
     handleDownloadID() {
           window.location =
@@ -907,7 +919,7 @@ export default {
           page: this.QRData.page, limit: this.QRData.limit },
           res => {
             console.log(res.data);
-            
+
             this.QRData.list = res.data.data;
             for(var i = 0 ; i < this.QRData.list.length; i++){
               if(this.QRData.list[i].project=="1"){
@@ -936,7 +948,7 @@ http.requestWithToken(
           page: this.QRData.page, limit: this.QRData.limit },
           res => {
             console.log(res.data);
-            
+
             this.QRData.list = res.data.data;
             for(var i = 0 ; i < this.QRData.list.length; i++){
               if(this.QRData.list[i].project=="1"){
@@ -952,7 +964,7 @@ http.requestWithToken(
               }
               if(this.QRData.list[i].isManagerAssign == "1"){
                 this.QRData.list[i].isManagerAssign="已绑定";
-                
+
               }
               else if(this.QRData.list[i].isManagerAssign == "0"){
                 this.QRData.list[i].isManagerAssign = "未绑定";
@@ -966,7 +978,7 @@ http.requestWithToken(
           () => {}
         );
               }
-    },  
+    },
     loadManagers() {
       http.requestWithToken(
         "/auth_api/user_list",
@@ -1168,7 +1180,7 @@ http.requestWithToken(
         http.requestWithToken(
         "/newQrCode/assignQRCode",
         "get",
-        { 
+        {
           proxyCode: this.proxyValue,
           cityCode: this.cityValue,
           areaCode: this.areaValue,
@@ -1199,7 +1211,7 @@ http.requestWithToken(
 }
   #search{
     border:#1D7155;
-    background-color:#1D7155 
+    background-color:#1D7155
   }
   .tableGreen{
     .el-table__row{
@@ -1209,25 +1221,25 @@ http.requestWithToken(
       background-color: #ECF0EA !important;
     }
   }
-  #allocate{    
+  #allocate{
     border:#1D7155;
-    background-color:#1D7155 
+    background-color:#1D7155
   }
-    #allocate1{    
+    #allocate1{
     border:#1D7155;
-    background-color:#1D7155 
+    background-color:#1D7155
   }
   #editQRcode{
     border:#1D7155;
-    background-color:#1D7155 
+    background-color:#1D7155
   }
   #IDdownload{
     border:#1D7155;
-    background-color:#1D7155 
+    background-color:#1D7155
   }
   #codedownload{
     border:#1D7155;
-    background-color:#1D7155 
+    background-color:#1D7155
   }
 /* 分配二维码 */
 /* 绿色块 */
