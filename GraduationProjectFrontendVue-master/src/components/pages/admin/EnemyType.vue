@@ -79,14 +79,14 @@ export default {
       if (this.$store.state.user.role == 4) {
         url = "/auth_api/enemy_Type/town";
       }
-      console.log(url);
-      console.log(this.$store.state.user.role);
+       
+       
       http.requestWithToken(
         url,
         "get",
         {},
         res => {
-          console.log(res);
+           
           this.list = res.data.data;
           if (this.$store.state.user.role == 4) {
              this.list = res.data;
@@ -103,7 +103,7 @@ export default {
         "get",
         {},
         res => {
-          console.log(res);
+           
           this.leftlist = res.data.data;
           let lefti=0;
           for (let i = 0; i < this.leftlist.length; ++i) {

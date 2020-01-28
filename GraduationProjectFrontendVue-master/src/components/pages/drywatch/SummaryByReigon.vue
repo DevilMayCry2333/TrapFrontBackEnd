@@ -72,7 +72,7 @@
         this.loadDevice();
       },
       handleSubmit() {
-        console.log(this.DryWatchData);
+         
         this.loadDevice()
       },
       loadDevice() {
@@ -96,7 +96,7 @@
             this.totalInject = res.data.data.data[0].totalInjectSum;
             this.totalDeadNum = res.data.data.data[0].totalDeadSum;
 
-            console.log(this.totalWoodNum);
+             
 
             // this.DryWatchData.optionIndex = -1;
           },

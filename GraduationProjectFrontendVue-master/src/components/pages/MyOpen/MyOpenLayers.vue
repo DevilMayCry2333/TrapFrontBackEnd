@@ -1,33 +1,44 @@
 <template>
-  <vl-map :load-tiles-while-animating="true" :load-tiles-while-interacting="true" data-projection="EPSG:4326" style="height: 400px">
-    <vl-view :zoom.sync="zoom" :center.sync="center" :rotation.sync="rotation"></vl-view>
-
-    <vl-layer-tile>
-      <vl-source-sputnik></vl-source-sputnik>
-    </vl-layer-tile>
-
-    <vl-layer-tile id="wmts">
-      <vl-source-wmts :attributions="attribution" :url="url" :layer-name="layerName" :matrix-set="matrixSet" :format="format" 
-                      :style-name="styleName"></vl-source-wmts>
-    </vl-layer-tile>
-  </vl-map>
+  <iframe ref="iframe" src="http://localhost:8080/customMap" style="width:100%;height:80%;" @load="test"></iframe>
 </template>
-
 <script>
-  export default {
-    data () {
-      return { 
-        zoom: 2,
-        center: [-90, 50],
-        rotation: 0,
-        url: 'https://services.arcgisonline.com/arcgis/rest/services/Demographics/USA_Population_Density/MapServer/WMTS/',
-        layerName: '0',
-        matrixSet: 'EPSG:3857',
-        format: 'image/png',
-        styleName: 'default',
-        attribution: 'Tiles © <a href="https://services.arcgisonline.com/arcgis/rest/' +
-                                        'services/Demographics/USA_Population_Density/MapServer/">ArcGIS</a>',
-      }
-    },
+export default {
+  mounted(){
+
+  },
+  methods:{
+    test(){
+          let role = this.$store.state.user.role;
+      if (role == 1) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+      } else if (role == 2) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+      } else if (role == 3) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+            }
+            else if (role == 4) {
+                          this.province = this.$store.state.user.adcode.substr(0, 2);
+                          this.city = this.$store.state.user.adcode.substr(0, 4);
+                          this.area = this.$store.state.user.adcode;
+                          this.manager=this.$store.state.user.username;
+                        }
+                               
+                               
+                               
+                               
+      this.$cookies.set('area',this.area);
+    }
+  },
+  data(){
+    return{
+      province:'',
+      city:'',
+      area:'',
+      manager:'',
+    }
   }
+}
 </script>

@@ -215,10 +215,10 @@
         "/deadTree/importExcel?token=" +
         sessionStorage["token"];
 
-      console.log("init");
+       
       let role = this.$store.state.user.role;
       this.role = role;
-      console.log(role);
+       
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
       } else if (role == 2) {
@@ -234,20 +234,20 @@
         this.area = this.$store.state.user.adcode;
         this.manager = this.$store.state.user.username;
       }
-      console.log(this.city);
-      console.log(this.province);
-      console.log(this.area);
+       
+       
+       
       this.loadDevice();
     },
     methods: {
 
       exportImage() {
         let role = this.$store.state.user.role;
-        console.log(role);
-        console.log(this.area);
-        console.log(this.city);
-        console.log(this.province);
-        console.log(http.getBaseUrl());
+         
+         
+         
+         
+         
 
         setTimeout(() => {
           window.location =
@@ -269,21 +269,21 @@
         }, 1000)
       },
       wooddiameterInput() {
-        console.log(this.EditMaintenanceDialog.form.wooddiameter);
+         
         var tmp = 0.714265437 * 0.0001 * Math.pow(this.EditMaintenanceDialog.form.wooddiameter * 0.7, 1.867010) * Math.pow(this.EditMaintenanceDialog.form.woodheight, 0.9014632);
         this.EditMaintenanceDialog.form.woodvolume = tmp;
-        console.log(this.EditMaintenanceDialog.form.woodvolume.toString());
+         
 
       },
 
       woodheightInput() {
-        console.log(this.EditMaintenanceDialog.form.woodheight);
+         
         var tmp = 0.714265437 * 0.0001 * Math.pow(this.EditMaintenanceDialog.form.wooddiameter * 0.7, 1.867010) * Math.pow(this.EditMaintenanceDialog.form.woodheight, 0.9014632);
         this.EditMaintenanceDialog.form.woodvolume = tmp;
-        console.log(this.EditMaintenanceDialog.form.woodvolume.toString());
+         
       },
       handleEditMaintenanceDataSubmit() {
-        console.log(this.EditMaintenanceDialog.form);
+         
         http.requestWithTokenJson(
           "/deadTree/updateRec",
           "post",
@@ -341,8 +341,8 @@
         this.loadDevice();
       },
       showEditMaintenanceDataDialog(data) {
-        console.log("编辑");
-        console.log(data);
+         
+         
         this.EditMaintenanceDialog.visible = true;
         this.EditMaintenanceDialog.form = {
           otherType: "",
@@ -384,11 +384,11 @@
       },
       exportExcel() {
         let role = this.$store.state.user.role;
-        console.log(role);
-        console.log(this.area);
-        console.log(this.city);
-        console.log(this.province);
-        console.log(http.getBaseUrl());
+         
+         
+         
+         
+         
 
         setTimeout(() => {
           window.location =
@@ -411,11 +411,11 @@
       },
       handleQRDataCurrentPageChanged(val) {
         this.QRData.page = val;
-        console.log("valChange" + val);
+         
         this.loadDevice();
       },
       showPhotoDialog(id) {
-        console.log(id);
+         
         this.PhotoDialog.visible = true;
         // let BASE_URL = "http://47.103.66.70:8081";
         let BASE_URL = "http://106.15.200.245:50000";
@@ -423,20 +423,20 @@
       },
 
       handleQRDataCurrentPageChanged() {
-        console.log("hello");
+         
         this.loadDevice();
       },
       query() {
-        console.log("query");
-        console.log(this.startDate);
-        console.log(this.endDate);
-        console.log(this.input);
-        console.log(this.value);
+         
+         
+         
+         
+         
         let role = this.$store.state.user.role;
-        console.log(role);
-        console.log(this.area);
-        console.log(this.city);
-        console.log(this.province);
+         
+         
+         
+         
         // if(role==3){
         http.requestWithToken(
           "/deadTree/searchDetail",
@@ -452,7 +452,7 @@
             adcode: this.area
           },
           res => {
-            console.log(res);
+             
             //这里改了一下
             this.QRData.list = res.data.data;
             this.QRData.total = res.data.totalNum;
@@ -471,7 +471,7 @@
 
       },
       loadDevice() {
-        console.log(sessionStorage['username']);
+         
 
         if (this.role == 3) {
           http.requestWithToken(
@@ -511,7 +511,7 @@
               adcode: this.area
             },
             res => {
-              console.log(res.data);
+               
 
               this.QRData.list = res.data.data;
               this.QRData.total = res.data.totalNum;

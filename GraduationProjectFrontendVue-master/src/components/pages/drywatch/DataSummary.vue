@@ -151,7 +151,7 @@ export default {
 
     init() {
       let role = this.$store.state.user.role;
-      console.log(this.$store.state.user.role);
+       
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         this.loadCity();
@@ -186,8 +186,8 @@ export default {
         res => {
           this.totalCount = res.data.data.count;
           this.totalSum = res.data.data.injectNum;
-          console.log(this.totalCount);
-          console.log(res.data.data);
+           
+           
         },
         () => {}
       );
@@ -248,9 +248,9 @@ export default {
         res => {
           this.summaryWorkerData.list = res.data.data.data;
           
-          console.log("Area");
-          console.log(this.area);
-          console.log(adcode);
+           
+           
+           
           if(this.$store.state.user.role == 4){
 
                 this.querySum(this.manager);
@@ -370,7 +370,7 @@ export default {
       this.querySum(this.province);
     },
     makeAnalysisData(data) {
-      console.log(data);
+       
       let list = [];
       list.push({
         "0": this.contentLabelDict[this.contentLabelIndex] + "间",
@@ -400,7 +400,7 @@ export default {
         "6": ""
       });
       this.analysisList = list;
-      console.log(this.analysisList);
+       
     },
     loadProvince() {
       http.requestWithToken(
@@ -408,7 +408,7 @@ export default {
         "get",
         {},
         res => {
-          console.log(res.data);
+           
           this.provinces = res.data;
           this.province = "";
           this.city = "";
@@ -454,8 +454,8 @@ export default {
         res => {
           // alert()
           this.managers = res.data.data;
-          console.log("manager");
-          console.log(this.managers);
+           
+           
         },
         () => {}
       );

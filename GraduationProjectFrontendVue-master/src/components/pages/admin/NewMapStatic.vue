@@ -341,7 +341,7 @@ export default {
         this.area = this.$store.state.user.adcode;
         this.manager = this.$store.state.user.username;
       }
-      console.log(this.manager);
+       
       
       http.requestWithToken(
         "/statics/Desc",
@@ -352,7 +352,7 @@ export default {
           endDate: this.endDate
         },
         res => {
-            console.log(res);
+             
           if (res.data.error) {
             this.$message.error("无数据");
             this.summaryList = [];
@@ -597,7 +597,7 @@ export default {
       }
     },
     makeAnalysisData(data) {
-      console.log(data);
+       
       let list = [];
       list.push({
         "0": this.contentLabelDict[this.contentLabelIndex] + "间",
@@ -627,7 +627,7 @@ export default {
         "6": ""
       });
       this.analysisList = list;
-      console.log(this.analysisList);
+       
     },
     loadProvince() {
       http.requestWithToken(
@@ -635,7 +635,7 @@ export default {
         "get",
         {},
         res => {
-          console.log(res.data);
+           
           this.provinces = res.data;
           this.province = "";
           this.city = "";
@@ -680,7 +680,7 @@ export default {
         { adcode: this.area },
         res => {
           this.managers = res.data.data;
-          console.log(this.managers);
+           
         },
         () => {}
       );
@@ -728,7 +728,7 @@ export default {
         this.area = this.$store.state.user.adcode;
         this.manager = this.$store.state.user.username;
       }
-      console.log(this.manager);
+       
       
       http.requestWithToken(
         "/statics/Desc",
@@ -737,7 +737,7 @@ export default {
           manager: this.manager
         },
         res => {
-            console.log(res);
+             
           if (res.data.error) {
             this.$message.error("无数据");
             this.summaryList = [];

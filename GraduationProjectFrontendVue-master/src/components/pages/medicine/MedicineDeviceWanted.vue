@@ -395,7 +395,7 @@ export default {
           this.calculateMultipleSelection();
 
         }, 500)
-     // console.log(val);
+     //  
       }
       this.triggeredByPageChange = false;
     },
@@ -537,11 +537,11 @@ export default {
       
     },
    exportExcel(){
-        console.log("导出");
+         
       let role2 = this.$store.state.user.role;
       this.role2 = role2;
               // this.loadDevice();
-      console.log(role2);
+       
       if (role2 == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
       } else if (role2 == 2) {
@@ -560,10 +560,10 @@ export default {
                         }
 
                 // let role = this.$store.state.user.role;
-          console.log(role2);
-            console.log(this.area);
-            console.log(this.city);
-              console.log(this.province);
+           
+             
+             
+               
 
 
         /**
@@ -571,8 +571,8 @@ export default {
                   searchText: this.input,
                   adcode: this.area
          */
-        console.log(http.getBaseUrl());
-        console.log(this.value);
+         
+         
         if(!this.value){
           this.value = "";
         }
@@ -589,10 +589,10 @@ export default {
           this.area = "";
         }
 
-        console.log("====搜索条件===");
-        console.log(this.selected);
+         
+         
 
-         console.log(this.searchText);
+          
 
         setTimeout(()=>{
                   window.location =

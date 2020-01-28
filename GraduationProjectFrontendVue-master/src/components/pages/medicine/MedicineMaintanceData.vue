@@ -256,7 +256,7 @@ export default {
     },
     handleMaintenanceDataSelectionChange(val) {
       this.maintenanceData.selection = val;
-      console.log(val);
+       
     },
     showEditMaintenanceDataDialog(data) {
 

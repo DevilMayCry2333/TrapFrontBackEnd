@@ -11,6 +11,9 @@ import echarts from 'echarts';
 import VueLayers from 'vuelayers';
 import 'vuelayers/lib/style.css' // needs css-loader
 Vue.use(VueLayers)
+const $cookies = require('vue-cookies')
+Vue.use($cookies)
+
 
 // import ElementUI from 'element-ui';
 //import 'element-ui/lib/theme-chalk/index.css';

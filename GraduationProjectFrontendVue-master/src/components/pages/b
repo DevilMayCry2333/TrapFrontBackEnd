@@ -498,7 +498,7 @@ export default {
         "get",
         {},
         res => {
-          console.log(res.data);
+           
           this.userInfoDialog.provinces = res.data;
           this.userInfoDialog.form.province = "";
           this.userInfoDialog.form.city = "";

@@ -183,11 +183,11 @@
     },
     methods: {
       exportImage(){
-        console.log("导出");
+         
       let role2 = this.$store.state.user.role;
       this.role2 = role2;
               // this.loadDevice();
-      console.log(role2);
+       
       if (role2 == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
       } else if (role2 == 2) {
@@ -206,10 +206,10 @@
                         }
 
                 // let role = this.$store.state.user.role;
-          console.log(role2);
-            console.log(this.area);
-            console.log(this.city);
-              console.log(this.province);
+           
+             
+             
+               
 
 
         /**
@@ -217,8 +217,8 @@
                   searchText: this.input,
                   adcode: this.area
          */
-        console.log(http.getBaseUrl());
-        console.log(this.value);
+         
+         
         if(!this.value){
           this.value = "";
         }
@@ -235,10 +235,10 @@
           this.area = "";
         }
 
-        console.log("====搜索条件===");
-        console.log(this.selected);
+         
+         
 
-         console.log(this.searchText);
+          
 
         setTimeout(()=>{
                   window.location =
@@ -262,7 +262,7 @@
 
       },
       handleEditMaintenanceDataSubmit(){
-        console.log(this.EditMaintenanceDialog.form);
+         
               http.requestWithTokenJson(
         "/medicineDataDetail/updateData",
         "post",
@@ -284,8 +284,8 @@
         type: "warning"
       })
         .then(() => {
-          console.log(row.id);
-          console.log(row.deviceId);
+           
+           
           http.requestWithToken(
             "/medicineDataDetail/deleteRecord",
             "post",
@@ -352,11 +352,11 @@
     },
 
       exportExcel(){
-        console.log("导出");
+         
       let role2 = this.$store.state.user.role;
       this.role2 = role2;
               // this.loadDevice();
-      console.log(role2);
+       
       if (role2 == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
       } else if (role2 == 2) {
@@ -375,10 +375,10 @@
                         }
 
                 // let role = this.$store.state.user.role;
-          console.log(role2);
-            console.log(this.area);
-            console.log(this.city);
-              console.log(this.province);
+           
+             
+             
+               
 
 
         /**
@@ -386,8 +386,8 @@
                   searchText: this.input,
                   adcode: this.area
          */
-        console.log(http.getBaseUrl());
-        console.log(this.value);
+         
+         
         if(!this.value){
           this.value = "";
         }
@@ -404,10 +404,10 @@
           this.area = "";
         }
 
-        console.log("====搜索条件===");
-        console.log(this.selected);
+         
+         
 
-         console.log(this.searchText);
+          
 
         setTimeout(()=>{
                   window.location =
@@ -434,7 +434,7 @@
         alert("请手动刷新");
       },
           showPhotoDialog(id) {
-            console.log(id);
+             
       this.PhotoDialog.visible = true;
      // let BASE_URL = "http://47.103.66.70:8081";
     let BASE_URL = "http://106.15.200.245:50000";
@@ -446,11 +446,11 @@
         this.loadDevice();
       },
       handleSubmit() {
-        console.log(this.selected);
-        console.log(this.searchText);
-        console.log(sessionStorage["username"]);
-        console.log(this.DryWatchData.startDate);
-        console.log(this.DryWatchData.endDate);
+         
+         
+         
+         
+         
         http.requestWithToken(
           "/medicineDataDetail/getDetail",
           "post",
@@ -463,9 +463,9 @@
             limit:this.DryWatchData.limit
           },
           res => {
-            console.log(res.data.Data);
-            console.log(res.data.current);
-            console.log(res.data.total);
+             
+             
+             
             
             this.DryWatchData.list = res.data.data.data;
             this.DryWatchData.total = res.data.data.totalNum;
@@ -492,7 +492,7 @@
             endDate: this.DryWatchData.endDate
           },
           res => {
-            console.log(res);
+             
             
             this.DryWatchData.list = res.data.data.data;
             this.DryWatchData.total = res.data.data.totalNum;

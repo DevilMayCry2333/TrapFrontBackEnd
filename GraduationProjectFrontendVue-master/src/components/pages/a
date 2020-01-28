@@ -572,7 +572,7 @@ export default {
       }
     },
     makeAnalysisData(data) {
-      console.log(data);
+       
       let list = [];
       list.push({
         "0": this.contentLabelDict[this.contentLabelIndex] + "间",
@@ -602,7 +602,7 @@ export default {
         "6": ""
       });
       this.analysisList = list;
-      console.log(this.analysisList);
+       
     },
     loadProvince() {
       http.requestWithToken(
@@ -610,7 +610,7 @@ export default {
         "get",
         {},
         res => {
-          console.log(res.data);
+           
           this.provinces = res.data;
           this.province = "";
           this.city = "";
@@ -655,7 +655,7 @@ export default {
         { adcode: this.area },
         res => {
           this.managers = res.data.data;
-          console.log(this.managers);
+           
         },
         () => {}
       );

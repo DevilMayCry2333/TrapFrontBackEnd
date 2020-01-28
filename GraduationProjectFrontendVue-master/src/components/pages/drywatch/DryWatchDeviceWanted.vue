@@ -395,7 +395,7 @@ export default {
           this.calculateMultipleSelection();
 
         }, 500)
-     // console.log(val);
+     //  
       }
       this.triggeredByPageChange = false;
     },

@@ -315,11 +315,11 @@ export default {
   },
   methods: {
       exportImage(){
-                  console.log("导出");
+                   
         let role2 = this.$store.state.user.role;
         this.role2 = role2;
                 // this.loadDevice();
-        console.log(role2);
+         
         if (role2 == 1) {
           this.province = this.$store.state.user.adcode.substr(0, 2);
         } else if (role2 == 2) {
@@ -375,12 +375,12 @@ export default {
 
         },
     getFuckingSearch(){
-      console.log(this.input);
-      console.log(this.value);
+       
+       
          let role = this.$store.state.user.role;
          
           this.role = role;
-      console.log(role);
+       
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
       } else if (role == 2) {
@@ -397,9 +397,9 @@ export default {
                           this.area = this.$store.state.user.adcode;
                           this.manager=this.$store.state.user.username;
                         }
-                           console.log(this.city);
-                            console.log(this.province);
-                             console.log(this.area);
+                            
+                             
+                              
 
           http.requestWithToken(
             "/app/getTrapDetail",
@@ -504,16 +504,16 @@ export default {
     },
     // 表格相关
     loadMaintenanceData() {
-      console.log();
+       
 
       this.loadOtherBeetleType();
 
-            console.log(this.input);
-      console.log(this.value);
+             
+       
          let role = this.$store.state.user.role;
          
           this.role = role;
-      console.log(role);
+       
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
       } else if (role == 2) {
@@ -530,9 +530,9 @@ export default {
                           this.area = this.$store.state.user.adcode;
                           this.manager=this.$store.state.user.username;
                         }
-                           console.log(this.city);
-                            console.log(this.province);
-                             console.log(this.area);
+                            
+                             
+                              
 
                              
       http.requestWithToken(
@@ -570,10 +570,10 @@ export default {
     },
     buttonLoadMaintenanceData() {
       this.maintenanceData.selection = [];
-      console.log(this.input);
-      console.log(this.value);
-      console.log(this.maintenanceData.startDate);
-      console.log(this.maintenanceData.endDate);
+       
+       
+       
+       
 
 
       this.clearMultipleSelection();
@@ -606,7 +606,7 @@ export default {
           this.calculateMultipleSelection();
 
         }, 500)
-     // console.log(val);
+     //  
       }
       this.triggeredByPageChange = false;
     },
@@ -665,9 +665,9 @@ export default {
 
     },
     handleEditMaintenanceDataSubmit() {
-      console.log(this.workContentFront);
-      console.log(this.otherBeetleFront);
-      console.log(this.drugFront);
+       
+       
+       
       http.requestWithTokenJson(
         "/auth_api/maintenance",
         "put",
@@ -751,7 +751,7 @@ export default {
             let role2 = this.$store.state.user.role;
       this.role2 = role2;
               // this.loadDevice();
-      console.log(role2);
+       
       if (role2 == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
       } else if (role2 == 2) {
@@ -770,10 +770,10 @@ export default {
                         }
 
                 // let role = this.$store.state.user.role;
-          console.log(role2);
-            console.log(this.area);
-            console.log(this.city);
-              console.log(this.province);
+           
+             
+             
+               
               
               this.buttonLoadMaintenanceData();
 //alert(this.maintenanceData.startDate);

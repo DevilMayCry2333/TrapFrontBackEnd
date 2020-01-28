@@ -197,7 +197,7 @@ export default {
     init() {
       this.showCity = true;
       this.showArea = true;
-      console.log("init");
+       
       let role = this.$store.state.user.role;
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
@@ -219,10 +219,10 @@ export default {
       }
     },
     query(){
-        console.log(this.area);
-        console.log(this.manager);
-        console.log(this.startYear);
-        console.log(this.endYear);
+         
+         
+         
+         
         
         this.option.xAxis[0].data = [];
         this.option.series[0].data = [];
@@ -234,9 +234,9 @@ export default {
         this.option2.series[0].data = [];
 
         // var CurrentM = this.startYear.split("-");
-        // console.log(CurrentM);
+        //  
         // var endM = this.endYear.split("-");
-        // console.log(endM);
+        //  
             http.requestWithToken(
         "/statics/batch",
         "get",
@@ -246,9 +246,9 @@ export default {
             endM:this.endYear
         },
         res => {
-            console.log(res);
+             
             for(var i = 0 ; i < res.data.length; i++){
-                console.log(res.data[i]);
+                 
                 this.option.xAxis[0].data.push(res.data[i].customTown);
                 this.option.series[0].data.push(res.data[i].beetlesNum);
                 this.option.series[1].data.push(res.data[i].otherNum);
@@ -278,9 +278,9 @@ export default {
             ProjectAdminName:this.manager
         },
         res => {
-            console.log(res);
+             
             for(var i = 0 ; i < res.data.length; i++){
-                console.log(res.data[i]);
+                 
                 this.option.xAxis[0].data.push(res.data[i].customTown);
                 this.option.series[0].data.push(res.data[i].beetlesNum);
                 this.option.series[1].data.push(res.data[i].otherNum);

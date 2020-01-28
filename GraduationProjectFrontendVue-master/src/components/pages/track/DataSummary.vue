@@ -149,7 +149,7 @@ name:'NaturalEnemiesDataSummary',
   methods: {
     init() {
       let role = this.$store.state.user.role;
-      console.log(role);
+       
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         this.loadCity();
@@ -363,7 +363,7 @@ name:'NaturalEnemiesDataSummary',
       this.querySum(this.province);
     },
     makeAnalysisData(data) {
-      console.log(data);
+       
       let list = [];
       list.push({
         "0": this.contentLabelDict[this.contentLabelIndex] + "间",
@@ -393,7 +393,7 @@ name:'NaturalEnemiesDataSummary',
         "6": ""
       });
       this.analysisList = list;
-      console.log(this.analysisList);
+       
     },
     loadProvince() {
       http.requestWithToken(
@@ -401,7 +401,7 @@ name:'NaturalEnemiesDataSummary',
         "get",
         {},
         res => {
-          console.log(res.data);
+           
           this.provinces = res.data;
           this.province = "";
           this.city = "";
@@ -447,7 +447,7 @@ name:'NaturalEnemiesDataSummary',
         res => {
           // alert()
           this.managers = res.data.data;
-          console.log(this.managers);
+           
         },
         () => {}
       );

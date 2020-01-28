@@ -59,10 +59,10 @@ export default {
               "/natural/importExcel?token=" +
               sessionStorage["token"];
               
-     console.log("init");
+      
       let role = this.$store.state.user.role;
               this.loadDevice();
-      console.log(role);
+       
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
       } else if (role == 2) {
@@ -79,14 +79,14 @@ export default {
                           this.area = this.$store.state.user.adcode;
                           this.manager=this.$store.state.user.username;
                         }
-                           console.log(this.city);
-                            console.log(this.province);
-                             console.log(this.area);
+                            
+                             
+                              
 
     },
     methods:{
       selectChange(){
-        console.log(this.value);
+         
         if(this.value == "CustomSerial"){
           this.MycolName = "编号";
         }else if(this.value == "CustomTown"){
@@ -99,12 +99,12 @@ export default {
         
       },
         exportExcel(){
-        console.log(this.QRData.list);
+         
         let role = this.$store.state.user.role;
-          console.log(role);
-            console.log(this.area);
-            console.log(this.city);
-              console.log(this.province);
+           
+             
+             
+               
                       setTimeout(()=>{
                   window.location =
         http.getBaseUrl() +
@@ -126,22 +126,22 @@ export default {
 
       handleQRDataCurrentPageChanged(val) {
         this.QRData.page = val;
-        console.log(this.QRData.page);
+         
 
-        console.log("valChange" + val);
+         
         this.loadDevice();
       },
       query(){
         if(!this.input){
           alert("请输入查询内容！");
         }else{
-        console.log("query");
-        console.log(this.startDate);
-        console.log(this.endDate);
-        console.log(this.input);
-        console.log(this.value);
+         
+         
+         
+         
+         
         let role = this.$store.state.user.role;
-        console.log(this.manager);
+         
 
             http.requestWithToken(
                 "/newTrap/managerSummary",
@@ -156,11 +156,11 @@ export default {
                 limit: 10
                 },
                 res => {
-                    console.log("成");
-                  console.log(res.data.data);
+                     
+                   
                 this.QRData.list = res.data.data.data;
                 this.QRData.total = res.data.data.totalPage;
-                console.log( this.QRData.list);
+                 
 
                 },
                 () => {}
@@ -168,7 +168,7 @@ export default {
         }
       },
       handleQRDataCurrentPageChanged() {
-        console.log("hello");
+         
         this.loadDevice();
       },
 

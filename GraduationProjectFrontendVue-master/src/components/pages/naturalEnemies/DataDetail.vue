@@ -172,10 +172,10 @@ export default {
               http.getBaseUrl() +
               "/natural/importExcel?token=" +
               sessionStorage["token"];
-     console.log("init");
+      
       let role = this.$store.state.user.role;
               this.loadDevice();
-      console.log(role);
+       
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
       } else if (role == 2) {
@@ -192,14 +192,14 @@ export default {
                           this.area = this.$store.state.user.adcode;
                           this.manager=this.$store.state.user.username;
                         }
-                           console.log(this.city);
-                            console.log(this.province);
-                             console.log(this.area);
+                            
+                             
+                              
 
     },
     methods:{
       handleEditMaintenanceDataSubmit(){
-         console.log(this.EditMaintenanceDialog.form);
+          
                http.requestWithTokenJson(
         "/natural/updateRec",
         "post",
@@ -256,8 +256,8 @@ export default {
       this.loadDevice();
     },
           showEditMaintenanceDataDialog(data) {
-            console.log("编辑");
-            console.log(data);
+             
+             
       this.EditMaintenanceDialog.visible = true;
       this.EditMaintenanceDialog.form = {
         otherType: "",
@@ -296,12 +296,12 @@ export default {
         alert("请手动刷新");
       },
       exportExcel(){
-        console.log(this.QRData.list);
+         
         let role = this.$store.state.user.role;
-          console.log(role);
-            console.log(this.area);
-            console.log(this.city);
-              console.log(this.province);
+           
+             
+             
+               
 
 
         /**
@@ -309,7 +309,7 @@ export default {
                   searchText: this.input,
                   adcode: this.area
          */
-        console.log(http.getBaseUrl());
+         
         setTimeout(()=>{
                   window.location =
         http.getBaseUrl() +
@@ -331,12 +331,12 @@ export default {
 
       },
       exportImage(){
-        console.log(this.QRData.list);
+         
         let role = this.$store.state.user.role;
-          console.log(role);
-            console.log(this.area);
-            console.log(this.city);
-              console.log(this.province);
+           
+             
+             
+               
 
 
         /**
@@ -344,7 +344,7 @@ export default {
                   searchText: this.input,
                   adcode: this.area
          */
-        console.log(http.getBaseUrl());
+         
         setTimeout(()=>{
                   window.location =
         http.getBaseUrl() +
@@ -367,7 +367,7 @@ export default {
       },
 
     showPhotoDialog(id) {
-            console.log(id);
+             
       this.PhotoDialog.visible = true;
      // let BASE_URL = "http://47.103.66.70:8081";
     let BASE_URL = "http://106.15.200.245:50000";
@@ -376,20 +376,20 @@ export default {
 
       handleQRDataCurrentPageChanged(val) {
         this.QRData.page = val;
-        console.log("valChange" + val);
+         
         this.loadDevice();
       },
       query(){
-        console.log("query");
-        console.log(this.startDate);
-        console.log(this.endDate);
-        console.log(this.input);
-        console.log(this.value);
+         
+         
+         
+         
+         
         let role = this.$store.state.user.role;
-          console.log(role);
-            console.log(this.area);
-            console.log(this.city);
-              console.log(this.province);
+           
+             
+             
+               
           // if(role==3){
                         http.requestWithToken(
                 "/natural/searchDetail",
@@ -405,7 +405,7 @@ export default {
                   adcode: this.area
                 },
                 res => {
-                  console.log(res);
+                   
                 this.QRData.list = res.data.data.data;
                 this.QRData.total = res.data.data.totalNum;
 
@@ -423,17 +423,17 @@ export default {
 
       },
       handleQRDataCurrentPageChanged() {
-        console.log("hello");
+         
         this.loadDevice();
       },
 
         loadDevice() {
-          console.log("load");
+           
                 let role = this.$store.state.user.role;
                 this.role = role;
-          console.log(this.role);
+           
           if(this.role == 3){
-              console.log(sessionStorage['username']);
+               
             http.requestWithToken(
                 "/natural/areaDetail",
                 "post",
@@ -461,7 +461,7 @@ export default {
                   adcode: this.area
                 },
                 res => {
-                                console.log(res.data);
+                                 
 
                 this.QRData.list = res.data.data.data;
                 this.QRData.total = res.data.data.totalNum;

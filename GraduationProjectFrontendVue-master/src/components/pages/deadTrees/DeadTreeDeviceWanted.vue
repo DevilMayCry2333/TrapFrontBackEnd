@@ -398,7 +398,7 @@ export default {
           this.calculateMultipleSelection();
 
         }, 500)
-     // console.log(val);
+     //  
       }
       this.triggeredByPageChange = false;
     },
@@ -482,7 +482,7 @@ export default {
       let data = [];
 
       for (let i = 0; i < this.maintenanceData.selection.length; ++i) {
-          console.log(this.maintenanceData.selection[i]);
+           
 
         data.push(this.maintenanceData.selection[i].id);
       }

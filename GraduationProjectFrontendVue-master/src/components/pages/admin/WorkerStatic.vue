@@ -45,8 +45,8 @@ export default {
     methods:{
         query(){
       let role = this.$store.state.user.role;
-      console.log("init");
-      console.log(role);
+       
+       
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         // this.loadCity();
@@ -66,9 +66,9 @@ export default {
         this.manager = this.$store.state.user.username;
       }
 
-            console.log(this.startYear);
-            console.log(this.endYear);
-            console.log(this.manager);
+             
+             
+             
                         http.requestWithToken(
         "/statics/worker",
         "get",
@@ -78,7 +78,7 @@ export default {
             endM:this.endYear
         },
         res => {
-            console.log(res);
+             
             this.list = res.data;
 
         },
@@ -90,8 +90,8 @@ export default {
           mounted(){
 
                   let role = this.$store.state.user.role;
-      console.log("init");
-      console.log(role);
+       
+       
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         // this.loadCity();
@@ -111,9 +111,9 @@ export default {
         this.manager = this.$store.state.user.username;
       }
 
-            console.log(this.startYear);
-            console.log(this.endYear);
-            console.log(this.manager);
+             
+             
+             
 
 
       http.requestWithToken(
@@ -123,7 +123,7 @@ export default {
             ProjectAdminName:this.manager
         },
         res => {
-            console.log(res);
+             
             this.list = res.data;
 
         },

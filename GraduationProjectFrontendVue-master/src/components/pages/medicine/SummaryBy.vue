@@ -65,12 +65,12 @@
         this.loadDevice();
       },
       handleSubmit() {
-        console.log(this.DryWatchData);
+         
         this.loadDevice()
       },
       loadDevice() {
               let role = this.$store.state.user.role;
-      console.log(this.$store.state.user.role);
+       
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         this.loadCity();

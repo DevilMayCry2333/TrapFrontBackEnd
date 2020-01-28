@@ -166,10 +166,10 @@ export default {
       }
     },
     query(){
-        console.log(this.area);
-        console.log(this.manager);
-        console.log(this.startYear);
-        console.log(this.endYear);
+         
+         
+         
+         
         
               this.option.xAxis[0].data =[];
       this.option.series[0].data = [];
@@ -177,9 +177,9 @@ export default {
 
 
         // var CurrentM = this.startYear.split("-");
-        // console.log(CurrentM);
+        //  
         // var endM = this.endYear.split("-");
-        // console.log(endM);
+        //  
             http.requestWithToken(
         "/statics/month",
         "get",
@@ -189,9 +189,9 @@ export default {
             endM: this.endYear
         },
         res => {
-            console.log(res);
+             
             for(var i = 0 ; i < res.data.length; i++){
-                console.log(res.data[i]);
+                 
                 this.option.xAxis[0].data.push(res.data[i].customTown);
                 this.option.series[0].data.push(res.data[i].beetlesNum);
                 this.option.series[1].data.push(res.data[i].otherNum);
@@ -215,9 +215,9 @@ export default {
             ProjectAdminName:this.manager
         },
         res => {
-            console.log(res);
+             
             for(var i = 0 ; i < res.data.length; i++){
-                console.log(res.data[i]);
+                 
                 this.option.xAxis[0].data.push(res.data[i].customTown);
                 this.option.series[0].data.push(res.data[i].beetlesNum);
                 this.option.series[1].data.push(res.data[i].otherNum);

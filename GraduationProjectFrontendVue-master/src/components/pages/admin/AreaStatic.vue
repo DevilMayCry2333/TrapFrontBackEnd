@@ -236,8 +236,8 @@ export default {
       }
     },
     query(){
-        console.log(this.area);
-        console.log(this.manager);
+         
+         
 
       this.option.xAxis[0].data =[];
       this.option.series[0].data = [];
@@ -250,7 +250,7 @@ export default {
         this.option2.series[1].data = [];
 
 
-        console.log(this.option);
+         
 
     http.requestWithToken(
         "/statics/area",
@@ -261,10 +261,10 @@ export default {
             endDate:this.endYear
         },
         res => {
-            console.log(res);
-   console.log(this.option);
+             
+    
             for(var i = 0 ; i < res.data.length; i++){
-                console.log(res.data[i]);
+                 
                 this.option.xAxis[0].data.push(res.data[i].customTown);
                 this.option.series[0].data.push(res.data[i].beetlesNum);
                 this.option.series[1].data.push(res.data[i].otherNum);
@@ -298,9 +298,9 @@ export default {
             ProjectAdminName:this.manager
         },
         res => {
-            console.log(res);
+             
             for(var i = 0 ; i < res.data.length; i++){
-                console.log(res.data[i]);
+                 
                 this.option.xAxis[0].data.push(res.data[i].customTown);
                 this.option.series[0].data.push(res.data[i].beetlesNum);
                 this.option.series[1].data.push(res.data[i].otherNum);

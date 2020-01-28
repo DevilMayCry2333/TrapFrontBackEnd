@@ -195,7 +195,7 @@ export default {
         "get",
         {},
         res => {
-          console.log(res.data);
+           
           this.provinces = res.data;
           this.province = "";
           this.city = "";

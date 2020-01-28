@@ -77,7 +77,7 @@ export default {
     loadOtherBeetleData() {
       let url = "/auth_api/inject_workContent";
        let role = this.$store.state.user.role;
-       console.log(role);
+        
       if (this.$store.state.user.role == 4) {
         url = "/auth_api/inject_workContent/town";
       }
@@ -86,12 +86,12 @@ export default {
         "get",
         {},
         res => {
-          console.log(res);
+           
           this.list = res.data.data;
           if (this.$store.state.user.role == 4) {
             this.list = res.data;
-            console.log("list");
-            console.log(this.list);
+             
+             
             this.loadAll();
           }
         },
@@ -105,8 +105,8 @@ export default {
         "get",
         {},
         res => {
-          console.log("workContent");
-          console.log(res);
+           
+           
           this.leftlist = res.data.data;
           let lefti=0;
           for (let i = 0; i < this.leftlist.length; ++i) {

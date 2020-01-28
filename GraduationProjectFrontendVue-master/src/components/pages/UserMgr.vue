@@ -433,9 +433,9 @@
     methods: {
 
       getCurrentRow(val){
-        console.log(val);
-        console.log(this.userData.list[val]);
-        console.log(this.userData.list[val].username);
+         
+         
+         
         let username=this.userData.list[val].username;
 
       },
@@ -458,7 +458,7 @@
         }
         let formData = this.userInfoDialog.form;
         let role = this.userInfoDialog.form.role;
-        console.log(formData);
+         
         switch (role) {
           case 1:
             // 省级用户
@@ -576,10 +576,10 @@
         let phone1 =this.userInfoDialog.EditForm.phone;
         let username = this.userInfoDialog.EditForm.username;
         let active = this.userInfoDialog.EditForm.active;
-        console.log(name1);
-        console.log(phone1);
-        console.log(username);
-        console.log(active);
+         
+         
+         
+         
 
         // let phone1 = this.userInfoDialog.EditForm.phone;
         http.requestWithToken(
@@ -613,9 +613,9 @@
       },
 
       loadUser() {
-        console.log(this.roleType);
+         
         let role = this.$store.state.user.role;
-        console.log(role);
+         
         if (role == 1) {
           this.province = this.$store.state.user.adcode.substr(0, 2);
         } else if (role == 2) {
@@ -709,7 +709,7 @@
           "get",
           {},
           res => {
-            console.log(res.data);
+             
             this.userInfoDialog.provinces = res.data;
             this.userInfoDialog.form.province = "";
             this.userInfoDialog.form.city = "";

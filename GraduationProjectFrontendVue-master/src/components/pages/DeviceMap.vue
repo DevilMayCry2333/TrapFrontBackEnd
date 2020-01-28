@@ -38,7 +38,7 @@ export default {
     loadSpots(val) {
       this.map.clearOverlays();
       if (val == "device") {
-        console.log("device");
+         
         var markers = [];
         http.requestWithToken(
           "/auth_api/device_list",
@@ -48,7 +48,7 @@ export default {
             isMap:true
           },
           res => {
-            console.log(res.data);
+             
             let that = this;
             function addMarker(point, events) {
               //此处point不再需要了
@@ -110,13 +110,13 @@ export default {
       }
       if (val != "device") {
          var markers = [];
-         console.log("!device");
+          
         http.requestWithTokenJson(
           "/auth_api/statistics_map/" + val + "_spots",
           "get",
           {},
           res => {
-            console.log(res.data);
+             
             let that = this;
             function addMarker(point, events) {
                   var options = {
@@ -167,7 +167,7 @@ export default {
             }
                             addMarker(point, () => {
                   if (val == "province") {
-                    console.log("province");
+                     
                     this.dialogVisible = true;
                     setTimeout(() => {
                       this.$nextTick(() => {
@@ -181,7 +181,7 @@ export default {
                       });
                     }, 10);
                   } else if (val == "city") {
-                     console.log("city");
+                      
                     this.dialogVisible = true;
                     setTimeout(() => {
                       this.$nextTick(() => {
@@ -200,7 +200,7 @@ export default {
                       });
                     }, 10);
                   } else if (val == "area") {
-                    console.log("area");
+                     
                     this.dialogVisible = true;
                     setTimeout(() => {
                       this.$nextTick(() => {

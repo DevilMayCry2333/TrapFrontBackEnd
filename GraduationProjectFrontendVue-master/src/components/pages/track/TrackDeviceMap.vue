@@ -39,14 +39,14 @@ export default {
     loadSpots(val,lineName) {
       this.map.clearOverlays();
       if (val == "device") {
-        console.log("device");
+         
         var markers = [];
         http.requestWithToken(
           "/track/device_list",
           "get",
           { page: 1, limit: 1000,isTrack:true,lineName:lineName },
           res => {
-            console.log(res.data);
+             
             let that = this;
             function addMarker(pointArray, events) {
               //此处point不再需要了
@@ -65,8 +65,8 @@ export default {
                that.map.addOverlay(polyline);
             }
             function addText(text, point) {
-              console.log(text);
-              console.log(point);
+               
+               
 
               var opts = {
                 position: point, // 指定文本标注所在的地理位置
@@ -84,8 +84,8 @@ export default {
               that.map.addOverlay(label);
             }
             let data = res.data.data;
-            console.log("实际data");
-            console.log(data);
+             
+             
             
             var flag = 1;
             for (let i = 0; i < data.length; ++i) {
@@ -93,18 +93,18 @@ export default {
               for(let j = 0; j < data[i].trackGroup.length; ++j){
                 if(data[i].trackGroup[j].longitude && data[i].trackGroup[j].latitude){
                 var point = gps.convert(data[i].trackGroup[j].latitude, data[i].trackGroup[j].longitude);
-                console.log("遍历data");
-                console.log(data[i].latitude);
-                console.log(data[i].longitude);
+                 
+                 
+                 
 
-                console.log(point);
+                 
 
                 point = new BMap.Point(point[1], point[0]);
                 markers.push(point);
                 if(j==0 || j>=data[i].trackGroup.length-1)
                   addText(data[i].trackGroup[j]["linename"], point);
-                console.log(data[i].trackGroup[j]["linename"]);
-                console.log(point);
+                 
+                 
 
                 let center = "";
                 if (data[i].province != null) center = data[i].province + center;
@@ -132,13 +132,13 @@ export default {
       }
       if (val != "device") {
          var markers = [];
-         console.log("!device");
+          
         http.requestWithTokenJson(
           "/auth_api/statistics_map/" + val + "_spots",
           "get",
           {},
           res => {
-            console.log(res.data);
+             
             let that = this;
             function addMarker(point, events) {
                   var options = {
@@ -189,7 +189,7 @@ export default {
             }
                             addMarker(point, () => {
                   if (val == "province") {
-                    console.log("province");
+                     
                     this.dialogVisible = true;
                     setTimeout(() => {
                       this.$nextTick(() => {
@@ -203,7 +203,7 @@ export default {
                       });
                     }, 10);
                   } else if (val == "city") {
-                     console.log("city");
+                      
                     this.dialogVisible = true;
                     setTimeout(() => {
                       this.$nextTick(() => {
@@ -222,7 +222,7 @@ export default {
                       });
                     }, 10);
                   } else if (val == "area") {
-                    console.log("area");
+                     
                     this.dialogVisible = true;
                     setTimeout(() => {
                       this.$nextTick(() => {
@@ -254,7 +254,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.$route.query.lineName);
+     
     
     this.map = new BMap.Map(this.$refs.allmap); // 创建Map实例
     this.map.centerAndZoom("中国", 11); // 初始化地图,设置中心点坐标（经纬度/城市的名称）和地图级别

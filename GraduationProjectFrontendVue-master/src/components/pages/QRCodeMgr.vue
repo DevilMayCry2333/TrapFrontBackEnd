@@ -457,14 +457,6 @@ export default {
         }
         this.AssignQRCodeDialog.availableNum =
           this.AssignQRCodeDialog.totalAvailableCount - sum;
-        console.log(
-          "now:" +
-            tmp +
-            " available:" +
-            this.AssignQRCodeDialog.availableNum +
-            "sum:" +
-            sum
-        );
         this.$nextTick(() => {
           this.$set(this.AssignQRCodeDialog.numList, index, tmp);
           // console.log(this.$refs["AssignQRCodeInputNumber" + index]);

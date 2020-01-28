@@ -453,11 +453,9 @@ export default {
   },
   methods: {
     getCurrentRow(val){
-      console.log(this.QRData.list[val])
     },
     showReAssignDialog(){
       this.ReAssignDialog.visible = true;
-      console.log(this.selectedDevice);
 
       let role = this.$store.state.user.role;
       if (role == 1) {
@@ -484,11 +482,11 @@ export default {
           "get",
           { username:this.manager },
           res => {
-            console.log(res.data);
-            console.log(res);
+             
+             
             this.ReAssignDialog.AvailScanId = res.data;
             if(res.data.error == true){
-              console.log(res.data.error);
+               
 
               this.ReAssignDialog.AvailScanId = "没有可以分配的二维码";
               //disable绑定输入框
@@ -502,17 +500,17 @@ export default {
     },
     handleMaintenanceDataSelectionChange(val){
       this.selectedDevice = val;
-      console.log(this.selectedDevice);
+       
 
     },
     GetId(row, event, column){
-      console.log(row.scanId);  //获取各行id的值
+       
       this.getid = row.scanId;
       // this.scanId = val;
 
     },
     handleReAssign(){
-      console.log(this.selectedDevice);
+       
 
       http.requestWithToken(
           "/newQrCode/reAssignQRCode",
@@ -521,7 +519,7 @@ export default {
           scanId: this.ReAssignDialog.AvailScanId,
           customProject: this.selectedDevice.customProject },
           res => {
-            console.log(res.data);
+             
             this.ReAssignDialog.visible = false;
 
           },
@@ -550,8 +548,8 @@ export default {
       }
 
 
-      console.log(this.input);
-      console.log(this.value);
+       
+       
       if(!this.input || !this.value){
         alert("请输入查询条件!")
       }else{
@@ -589,7 +587,7 @@ export default {
           page: this.QRData.page, limit: this.QRData.limit,
           username: this.manager},
           res => {
-            console.log(res.data);
+             
             this.QRData.list = res.data.data;
             for(var i = 0 ; i < this.QRData.list.length; i++){
               if(this.QRData.list[i].project=="1"){
@@ -621,13 +619,13 @@ export default {
 
     },
     managerApplicationChange(){
-      console.log(this.applicationValue);
+       
             http.requestWithToken(
         "/newQrCode/getMaxAvableCode",
         "get",
         { provinceCode: this.province},
         res => {
-          console.log(res);
+           
           if(res.data.error){
             this.startID = "没有可分配的二维码";
           }else{
@@ -641,29 +639,29 @@ export default {
 
     },
     applicationChange(){
-      console.log(this.areaValue);
-      console.log(this.applicationValue);
+       
+       
       var myDate = new Date();
       var tYear = myDate.getFullYear();
-      console.log(tYear);
+       
       var shortYear = tYear.toString().split("20");
-      console.log(shortYear[1]);
+       
       var toCompleteID = this.areaValue.toString() + shortYear[1].toString() + this.applicationValue.toString();
-      console.log(toCompleteID);
+       
       this.toCompleteID = toCompleteID;
 
     },
     handleAssignQRCodeByManager(){
       if(!this.isPass){
-      console.log(this.startID);
-      console.log(this.endID);
-      console.log(this.IDNum);
-      console.log(this.applicationValue);
-      console.log(this.customRegion);
-      console.log(this.prefix);
-      console.log(this.serialStart);
-      console.log(this.serialEnd);
-      console.log(this.serialNum);
+       
+       
+       
+       
+       
+       
+       
+       
+       
 
       let role = this.$store.state.user.role;
       if (role == 1) {
@@ -702,7 +700,7 @@ export default {
            username: this.manager
            },
         res => {
-          console.log(res);
+           
 
         },
         () => {}
@@ -716,15 +714,15 @@ export default {
 
     },
     areaChange(){
-      console.log(this.areaValue);
+       
 
       var myDate = new Date();
       var tYear = myDate.getFullYear();
-      console.log(tYear);
+       
       var shortYear = tYear.toString().split("20");
-      console.log(shortYear[1]);
+       
       var toCompleteID = this.areaValue.toString() + shortYear[1].toString() + this.applicationValue.toString();
-      console.log(toCompleteID);
+       
       this.toCompleteID = toCompleteID;
 
     },
@@ -748,13 +746,13 @@ export default {
       this.serialNum = this.serialEnd - this.serialStart + 1;
     },
     cityChange(e){
-      console.log("cityChange",e);
+       
       http.requestWithToken(
         "/auth_api/dist/areas",
         "get",
         { id: e},
         res => {
-          console.log(res);
+           
           // this.$set(this.area,res.data);
           this.area = res.data;
 
@@ -779,16 +777,16 @@ export default {
       }
     },
     proxyChange(e){
-      console.log("proxyChange",e);
+       
       http.requestWithToken(
         "/auth_api/dist/cities",
         "get",
         { id: e},
         res => {
-          console.log(res);
+           
           // this.$set(this.city,res.data);
           this.city = res.data;
-          console.log(this.city);
+           
 
         },
         () => {}
@@ -822,11 +820,11 @@ export default {
         "get",
         { username: this.manager},
         res => {
-          console.log(res.data);
+           
 
           if(res.data == 0){
       this.AssignQRCodeManagerDialog.visible = true;
-      console.log(this.area);
+       
 
                http.requestWithToken(
                 "/newQrCode/getavailableNum",
@@ -835,7 +833,7 @@ export default {
                   province:this.province
                 },
                 res => {
-                  console.log(res);
+                   
                   this.AssignQRCodeDialog.availableNum = res.data;
 
                 },
@@ -909,7 +907,7 @@ export default {
         },
     loadDevice() {
 
-                console.log(sessionStorage['username']);
+                 
               let role = this.$store.state.user.role;
               if(role == 4){
               http.requestWithToken(
@@ -918,7 +916,7 @@ export default {
           { colName: this.value, searchText: this.input,
           page: this.QRData.page, limit: this.QRData.limit },
           res => {
-            console.log(res.data);
+             
 
             this.QRData.list = res.data.data;
             for(var i = 0 ; i < this.QRData.list.length; i++){
@@ -947,7 +945,7 @@ http.requestWithToken(
           { colName: this.value, searchText: this.input,
           page: this.QRData.page, limit: this.QRData.limit},
           res => {
-            console.log(res.data);
+             
 
             this.QRData.list = res.data.data;
             for(var i = 0 ; i < this.QRData.list.length; i++){
@@ -1090,7 +1088,7 @@ http.requestWithToken(
       );
     },
     handleQRWorkerDialogSubmit() {
-      console.log(this.QRWorkerDialog.workerSide.selectedDevices);
+       
       let myWorker=this.QRWorkerDialog.workerSide.selectedWorker;
       if(myWorker==null || myWorker==""){
             alert("请先选择用户");
@@ -1126,7 +1124,7 @@ http.requestWithToken(
 
           },
           res => {
-            console.log(res);
+             
             this.proxy = res.data.Data;
           },
           () => {}
@@ -1151,17 +1149,9 @@ http.requestWithToken(
         }
         this.AssignQRCodeDialog.availableNum =
           this.AssignQRCodeDialog.totalAvailableCount - sum;
-        console.log(
-          "now:" +
-            tmp +
-            " available:" +
-            this.AssignQRCodeDialog.availableNum +
-            "sum:" +
-            sum
-        );
         this.$nextTick(() => {
           this.$set(this.AssignQRCodeDialog.numList, index, tmp);
-          // console.log(this.$refs["AssignQRCodeInputNumber" + index]);
+          //
         });
         // this.$forceUpdate();
       } else {
@@ -1169,13 +1159,13 @@ http.requestWithToken(
       }
     },
     handleAssignQRCodeDataSubmit() {
-      console.log("确定");
-      console.log(this.startID);
-      console.log(this.endID);
-      console.log(this.proxyValue);
-      console.log(this.cityValue);
-      console.log(this.areaValue);
-      console.log(this.applicationValue);
+       
+       
+       
+       
+       
+       
+       
 
         http.requestWithToken(
         "/newQrCode/assignQRCode",
@@ -1189,7 +1179,7 @@ http.requestWithToken(
           endID: this.toCompleteID + this.endID
           },
         res => {
-          console.log(res);
+           
           this.area = res.data.Data;
           this.AssignQRCodeDialog.visible = false;
         },
@@ -1199,7 +1189,7 @@ http.requestWithToken(
     }
   },
   mounted() {
-    console.log(this.$store.state.user.role);
+     
     this.loadDevice();
   }
 };

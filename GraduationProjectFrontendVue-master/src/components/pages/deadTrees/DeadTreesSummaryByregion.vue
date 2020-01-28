@@ -69,7 +69,7 @@
         this.loadDevice();
       },
       handleSubmit() {
-        console.log(this.DryWatchData);
+         
         this.loadDevice()
       },
       loadDevice() {
@@ -92,7 +92,7 @@
             this.totalDeadIdSum = res.data.data.data[0].totalDeadIdSum;
             this.totalWoodVolumeSum = res.data.data.data[0].totalWoodVolumeSum;
 
-            console.log(this.totalWoodNum);
+             
 
             // this.DryWatchData.optionIndex = -1;
           },

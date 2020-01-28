@@ -66,7 +66,7 @@ export default {
         this.area = this.$store.state.user.adcode;
         this.manager = this.$store.state.user.username;
       }
-      console.log(this.area);
+       
             http.requestWithToken(
             "/system/getCustomProject",
             "get",
@@ -74,7 +74,7 @@ export default {
                 adcode:this.area
             },
             res => {
-                console.log(res);
+                 
                      for(var i = 0; i < res.data.data.length; i++){
                         this.options.push(res.data.data[i]);
                     }
@@ -85,9 +85,9 @@ export default {
     },
     methods:{
         ReportData(){
-            console.log("数据报告");
-            console.log(this.project);
-            console.log(this.value);
+             
+             
+             
             for (var j = 0; j < this.project.length; ++j) {
                 http.requestWithToken(
                 "/system/dataReport",
@@ -97,7 +97,7 @@ export default {
                     customProject: this.value
                 },
                 res => {
-                    console.log(res);
+                     
                     if(res.data == "OK"){
                       this.$message({
                       message: "上报成功",
