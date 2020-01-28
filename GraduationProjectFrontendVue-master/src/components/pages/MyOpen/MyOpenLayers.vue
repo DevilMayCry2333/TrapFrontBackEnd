@@ -65,12 +65,11 @@ export default {
                                         console.log("cnt" + count);
                                         var tmp = [];
                                         console.log("tmp" + tmp);
-
                                         for(var i = 0 ; i < res.data.data.length; i++){
                                           if(res.data.data[i].longitude!=null){
                                             var json = {
-                                              "longitude":res.data.data[i].longitude,
-                                              "latitude":res.data.data[i].latitude
+                                              "lng":res.data.data[i].longitude,
+                                              "lat":res.data.data[i].latitude
                                             }
                                             tmp.push(json);
                                           }
