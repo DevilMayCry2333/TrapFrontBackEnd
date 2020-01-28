@@ -1,6 +1,5 @@
 <html>
 	<head>
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.1.1/build/ol.js"></script>
         <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.1.1/css/ol.css">
 	</head>
@@ -20,7 +19,7 @@
 			target: 'map',
 			view: new ol.View({
 				center: ol.proj.fromLonLat([119.545322, 26.201018]),
-				zoom: 12
+				zoom: 10
 			})
 		});
 	 
@@ -47,12 +46,14 @@
 		console.log(ol.proj.fromLonLat([119.30, 26.08]));
         for(var i = 0; i < count; i++){
             var coordinates = [];
-            coordinates.push(json[i].longitude);
-            coordinates.push(json[i].latitude);
+            coordinates.push(json[i].lng);
+            coordinates.push(json[i].lat);
             console.log(coordinates);
-            features[i] = new ol.Feature(
-				new ol.geom.Point(ol.proj.fromLonLat(coordinates))
-            );
+            features[i] = new ol.Feature({
+                geometry: new ol.geom.Point(ol.proj.fromLonLat(coordinates)),
+                name: json[i].cus
+            });
+            features[i].setId(json[i].cus);
         }
         console.log(features);
         
@@ -66,18 +67,22 @@
             source: source              //聚合的数据源，即矢量要素数据源对象
         });
         //加载聚合标注的矢量图层
-        var styleCache = {};                    //用于保存特定数量的聚合群的要素样式
+        var styleCache = {};                  //用于保存特定数量的聚合群的要素样式
+        
+        //不用聚合会卡死，用聚合又无法确定设备ID
         var clusters = new ol.layer.Vector({
 			source: clusterSource,
             style: function (feature, resolution){
                 var size = feature.get('features').length;          //获取该要素所在聚合群的要素数量
-                var style = styleCache[size];
-                console.log(size);
-                if(!style){
-                    style = [
+                // var style = styleCache[size];
+                var style = [];
+                // console.log(feature.get('features'));
+                for(var i = 0 ; i < feature.get('features').length; i++){
+                    // console.log(feature.get('features')[i]);
+                    style.push(
                         new ol.style.Style({
                             image: new ol.style.Circle({
-                                radius: 10,
+                                radius: 17,
                                 stroke: new ol.style.Stroke({
                                     color: '#fff'
                                 }),
@@ -86,15 +91,38 @@
                                 })
                             }),
                             text: new ol.style.Text({
-                                text: size.toString(),
+                                text: feature.get('features')[i].id_,
                                 fill: new ol.style.Fill({
                                     color: '#fff'
-                                })
+                                }),
+                                font:"5px"
                             })
                         })
-                    ];
-                    styleCache[size] = style;
+                    )
                 }
+
+                // if(!style){
+                //     style = [
+                //         new ol.style.Style({
+                //             image: new ol.style.Circle({
+                //                 radius: 10,
+                //                 stroke: new ol.style.Stroke({
+                //                     color: '#fff'
+                //                 }),
+                //                 fill: new ol.style.Fill({
+                //                     color: '#3399CC'
+                //                 })
+                //             }),
+                //             text: new ol.style.Text({
+                //                 text: feature.get('features')[0].id_,
+                //                 fill: new ol.style.Fill({
+                //                     color: '#fff'
+                //                 })
+                //             })
+                //         })
+                //     ];
+                //     styleCache[size] = style;
+                // }
                 return style;
             }
         });

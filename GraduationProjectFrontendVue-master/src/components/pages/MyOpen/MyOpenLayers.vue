@@ -69,7 +69,8 @@ export default {
                                           if(res.data.data[i].longitude!=null){
                                             var json = {
                                               "lng":res.data.data[i].longitude,
-                                              "lat":res.data.data[i].latitude
+                                              "lat":res.data.data[i].latitude,
+                                              "cus":res.data.data[i].customSerial,
                                             }
                                             tmp.push(json);
                                           }
