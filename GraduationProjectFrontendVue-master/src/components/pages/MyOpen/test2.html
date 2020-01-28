@@ -1,14 +1,25 @@
 <html>
 	<head>
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.1.1/build/ol.js"></script>
-		<link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.1.1/css/ol.css">
+        <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.1.1/css/ol.css">
 	</head>
 	<div id="map"></div>
 	<script>
+        console.log(document.cookie.split(';'));
+        var cookieList = document.cookie.split(';');
+
+        console.log(cookieList.length);
+
+        var json = JSON.parse(localStorage.getItem('device'));
+        console.log("json");
+        console.log(json);
+
+
 		var map = new ol.Map({
 			target: 'map',
 			view: new ol.View({
-				center: ol.proj.fromLonLat([119.30, 26.08]),
+				center: ol.proj.fromLonLat([119.545322, 26.201018]),
 				zoom: 12
 			})
 		});
@@ -30,23 +41,28 @@
 		map.addLayer(baseLayer);
 
 		//此示例创建10000个要素
-        var count = 1;
+        var count = json.length;
         var features = new Array(count);
 		// var e = 4500000;
-		(ol.proj.fromLonLat([119.30, 26.08]));
+		console.log(ol.proj.fromLonLat([119.30, 26.08]));
         for(var i = 0; i < count; i++){
-            var coordinates = [11930523,2608523];
+            var coordinates = [];
+            coordinates.push(json[i].longitude);
+            coordinates.push(json[i].latitude);
+            console.log(coordinates);
             features[i] = new ol.Feature(
-				new ol.geom.Point([13280415,3008992])
+				new ol.geom.Point(ol.proj.fromLonLat(coordinates))
             );
         }
+        console.log(features);
+        
         //矢量要素数据源
         var source = new ol.source.Vector({
 			features: features
         });
         //聚合标注数据源
         var clusterSource = new ol.source.Cluster({
-            distance: 0,               //聚合的距离参数，即当标注间距离小于此值时进行聚合，单位是像素
+            distance: 40,               //聚合的距离参数，即当标注间距离小于此值时进行聚合，单位是像素
             source: source              //聚合的数据源，即矢量要素数据源对象
         });
         //加载聚合标注的矢量图层
@@ -56,7 +72,7 @@
             style: function (feature, resolution){
                 var size = feature.get('features').length;          //获取该要素所在聚合群的要素数量
                 var style = styleCache[size];
-                (size);
+                console.log(size);
                 if(!style){
                     style = [
                         new ol.style.Style({
