@@ -1,12 +1,13 @@
 <template>
-  <iframe ref="iframe" src="http://106.15.200.245/test2.html" style="width:100%;height:100%;" @load="test"></iframe>
+  <iframe ref="iframe" src="http://localhost:8080/customMap" style="width:100%;height:100%;"></iframe>
+  <!-- <iframe ref="iframe" src="http://106.15.200.245/test2.html" style="width:100%;height:100%;"></iframe> -->
 </template>
 <script>
 import http from "../../../utils/http";
 
 export default {
-  mounted(){
-
+  created(){
+    this.test();
   },
   methods:{
     test(){
