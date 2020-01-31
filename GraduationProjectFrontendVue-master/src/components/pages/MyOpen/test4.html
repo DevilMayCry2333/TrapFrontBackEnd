@@ -1,158 +1,154 @@
 <html>
 	<head>
-		<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.1.1/build/ol.js"></script>
+        <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.1.1/build/ol.js"></script>
+        <script src="https://www.intermezzo-coop.eu/mapping/geostats/lib/geostats.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/1.2.1/chroma.min.js"></script>
         <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.1.1/css/ol.css">
-	</head>
-	<div id="map"></div>
+    </head>
+    <select id="methodselector" class="form-control">
+        <option value="method_EI" >Equal Interval</option>
+        <option value="method_Q" selected>Quantile</option>
+        <option value="method_SD" >Standard Deviation</option>
+        <option value="method_AP" >Arithmetic Progression</option>
+        <option value="method_GP" >Geometric Progression</option>
+        <option value="method_CJ">Class Jenks</option>                  
+      </select>
+      Number of Classes:
+      <input type="number" id="classcount" min="1" value="5" max="10">
+      <input type="button" id="drawitbtn" onclick="drawIt()" value='draw themmatic'/>
+
+    <div id="map"></div>
+    <div id='legend'></div>
 	<script>
         console.log(document.cookie.split(';'));
         var cookieList = document.cookie.split(';');
-
         console.log(cookieList.length);
 
         var json = JSON.parse(localStorage.getItem('device'));
         console.log("json");
         console.log(json);
 
-
-		var map = new ol.Map({
-			target: 'map',
-			view: new ol.View({
-				center: ol.proj.fromLonLat([119.545322, 26.201018]),
-				zoom: 10
-			})
-		});
-	 
-		var baseSource = new ol.source.TileWMS({
-			url: 'http://youkaiyu.com:8080/geoserver/wms',
-			params: {
-				'LAYERS': 'fuzhou:fuzhou',
-				'TILED': true,
-				'STYLES':'fuzhou:aaaa'
-			},
-			serverType: 'geoserver'
-		});
-	 
-		var baseLayer = new ol.layer.Tile({
-			source: baseSource
-		});
-		
-		map.addLayer(baseLayer);
-
-		//此示例创建10000个要素
-        var count = json.length;
-        var features = new Array(count);
-		// var e = 4500000;
-		console.log(ol.proj.fromLonLat([119.30, 26.08]));
-        for(var i = 0; i < count; i++){
-            var coordinates = [];
-            coordinates.push(json[i].lng);
-            coordinates.push(json[i].lat);
-            console.log(coordinates);
-            features[i] = new ol.Feature({
-                geometry: new ol.geom.Point(ol.proj.fromLonLat(coordinates)),
-                name: json[i].cus
+            //some global vars here
+            var classSeries;
+            var classColors;
+            //color start from
+            var colorFrom ='FFFFFF';
+            //color end to
+            var colorTo = '1A8B16';
+            var defaultStyle = new ol.style.Style({
+            fill: new ol.style.Fill({
+                color: 'rgba(255, 255, 255, 0.3)'
+            }),
+            stroke: new ol.style.Stroke({
+                color: 'rgba(0, 255, 0, 1)',
+                width: 1
+            }),
+            text: new ol.style.Text({
+                font: '12px Calibri,sans-serif',
+                fill: new ol.style.Fill({
+                color: '#000'
+                }),
+                stroke: new ol.style.Stroke({
+                color: '#fff',
+                width: 3
+                })
+            })
             });
-            features[i].setId(json[i].cus);
-        }
-        console.log(features);
-        
-        //矢量要素数据源
-        var source = new ol.source.Vector({
-			features: features
-        });
-        //聚合标注数据源
-        var clusterSource = new ol.source.Cluster({
-            distance: 40,               //聚合的距离参数，即当标注间距离小于此值时进行聚合，单位是像素
-            source: source              //聚合的数据源，即矢量要素数据源对象
-        });
-        //加载聚合标注的矢量图层
-        var styleCache = {};                  //用于保存特定数量的聚合群的要素样式
-        
-        //不用聚合会卡死，用聚合又无法确定设备ID
-        var clusters = new ol.layer.Vector({
-			source: clusterSource,
-            style: function (feature, resolution){
-                var size = feature.get('features').length;          //获取该要素所在聚合群的要素数量
-                // var style = styleCache[size];
-                var style = [];
-                // console.log(feature.get('features'));
-                for(var i = 0 ; i < feature.get('features').length; i++){
-                    // console.log(feature.get('features')[i]);
-                    style.push(
-                        new ol.style.Style({
-                            image: new ol.style.Circle({
-                                radius: 21,
-                                stroke: new ol.style.Stroke({
-                                    color: '#fff'
-                                }),
-                                fill: new ol.style.Fill({
-                                    color: '#3399CC'
-                                })
-                            }),
-                            text: new ol.style.Text({
-                                text: feature.get('features')[i].id_,
-                                fill: new ol.style.Fill({
-                                    color: '#fff'
-                                }),
-                                font:"5px"
-                            })
-                        })
-                    )
-                }
 
-                // if(!style){
-                //     style = [
-                //         new ol.style.Style({
-                //             image: new ol.style.Circle({
-                //                 radius: 10,
-                //                 stroke: new ol.style.Stroke({
-                //                     color: '#fff'
-                //                 }),
-                //                 fill: new ol.style.Fill({
-                //                     color: '#3399CC'
-                //                 })
-                //             }),
-                //             text: new ol.style.Text({
-                //                 text: feature.get('features')[0].id_,
-                //                 fill: new ol.style.Fill({
-                //                     color: '#fff'
-                //                 })
-                //             })
-                //         })
-                //     ];
-                //     styleCache[size] = style;
-                // }
-                return style;
-            }
-        });
-        map.addLayer(clusters);
-        drawIt();
-                    /**
-            * do the themmatic
-            */
-            function drawIt(){
-                var countryPopVals = new Array();
-                clusters.getSource().getFeatures().forEach(function(feat) {
-                    countryPopVals.push(feat.get("XBH"))
+		// var map = new ol.Map({
+		// 	target: 'map',
+		// 	view: new ol.View({
+		// 		center: ol.proj.fromLonLat([119.545322, 26.201018]),
+		// 		zoom: 10
+		// 	})
+		// });
+                    //our methods here
+
+            var url1 = "http://localhost:8080/geoserver/wfs?service=wfs&version=1.0.0&request=getfeature&typename=fuzhou%3Afuzhou&outputformat=application/json";
+            var featureRequest = new ol.format.WFS().writeGetFeature({
+                srsName: 'EPSG:3857',
+                featurePrefix: 'fuzhou',
+                featureNS: 'fuzhou',
+                featureTypes: ['fuzhou'],
+                propertyNames:["the_geom","XBH"],
+                outputFormat: 'application/json'
+            });
+            let filter=new XMLSerializer().serializeToString(featureRequest);
+
+            var source = new ol.source.Vector({
+                    style: defaultStyle,
+                    format: new ol.format.GeoJSON(),
+                    // url: url1,
+                    loader: function(extent, resolution, projection) {
+                            var proj = projection.getCode();
+                            var url = "http://localhost:8080/geoserver/wfs?service=wfs&version=1.0.0&request=getfeature&typename=fuzhou%3Afuzhou&outputformat=application/json";
+                            var xhr = new XMLHttpRequest();
+                            xhr.open('POST', url);
+                            xhr.setRequestHeader("Content-type", "text/xml");
+                            var onError = function() {
+                                source.removeLoadedExtent(extent);
+                            }
+                            xhr.onerror = onError;
+                            xhr.onload = function() {
+                            if (xhr.status == 200) {
+                                source.addFeatures(
+                                    source.getFormat().readFeatures(xhr.responseText));
+                            } else {
+                                onError();
+                            }
+                            }
+                            xhr.send(filter);
+                         }
                 });
+
+            var vectorLayer = new ol.layer.Vector({
+                source: source,
+                format: new ol.format.GeoJSON({
+                            defaultDataProjection:'EPSG:4326',
+                            featureProjection:'EPSG:3857'
+                            })
+                })
+            //${GEOSERVER_URL}/wfs?service=wfs&version=1.0.0&request=getfeature&typename=${ACC_ROAD_WFS_NAME}&PROPERTYNAME=name,fid,geom&CQL_FILTER=fid in (${crossIds.join(',')})&outputformat=application/json`
+
+            var map = new ol.Map({
+                layers: [
+                    new ol.layer.Tile({
+                    source: new ol.source.OSM()
+                    }),
+                    vectorLayer
+                ],
+                target: 'map',
+                view: new ol.View({
+                    center: ol.proj.fromLonLat([119.545322, 26.201018]),
+                    zoom: 10
+                })
+            });
+
+            /**
+             * do the themmatic
+             */
+            function drawIt(){
+            var countryPopVals = new Array();
+            vectorLayer.getSource().getFeatures().forEach(function(feat) {
+            countryPopVals.push(feat.get("XBH"))
+            });
             console.info("countryPopVals",countryPopVals);
-            // getAndSetClassesFromData(countryPopVals, getClassNum(), getMethod());
-            // vectorLayer.setStyle(setStyle);
+            getAndSetClassesFromData(countryPopVals, getClassNum(), getMethod());
+            vectorLayer.setStyle(setStyle);
             }
 
 
             /**
-            * @data {Array} the array of numbers (these are the pop data for all countries)
-            * @numclasses {Integer} get the number of classes
-            * @method {String}  get the classification method
-            * 
-            *
-            * set geostats object
-            * set the series
-            * set the colors ramp        
-            * 
-            */
+             * @data {Array} the array of numbers (these are the pop data for all countries)
+             * @numclasses {Integer} get the number of classes
+             * @method {String}  get the classification method
+             * 
+             *
+             * set geostats object
+             * set the series
+             * set the colors ramp        
+             * 
+             */
             function getAndSetClassesFromData(data, numclasses, method) {
             var serie = new geostats(data);
             var legenLabel = ""; 
@@ -186,10 +182,10 @@
             }
 
             /**
-            * function to verify the style for the feature
-            */
+             * function to verify the style for the feature
+             */
             function setStyle(feat,res) {
-            var currVal = parseFloat(feat.get("POP2005")); 
+            var currVal = parseFloat(feat.get("XBH")); 
             var bounds = classSeries.bounds;
             var numRanges = new Array();
             for (var i = 0; i < bounds.length-1; i++) { 
@@ -207,7 +203,7 @@
             };
 
             var textStyleConfig = {};
-            var label = res < 5000 ? feat.get('NAME') : '';
+            var label = res < 5000 ? feat.get('XBH') : '';
             if (classIndex !== -1) {
                 polyStyleConfig = {
                 stroke: new ol.style.Stroke({
@@ -245,7 +241,7 @@
 
             var textStyle = new ol.style.Style(textStyleConfig);
             var style = new ol.style.Style(polyStyleConfig);
-            return [style, textStyle];
+            return [style];
             }
 
             //*************helper functions this point forward***************//
@@ -314,6 +310,8 @@
             return polyObj[polyObj.length - 1].poly;
             }
 
+            
 
+        
 	</script>
 </html>

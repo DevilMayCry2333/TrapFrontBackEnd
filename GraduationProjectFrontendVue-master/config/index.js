@@ -17,7 +17,15 @@ module.exports = {
           pathRewrite: {
             '^/customMap': ''
           }
-      }
+      },
+      '/customMap2': {
+        target: 'http://localhost/test4.html',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/customMap2': ''
+        }
+    }
+
     },
 
     // Various Dev Server settings
