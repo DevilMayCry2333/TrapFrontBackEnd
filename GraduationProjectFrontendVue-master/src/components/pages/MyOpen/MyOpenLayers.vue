@@ -1,15 +1,22 @@
 <template>
-  <iframe ref="iframe" src="http://localhost:8080/customMap2" style="width:100%;height:100%;"></iframe>
-  <!-- <iframe ref="iframe" src="http://106.15.200.245/test2.html" style="width:100%;height:100%;"></iframe> -->
+  <!-- <div v-html="html"></div> -->
+  <iframe ref="iframe" src="http://localhost:8081/customMap" style="width:100%;height:100%;"></iframe>
 </template>
 <script>
 import http from "../../../utils/http";
+import axios from 'axios'
 
 export default {
   created(){
     this.test();
   },
+  mounted(){
+     
+  },
   methods:{
+    test2(){
+
+    },
     test(){
       this.$cookies.remove('province');
       this.$cookies.remove('city');
@@ -86,6 +93,7 @@ export default {
                                       () => {}
                                 );
 
+
     }
   },
   data(){
@@ -94,6 +102,7 @@ export default {
       city:'',
       area:'',
       manager:'',
+      html: '',
     }
   }
 }
