@@ -4,7 +4,8 @@
     <div>
       <el-upload
         class="upload-demo"
-        action="https://jsonplaceholder.typicode.com/posts/">
+        :limit="1"
+        :action="uploadUrl">
         <el-button size="small" type="primary">点击上传</el-button>
       </el-upload>
     </div>
@@ -25,11 +26,11 @@ export default {
     this.test();
   },
   mounted(){
-        const oIframe = document.getElementById('iframe');
-            const deviceWidth = document.documentElement.clientWidth;
-            const deviceHeight = document.documentElement.clientHeight;
-            oIframe.style.width = (Number(deviceWidth)-220) + 'px'; //数字是页面布局宽度差值
-            oIframe.style.height = (Number(deviceHeight)-120) + 'px'; //数字是页面布局高度差
+        // const oIframe = document.getElementById('iframe');
+        //     const deviceWidth = document.documentElement.clientWidth;
+        //     const deviceHeight = document.documentElement.clientHeight;
+        //     oIframe.style.width = (Number(deviceWidth)-220) + 'px'; //数字是页面布局宽度差值
+        //     oIframe.style.height = (Number(deviceHeight)-120) + 'px'; //数字是页面布局高度差
   },
   methods:{
     test2(){
@@ -68,6 +69,8 @@ export default {
                               this.$cookies.set('city',this.city);
                                     this.$cookies.set('area',this.area);
                             this.$cookies.set('manager',this.manager);
+                            this.uploadUrl = "http://localhost:50000/geoserver/upload?username=" + this.manager;
+
                         }
 
                         this.$cookies.set('token',sessionStorage['token']);
@@ -121,6 +124,7 @@ export default {
       area:'',
       manager:'',
       html: '',
+      uploadUrl:'',
     }
   }
 }
