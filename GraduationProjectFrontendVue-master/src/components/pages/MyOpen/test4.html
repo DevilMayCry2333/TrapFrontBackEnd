@@ -102,6 +102,8 @@
 
                                 var json = feas[0].values_;
                                 for(key in json){
+                                    if(key == 'geometry')
+                                        continue;
                                     console.log(key);
                                     unitObj.options.add(new Option(key,key));
                                 }
