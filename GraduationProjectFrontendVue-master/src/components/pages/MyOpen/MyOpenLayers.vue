@@ -1,6 +1,20 @@
 <template>
   <!-- <div v-html="html"></div> -->
-  <iframe ref="iframe" src="http://localhost:8081/customMap" style="width:100%;height:100%;"></iframe>
+  <div style="width:100%;height:100%;">
+    <div>
+      <el-upload
+        class="upload-demo"
+        action="https://jsonplaceholder.typicode.com/posts/">
+        <el-button size="small" type="primary">点击上传</el-button>
+      </el-upload>
+    </div>
+    <div style="width:100%;height:97%;">
+        <iframe ref="iframe" src="http://localhost:8081/customMap" style="width:100%;height:97%;"></iframe>
+    </div>
+    
+  </div>
+  
+  <!-- <iframe ref="iframe" src="http://106.15.200.245/test4.html" style="width:100%;height:100%;"></iframe> -->
 </template>
 <script>
 import http from "../../../utils/http";
@@ -11,7 +25,11 @@ export default {
     this.test();
   },
   mounted(){
-     
+        const oIframe = document.getElementById('iframe');
+            const deviceWidth = document.documentElement.clientWidth;
+            const deviceHeight = document.documentElement.clientHeight;
+            oIframe.style.width = (Number(deviceWidth)-220) + 'px'; //数字是页面布局宽度差值
+            oIframe.style.height = (Number(deviceHeight)-120) + 'px'; //数字是页面布局高度差
   },
   methods:{
     test2(){

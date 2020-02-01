@@ -2,6 +2,7 @@
 	<head>
         <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.1.1/build/ol.js"></script>
         <script src="https://www.intermezzo-coop.eu/mapping/geostats/lib/geostats.js"></script>
+        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/1.2.1/chroma.min.js"></script>
         <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.1.1/css/ol.css">
     </head>
@@ -15,11 +16,16 @@
       </select>
       Number of Classes:
       <input type="number" id="classcount" min="1" value="5" max="10">
+      <select id="mySelect">
+        <option>请选择</option>
+        </select>
       <input type="button" id="drawitbtn" onclick="drawIt()" value='draw themmatic'/>
 
     <div id="map"></div>
     <div id='legend'></div>
 	<script>
+        var globalOptions;
+
         console.log(document.cookie.split(';'));
         var cookieList = document.cookie.split(';');
         console.log(cookieList.length);
@@ -64,13 +70,13 @@
 		// });
                     //our methods here
 
-            var url1 = "http://localhost:8080/geoserver/wfs?service=wfs&version=1.0.0&request=getfeature&typename=fuzhou%3Afuzhou&outputformat=application/json";
+            var url1 = "http://192.168.1.4:8080/geoserver/wfs?service=wfs&version=1.0.0&request=getfeature&typename=fuzhou:fuzhou&outputformat=application/json";
             var featureRequest = new ol.format.WFS().writeGetFeature({
                 srsName: 'EPSG:3857',
                 featurePrefix: 'fuzhou',
                 featureNS: 'fuzhou',
                 featureTypes: ['fuzhou'],
-                propertyNames:["the_geom","XBH"],
+                // propertyNames:['fuzhou'],
                 outputFormat: 'application/json'
             });
             let filter=new XMLSerializer().serializeToString(featureRequest);
@@ -81,7 +87,7 @@
                     // url: url1,
                     loader: function(extent, resolution, projection) {
                             var proj = projection.getCode();
-                            var url = "http://localhost:8080/geoserver/wfs?service=wfs&version=1.0.0&request=getfeature&typename=fuzhou%3Afuzhou&outputformat=application/json";
+                            var url = "http://localhost:8080/geoserver/wfs?service=wfs&version=1.0.0&request=getfeature&typename=fuzhou:fuzhou&outputformat=application/json";
                             var xhr = new XMLHttpRequest();
                             xhr.open('POST', url);
                             xhr.setRequestHeader("Content-type", "text/xml");
@@ -91,6 +97,15 @@
                             xhr.onerror = onError;
                             xhr.onload = function() {
                             if (xhr.status == 200) {
+                                var unitObj=document.getElementById("mySelect");
+                                var feas = source.getFormat().readFeatures(xhr.responseText);
+
+                                var json = feas[0].values_;
+                                for(key in json){
+                                    console.log(key);
+                                    unitObj.options.add(new Option(key,key));
+                                }
+
                                 // setTimeout(()=>{
                                 source.addFeatures(
                                     source.getFormat().readFeatures(xhr.responseText));
@@ -131,9 +146,18 @@
              * do the themmatic
              */
             function drawIt(){
+                var options=$("#mySelect option:selected");
+                console.log(options.val());
+
+                globalOptions = options;
+
+
+                                
             var countryPopVals = new Array();
             vectorLayer.getSource().getFeatures().forEach(function(feat) {
-            countryPopVals.push(feat.get("XBH"))
+                
+            // countryPopVals.push(feat.get("XBH"))
+            countryPopVals.push(feat.get(options.val()))
             });
             console.info("countryPopVals",countryPopVals);
             getAndSetClassesFromData(countryPopVals, getClassNum(), getMethod());
@@ -188,7 +212,7 @@
              * function to verify the style for the feature
              */
             function setStyle(feat,res) {
-            var currVal = parseFloat(feat.get("XBH")); 
+            var currVal = parseFloat(feat.get(globalOptions.val())); 
             var bounds = classSeries.bounds;
             var numRanges = new Array();
             for (var i = 0; i < bounds.length-1; i++) { 
@@ -206,7 +230,7 @@
             };
 
             var textStyleConfig = {};
-            var label = res < 5000 ? feat.get('XBH') : '';
+            var label = res < 5000 ? feat.get(globalOptions.val()) : '';
             if (classIndex !== -1) {
                 polyStyleConfig = {
                 stroke: new ol.style.Stroke({
