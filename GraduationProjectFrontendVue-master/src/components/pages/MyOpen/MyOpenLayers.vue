@@ -97,7 +97,8 @@ export default {
                                       "get",
                                       { 
                                         page: 1, limit: 1000,
-                                        isMap:true
+                                        isMap:false,
+                                        project: this.$route.query.mod
                                       },
                                       res => {
                                         var count = 0;             
