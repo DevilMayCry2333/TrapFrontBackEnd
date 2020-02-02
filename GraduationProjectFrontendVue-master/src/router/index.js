@@ -437,6 +437,26 @@ export default new Router({
           path: 'pages/admin/myopen',
           name: '数据抄报',
           component: MyOpenLayers
+        },
+        {
+          path: 'pages/admin/myopen1',
+          name: '数据抄报1',
+          component: MyOpenLayers
+        },
+        {
+          path: 'pages/admin/myopen2',
+          name: '数据抄报2',
+          component: MyOpenLayers
+        },
+        {
+          path: 'pages/admin/myopen3',
+          name: '数据抄报3',
+          component: MyOpenLayers
+        },
+        {
+          path: 'pages/admin/myopen4',
+          name: '数据抄报4',
+          component: MyOpenLayers
         }
 
       ]
