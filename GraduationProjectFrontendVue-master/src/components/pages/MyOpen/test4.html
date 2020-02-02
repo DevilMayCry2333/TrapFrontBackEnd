@@ -4,6 +4,7 @@
         <script src="http://106.15.200.245/cdn/ol.js"></script>
         <script src="https://www.intermezzo-coop.eu/mapping/geostats/lib/geostats.js"></script>
         <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+        <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/1.2.1/chroma.min.js"></script>
         <!-- <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.1.1/css/ol.css"> -->
         <link href="http://106.15.200.245/cdn/ol.css" rel="stylesheet">
@@ -27,18 +28,14 @@
     <div id='legend'></div>
 	<script>
         var globalOptions;
+        
+        var layerName = $.cookie("layername");
+        var workName = $.cookie("workname");
+        var hasLayer = $.cookie("no");
+        console.log(hasLayer);
+        console.log(workName);
+        console.log(layerName);
 
-        console.log(document.cookie.split(';'));
-        var cookieList = document.cookie.split(';');
-        console.log(cookieList);
-        var layerName = cookieList[2].split("layername=")[1];
-        var workName = cookieList[6].split("workname=")[1];
-        console.log(cookieList[2].split("layername="));
-        console.log(cookieList[6].split("workname="));
-        var hasLayer = cookieList[4].split("no=")[1];
-        console.log(cookieList[4].split("no="));
-        
-        
         var json = JSON.parse(localStorage.getItem('device'));
         console.log("json");
         console.log(json);

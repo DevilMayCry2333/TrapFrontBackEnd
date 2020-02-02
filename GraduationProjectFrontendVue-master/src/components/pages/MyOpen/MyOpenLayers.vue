@@ -60,7 +60,8 @@ export default {
       this.$cookies.remove('area');
       this.$cookies.remove('manager');
       this.$cookies.remove('token');
-
+      this.$cookies.remove('no');
+      
           let role = this.$store.state.user.role;
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
