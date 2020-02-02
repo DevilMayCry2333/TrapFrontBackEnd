@@ -1,23 +1,26 @@
 <template>
   <!-- <div v-html="html"></div> -->
   <div style="width:100%;height:100%;">
-    <div>
+    <div style="display:flex;width:100%;">
       <el-upload
         class="upload-demo"
         :limit="1"
+        :on-success="test2"
         :action="uploadUrl">
         <el-button size="small" type="primary">点击上传</el-button>
       </el-upload>
+      <el-button @click="downloadFile" size="small" style="margin-left:80%;" type="primary">点击下载</el-button>
     </div>
     <div style="width:100%;height:97%;">
-        <iframe ref="iframe" src="http://localhost:8081/customMap" style="width:100%;height:97%;"></iframe>
+        <iframe ref="iframe" src="http://106.15.200.245/test4.html" style="width:100%;height:97%;"></iframe>
     </div>
-    
   </div>
-  
-  <!-- <iframe ref="iframe" src="http://106.15.200.245/test4.html" style="width:100%;height:100%;"></iframe> -->
 </template>
 <script>
+
+//明天还要写下图层名字,zip基名字,和项目管理员名字进行对应的表，然后重复的话，要更新这张表
+//select count...
+
 import http from "../../../utils/http";
 import axios from 'axios'
 
@@ -34,8 +37,23 @@ export default {
   },
   methods:{
     test2(){
+      this.$message({
+          showClose: true,
+          message: '上传成功!系统正在发布,3秒后跳转到首页',
+          type: 'success'
+        });
+        setTimeout(()=>{
+          this.$router.push("/");
+        },3000);
 
     },
+    downloadFile(){
+      var url = "http://106.15.200.245:50000/geoserver/downloadFileAction?userid=" + this.area + this.manager
+      + "&module=" + this.$route.query.mod;
+
+      window.location.href = url;
+    },
+
     test(){
       this.$cookies.remove('province');
       this.$cookies.remove('city');
@@ -69,8 +87,8 @@ export default {
                               this.$cookies.set('city',this.city);
                                     this.$cookies.set('area',this.area);
                             this.$cookies.set('manager',this.manager);
-                            this.uploadUrl = "http://localhost:50000/geoserver/upload?username=" + this.manager;
-
+                            console.log(this.$route.query);
+                            this.uploadUrl = "http://106.15.200.245:50000/geoserver/upload?username=" + this.manager + "&module=" + this.$route.query.mod;
                         }
 
                         this.$cookies.set('token',sessionStorage['token']);
@@ -113,6 +131,23 @@ export default {
                                       },
                                       () => {}
                                 );
+                              
+                              http.requestWithToken(
+                                  "/geoserver/getLayerInfo",
+                                      "get",
+                                      {
+                                        userid: this.area + this.manager,
+                                        module: this.$route.query.mod
+                                      },
+                                      res => {
+                                        console.log(res);
+                                        this.workname = res.data.workname;
+                                        this.layername = res.data.layername;
+                                        this.$cookies.set('workname',this.workname);
+                                        this.$cookies.set('layername',this.layername);
+                                      },
+                                      () => {}
+                                );
 
 
     }
@@ -125,6 +160,9 @@ export default {
       manager:'',
       html: '',
       uploadUrl:'',
+      module:"1",
+      workname:'',
+      layername:'',
     }
   }
 }
