@@ -142,10 +142,13 @@ export default {
                                       },
                                       res => {
                                         console.log(res);
-                                        this.workname = res.data.workname;
-                                        this.layername = res.data.layername;
-                                        this.$cookies.set('workname',this.workname);
-                                        this.$cookies.set('layername',this.layername);
+                                        if(res.data=="NO"){
+                                          this.$cookies.set('no','no');
+                                        }
+                                          this.workname = res.data.workname;
+                                          this.layername = res.data.layername;
+                                          this.$cookies.set('workname',this.workname);
+                                          this.$cookies.set('layername',this.layername);
                                       },
                                       () => {}
                                 );

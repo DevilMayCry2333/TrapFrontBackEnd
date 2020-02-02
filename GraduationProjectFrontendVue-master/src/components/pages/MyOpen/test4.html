@@ -35,7 +35,9 @@
         var workName = cookieList[6].split("workname=")[1];
         console.log(cookieList[2].split("layername="));
         console.log(cookieList[6].split("workname="));
-
+        var hasLayer = cookieList[4].split("no=")[1];
+        console.log(cookieList[4].split("no="));
+        
         
         var json = JSON.parse(localStorage.getItem('device'));
         console.log("json");
@@ -142,7 +144,6 @@
                     new ol.layer.Tile({
                     source: new ol.source.OSM()
                     }),
-                    vectorLayer
                 ],
                 target: 'map',
                 view: new ol.View({
@@ -150,6 +151,12 @@
                     zoom: 10
                 })
             });
+
+            if(hasLayer=="no"){
+
+            }else{
+                map.addLayer(vectorLayer);
+            }
 
             /**
              * do the themmatic
