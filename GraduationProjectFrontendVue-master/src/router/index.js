@@ -66,6 +66,10 @@ import InjectName from '@/components/pages/admin/InjectName';
 import DataSummaryByRegion from '@/components/pages/naturalEnemies/DataSummaryByRegion';
 import DeadTreesSummaryByregion from '@/components/pages/deadTrees/DeadTreesSummaryByregion';
 import MyOpenLayers from '@/components/pages/MyOpen/MyOpenLayers';
+import MyOpenLayers1 from '@/components/pages/MyOpen/MyOpenLayers1';
+import MyOpenLayers2 from '@/components/pages/MyOpen/MyOpenLayers2';
+import MyOpenLayers3 from '@/components/pages/MyOpen/MyOpenLayers3';
+import MyOpenLayers4 from '@/components/pages/MyOpen/MyOpenLayers4';
 Vue.use(Router);
 Vue.config.devtools = true;
 
@@ -441,22 +445,22 @@ export default new Router({
         {
           path: 'pages/admin/myopen1',
           name: '数据抄报1',
-          component: MyOpenLayers
+          component: MyOpenLayers1
         },
         {
           path: 'pages/admin/myopen2',
           name: '数据抄报2',
-          component: MyOpenLayers
+          component: MyOpenLayers2
         },
         {
           path: 'pages/admin/myopen3',
           name: '数据抄报3',
-          component: MyOpenLayers
+          component: MyOpenLayers3
         },
         {
           path: 'pages/admin/myopen4',
           name: '数据抄报4',
-          component: MyOpenLayers
+          component: MyOpenLayers4
         }
 
       ]
