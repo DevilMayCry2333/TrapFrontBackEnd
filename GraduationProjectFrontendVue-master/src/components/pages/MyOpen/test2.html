@@ -16,6 +16,11 @@
 
 
 		var map = new ol.Map({
+            layers: [
+                    new ol.layer.Tile({
+                    source: new ol.source.OSM()
+                    }),
+                ],
 			target: 'map',
 			view: new ol.View({
 				center: ol.proj.fromLonLat([119.545322, 26.201018]),
@@ -24,11 +29,11 @@
 		});
 	 
 		var baseSource = new ol.source.TileWMS({
-			url: 'http://youkaiyu.com:8080/geoserver/wms',
+			url: 'http://localhost:8080/geoserver/wms',
 			params: {
-				'LAYERS': 'fuzhou:fuzhou',
+				'LAYERS': 'xiamen:350212_xz_2015',
 				'TILED': true,
-				'STYLES':'fuzhou:aaaa'
+				// 'STYLES':'fuzhou:aaaa'
 			},
 			serverType: 'geoserver'
 		});
@@ -39,280 +44,281 @@
 		
 		map.addLayer(baseLayer);
 
-		//此示例创建10000个要素
-        var count = json.length;
-        var features = new Array(count);
-		// var e = 4500000;
-		console.log(ol.proj.fromLonLat([119.30, 26.08]));
-        for(var i = 0; i < count; i++){
-            var coordinates = [];
-            coordinates.push(json[i].lng);
-            coordinates.push(json[i].lat);
-            console.log(coordinates);
-            features[i] = new ol.Feature({
-                geometry: new ol.geom.Point(ol.proj.fromLonLat(coordinates)),
-                name: json[i].cus
-            });
-            features[i].setId(json[i].cus);
-        }
-        console.log(features);
+		// //此示例创建10000个要素
+        // // var count = json.length;
+        // var count = 100;
+        // var features = new Array(count);
+		// // var e = 4500000;
+		// console.log(ol.proj.fromLonLat([119.30, 26.08]));
+        // for(var i = 0; i < count; i++){
+        //     var coordinates = [];
+        //     coordinates.push(json[i].lng);
+        //     coordinates.push(json[i].lat);
+        //     console.log(coordinates);
+        //     features[i] = new ol.Feature({
+        //         geometry: new ol.geom.Point(ol.proj.fromLonLat(coordinates)),
+        //         name: json[i].cus
+        //     });
+        //     features[i].setId(json[i].cus);
+        // }
+        // console.log(features);
         
-        //矢量要素数据源
-        var source = new ol.source.Vector({
-			features: features
-        });
-        //聚合标注数据源
-        var clusterSource = new ol.source.Cluster({
-            distance: 40,               //聚合的距离参数，即当标注间距离小于此值时进行聚合，单位是像素
-            source: source              //聚合的数据源，即矢量要素数据源对象
-        });
-        //加载聚合标注的矢量图层
-        var styleCache = {};                  //用于保存特定数量的聚合群的要素样式
+        // //矢量要素数据源
+        // var source = new ol.source.Vector({
+		// 	features: features
+        // });
+        // //聚合标注数据源
+        // var clusterSource = new ol.source.Cluster({
+        //     distance: 40,               //聚合的距离参数，即当标注间距离小于此值时进行聚合，单位是像素
+        //     source: source              //聚合的数据源，即矢量要素数据源对象
+        // });
+        // //加载聚合标注的矢量图层
+        // var styleCache = {};                  //用于保存特定数量的聚合群的要素样式
         
-        //不用聚合会卡死，用聚合又无法确定设备ID
-        var clusters = new ol.layer.Vector({
-			source: clusterSource,
-            style: function (feature, resolution){
-                var size = feature.get('features').length;          //获取该要素所在聚合群的要素数量
-                // var style = styleCache[size];
-                var style = [];
-                // console.log(feature.get('features'));
-                for(var i = 0 ; i < feature.get('features').length; i++){
-                    // console.log(feature.get('features')[i]);
-                    style.push(
-                        new ol.style.Style({
-                            image: new ol.style.Circle({
-                                radius: 21,
-                                stroke: new ol.style.Stroke({
-                                    color: '#fff'
-                                }),
-                                fill: new ol.style.Fill({
-                                    color: '#3399CC'
-                                })
-                            }),
-                            text: new ol.style.Text({
-                                text: feature.get('features')[i].id_,
-                                fill: new ol.style.Fill({
-                                    color: '#fff'
-                                }),
-                                font:"5px"
-                            })
-                        })
-                    )
-                }
+        // //不用聚合会卡死，用聚合又无法确定设备ID
+        // var clusters = new ol.layer.Vector({
+		// 	source: clusterSource,
+        //     style: function (feature, resolution){
+        //         var size = feature.get('features').length;          //获取该要素所在聚合群的要素数量
+        //         // var style = styleCache[size];
+        //         var style = [];
+        //         // console.log(feature.get('features'));
+        //         for(var i = 0 ; i < feature.get('features').length; i++){
+        //             // console.log(feature.get('features')[i]);
+        //             style.push(
+        //                 new ol.style.Style({
+        //                     image: new ol.style.Circle({
+        //                         radius: 21,
+        //                         stroke: new ol.style.Stroke({
+        //                             color: '#fff'
+        //                         }),
+        //                         fill: new ol.style.Fill({
+        //                             color: '#3399CC'
+        //                         })
+        //                     }),
+        //                     text: new ol.style.Text({
+        //                         text: feature.get('features')[i].id_,
+        //                         fill: new ol.style.Fill({
+        //                             color: '#fff'
+        //                         }),
+        //                         font:"5px"
+        //                     })
+        //                 })
+        //             )
+        //         }
 
-                // if(!style){
-                //     style = [
-                //         new ol.style.Style({
-                //             image: new ol.style.Circle({
-                //                 radius: 10,
-                //                 stroke: new ol.style.Stroke({
-                //                     color: '#fff'
-                //                 }),
-                //                 fill: new ol.style.Fill({
-                //                     color: '#3399CC'
-                //                 })
-                //             }),
-                //             text: new ol.style.Text({
-                //                 text: feature.get('features')[0].id_,
-                //                 fill: new ol.style.Fill({
-                //                     color: '#fff'
-                //                 })
-                //             })
-                //         })
-                //     ];
-                //     styleCache[size] = style;
-                // }
-                return style;
-            }
-        });
-        map.addLayer(clusters);
-        drawIt();
-                    /**
-            * do the themmatic
-            */
-            function drawIt(){
-                var countryPopVals = new Array();
-                clusters.getSource().getFeatures().forEach(function(feat) {
-                    countryPopVals.push(feat.get("XBH"))
-                });
-            console.info("countryPopVals",countryPopVals);
-            // getAndSetClassesFromData(countryPopVals, getClassNum(), getMethod());
-            // vectorLayer.setStyle(setStyle);
-            }
+        //         // if(!style){
+        //         //     style = [
+        //         //         new ol.style.Style({
+        //         //             image: new ol.style.Circle({
+        //         //                 radius: 10,
+        //         //                 stroke: new ol.style.Stroke({
+        //         //                     color: '#fff'
+        //         //                 }),
+        //         //                 fill: new ol.style.Fill({
+        //         //                     color: '#3399CC'
+        //         //                 })
+        //         //             }),
+        //         //             text: new ol.style.Text({
+        //         //                 text: feature.get('features')[0].id_,
+        //         //                 fill: new ol.style.Fill({
+        //         //                     color: '#fff'
+        //         //                 })
+        //         //             })
+        //         //         })
+        //         //     ];
+        //         //     styleCache[size] = style;
+        //         // }
+        //         return style;
+        //     }
+        // });
+        // map.addLayer(clusters);
+        // drawIt();
+        //             /**
+        //     * do the themmatic
+        //     */
+        //     function drawIt(){
+        //         var countryPopVals = new Array();
+        //         clusters.getSource().getFeatures().forEach(function(feat) {
+        //             countryPopVals.push(feat.get("XBH"))
+        //         });
+        //     console.info("countryPopVals",countryPopVals);
+        //     // getAndSetClassesFromData(countryPopVals, getClassNum(), getMethod());
+        //     // vectorLayer.setStyle(setStyle);
+        //     }
 
 
-            /**
-            * @data {Array} the array of numbers (these are the pop data for all countries)
-            * @numclasses {Integer} get the number of classes
-            * @method {String}  get the classification method
-            * 
-            *
-            * set geostats object
-            * set the series
-            * set the colors ramp        
-            * 
-            */
-            function getAndSetClassesFromData(data, numclasses, method) {
-            var serie = new geostats(data);
-            var legenLabel = ""; 
-            if (method === "method_EI") {
-                serie.getClassEqInterval(numclasses);
-                methodLabel = "Equal Interval";
-            } else if (method === "method_Q") {
-                serie.getClassQuantile(numclasses);
-                methodLabel = "Quantile";
-            } else if (method === "method_SD") {
-                serie.getClassStdDeviation(numclasses);
-                methodLabel = "Standard Deviation ";
-            } else if (method === "method_AP") {
-                serie.getClassArithmeticProgression(numclasses);
-                methodLabel = "Arithmetic Progression";
-            } else if (method === "method_GP") {
-                serie.getClassGeometricProgression(numclasses);
-                methodLabel = "Geometric Progression ";
-            } else if (method === "method_CJ") {
-                serie.getClassJenks(numclasses);
-                methodLabel = "Class Jenks";
-            } else {
-            alert("error: no such method.")
-            }
-            var colors_x = chroma.scale([colorFrom, colorTo]).colors(numclasses)
+        //     /**
+        //     * @data {Array} the array of numbers (these are the pop data for all countries)
+        //     * @numclasses {Integer} get the number of classes
+        //     * @method {String}  get the classification method
+        //     * 
+        //     *
+        //     * set geostats object
+        //     * set the series
+        //     * set the colors ramp        
+        //     * 
+        //     */
+        //     function getAndSetClassesFromData(data, numclasses, method) {
+        //     var serie = new geostats(data);
+        //     var legenLabel = ""; 
+        //     if (method === "method_EI") {
+        //         serie.getClassEqInterval(numclasses);
+        //         methodLabel = "Equal Interval";
+        //     } else if (method === "method_Q") {
+        //         serie.getClassQuantile(numclasses);
+        //         methodLabel = "Quantile";
+        //     } else if (method === "method_SD") {
+        //         serie.getClassStdDeviation(numclasses);
+        //         methodLabel = "Standard Deviation ";
+        //     } else if (method === "method_AP") {
+        //         serie.getClassArithmeticProgression(numclasses);
+        //         methodLabel = "Arithmetic Progression";
+        //     } else if (method === "method_GP") {
+        //         serie.getClassGeometricProgression(numclasses);
+        //         methodLabel = "Geometric Progression ";
+        //     } else if (method === "method_CJ") {
+        //         serie.getClassJenks(numclasses);
+        //         methodLabel = "Class Jenks";
+        //     } else {
+        //     alert("error: no such method.")
+        //     }
+        //     var colors_x = chroma.scale([colorFrom, colorTo]).colors(numclasses)
 
-            serie.setColors(colors_x);
-            document.getElementById('legend').innerHTML = serie.getHtmlLegend(null, "World Population</br> Method:"+methodLabel, 1);
-            classSeries = serie;
-            classColors = colors_x; 
-            }
+        //     serie.setColors(colors_x);
+        //     document.getElementById('legend').innerHTML = serie.getHtmlLegend(null, "World Population</br> Method:"+methodLabel, 1);
+        //     classSeries = serie;
+        //     classColors = colors_x; 
+        //     }
 
-            /**
-            * function to verify the style for the feature
-            */
-            function setStyle(feat,res) {
-            var currVal = parseFloat(feat.get("POP2005")); 
-            var bounds = classSeries.bounds;
-            var numRanges = new Array();
-            for (var i = 0; i < bounds.length-1; i++) { 
-            numRanges.push({
-                min: parseFloat(bounds[i]),
-                max: parseFloat(bounds[i+1])
-                });  
-            }  
-            var classIndex = verifyClassFromVal(numRanges, currVal);
-            var polyStyleConfig = {
-                stroke: new ol.style.Stroke({
-                color: 'rgba(255, 0, 0,0.3)',
-                width: 1
-                })
-            };
+        //     /**
+        //     * function to verify the style for the feature
+        //     */
+        //     function setStyle(feat,res) {
+        //     var currVal = parseFloat(feat.get("POP2005")); 
+        //     var bounds = classSeries.bounds;
+        //     var numRanges = new Array();
+        //     for (var i = 0; i < bounds.length-1; i++) { 
+        //     numRanges.push({
+        //         min: parseFloat(bounds[i]),
+        //         max: parseFloat(bounds[i+1])
+        //         });  
+        //     }  
+        //     var classIndex = verifyClassFromVal(numRanges, currVal);
+        //     var polyStyleConfig = {
+        //         stroke: new ol.style.Stroke({
+        //         color: 'rgba(255, 0, 0,0.3)',
+        //         width: 1
+        //         })
+        //     };
 
-            var textStyleConfig = {};
-            var label = res < 5000 ? feat.get('NAME') : '';
-            if (classIndex !== -1) {
-                polyStyleConfig = {
-                stroke: new ol.style.Stroke({
-                    color: 'rgba(0, 0, 255, 1.0)',
-                    width: 1
-                }),
-                fill: new ol.style.Fill({
-                    color: hexToRgbA(classColors[classIndex],0.7)
-                })
-                };
-                textStyleConfig = {
-                text: new ol.style.Text({
-                    text: label,
-                    font: '12px Calibri,sans-serif',
-                    fill: new ol.style.Fill({
-                    color: "#000000"
-                    }),
-                    stroke: new ol.style.Stroke({
-                    color: "#FFFFFF",
-                    width: 2
-                    })
-                }),
-                geometry: function(feature) {
-                    var retPoint;
-                    if (feature.getGeometry().getType() === 'MultiPolygon') {
-                    retPoint = getMaxPoly(feature.getGeometry().getPolygons()).getInteriorPoint();
-                    } else if (feature.getGeometry().getType() === 'Polygon') {
-                    retPoint = feature.getGeometry().getInteriorPoint();
-                    }
+        //     var textStyleConfig = {};
+        //     var label = res < 5000 ? feat.get('NAME') : '';
+        //     if (classIndex !== -1) {
+        //         polyStyleConfig = {
+        //         stroke: new ol.style.Stroke({
+        //             color: 'rgba(0, 0, 255, 1.0)',
+        //             width: 1
+        //         }),
+        //         fill: new ol.style.Fill({
+        //             color: hexToRgbA(classColors[classIndex],0.7)
+        //         })
+        //         };
+        //         textStyleConfig = {
+        //         text: new ol.style.Text({
+        //             text: label,
+        //             font: '12px Calibri,sans-serif',
+        //             fill: new ol.style.Fill({
+        //             color: "#000000"
+        //             }),
+        //             stroke: new ol.style.Stroke({
+        //             color: "#FFFFFF",
+        //             width: 2
+        //             })
+        //         }),
+        //         geometry: function(feature) {
+        //             var retPoint;
+        //             if (feature.getGeometry().getType() === 'MultiPolygon') {
+        //             retPoint = getMaxPoly(feature.getGeometry().getPolygons()).getInteriorPoint();
+        //             } else if (feature.getGeometry().getType() === 'Polygon') {
+        //             retPoint = feature.getGeometry().getInteriorPoint();
+        //             }
                     
-                    return retPoint;
-                }
-                }
-            };
+        //             return retPoint;
+        //         }
+        //         }
+        //     };
 
-            var textStyle = new ol.style.Style(textStyleConfig);
-            var style = new ol.style.Style(polyStyleConfig);
-            return [style, textStyle];
-            }
+        //     var textStyle = new ol.style.Style(textStyleConfig);
+        //     var style = new ol.style.Style(polyStyleConfig);
+        //     return [style, textStyle];
+        //     }
 
-            //*************helper functions this point forward***************//
+        //     //*************helper functions this point forward***************//
             
-            function verifyClassFromVal(rangevals, val) {
-            var retIndex = -1;
-            for (var i = 0; i < rangevals.length; i++) {
-                if (val >= rangevals[i].min && val <= rangevals[i].max) {
-                retIndex = i;
-                }
-            }
-            return retIndex;
-            }
+        //     function verifyClassFromVal(rangevals, val) {
+        //     var retIndex = -1;
+        //     for (var i = 0; i < rangevals.length; i++) {
+        //         if (val >= rangevals[i].min && val <= rangevals[i].max) {
+        //         retIndex = i;
+        //         }
+        //     }
+        //     return retIndex;
+        //     }
 
-            /**
-            *   get the user selected method
-            */
-            function getMethod(){
-            var elem = document.getElementById("methodselector");
-            var val = elem.options[elem.selectedIndex].value;
-            return val;
-            }
+        //     /**
+        //     *   get the user selected method
+        //     */
+        //     function getMethod(){
+        //     var elem = document.getElementById("methodselector");
+        //     var val = elem.options[elem.selectedIndex].value;
+        //     return val;
+        //     }
 
-            /**
-            *   get the user selected number of classes
-            */
-            function getClassNum(){
-            var elem = document.getElementById("classcount");
-            return parseInt(elem.value);
-            }
+        //     /**
+        //     *   get the user selected number of classes
+        //     */
+        //     function getClassNum(){
+        //     var elem = document.getElementById("classcount");
+        //     return parseInt(elem.value);
+        //     }
 
 
-            /**
-            * convert hex to rgba 
-            *
-            */
-            function hexToRgbA(hex,opacity) {
-            var c;
-            if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
-                c = hex.substring(1).split('');
-                if (c.length == 3) {
-                c = [c[0], c[0], c[1], c[1], c[2], c[2]];
-                }
-                c = '0x' + c.join('');
-                return 'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ','+opacity+')';
-            }
-            throw new Error('Bad Hex');
-            }
-            /**
-            *    get the maximum polygon out of the supllied  array of polygon
-            *    used for labeling the bigger one
-            */
-            function getMaxPoly(polys) {
-            var polyObj = [];
-            //now need to find which one is the greater and so label only this
-            for (var b = 0; b < polys.length; b++) {
-                polyObj.push({
-                poly: polys[b],
-                area: polys[b].getArea()
-                });
-            }
-            polyObj.sort(function(a, b) {
-                return a.area - b.area
-            });
+        //     /**
+        //     * convert hex to rgba 
+        //     *
+        //     */
+        //     function hexToRgbA(hex,opacity) {
+        //     var c;
+        //     if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
+        //         c = hex.substring(1).split('');
+        //         if (c.length == 3) {
+        //         c = [c[0], c[0], c[1], c[1], c[2], c[2]];
+        //         }
+        //         c = '0x' + c.join('');
+        //         return 'rgba(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ','+opacity+')';
+        //     }
+        //     throw new Error('Bad Hex');
+        //     }
+        //     /**
+        //     *    get the maximum polygon out of the supllied  array of polygon
+        //     *    used for labeling the bigger one
+        //     */
+        //     function getMaxPoly(polys) {
+        //     var polyObj = [];
+        //     //now need to find which one is the greater and so label only this
+        //     for (var b = 0; b < polys.length; b++) {
+        //         polyObj.push({
+        //         poly: polys[b],
+        //         area: polys[b].getArea()
+        //         });
+        //     }
+        //     polyObj.sort(function(a, b) {
+        //         return a.area - b.area
+        //     });
 
-            return polyObj[polyObj.length - 1].poly;
-            }
+        //     return polyObj[polyObj.length - 1].poly;
+        //     }
 
 
 	</script>

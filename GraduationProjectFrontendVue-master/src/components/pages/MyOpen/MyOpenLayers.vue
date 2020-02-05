@@ -12,7 +12,7 @@
       <el-button @click="downloadFile" size="small" style="margin-left:80%;" type="primary">点击下载</el-button>
     </div>
     <div style="width:100%;height:97%;">
-        <iframe ref="iframe" src="http://106.15.200.245/test4.html" style="width:100%;height:97%;"></iframe>
+        <iframe ref="iframe" src="http://localhost:8081/customMap" style="width:100%;height:97%;"></iframe>
     </div>
   </div>
 </template>
@@ -48,7 +48,7 @@ export default {
 
     },
     downloadFile(){
-      var url = "http://106.15.200.245:50000/geoserver/downloadFileAction?userid=" + this.area + this.manager
+      var url = "http://localhost:50000/geoserver/downloadFileAction?userid=" + this.area + this.manager
       + "&module=" + this.$route.query.mod;
 
       window.location.href = url;
@@ -89,7 +89,7 @@ export default {
                                     this.$cookies.set('area',this.area);
                             this.$cookies.set('manager',this.manager);
                             console.log(this.$route.query);
-                            this.uploadUrl = "http://106.15.200.245:50000/geoserver/upload?username=" + this.manager + "&module=" + this.$route.query.mod;
+                            this.uploadUrl = "http://localhost:50000/geoserver/upload?username=" + this.manager + "&module=" + this.$route.query.mod;
                         }
 
                         this.$cookies.set('token',sessionStorage['token']);
