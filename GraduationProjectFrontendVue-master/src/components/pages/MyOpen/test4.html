@@ -33,6 +33,10 @@
         var layerName = $.cookie("layername");
         var workName = $.cookie("workname");
         var hasLayer = $.cookie("no");
+
+        var myname = $.cookie("name");
+        var myvalue = $.cookie("value");
+
         console.log(hasLayer);
         console.log(workName);
         console.log(layerName);
@@ -79,24 +83,35 @@
                     //our methods here
             var url1="http://localhost:8080/geoserver/wfs?service=wfs&version=1.0.0&request=getfeature&typename=A350104754:lj_20170307&outputformat=application/json";
             // 这里也要用变量来替换的
-            var featureRequest = new ol.format.WFS().writeGetFeature({
-                srsName: 'EPSG:3857',
-                featurePrefix: 'A350104754',
-                featureNS: 'A350104754',
-                featureTypes: ['lj_20170307'],
-                // propertyNames:['XBH','the_geom'],
-                outputFormat: 'application/json'
-            });
-            let filter=new XMLSerializer().serializeToString(featureRequest);
+
                                         //${GEOSERVER_URL}/wfs?service=wfs&version=1.0.0&request=getfeature&typename=${ACC_ROAD_WFS_NAME}&PROPERTYNAME=name,fid,geom&CQL_FILTER=fid in (${crossIds.join(',')})&outputformat=application/json`
 
             var source = new ol.source.Vector({
-                    style: defaultStyle,
+                    // style: defaultStyle,
                     format: new ol.format.GeoJSON(),
                     // url: url1,
                     loader: function(extent, resolution, projection) {
+                        console.log(extent.join(','));
+                        console.log(extent);
+
+                        var featureRequest = new ol.format.WFS().writeGetFeature({
+                                srsName: 'EPSG:3857',
+                                featurePrefix: 'A350104754',
+                                featureNS: 'A350104754',
+                                featureTypes: ['lj_20170307'],
+                                propertyNames:['XBH','the_geom'],
+                                outputFormat: 'application/json',
+                                filter: ol.format.filter.equalTo(myname,myvalue)
+                                // filter: ol.format.filter.and(
+                                //     ol.format.filter.bbox('the_geom',extent, 'EPSG:3857'),
+                                //     ol.format.filter.like(myname,'*')
+                                // )
+                            });
+                            let filter=new XMLSerializer().serializeToString(featureRequest);
+
                             var proj = projection.getCode();
                             var url = url1;
+                            // url = url + '&srsname=EPSG:3857&bbox=' + extent.join(',') + ',EPSG:3857';
                             // var url = "http://localhost:8080/geoserver/wfs?service=wfs&version=1.0.0&request=getfeature&typename=" + workName + ":" + layerName +  "&outputformat=application/json";
                             var xhr = new XMLHttpRequest();
                             xhr.open('POST', url);
@@ -125,24 +140,36 @@
                                 }
                             }
                             xhr.send(filter);
-                         }
+                         },
+                         strategy: ol.loadingstrategy.bbox
                 });
 
                                     // var clusterSource2 = new ol.source.Cluster({
                                     //             distance: 40,              //聚合的距离参数，即当标注间距离小于此值时进行聚合，单位是像素
-                                    //              source: new ol.source.Vector({
-                                    //                     //获取到的feature数组
-                                    //                     feature: source.getFeatures()
-                                    //                 })
+                                    //              source:source,
+                                    //              geometryFunction: function(coordinates) {
+                                    //                 //  console.log(coordinates);
+                                    //                 //  console.log(coordinates.getGeometry());
+                                    //                 //  console.log(geometry);
+                                    //                 // console.log(poly);
+                                    //                 // debugger;
+                                    //                  return coordinates;
+                                    //              }
                                     //         });
                                     var vectorLayer = new ol.layer.Vector({
                                             source: source,
+                                            style: new ol.style.Style({
+                                                stroke: new ol.style.Stroke({
+                                                    color: 'rgba(0, 0, 255, 1.0)',
+                                                    width: 2
+                                                })
+                                            }),                                           
                                             format: new ol.format.GeoJSON({
                                                         defaultDataProjection:'EPSG:4326',
                                                         featureProjection:'EPSG:3857'
                                                         })                
                                             })
-                                            
+
                                             var map = new ol.Map({
                                             layers: [
                                                 new ol.layer.Tile({
@@ -152,7 +179,8 @@
                                             target: 'map',
                                             view: new ol.View({
                                                 center: ol.proj.fromLonLat([119.545322, 26.201018]),
-                                                zoom: 10
+                                                zoom: 12,
+                                                maxZoom: 19
                                             })
                                         });
 

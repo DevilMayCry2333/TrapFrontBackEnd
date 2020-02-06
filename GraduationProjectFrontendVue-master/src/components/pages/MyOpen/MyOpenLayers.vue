@@ -10,6 +10,7 @@
         <el-button size="small" type="primary">点击上传</el-button>
       </el-upload>
       <el-button @click="downloadFile" size="small" style="margin-left:80%;" type="primary">点击下载</el-button>
+      <el-button @click="test2">测试</el-button>
     </div>
     <div style="width:100%;height:97%;">
         <iframe ref="iframe" src="http://localhost:8081/customMap" style="width:100%;height:97%;"></iframe>
@@ -37,6 +38,8 @@ export default {
   },
   methods:{
     test2(){
+      this.$cookies.set('name','XBH');
+      this.$cookies.set('value','801');
       this.$message({
           showClose: true,
           message: '上传成功!系统正在发布,3秒后跳转到首页',
