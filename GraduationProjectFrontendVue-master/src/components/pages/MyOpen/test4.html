@@ -1,5 +1,6 @@
 <html>
 	<head>
+        <meta charset="UTF-8">
         <!-- <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.1.1/build/ol.js"></script> -->
         <script src="http://106.15.200.245/cdn/ol.js"></script>
         <script src="https://www.intermezzo-coop.eu/mapping/geostats/lib/geostats.js"></script>
@@ -10,12 +11,12 @@
         <link href="http://106.15.200.245/cdn/ol.css" rel="stylesheet">
     </head>
     <select id="methodselector" class="form-control">
-        <option value="method_EI" >Equal Interval</option>
-        <option value="method_Q" selected>Quantile</option>
-        <option value="method_SD" >Standard Deviation</option>
-        <option value="method_AP" >Arithmetic Progression</option>
-        <option value="method_GP" >Geometric Progression</option>
-        <option value="method_CJ">Class Jenks</option>                  
+        <option value="method_EI" >相等的时间间隔</option>
+        <option value="method_Q" selected>分位数</option>
+        <option value="method_SD" >标准偏差</option>
+        <option value="method_AP" >等差数列</option>
+        <option value="method_GP" >几何级数</option>
+        <option value="method_CJ">类詹金斯</option>                  
       </select>
       shp内属性名
       <input type="number" id="classcount" min="1" value="5" max="10">
@@ -67,6 +68,7 @@
             })
             });
 
+
 		// var map = new ol.Map({
 		// 	target: 'map',
 		// 	view: new ol.View({
@@ -75,17 +77,18 @@
 		// 	})
 		// });
                     //our methods here
-
-            var url1 = "http://192.168.1.4:8080/geoserver/wfs?service=wfs&version=1.0.0&request=getfeature&typename=fuzhou:fuzhou&outputformat=application/json";
+            var url1="http://localhost:8080/geoserver/wfs?service=wfs&version=1.0.0&request=getfeature&typename=A350104754:lj_20170307&outputformat=application/json";
+            // 这里也要用变量来替换的
             var featureRequest = new ol.format.WFS().writeGetFeature({
                 srsName: 'EPSG:3857',
-                featurePrefix: 'fuzhou',
-                featureNS: 'fuzhou',
-                featureTypes: ['fuzhou'],
-                // propertyNames:['fuzhou'],
+                featurePrefix: 'A350104754',
+                featureNS: 'A350104754',
+                featureTypes: ['lj_20170307'],
+                // propertyNames:['XBH','the_geom'],
                 outputFormat: 'application/json'
             });
             let filter=new XMLSerializer().serializeToString(featureRequest);
+                                        //${GEOSERVER_URL}/wfs?service=wfs&version=1.0.0&request=getfeature&typename=${ACC_ROAD_WFS_NAME}&PROPERTYNAME=name,fid,geom&CQL_FILTER=fid in (${crossIds.join(',')})&outputformat=application/json`
 
             var source = new ol.source.Vector({
                     style: defaultStyle,
@@ -93,7 +96,8 @@
                     // url: url1,
                     loader: function(extent, resolution, projection) {
                             var proj = projection.getCode();
-                            var url = "http://106.15.200.245:8080/geoserver/wfs?service=wfs&version=1.0.0&request=getfeature&typename=" + workName + ":" + layerName +  "&outputformat=application/json";
+                            var url = url1;
+                            // var url = "http://localhost:8080/geoserver/wfs?service=wfs&version=1.0.0&request=getfeature&typename=" + workName + ":" + layerName +  "&outputformat=application/json";
                             var xhr = new XMLHttpRequest();
                             xhr.open('POST', url);
                             xhr.setRequestHeader("Content-type", "text/xml");
@@ -101,59 +105,62 @@
                                 source.removeLoadedExtent(extent);
                             }
                             xhr.onerror = onError;
-                            xhr.onload = function() {
-                            if (xhr.status == 200) {
-                                var unitObj=document.getElementById("mySelect");
-                                var feas = source.getFormat().readFeatures(xhr.responseText);
-
-                                var json = feas[0].values_;
-                                for(key in json){
-                                    if(key == 'geometry')
-                                        continue;
-                                    console.log(key);
-                                    unitObj.options.add(new Option(key,key));
+                            xhr.onload = ()=>{
+                                if (xhr.status == 200 && xhr.readyState == 4) {
+                                    // setTimeout(()=>{                                
+                                    var unitObj=document.getElementById("mySelect");
+                                    var feas = [];
+                                    feas = source.getFormat().readFeatures(xhr.responseText);
+                                    var json = feas[0].values_;
+                                    for(key in json){
+                                        if(key == 'geometry')
+                                            continue;
+                                        console.log(key);
+                                        unitObj.options.add(new Option(key,key));
+                                    }
+                                    source.addFeatures(feas);
+                                    // },5000)
+                                } else {
+                                    onError();
                                 }
-
-                                // setTimeout(()=>{
-                                source.addFeatures(
-                                    source.getFormat().readFeatures(xhr.responseText));
-                                // },5000)
-
-                            } else {
-                                onError();
-                            }
                             }
                             xhr.send(filter);
                          }
                 });
 
-            var vectorLayer = new ol.layer.Vector({
-                source: source,
-                format: new ol.format.GeoJSON({
-                            defaultDataProjection:'EPSG:4326',
-                            featureProjection:'EPSG:3857'
-                            })
-                })
-            //${GEOSERVER_URL}/wfs?service=wfs&version=1.0.0&request=getfeature&typename=${ACC_ROAD_WFS_NAME}&PROPERTYNAME=name,fid,geom&CQL_FILTER=fid in (${crossIds.join(',')})&outputformat=application/json`
+                                    // var clusterSource2 = new ol.source.Cluster({
+                                    //             distance: 40,              //聚合的距离参数，即当标注间距离小于此值时进行聚合，单位是像素
+                                    //              source: new ol.source.Vector({
+                                    //                     //获取到的feature数组
+                                    //                     feature: source.getFeatures()
+                                    //                 })
+                                    //         });
+                                    var vectorLayer = new ol.layer.Vector({
+                                            source: source,
+                                            format: new ol.format.GeoJSON({
+                                                        defaultDataProjection:'EPSG:4326',
+                                                        featureProjection:'EPSG:3857'
+                                                        })                
+                                            })
+                                            
+                                            var map = new ol.Map({
+                                            layers: [
+                                                new ol.layer.Tile({
+                                                source: new ol.source.OSM()
+                                                }),
+                                            ],
+                                            target: 'map',
+                                            view: new ol.View({
+                                                center: ol.proj.fromLonLat([119.545322, 26.201018]),
+                                                zoom: 10
+                                            })
+                                        });
 
-            var map = new ol.Map({
-                layers: [
-                    new ol.layer.Tile({
-                    source: new ol.source.OSM()
-                    }),
-                ],
-                target: 'map',
-                view: new ol.View({
-                    center: ol.proj.fromLonLat([119.545322, 26.201018]),
-                    zoom: 10
-                })
-            });
+                                        if(hasLayer=="no"){
 
-            if(hasLayer=="no"){
-
-            }else{
-                map.addLayer(vectorLayer);
-            }
+                                        }else{
+                                            map.addLayer(vectorLayer);
+                                        }
 
             /**
              * do the themmatic
