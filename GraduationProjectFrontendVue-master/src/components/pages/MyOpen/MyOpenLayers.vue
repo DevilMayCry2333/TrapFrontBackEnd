@@ -2,18 +2,27 @@
   <!-- <div v-html="html"></div> -->
   <div style="width:100%;height:100%;">
     <div style="display:flex;width:100%;">
+        <el-select @change="test3" v-model="value" placeholder="请选择">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>      
       <el-upload
+      style="margin-left:50%;"
         class="upload-demo"
         :limit="1"
         :on-success="test2"
         :action="uploadUrl">
-        <el-button size="small" type="primary">点击上传</el-button>
+        <el-button v-if="value" size="small" type="primary">点击上传</el-button>
       </el-upload>
-      <el-button @click="downloadFile" size="small" style="margin-left:80%;" type="primary">点击下载</el-button>
-      <el-button @click="test2">测试</el-button>
+      <!-- <el-button @click="downloadFile" size="small" style="margin-left:80%;" type="primary">点击下载</el-button> -->
+      <!-- <el-button @click="test2">测试</el-button> -->
     </div>
     <div style="width:100%;height:97%;">
-        <iframe ref="iframe" src="http://localhost:8081/customMap" style="width:100%;height:97%;"></iframe>
+        <iframe ref="iframe" src="http://106.15.200.245/test4.html" style="width:100%;height:97%;"></iframe>
     </div>
   </div>
 </template>
@@ -37,6 +46,9 @@ export default {
         //     oIframe.style.height = (Number(deviceHeight)-120) + 'px'; //数字是页面布局高度差
   },
   methods:{
+    test3(){
+      this.uploadUrl = "http://106.15.200.245:50000/geoserver/upload?username=" + this.manager + "&module=" + this.$route.query.mod + "&eps=" + this.value;
+    },
     test2(){
       this.$cookies.set('name','XBH');
       this.$cookies.set('value','801');
@@ -51,7 +63,7 @@ export default {
 
     },
     downloadFile(){
-      var url = "http://localhost:50000/geoserver/downloadFileAction?userid=" + this.area + this.manager
+      var url = "http://106.15.200.245:50000/geoserver/downloadFileAction?userid=" + this.area + this.manager
       + "&module=" + this.$route.query.mod;
 
       window.location.href = url;
@@ -92,7 +104,6 @@ export default {
                                     this.$cookies.set('area',this.area);
                             this.$cookies.set('manager',this.manager);
                             console.log(this.$route.query);
-                            this.uploadUrl = "http://localhost:50000/geoserver/upload?username=" + this.manager + "&module=" + this.$route.query.mod;
                         }
 
                         this.$cookies.set('token',sessionStorage['token']);
@@ -171,6 +182,15 @@ export default {
       module:"1",
       workname:'',
       layername:'',
+      options: [{
+                value: 'EPSG:2364',
+                label: 'EPSG:2364'
+              }, {
+                value: 'EPSG:2363',
+                label: 'EPSG:2363'
+              }],
+              value: ''
+
     }
   }
 }

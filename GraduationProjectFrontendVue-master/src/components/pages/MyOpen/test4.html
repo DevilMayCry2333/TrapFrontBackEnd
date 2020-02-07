@@ -81,9 +81,26 @@
 		// 	})
 		// });
                     //our methods here
-            var url1="http://localhost:8080/geoserver/wfs?service=wfs&version=1.0.0&request=getfeature&typename=A350104754:lj_20170307&outputformat=application/json";
+                    var layerNames = [];
+                    layerNames.push(layerName);
+            var url1="http://106.15.200.245:8080/geoserver/wfs?service=wfs&version=1.0.0&request=getfeature&typename=A350104754:lj_20170307&outputformat=application/json";
             // 这里也要用变量来替换的
-
+            var featureRequest = new ol.format.WFS().writeGetFeature({
+                                srsName: 'EPSG:3857',
+                                featurePrefix: workName,
+                                featureNS: workName,
+                                featureTypes: layerNames,
+                                propertyNames:['XBH','LBH','DBH','the_geom'],
+                                outputFormat: 'application/json',
+                                // filter: ol.format.filter.equalTo(myname,myvalue)
+                                filter: ol.format.filter.and(
+                                //     ol.format.filter.bbox('the_geom',extent, 'EPSG:3857'),
+                                    ol.format.filter.like('XBH','*'),
+                                    ol.format.filter.like('LBH','*'),
+                                    ol.format.filter.like('DBH','*')
+                                )
+                            });
+            let filter=new XMLSerializer().serializeToString(featureRequest);
                                         //${GEOSERVER_URL}/wfs?service=wfs&version=1.0.0&request=getfeature&typename=${ACC_ROAD_WFS_NAME}&PROPERTYNAME=name,fid,geom&CQL_FILTER=fid in (${crossIds.join(',')})&outputformat=application/json`
 
             var source = new ol.source.Vector({
@@ -94,25 +111,10 @@
                         console.log(extent.join(','));
                         console.log(extent);
 
-                        var featureRequest = new ol.format.WFS().writeGetFeature({
-                                srsName: 'EPSG:3857',
-                                featurePrefix: 'A350104754',
-                                featureNS: 'A350104754',
-                                featureTypes: ['lj_20170307'],
-                                propertyNames:['XBH','the_geom'],
-                                outputFormat: 'application/json',
-                                filter: ol.format.filter.equalTo(myname,myvalue)
-                                // filter: ol.format.filter.and(
-                                //     ol.format.filter.bbox('the_geom',extent, 'EPSG:3857'),
-                                //     ol.format.filter.like(myname,'*')
-                                // )
-                            });
-                            let filter=new XMLSerializer().serializeToString(featureRequest);
-
                             var proj = projection.getCode();
-                            var url = url1;
+                            // var url = url1;
                             // url = url + '&srsname=EPSG:3857&bbox=' + extent.join(',') + ',EPSG:3857';
-                            // var url = "http://localhost:8080/geoserver/wfs?service=wfs&version=1.0.0&request=getfeature&typename=" + workName + ":" + layerName +  "&outputformat=application/json";
+                            var url = "http://106.15.200.245:8080/geoserver/wfs?service=wfs&version=1.0.0&request=getfeature&typename=" + workName + ":" + layerName +  "&outputformat=application/json";
                             var xhr = new XMLHttpRequest();
                             xhr.open('POST', url);
                             xhr.setRequestHeader("Content-type", "text/xml");
@@ -141,7 +143,7 @@
                             }
                             xhr.send(filter);
                          },
-                         strategy: ol.loadingstrategy.bbox
+                        //  strategy: ol.loadingstrategy.bbox
                 });
 
                                     // var clusterSource2 = new ol.source.Cluster({
@@ -316,7 +318,7 @@
 
             var textStyle = new ol.style.Style(textStyleConfig);
             var style = new ol.style.Style(polyStyleConfig);
-            return [style];
+            return [style,textStyle];
             }
 
             //*************helper functions this point forward***************//
