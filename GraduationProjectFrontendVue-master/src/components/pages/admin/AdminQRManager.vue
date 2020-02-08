@@ -576,12 +576,14 @@ export default {
             }else if(this.input=="未绑定"){
               this.inputValue = 0;
             }
+        }else{
+          this.inputValue = this.input;
         }
           // else{
           //   alert("输入错误");
           // }
               http.requestWithToken(
-          "/newQrCode/rootSearch",
+          "/newQrCode/usertosearch",
           "get",
           { colName: this.value, searchText: this.inputValue,
           page: this.QRData.page, limit: this.QRData.limit,
@@ -913,7 +915,7 @@ export default {
               http.requestWithToken(
           "/newQrCode/usertosearch",
           "get",
-          { colName: this.value, searchText: this.input,
+          { colName: this.value, searchText: this.inputValue,
           page: this.QRData.page, limit: this.QRData.limit },
           res => {
              

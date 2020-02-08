@@ -181,8 +181,8 @@
                                             target: 'map',
                                             view: new ol.View({
                                                 center: ol.proj.fromLonLat([119.545322, 26.201018]),
-                                                zoom: 12,
-                                                maxZoom: 19
+                                                zoom: 12
+                                                // maxZoom: 19
                                             })
                                         });
 
@@ -280,7 +280,10 @@
             };
 
             var textStyleConfig = {};
-            var label = res < 5000 ? feat.get(globalOptions.val()) : '';
+            // var label = res < 5000 ? feat.get(globalOptions.val()) : '';
+            var label1 = res < 5000 ? feat.get('LBH') : '';
+            var label2 = res < 5000 ? feat.get('DBH') : '';
+            var label3 = res < 5000 ? feat.get('XBH') : '';
             if (classIndex !== -1) {
                 polyStyleConfig = {
                 stroke: new ol.style.Stroke({
@@ -293,7 +296,7 @@
                 };
                 textStyleConfig = {
                 text: new ol.style.Text({
-                    text: label,
+                    text: label1 + "_" + label2 + "_" +label3,
                     font: '12px Calibri,sans-serif',
                     fill: new ol.style.Fill({
                     color: "#000000"
