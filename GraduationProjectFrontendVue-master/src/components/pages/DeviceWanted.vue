@@ -792,7 +792,6 @@ export default {
         this.searchTown +
         "&token=" +
         sessionStorage["token"]+
-
         "&searchText=" +
         this.input +
         "&colName=" +
