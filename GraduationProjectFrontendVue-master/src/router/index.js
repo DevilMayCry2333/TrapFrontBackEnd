@@ -439,27 +439,27 @@ export default new Router({
         },
         {
           path: 'pages/admin/myopen',
-          name: '数据抄报',
+          name: '林班图',
           component: MyOpenLayers
         },
         {
           path: 'pages/admin/myopen1',
-          name: '数据抄报1',
+          name: '林班图',
           component: MyOpenLayers1
         },
         {
           path: 'pages/admin/myopen2',
-          name: '数据抄报2',
+          name: '林班图',
           component: MyOpenLayers2
         },
         {
           path: 'pages/admin/myopen3',
-          name: '数据抄报3',
+          name: '林班图',
           component: MyOpenLayers3
         },
         {
           path: 'pages/admin/myopen4',
-          name: '数据抄报4',
+          name: '林班图',
           component: MyOpenLayers4
         }
 
