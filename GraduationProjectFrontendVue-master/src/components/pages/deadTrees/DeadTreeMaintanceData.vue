@@ -174,7 +174,15 @@ export default {
       searchText: "",
       otherBeetleList: [],
       otherBeetleDict: {},
+       value: '',
+        input:'',
 
+      searchTown: "",
+         role: '',
+                 province:'',
+        city:'',
+        area:'',
+        manager:'',
       getstartDate: null,
       getendDate: null,
       startDate: null,
@@ -339,16 +347,64 @@ export default {
       );
     },
     exportExcel() {
-      window.location =
+                  let role2 = this.$store.state.user.role;
+      this.role2 = role2;
+              // this.loadDevice();
+       
+      if (role2 == 1) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+              window.location =
         http.getBaseUrl() +
-        "/maintenance/export?startDate=" +
+        "/deadTree/exportExcel?startDate=" +
         this.startDate +
         "&endDate=" +
         this.endDate +
         "&condition="+
         this.searchText+
         "&token=" +
-        sessionStorage["token"];
+        sessionStorage["token"]+
+        "&searchText=" +
+        this.input +
+        "&colName=" +
+        this.value +
+        "&adcode=" +
+        this.province +
+        "&username="+
+        sessionStorage['username'];
+
+      } else if (role2 == 2) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+              window.location =
+        http.getBaseUrl() +
+        "/deadTree/exportExcel?startDate=" +
+        this.startDate +
+        "&endDate=" +
+        this.endDate +
+        "&condition="+
+        this.searchText+
+        "&token=" +
+        sessionStorage["token"]+
+        "&searchText=" +
+        this.input +
+        "&colName=" +
+        this.value +
+        "&adcode=" +
+        this.city +
+        "&username="+
+        sessionStorage['username'];
+
+      } else if (role2 == 3) {
+        this.province = this.$store.state.user.adcode.substr(0, 2);
+        this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.area = this.$store.state.user.adcode;
+            }
+            else if (role2 == 4) {
+                          this.province = this.$store.state.user.adcode.substr(0, 2);
+                          this.city = this.$store.state.user.adcode.substr(0, 4);
+                          this.area = this.$store.state.user.adcode;
+                          this.manager=this.$store.state.user.username;
+                        }
     }
   },
   mounted() {
