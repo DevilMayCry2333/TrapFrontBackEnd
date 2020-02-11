@@ -1,9 +1,9 @@
 <template>
   <div>
-  <router-link to='/pages/deadTrees/Maintance'>诱捕器情况</router-link>
+  <router-link to='/pages/deadTrees/Maintance'>枯死树管理信息</router-link>
 >
   <router-link to='/pages/deadTrees/Maintance'>设备维护信息</router-link>
-      >诱捕器信息
+      >枯死树信息
 
 
     <div style="padding-top:5px">

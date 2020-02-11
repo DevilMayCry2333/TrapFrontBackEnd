@@ -17,6 +17,7 @@
     "ol": "^6.1.1",
     "sass-loader": "^7.1.0",
     "vue": "^2.5.2",
+    "vue-cookies": "^1.6.1",
     "vue-router": "^3.0.1",
     "vuelayers": "^0.11.17",
     "vuex": "^3.0.1",
