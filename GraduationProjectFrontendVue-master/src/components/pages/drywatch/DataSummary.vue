@@ -39,7 +39,7 @@
                 <el-table-column label="注剂数量" prop="injectNum"></el-table-column>
                 <el-table-column label="操作">
                   <template slot-scope="scope">
-                    <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
+                    <el-button type="primary" @click="showMaintenanceView(null,scope.row.name)">查看</el-button>
                   </template>
                 </el-table-column>
               </el-table>
@@ -66,7 +66,7 @@
                             <el-table-column label="注剂总量" prop="injectNum"></el-table-column>
                             <el-table-column label="操作">
                               <template slot-scope="scope">
-                                <el-button type="primary" @click="showMaintenanceView(scope.row.name)">查看</el-button>
+                                <el-button type="primary" @click="showMaintenanceView(scope.row.name,null)">查看</el-button>
                               </template>
                             </el-table-column>
                           </el-table>
@@ -479,13 +479,15 @@ export default {
         return "background-color: lightblue;color: #fff;font-weight: 500;";
       }
     },
-    showMaintenanceView(name) {
+    showMaintenanceView(name,town) {
       this.dialogVisible = true;
       this.$nextTick(() => {
         this.$refs.maintenanceView.setSearchText(name);
         this.$refs.maintenanceView.loadMaintenanceData();
       });
+      sessionStorage.setItem("town",town);
       sessionStorage.setItem('SearchText',name);
+      sessionStorage.setItem('customProject',name);
       sessionStorage.setItem('startDate',this.startDate);
       sessionStorage.setItem('endDate',this.endDate);
 

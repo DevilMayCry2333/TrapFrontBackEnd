@@ -145,7 +145,8 @@ export default {
       },
       tabPage: "first",
       totalCount: 0,
-      totalSum: 0
+      totalSum: 0,
+      totalFzSum:0
     };
   },
   methods: {

@@ -1,6 +1,6 @@
 <template>
   <div>
-  <router-link to='/pages/drywatch/Maintance'>天敌防治情况</router-link>
+  <router-link to='/pages/natural/Maintance'>天敌防治情况</router-link>
         >设备维护信息
 
 
@@ -66,11 +66,11 @@
 
         <el-table-column type="selection" width="55" fixed="left" align="center"></el-table-column>
         <el-table-column prop="scanId" label="天敌防治编号" align="center"></el-table-column>
-        <el-table-column prop="releaseNum" label="松墨天牛总数" align="center"></el-table-column>
+        <el-table-column prop="releaseNum" label="释放天敌数量" align="center"></el-table-column>
 
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
         <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
-        <el-table-column prop="altitude" label="海拔" align="center"></el-table-column>
+        <!-- <el-table-column prop="altitude" label="海拔" align="center"></el-table-column> -->
         <el-table-column label="行政区域" width="200px" align="center">
           <template
             slot-scope="scope"
@@ -349,6 +349,8 @@ export default {
       );
     },
     exportExcel() {
+      let customProject = sessionStorage.getItem('customProject');
+      let town = sessionStorage.getItem('town');
                   let role2 = this.$store.state.user.role;
       this.role2 = role2;
               // this.loadDevice();
@@ -400,6 +402,28 @@ export default {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         this.city = this.$store.state.user.adcode.substr(0, 4);
         this.area = this.$store.state.user.adcode;
+        window.location=
+         http.getBaseUrl() +
+        "/natural/exportExcel?startDate=" +
+        this.startDate +
+        "&endDate=" +
+        this.endDate +
+        "&condition="+
+        this.searchText+
+        "&token=" +
+        sessionStorage["token"]+
+        "&searchText=" +
+        this.input +
+        "&colName=" +
+        this.value +
+        "&adcode=" +
+        this.city +
+        "&username="+
+        sessionStorage['username']+
+        "&customProject=" +
+        customProject +
+        "&town="+
+        town;
             }
             else if (role2 == 4) {
                           this.province = this.$store.state.user.adcode.substr(0, 2);

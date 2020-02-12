@@ -70,7 +70,7 @@
 
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
         <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
-        <el-table-column prop="altitude" label="海拔" align="center"></el-table-column>
+        <!-- <el-table-column prop="altitude" label="海拔" align="center"></el-table-column> -->
         <el-table-column label="行政区域" width="200px" align="center">
           <template
             slot-scope="scope"

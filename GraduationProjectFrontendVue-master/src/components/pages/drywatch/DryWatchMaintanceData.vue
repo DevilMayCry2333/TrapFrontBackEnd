@@ -70,7 +70,7 @@
 
         <el-table-column prop="longitude" label="经度" align="center"></el-table-column>
         <el-table-column prop="latitude" label="纬度" align="center"></el-table-column>
-        <el-table-column prop="altitude" label="海拔" align="center"></el-table-column>
+        <!-- <el-table-column prop="name" label="海拔" align="center"></el-table-column> -->
         <el-table-column label="行政区域" width="200px" align="center">
           <template
             slot-scope="scope"
@@ -177,7 +177,7 @@ export default {
       otherBeetleDict: {},
        value: '',
         input:'',
-
+      customProject:"",
       searchTown: "",
          role: '',
                  province:'',
@@ -272,7 +272,6 @@ export default {
     },
     showEditMaintenanceDataDialog(data) {
 
-
       this.EditMaintenanceDialog.visible = true;
       this.EditMaintenanceDialog.form = {
         id: 0,
@@ -350,6 +349,8 @@ export default {
     },
     exportExcel() {
                   let role2 = this.$store.state.user.role;
+        let customProject = sessionStorage.getItem('customProject');
+        let town = sessionStorage.getItem('town');
       this.role2 = role2;
               // this.loadDevice();
        
@@ -400,6 +401,28 @@ export default {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         this.city = this.$store.state.user.adcode.substr(0, 4);
         this.area = this.$store.state.user.adcode;
+        window.location =
+        http.getBaseUrl() +
+        "/dryWatch/exportExcel?startDate=" +
+        this.startDate +
+        "&endDate=" +
+        this.endDate +
+        "&condition="+
+        this.searchText+
+        "&token=" +
+        sessionStorage["token"]+
+        "&searchText=" +
+        this.input +
+        "&colName=" +
+        this.value +
+        "&adcode=" +
+        this.area +
+        "&username="+
+        sessionStorage['username']+
+        "&customProject="+
+        customProject+
+        "&town="+
+        town;
             }
             else if (role2 == 4) {
                           this.province = this.$store.state.user.adcode.substr(0, 2);

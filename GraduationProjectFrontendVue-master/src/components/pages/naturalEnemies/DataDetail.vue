@@ -439,8 +439,8 @@ export default {
                 "post",
                 { page: this.QRData.page, limit: 10, username: sessionStorage['username']},
                 res => {
-                this.QRData.list = res.data.Data;
-                this.QRData.total = res.data.total;
+                this.QRData.list = res.data.data;
+                this.QRData.total = res.data.totalPage;
 
                 this.LuanKaNum = res.data.LuanKaNum;
                 this.releaseNum = res.data.releaseNum;
