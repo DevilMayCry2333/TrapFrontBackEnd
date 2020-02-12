@@ -181,7 +181,7 @@ export default {
         city:'',
         area:'',
         manager:'',
-        
+
       getstartDate: null,
       getendDate: null,
       startDate: null,
@@ -265,7 +265,7 @@ export default {
     },
     handleMaintenanceDataSelectionChange(val) {
       this.maintenanceData.selection = val;
-       
+
     },
     showEditMaintenanceDataDialog(data) {
 
@@ -349,7 +349,7 @@ export default {
                   let role2 = this.$store.state.user.role;
       this.role2 = role2;
               // this.loadDevice();
-       
+
       if (role2 == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
               window.location =
@@ -396,6 +396,22 @@ export default {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         this.city = this.$store.state.user.adcode.substr(0, 4);
         this.area = this.$store.state.user.adcode;
+        window.location =
+        http.getBaseUrl() +
+        "/medicineDataDetail/exportExcel?startDate=" +
+        this.startDate +
+        "&endDate=" +
+        this.endDate +
+        "&token=" +
+        sessionStorage["token"]+
+        "&searchText=" +
+        this.searchText +
+        "&colName=" +
+        this.value +
+        "&adcode=" +
+        this.area +
+        "&username="+
+        sessionStorage['username'];
             }
             else if (role2 == 4) {
                           this.province = this.$store.state.user.adcode.substr(0, 2);
