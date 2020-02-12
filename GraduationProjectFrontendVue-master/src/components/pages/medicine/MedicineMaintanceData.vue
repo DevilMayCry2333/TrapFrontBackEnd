@@ -396,6 +396,8 @@ export default {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         this.city = this.$store.state.user.adcode.substr(0, 4);
         this.area = this.$store.state.user.adcode;
+        if(this.startDate==null) this.startDate='';
+        if(this.endDate==null) this.endDate='';
         window.location =
         http.getBaseUrl() +
         "/medicineDataDetail/exportExcel?startDate=" +
