@@ -194,11 +194,11 @@
             <br />
       <div id="assignQR" style="height: 150px;">
           <el-tag style="height: 40px;line-height: 40px;">起始ID：</el-tag>
-          <el-input v-model="startID" placeholder="请输入以1为开头的设备ID" style="width:40%;"></el-input>
+          <el-input v-model="startID" placeholder="禁止输入0为开头的设备ID" style="width:40%;"></el-input>
             <br />
             <br />
           <el-tag style="height: 40px;line-height: 40px;">结束ID：</el-tag>
-          <el-input v-model="endID" placeholder="请输入以1为开头的设备ID" style="width:40%;"></el-input>
+          <el-input v-model="endID" placeholder="禁止输入0为开头的设备ID" style="width:40%;"></el-input>
             <br />
             <br />
            <el-tag style="height: 40px;line-height: 40px;">代理商：</el-tag>
@@ -620,26 +620,27 @@ export default {
       }
 
     },
-    managerApplicationChange(){
+    //提示起始ID的方法
+    // managerApplicationChange(){
        
-            http.requestWithToken(
-        "/newQrCode/getMaxAvableCode",
-        "get",
-        { provinceCode: this.province},
-        res => {
+    //         http.requestWithToken(
+    //     "/newQrCode/getMaxAvableCode",
+    //     "get",
+    //     { provinceCode: this.province},
+    //     res => {
            
-          if(res.data.error){
-            this.startID = "没有可分配的二维码";
-          }else{
-          this.startID = res.data;
-          }
+    //       if(res.data.error){
+    //         this.startID = "没有可分配的二维码";
+    //       }else{
+    //       this.startID = res.data;
+    //       }
 
 
-        },
-        () => {}
-      );
+    //     },
+    //     () => {}
+    //   );
 
-    },
+    // },
     applicationChange(){
        
        
