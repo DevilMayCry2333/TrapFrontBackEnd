@@ -71,12 +71,13 @@ export default {
               };
               var label = new BMap.Label(text, opts); // 创建文本标注对象
               label.setStyle({
-                border:"1px solid #67c23a",
+                border:"0",   //不要边框
                 color: "black",
-                fontSize: "12px",
+                fontSize: "10px",  //字体小点
                 height: "20px",
                 lineHeight: "20px",
-                fontFamily: "微软雅黑"
+                fontFamily: "微软雅黑",
+                backgroundColor:"rgba(0,0,0,0)"   //背景透明
               });
               that.map.addOverlay(label);
             }
