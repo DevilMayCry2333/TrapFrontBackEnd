@@ -110,7 +110,7 @@ export default {
       endDate: "",
 
       contentLabelDict: ["市", "县", "乡镇", "管理员","工人"],
-      contentLabelIndex: 0,
+      contentLabelIndex: 2,
           summaryData:[],
           deviceCount:0,
           beetleCount:0,
@@ -155,14 +155,17 @@ export default {
       if (role == 1) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         this.loadCity();
+        this.contentLabelIndex = 0;
       } else if (role == 2) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         this.city = this.$store.state.user.adcode.substr(0, 4);
+        this.contentLabelIndex = 1;
         this.loadArea();
       } else if (role == 3) {
         this.province = this.$store.state.user.adcode.substr(0, 2);
         this.city = this.$store.state.user.adcode.substr(0, 4);
         this.area = this.$store.state.user.adcode;
+        this.contentLabelIndex = 2;
       this.loadManagers();
             }
             else if (role == 4) {

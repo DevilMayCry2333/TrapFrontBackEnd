@@ -36,14 +36,15 @@
 
         var myname = $.cookie("name");
         var myvalue = $.cookie("value");
+        var project = $.cookie("project");
 
         console.log(hasLayer);
         console.log(workName);
         console.log(layerName);
 
-        var json = JSON.parse(localStorage.getItem('device'));
+        // var json = JSON.parse(localStorage.getItem('device'));
         console.log("json");
-        console.log(json);
+        // console.log(json);
 
             //some global vars here
             var classSeries;
@@ -71,15 +72,111 @@
                 })
             })
             });
-
-
-		// var map = new ol.Map({
-		// 	target: 'map',
-		// 	view: new ol.View({
-		// 		center: ol.proj.fromLonLat([119.545322, 26.201018]),
-		// 		zoom: 10
-		// 	})
-		// });
+            var map = new ol.Map({
+                    layers: [
+                        new ol.layer.Tile({
+                            source: new ol.source.OSM()
+                        }),
+                    ],
+                    target: 'map',
+                    view: new ol.View({
+                        center: ol.proj.fromLonLat([119.545322, 26.201018]),
+                        zoom: 12
+                                                // maxZoom: 19
+                    })
+                });      
+            async function ajax(){
+                var json = "1";
+                var data = await new Promise((resolve,reject)=>{
+                    $.ajax({
+                        url: "http://106.15.200.245:50000/auth_api/device_list",
+                        headers:{
+                            "token":sessionStorage['token']
+                        },
+                        data: {
+                            page:1,
+                            limit:1000,
+                            isMap:false,
+                            project: project
+                        },
+                        type: "get",
+                        dataType: "json",
+                        success:(res)=>{
+                            json = res.data;
+                            console.log(res.data);                            
+                            resolve('ok');
+                            // data = jQuery.parseJSON(data);  //dataType指明了返回数据为json类型，故不需要再反序列化
+                        }
+                    })                   
+                })
+                console.log(json);
+                    //此示例创建10000个要素
+                    var count = json.length;
+                    var features = new Array(count);
+                    // var e = 4500000;
+                    console.log(ol.proj.fromLonLat([119.30, 26.08]));
+                    for(var i = 0; i < count; i++){
+                        var coordinates = [];
+                        coordinates.push(json[i].longitude);
+                        coordinates.push(json[i].latitude);
+                        console.log("coord");
+                        console.log(coordinates);
+                        features[i] = new ol.Feature({
+                            geometry: new ol.geom.Point(ol.proj.fromLonLat(coordinates)),
+                            name: json[i].customSerial
+                        });
+                        features[i].setId(json[i].customSerial);
+                    }
+                    console.log(features);
+                    //矢量要素数据源
+                    var source2 = new ol.source.Vector({
+                        features: features
+                    });
+                    //聚合标注数据源
+                    var clusterSource = new ol.source.Cluster({
+                        distance: 40,               //聚合的距离参数，即当标注间距离小于此值时进行聚合，单位是像素
+                        source: source2              //聚合的数据源，即矢量要素数据源对象
+                    });
+                    //加载聚合标注的矢量图层
+                    var styleCache = {};                  //用于保存特定数量的聚合群的要素样式
+                    
+                    //不用聚合会卡死，用聚合又无法确定设备ID
+                    var clusters = new ol.layer.Vector({
+                        source: clusterSource,
+                        style: function (feature, resolution){
+                            var size = feature.get('features').length;          //获取该要素所在聚合群的要素数量
+                            // var style = styleCache[size];
+                            var style = [];
+                            // console.log(feature.get('features'));
+                            for(var i = 0 ; i < feature.get('features').length; i++){
+                                // console.log(feature.get('features')[i]);
+                                style.push(
+                                    new ol.style.Style({
+                                        image: new ol.style.Circle({
+                                            radius: 21,
+                                            stroke: new ol.style.Stroke({
+                                                color: '#fff'
+                                            }),
+                                            fill: new ol.style.Fill({
+                                                color: '#3399CC'
+                                            })
+                                        }),
+                                        text: new ol.style.Text({
+                                            text: feature.get('features')[i].id_,
+                                            fill: new ol.style.Fill({
+                                                color: '#fff'
+                                            }),
+                                            font:"5px"
+                                        })
+                                    })
+                                )
+                            }
+                            return style;
+                        }
+                    });
+                    map.addLayer(clusters);                 
+            }
+            ajax();
                     //our methods here
                     var layerNames = [];
                     layerNames.push(layerName);
@@ -171,20 +268,6 @@
                                                         featureProjection:'EPSG:3857'
                                                         })                
                                             })
-
-                                            var map = new ol.Map({
-                                            layers: [
-                                                new ol.layer.Tile({
-                                                source: new ol.source.OSM()
-                                                }),
-                                            ],
-                                            target: 'map',
-                                            view: new ol.View({
-                                                center: ol.proj.fromLonLat([119.545322, 26.201018]),
-                                                zoom: 12
-                                                // maxZoom: 19
-                                            })
-                                        });
 
                                         if(hasLayer=="no"){
 
@@ -389,73 +472,6 @@
 
             return polyObj[polyObj.length - 1].poly;
             }
-
-            
-		//此示例创建10000个要素
-        var count = json.length;
-        var features = new Array(count);
-		// var e = 4500000;
-		console.log(ol.proj.fromLonLat([119.30, 26.08]));
-        for(var i = 0; i < count; i++){
-            var coordinates = [];
-            coordinates.push(json[i].lng);
-            coordinates.push(json[i].lat);
-            console.log(coordinates);
-            features[i] = new ol.Feature({
-                geometry: new ol.geom.Point(ol.proj.fromLonLat(coordinates)),
-                name: json[i].cus
-            });
-            features[i].setId(json[i].cus);
-        }
-        console.log(features);
-        
-        //矢量要素数据源
-        var source2 = new ol.source.Vector({
-			features: features
-        });
-        //聚合标注数据源
-        var clusterSource = new ol.source.Cluster({
-            distance: 40,               //聚合的距离参数，即当标注间距离小于此值时进行聚合，单位是像素
-            source: source2              //聚合的数据源，即矢量要素数据源对象
-        });
-        //加载聚合标注的矢量图层
-        var styleCache = {};                  //用于保存特定数量的聚合群的要素样式
-        
-        //不用聚合会卡死，用聚合又无法确定设备ID
-        var clusters = new ol.layer.Vector({
-			source: clusterSource,
-            style: function (feature, resolution){
-                var size = feature.get('features').length;          //获取该要素所在聚合群的要素数量
-                // var style = styleCache[size];
-                var style = [];
-                // console.log(feature.get('features'));
-                for(var i = 0 ; i < feature.get('features').length; i++){
-                    // console.log(feature.get('features')[i]);
-                    style.push(
-                        new ol.style.Style({
-                            image: new ol.style.Circle({
-                                radius: 21,
-                                stroke: new ol.style.Stroke({
-                                    color: '#fff'
-                                }),
-                                fill: new ol.style.Fill({
-                                    color: '#3399CC'
-                                })
-                            }),
-                            text: new ol.style.Text({
-                                text: feature.get('features')[i].id_,
-                                fill: new ol.style.Fill({
-                                    color: '#fff'
-                                }),
-                                font:"5px"
-                            })
-                        })
-                    )
-                }
-                return style;
-            }
-        });
-        map.addLayer(clusters);
 
 	</script>
 </html>

@@ -105,48 +105,48 @@ export default {
                             this.$cookies.set('manager',this.manager);
                             console.log(this.$route.query);
                         }
-
+                        this.$cookies.set('project',this.$route.query.mod);
                         this.$cookies.set('token',sessionStorage['token']);
-                                http.requestWithToken(
-                                  "/auth_api/device_list",
-                                      "get",
-                                      { 
-                                        page: 1, limit: 1000,
-                                        isMap:false,
-                                        project: this.$route.query.mod
-                                      },
-                                      res => {
-                                        var count = 0;             
-                                        // console.log(res.data);
-                                        for(var i = 0 ; i < res.data.data.length; i++){
-                                          // console.log(res.data.data[i]);
+                                // http.requestWithToken(
+                                //   "/auth_api/device_list",
+                                //       "get",
+                                //       { 
+                                //         page: 1, limit: 1000,
+                                //         isMap:false,
+                                //         project: this.$route.query.mod
+                                //       },
+                                //       res => {
+                                //         var count = 0;             
+                                //         // console.log(res.data);
+                                //         for(var i = 0 ; i < res.data.data.length; i++){
+                                //           // console.log(res.data.data[i]);
                                           
-                                          if(res.data.data[i].longitude!=null){
-                                            count++;
-                                          }
-                                        }
-                                        console.log("cnt" + count);
-                                        var tmp = [];
-                                        console.log("tmp" + tmp);
-                                        for(var i = 0 ; i < res.data.data.length; i++){
-                                          if(res.data.data[i].longitude!=null){
-                                            var json = {
-                                              "lng":res.data.data[i].longitude,
-                                              "lat":res.data.data[i].latitude,
-                                              "cus":res.data.data[i].customSerial,
-                                            }
-                                            tmp.push(json);
-                                          }
-                                        }
-                                        console.log("tmp");
-                                        console.log(tmp);
-                                        var objString = JSON.stringify(tmp);
-                                        // this.$cookies.set('device',objString);
-                                        localStorage.setItem('device',objString);
+                                //           if(res.data.data[i].longitude!=null){
+                                //             count++;
+                                //           }
+                                //         }
+                                //         console.log("cnt" + count);
+                                //         var tmp = [];
+                                //         console.log("tmp" + tmp);
+                                //         for(var i = 0 ; i < res.data.data.length; i++){
+                                //           if(res.data.data[i].longitude!=null){
+                                //             var json = {
+                                //               "lng":res.data.data[i].longitude,
+                                //               "lat":res.data.data[i].latitude,
+                                //               "cus":res.data.data[i].customSerial,
+                                //             }
+                                //             tmp.push(json);
+                                //           }
+                                //         }
+                                //         console.log("tmp");
+                                //         console.log(tmp);
+                                //         var objString = JSON.stringify(tmp);
+                                //         // this.$cookies.set('device',objString);
+                                //         localStorage.setItem('device',objString);
 
-                                      },
-                                      () => {}
-                                );
+                                //       },
+                                //       () => {}
+                                // );
                               
                               http.requestWithToken(
                                   "/geoserver/getLayerInfo",
