@@ -560,7 +560,7 @@ export default {
              this.inputValue = 2;
           }else if(this.input=="天敌防治管理"){
              this.inputValue = 3;
-          }else if(this.input=="枯死树管理"){
+          }else if(this.input=="枯死树采伐"){
              this.inputValue = 4;
           }else if(this.input=="药剂防治管理"){
              this.inputValue = 5;
@@ -599,7 +599,7 @@ export default {
               }else if(this.QRData.list[i].project=="3"){
                 this.QRData.list[i].project = "天敌防治管理";
               }else if(this.QRData.list[i].project=="4"){
-                this.QRData.list[i].project = "枯死树管理";
+                this.QRData.list[i].project = "枯死树采伐";
               }else if(this.QRData.list[i].project=="5"){
                 this.QRData.list[i].project = "药剂防治管理";
               }
@@ -945,7 +945,7 @@ export default {
 http.requestWithToken(
           "/newQrCode/rootSearch",
           "get",
-          { colName: this.value, searchText: this.input,
+          { colName: this.value, searchText: this.inputValue,
           page: this.QRData.page, limit: this.QRData.limit},
           res => {
              
